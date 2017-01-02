@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C01E1A297300D64F16 /* LFHomeViewController.swift */; };
+		127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */; };
+		127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */; };
+		127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C51E1A298900D64F16 /* LFHomeCenterTableViewCell.swift */; };
+		127861CC1E1A298900D64F16 /* LFHomeCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861C61E1A298900D64F16 /* LFHomeCenterTableViewCell.xib */; };
+		127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C71E1A298900D64F16 /* LFHomeFooterTableViewCell.swift */; };
+		127861CE1E1A298900D64F16 /* LFHomeFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861C81E1A298900D64F16 /* LFHomeFooterTableViewCell.xib */; };
+		127861D11E1A299F00D64F16 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861D01E1A299F00D64F16 /* LFSearchViewController.swift */; };
+		127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861D21E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift */; };
+		127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861D31E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib */; };
+		127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861D81E1A29E400D64F16 /* LoginViewController.swift */; };
+		127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DB1E1A2A0200D64F16 /* CXButton.swift */; };
+		127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DC1E1A2A0200D64F16 /* CXView.swift */; };
+		127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DD1E1A2A0200D64F16 /* CXTextField.swift */; };
 		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
 		1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */; };
 		1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */; };
@@ -45,6 +59,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		127861C01E1A297300D64F16 /* LFHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeViewController.swift; sourceTree = "<group>"; };
+		127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		127861C51E1A298900D64F16 /* LFHomeCenterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeCenterTableViewCell.swift; sourceTree = "<group>"; };
+		127861C61E1A298900D64F16 /* LFHomeCenterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHomeCenterTableViewCell.xib; sourceTree = "<group>"; };
+		127861C71E1A298900D64F16 /* LFHomeFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeFooterTableViewCell.swift; sourceTree = "<group>"; };
+		127861C81E1A298900D64F16 /* LFHomeFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHomeFooterTableViewCell.xib; sourceTree = "<group>"; };
+		127861D01E1A299F00D64F16 /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
+		127861D21E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodItemsListTableViewCell.swift; sourceTree = "<group>"; };
+		127861D31E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFFoodItemsListTableViewCell.xib; sourceTree = "<group>"; };
+		127861D81E1A29E400D64F16 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		127861DB1E1A2A0200D64F16 /* CXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXButton.swift; sourceTree = "<group>"; };
+		127861DC1E1A2A0200D64F16 /* CXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXView.swift; sourceTree = "<group>"; };
+		127861DD1E1A2A0200D64F16 /* CXTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXTextField.swift; sourceTree = "<group>"; };
 		14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lefoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1809BE471E16364E00888D34 /* UIColor+colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colors.swift"; sourceTree = "<group>"; };
 		1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableArray+array.swift"; sourceTree = "<group>"; };
@@ -108,6 +136,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		127861BF1E1A295700D64F16 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				127861C01E1A297300D64F16 /* LFHomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		127861C21E1A297A00D64F16 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */,
+				127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */,
+				127861C51E1A298900D64F16 /* LFHomeCenterTableViewCell.swift */,
+				127861C61E1A298900D64F16 /* LFHomeCenterTableViewCell.xib */,
+				127861C71E1A298900D64F16 /* LFHomeFooterTableViewCell.swift */,
+				127861C81E1A298900D64F16 /* LFHomeFooterTableViewCell.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		127861CF1E1A299400D64F16 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				127861D01E1A299F00D64F16 /* LFSearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		127861D61E1A29AB00D64F16 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				127861D21E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift */,
+				127861D31E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		127861D71E1A29D600D64F16 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				127861D81E1A29E400D64F16 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		127861DA1E1A29EC00D64F16 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				127861DB1E1A2A0200D64F16 /* CXButton.swift */,
+				127861DC1E1A2A0200D64F16 /* CXView.swift */,
+				127861DD1E1A2A0200D64F16 /* CXTextField.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
 		1809BE4B1E1641BE00888D34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +229,7 @@
 		18160CDE1E14EB0F00C2E5AE /* Lefoodie */ = {
 			isa = PBXGroup;
 			children = (
+				127861DA1E1A29EC00D64F16 /* Others */,
 				1896A5C71E154650008530A4 /* Extensions */,
 				1896A5C61E153F32008530A4 /* Controllers */,
 				1896A5C51E153F2B008530A4 /* View */,
@@ -188,6 +273,8 @@
 		1896A5C51E153F2B008530A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				127861D61E1A29AB00D64F16 /* Search */,
+				127861C21E1A297A00D64F16 /* Home */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -195,6 +282,9 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				127861D71E1A29D600D64F16 /* Login */,
+				127861CF1E1A299400D64F16 /* Search */,
+				127861BF1E1A295700D64F16 /* Home */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -310,6 +400,7 @@
 				TargetAttributes = {
 					18160CDB1E14EB0F00C2E5AE = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 95Y7Y2H9V8;
 						ProvisioningStyle = Automatic;
 					};
 					18160CF21E14EB1000C2E5AE = {
@@ -349,9 +440,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */,
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
 				18160CEA1E14EB0F00C2E5AE /* Assets.xcassets in Resources */,
+				127861CE1E1A298900D64F16 /* LFHomeFooterTableViewCell.xib in Resources */,
 				18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */,
+				127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */,
+				127861CC1E1A298900D64F16 /* LFHomeCenterTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,13 +609,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
+				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
+				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
+				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
+				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
+				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
+				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
+				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
+				127861D11E1A299F00D64F16 /* LFSearchViewController.swift in Sources */,
+				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +776,7 @@
 			baseConfigurationReference = D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
@@ -688,6 +794,7 @@
 			baseConfigurationReference = 419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
