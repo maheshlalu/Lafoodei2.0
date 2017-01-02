@@ -35,6 +35,8 @@
 		18160CF81E14EB1000C2E5AE /* LefoodieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160CF71E14EB1000C2E5AE /* LefoodieTests.swift */; };
 		18160D031E14EB1000C2E5AE /* LefoodieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */; };
 		1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835655E1E166D1500E7A531 /* NSDate+date.swift */; };
+		183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */; };
+		183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */; };
 		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
 		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
@@ -94,6 +96,8 @@
 		18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LefoodieUITests.swift; sourceTree = "<group>"; };
 		18160D041E14EB1000C2E5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1835655E1E166D1500E7A531 /* NSDate+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+date.swift"; sourceTree = "<group>"; };
+		183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXImageView.swift; sourceTree = "<group>"; };
+		183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTabHomeController.swift; sourceTree = "<group>"; };
 		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
 		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				127861DB1E1A2A0200D64F16 /* CXButton.swift */,
 				127861DC1E1A2A0200D64F16 /* CXView.swift */,
 				127861DD1E1A2A0200D64F16 /* CXTextField.swift */,
+				183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -263,6 +268,14 @@
 			path = LefoodieUITests;
 			sourceTree = "<group>";
 		};
+		183FBCC21E1A378D00A0A8CC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
 		1896A5C41E153F26008530A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +295,7 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				183FBCC21E1A378D00A0A8CC /* TabBar */,
 				127861D71E1A29D600D64F16 /* Login */,
 				127861CF1E1A299400D64F16 /* Search */,
 				127861BF1E1A295700D64F16 /* Home */,
@@ -394,6 +408,7 @@
 		18160CD41E14EB0F00C2E5AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LF;
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = ongo;
@@ -617,11 +632,13 @@
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
+				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
+				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
 				127861D11E1A299F00D64F16 /* LFSearchViewController.swift in Sources */,

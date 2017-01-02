@@ -18,12 +18,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     func registerCells(){
-        let nib = UINib(nibName: "LFHeaderTableViewCell", bundle: nil)
-
         self.homeTableView.register(UINib(nibName: "LFHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHeaderTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeCenterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeCenterTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeFooterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeFooterTableViewCell")
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
