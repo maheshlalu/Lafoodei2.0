@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
+		1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */; };
+		1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */; };
+		1809BE501E1641DA00888D34 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4D1E1641DA00888D34 /* FBSDKLoginKit.framework */; };
+		1809BE511E1641DA00888D34 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4E1E1641DA00888D34 /* FBSDKShareKit.framework */; };
 		18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160CDF1E14EB0F00C2E5AE /* AppDelegate.swift */; };
 		18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160CE11E14EB0F00C2E5AE /* ViewController.swift */; };
 		18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18160CE31E14EB0F00C2E5AE /* Main.storyboard */; };
@@ -15,6 +20,11 @@
 		18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18160CEB1E14EB0F00C2E5AE /* LaunchScreen.storyboard */; };
 		18160CF81E14EB1000C2E5AE /* LefoodieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160CF71E14EB1000C2E5AE /* LefoodieTests.swift */; };
 		18160D031E14EB1000C2E5AE /* LefoodieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */; };
+		1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835655E1E166D1500E7A531 /* NSDate+date.swift */; };
+		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
+		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
+		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
+		D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lefoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1809BE471E16364E00888D34 /* UIColor+colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colors.swift"; sourceTree = "<group>"; };
+		1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableArray+array.swift"; sourceTree = "<group>"; };
+		1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		1809BE4D1E1641DA00888D34 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		1809BE4E1E1641DA00888D34 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		18160CDC1E14EB0F00C2E5AE /* Lefoodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lefoodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18160CDF1E14EB0F00C2E5AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18160CE11E14EB0F00C2E5AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +65,16 @@
 		18160CFE1E14EB1000C2E5AE /* LefoodieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LefoodieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LefoodieUITests.swift; sourceTree = "<group>"; };
 		18160D041E14EB1000C2E5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1835655E1E166D1500E7A531 /* NSDate+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+date.swift"; sourceTree = "<group>"; };
+		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
+		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.release.xcconfig"; sourceTree = "<group>"; };
+		5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.debug.xcconfig"; sourceTree = "<group>"; };
+		D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.release.xcconfig"; sourceTree = "<group>"; };
+		DEB4A3827E1FED991ADC680B /* Pods-LefoodieUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1809BE511E1641DA00888D34 /* FBSDKShareKit.framework in Frameworks */,
+				8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */,
+				1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */,
+				1809BE501E1641DA00888D34 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,19 +101,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1809BE4B1E1641BE00888D34 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */,
+				1809BE4D1E1641DA00888D34 /* FBSDKLoginKit.framework */,
+				1809BE4E1E1641DA00888D34 /* FBSDKShareKit.framework */,
+			);
+			name = Other;
+			path = Lefoodie;
+			sourceTree = "<group>";
+		};
 		18160CD31E14EB0F00C2E5AE = {
 			isa = PBXGroup;
 			children = (
 				18160CDE1E14EB0F00C2E5AE /* Lefoodie */,
+				1809BE4B1E1641BE00888D34 /* Other */,
 				18160CF61E14EB1000C2E5AE /* LefoodieTests */,
 				18160D011E14EB1000C2E5AE /* LefoodieUITests */,
 				18160CDD1E14EB0F00C2E5AE /* Products */,
+				F280C9F5E7FBF4249A5126EC /* Pods */,
+				1AF90FF33FE1F0D20ED29765 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +145,10 @@
 		18160CDE1E14EB0F00C2E5AE /* Lefoodie */ = {
 			isa = PBXGroup;
 			children = (
+				1896A5C71E154650008530A4 /* Extensions */,
+				1896A5C61E153F32008530A4 /* Controllers */,
+				1896A5C51E153F2B008530A4 /* View */,
+				1896A5C41E153F26008530A4 /* Model */,
 				18160CDF1E14EB0F00C2E5AE /* AppDelegate.swift */,
 				18160CE11E14EB0F00C2E5AE /* ViewController.swift */,
 				18160CE31E14EB0F00C2E5AE /* Main.storyboard */,
@@ -128,6 +178,61 @@
 			path = LefoodieUITests;
 			sourceTree = "<group>";
 		};
+		1896A5C41E153F26008530A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1896A5C51E153F2B008530A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1896A5C61E153F32008530A4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1896A5C71E154650008530A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */,
+				1809BE471E16364E00888D34 /* UIColor+colors.swift */,
+				1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */,
+				1835655E1E166D1500E7A531 /* NSDate+date.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		1AF90FF33FE1F0D20ED29765 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */,
+				5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */,
+				1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F280C9F5E7FBF4249A5126EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */,
+				419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */,
+				C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */,
+				D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */,
+				2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */,
+				DEB4A3827E1FED991ADC680B /* Pods-LefoodieUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18160D071E14EB1000C2E5AE /* Build configuration list for PBXNativeTarget "Lefoodie" */;
 			buildPhases = (
+				665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */,
 				18160CD81E14EB0F00C2E5AE /* Sources */,
 				18160CD91E14EB0F00C2E5AE /* Frameworks */,
 				18160CDA1E14EB0F00C2E5AE /* Resources */,
+				6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */,
+				926C0A05005DFBCA5F053ABD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +260,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18160D0A1E14EB1000C2E5AE /* Build configuration list for PBXNativeTarget "LefoodieTests" */;
 			buildPhases = (
+				BF33D7091121EED8CF9183E1 /* [CP] Check Pods Manifest.lock */,
 				18160CEF1E14EB1000C2E5AE /* Sources */,
 				18160CF01E14EB1000C2E5AE /* Frameworks */,
 				18160CF11E14EB1000C2E5AE /* Resources */,
+				98A9B7F6AD93B92458E36199 /* [CP] Embed Pods Frameworks */,
+				707ED571377B1C508CE6A0C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18160D0D1E14EB1000C2E5AE /* Build configuration list for PBXNativeTarget "LefoodieUITests" */;
 			buildPhases = (
+				29FA60AFEACA9F7A6123B427 /* [CP] Check Pods Manifest.lock */,
 				18160CFA1E14EB1000C2E5AE /* Sources */,
 				18160CFB1E14EB1000C2E5AE /* Frameworks */,
 				18160CFC1E14EB1000C2E5AE /* Resources */,
+				DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */,
+				ED5B6A694CE82DD4E82A7431 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,13 +371,155 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29FA60AFEACA9F7A6123B427 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		707ED571377B1C508CE6A0C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		926C0A05005DFBCA5F053ABD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98A9B7F6AD93B92458E36199 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF33D7091121EED8CF9183E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED5B6A694CE82DD4E82A7431 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		18160CD81E14EB0F00C2E5AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
+				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
+				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
+				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
+				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,8 +668,13 @@
 		};
 		18160D081E14EB1000C2E5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Lefoodie",
+				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.Lefoodie;
@@ -424,8 +685,13 @@
 		};
 		18160D091E14EB1000C2E5AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Lefoodie",
+				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.Lefoodie;
@@ -436,6 +702,7 @@
 		};
 		18160D0B1E14EB1000C2E5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,6 +717,7 @@
 		};
 		18160D0C1E14EB1000C2E5AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -464,6 +732,7 @@
 		};
 		18160D0E1E14EB1000C2E5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LefoodieUITests/Info.plist;
@@ -477,6 +746,7 @@
 		};
 		18160D0F1E14EB1000C2E5AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEB4A3827E1FED991ADC680B /* Pods-LefoodieUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LefoodieUITests/Info.plist;
@@ -507,6 +777,7 @@
 				18160D091E14EB1000C2E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18160D0A1E14EB1000C2E5AE /* Build configuration list for PBXNativeTarget "LefoodieTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +786,7 @@
 				18160D0C1E14EB1000C2E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18160D0D1E14EB1000C2E5AE /* Build configuration list for PBXNativeTarget "LefoodieUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +795,7 @@
 				18160D0F1E14EB1000C2E5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
