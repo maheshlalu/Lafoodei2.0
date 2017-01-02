@@ -73,6 +73,6 @@ extension LFTabHomeController:UITabBarControllerDelegate{
     
    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
         
-        
+        print("clicked\(viewController)")
     }
 }

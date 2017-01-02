@@ -10,6 +10,11 @@ pod 'AFNetworking', '~> 3.1'
 pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
 pod 'Alamofire', '~> 4.0'
 pod 'MagicalRecord/Shorthand'
+pod 'MagicalRecord/Shorthand'
+pod "KRProgressHUD"
+pod 'Google/SignIn'
+pod 'Firebase/Core'
+pod 'Firebase/Crash'
   target 'LefoodieTests' do
     inherit! :search_paths
     # Pods for testing
