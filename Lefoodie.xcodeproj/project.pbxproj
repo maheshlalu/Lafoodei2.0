@@ -37,6 +37,8 @@
 		1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835655E1E166D1500E7A531 /* NSDate+date.swift */; };
 		183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */; };
 		183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */; };
+		183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */; };
+		183FBCC81E1A598F00A0A8CC /* LFProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */; };
 		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
 		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
@@ -98,6 +100,8 @@
 		1835655E1E166D1500E7A531 /* NSDate+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+date.swift"; sourceTree = "<group>"; };
 		183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXImageView.swift; sourceTree = "<group>"; };
 		183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTabHomeController.swift; sourceTree = "<group>"; };
+		183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationController.swift; sourceTree = "<group>"; };
+		183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFProfileController.swift; sourceTree = "<group>"; };
 		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
 		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */,
+				183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */,
+				183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -634,7 +640,9 @@
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
+				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
+				183FBCC81E1A598F00A0A8CC /* LFProfileController.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,

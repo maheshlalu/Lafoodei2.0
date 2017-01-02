@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jeL-uh-fOw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1I9-Z9-xfv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -175,6 +175,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecr-hs-pSJ" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-22" y="-111"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="NIe-gY-bWp">
+            <objects>
+                <viewController id="Out-Ui-1gp" customClass="LFTabHomeController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="895-iY-Mwx"/>
+                        <viewControllerLayoutGuide type="bottom" id="AVf-Pv-VpK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YFI-f3-FFI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="yaZ-LU-7wP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWn-oq-dIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="-1106"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zlj-26-rjg">
+            <objects>
+                <tabBarController id="1I9-Z9-xfv" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="LrH-ed-vk8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Out-Ui-1gp" kind="relationship" relationship="viewControllers" id="ed5-KB-xJ6"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uOY-fO-3Xj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7" y="-1115"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ImP-XZ-KRC">
@@ -389,7 +425,7 @@
                                         <rect key="frame" x="8" y="73" width="359" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-Y6-vLf" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="116" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="115.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Reservation"/>
@@ -406,7 +442,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNc-Dd-fyd" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="122" y="0.0" width="115" height="30"/>
+                                                <rect key="frame" x="121.5" y="0.0" width="116" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Follow"/>
                                                 <userDefinedRuntimeAttributes>
@@ -422,7 +458,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BM-Gh-dSa" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="243" y="0.0" width="116" height="30"/>
+                                                <rect key="frame" x="243.5" y="0.0" width="115.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Directions"/>
                                                 <userDefinedRuntimeAttributes>
@@ -479,7 +515,7 @@
         <!--Search View Controller-->
         <scene sceneID="IWH-Sw-mj0">
             <objects>
-                <viewController id="J5z-hU-Nj3" customClass="LFSearchViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LFSearchViewController" id="J5z-hU-Nj3" customClass="LFSearchViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C34-1G-8kE"/>
                         <viewControllerLayoutGuide type="bottom" id="1Gn-s4-md4"/>
@@ -493,7 +529,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2784313725" green="0.68627450980000004" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aV3-t0-iGV" firstAttribute="leading" secondItem="TU7-fw-4x0" secondAttribute="leading" id="1km-kX-ZDe"/>
                             <constraint firstItem="aV3-t0-iGV" firstAttribute="top" secondItem="TU7-fw-4x0" secondAttribute="top" id="cdh-4k-aMl"/>
@@ -507,12 +543,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJk-69-I6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3622.5" y="64.436619718309856"/>
+            <point key="canvasLocation" x="3953" y="12"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="VzR-nG-qDH">
+            <objects>
+                <viewController storyboardIdentifier="LFNotificationController" id="FGZ-4h-8K5" customClass="LFNotificationController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="to2-Wa-3qu"/>
+                        <viewControllerLayoutGuide type="bottom" id="9kP-cc-Y12"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bas-NE-eQL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.4039215686" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1C-qx-kT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4475" y="97"/>
+        </scene>
+        <!--Profile Controller-->
+        <scene sceneID="8xQ-fv-QHq">
+            <objects>
+                <viewController storyboardIdentifier="LFProfileController" id="5Xp-9z-JYa" customClass="LFProfileController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oOO-DO-AIb"/>
+                        <viewControllerLayoutGuide type="bottom" id="NaQ-gV-jZR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CES-3b-Ctc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.23529411759999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9df-FO-g7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4947" y="103"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="cSP-jE-UfJ">
             <objects>
-                <viewController id="jeL-uh-fOw" customClass="LFHomeViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LFHomeViewController" id="jeL-uh-fOw" customClass="LFHomeViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4wd-Db-Amn"/>
                         <viewControllerLayoutGuide type="bottom" id="VyB-lK-NjL"/>
@@ -568,6 +640,6 @@
         <image name="Settings.png" width="192" height="263"/>
         <image name="ShareIcon.png" width="192" height="263"/>
         <image name="WriteIcon.png" width="192" height="263"/>
-        <image name="images.jpg" width="192" height="263"/>
+        <image name="images.jpg" width="20" height="20"/>
     </resources>
 </document>
