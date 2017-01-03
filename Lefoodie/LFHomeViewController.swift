@@ -14,6 +14,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCells()
+        
     }
     
     

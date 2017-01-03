@@ -45,11 +45,18 @@
 		1825CCB81E1B769D00CD3C3B /* CXCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1825CCAE1E1B769D00CD3C3B /* CXCameraView.xib */; };
 		1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCAF1E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift */; };
 		1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCBA1E1B76DF00CD3C3B /* LFTabCameraViewController.swift */; };
+		1825CCD61E1BE94D00CD3C3B /* LFUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */; };
+		1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */; };
+		1825CCDE1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */; };
+		1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCD91E1BE97300CD3C3B /* LFFavouriteViewController.swift */; };
+		1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCDA1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift */; };
+		1825CCE11E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1825CCDB1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib */; };
+		1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */; };
+		1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */; };
 		1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835655E1E166D1500E7A531 /* NSDate+date.swift */; };
 		183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */; };
 		183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */; };
 		183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */; };
-		183FBCC81E1A598F00A0A8CC /* LFProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */; };
 		183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183FBCD01E1A843B00A0A8CC /* GoogleService-Info.plist */; };
 		183FBCD51E1A88A100A0A8CC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */; };
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
@@ -123,11 +130,18 @@
 		1825CCAE1E1B769D00CD3C3B /* CXCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CXCameraView.xib; sourceTree = "<group>"; };
 		1825CCAF1E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXMainScreenScrollViewCustomization.swift; sourceTree = "<group>"; };
 		1825CCBA1E1B76DF00CD3C3B /* LFTabCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTabCameraViewController.swift; sourceTree = "<group>"; };
+		1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserProfileViewController.swift; sourceTree = "<group>"; };
+		1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFavouritesCollectionViewCell.swift; sourceTree = "<group>"; };
+		1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFFavouritesCollectionViewCell.xib; sourceTree = "<group>"; };
+		1825CCD91E1BE97300CD3C3B /* LFFavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFavouriteViewController.swift; sourceTree = "<group>"; };
+		1825CCDA1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		1825CCDB1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPhotosViewController.swift; sourceTree = "<group>"; };
+		1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		1835655E1E166D1500E7A531 /* NSDate+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+date.swift"; sourceTree = "<group>"; };
 		183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXImageView.swift; sourceTree = "<group>"; };
 		183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTabHomeController.swift; sourceTree = "<group>"; };
 		183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationController.swift; sourceTree = "<group>"; };
-		183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFProfileController.swift; sourceTree = "<group>"; };
 		183FBCD01E1A843B00A0A8CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -226,6 +240,7 @@
 		127861DA1E1A29EC00D64F16 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */,
 				127861DB1E1A2A0200D64F16 /* CXButton.swift */,
 				127861DC1E1A2A0200D64F16 /* CXView.swift */,
 				127861DD1E1A2A0200D64F16 /* CXTextField.swift */,
@@ -329,7 +344,6 @@
 				1825CCBA1E1B76DF00CD3C3B /* LFTabCameraViewController.swift */,
 				183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */,
 				183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */,
-				183FBCC71E1A598F00A0A8CC /* LFProfileController.swift */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -365,6 +379,13 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
+				1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */,
+				1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */,
+				1825CCD91E1BE97300CD3C3B /* LFFavouriteViewController.swift */,
+				1825CCDA1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift */,
+				1825CCDB1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib */,
+				1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */,
 				183FBCC21E1A378D00A0A8CC /* TabBar */,
 				127861D71E1A29D600D64F16 /* Login */,
 				127861CF1E1A299400D64F16 /* Search */,
@@ -532,9 +553,11 @@
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
 				18160CEA1E14EB0F00C2E5AE /* Assets.xcassets in Resources */,
 				127861CE1E1A298900D64F16 /* LFHomeFooterTableViewCell.xib in Resources */,
+				1825CCE11E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib in Resources */,
 				18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */,
 				1825CCB81E1B769D00CD3C3B /* CXCameraView.xib in Resources */,
 				127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */,
+				1825CCDE1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib in Resources */,
 				1825CCB51E1B769D00CD3C3B /* CXAlbumCollectionViewCell.xib in Resources */,
 				127861CC1E1A298900D64F16 /* LFHomeCenterTableViewCell.xib in Resources */,
 			);
@@ -704,18 +727,22 @@
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
 				1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */,
 				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
+				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
+				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
+				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
+				1825CCD61E1BE94D00CD3C3B /* LFUserProfileViewController.swift in Sources */,
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
+				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
-				183FBCC81E1A598F00A0A8CC /* LFProfileController.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				1825CCB21E1B769D00CD3C3B /* CXCameraSourceViewController.swift in Sources */,
@@ -725,6 +752,7 @@
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
+				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
 				127861D11E1A299F00D64F16 /* LFSearchViewController.swift in Sources */,
 				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
 			);
