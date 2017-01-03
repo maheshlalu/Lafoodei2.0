@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view hidden="YES" contentMode="scaleToFill" id="nPs-oI-T6o" customClass="CXCameraView" customModule="Lefoodie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-iN-XnR">
+                    <rect key="frame" x="0.0" y="50" width="400" height="450"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="750" id="c7p-Vi-MbH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-Ex-ctR">
+                    <rect key="frame" x="0.0" y="500" width="400" height="100"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-ce-j1s">
+                            <rect key="frame" x="166" y="16" width="68" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="Etb-93-1mS"/>
+                                <constraint firstAttribute="width" constant="68" id="V1J-1n-cLp"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                            <state key="normal" image="shutter_button"/>
+                            <connections>
+                                <action selector="shotButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="ksK-aw-KRD"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe0-2z-oYY">
+                            <rect key="frame" x="15" y="30" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="fY0-Qj-yJH"/>
+                                <constraint firstAttribute="height" constant="40" id="kM5-T7-D0e"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                            <state key="normal" image="ic_loop"/>
+                            <connections>
+                                <action selector="flipButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="bEh-Z4-3LQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG5-Vl-lfd">
+                            <rect key="frame" x="345" y="30" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="dRj-fW-S73"/>
+                                <constraint firstAttribute="width" constant="40" id="wXs-2l-4U1"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                            <state key="normal" image="ic_flash_off"/>
+                            <connections>
+                                <action selector="flashButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="vow-KL-odz"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="Dzd-Ex-ctR" secondAttribute="leading" constant="15" id="3Wa-E1-VS1"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="YGq-KL-3zT"/>
+                        <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="15" id="bGt-Wx-eOI"/>
+                        <constraint firstItem="IG5-Vl-lfd" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="ftW-aL-Ypw"/>
+                        <constraint firstItem="gsV-ce-j1s" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="gHD-r7-SYQ"/>
+                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="mXh-lX-ALp"/>
+                        <constraint firstItem="gsV-ce-j1s" firstAttribute="centerX" secondItem="Dzd-Ex-ctR" secondAttribute="centerX" id="vTG-9D-p8r"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Dzd-Ex-ctR" firstAttribute="top" secondItem="eHG-iN-XnR" secondAttribute="bottom" id="FBH-kk-gHL"/>
+                <constraint firstAttribute="trailing" secondItem="Dzd-Ex-ctR" secondAttribute="trailing" id="JfG-8d-uDX"/>
+                <constraint firstItem="eHG-iN-XnR" firstAttribute="top" secondItem="nPs-oI-T6o" secondAttribute="top" constant="50" id="POP-wJ-EYA"/>
+                <constraint firstAttribute="trailing" secondItem="eHG-iN-XnR" secondAttribute="trailing" id="Zpr-D6-P2A"/>
+                <constraint firstItem="eHG-iN-XnR" firstAttribute="leading" secondItem="nPs-oI-T6o" secondAttribute="leading" id="bbf-jc-5iJ"/>
+                <constraint firstItem="Dzd-Ex-ctR" firstAttribute="leading" secondItem="nPs-oI-T6o" secondAttribute="leading" id="qy9-o7-HPA"/>
+                <constraint firstAttribute="bottom" secondItem="Dzd-Ex-ctR" secondAttribute="bottom" id="tcB-Hv-FKh"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="flashButton" destination="IG5-Vl-lfd" id="uZK-Gj-BKW"/>
+                <outlet property="flipButton" destination="Pe0-2z-oYY" id="Hnn-63-13y"/>
+                <outlet property="fullAspectRatioConstraint" destination="c7p-Vi-MbH" id="xri-EY-nVi"/>
+                <outlet property="previewViewContainer" destination="eHG-iN-XnR" id="Trl-D0-04S"/>
+                <outlet property="shotButton" destination="gsV-ce-j1s" id="dsO-Ma-jbJ"/>
+            </connections>
+            <point key="canvasLocation" x="-633" y="-585"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_flash_off" width="48" height="48"/>
+        <image name="ic_loop" width="48" height="48"/>
+        <image name="shutter_button" width="40" height="40"/>
+    </resources>
+</document>

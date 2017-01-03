@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view hidden="YES" contentMode="scaleToFill" id="VbF-PP-PQz" customClass="CXAlbumView" customModule="Lefoodie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-fC-e7w">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OPh-xc-OUu">
+                            <rect key="frame" x="0.0" y="450" width="400" height="150"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="JLG-uK-RnQ"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="AUz-m7-CBP">
+                                <size key="itemSize" width="60" height="60"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="VbF-PP-PQz" id="CHr-av-TZc"/>
+                                <outlet property="delegate" destination="VbF-PP-PQz" id="b7K-pV-vU3"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="OPh-xc-OUu" secondAttribute="bottom" id="CCe-Wd-joa"/>
+                        <constraint firstItem="OPh-xc-OUu" firstAttribute="leading" secondItem="cXZ-fC-e7w" secondAttribute="leading" id="JcW-2s-Mhe"/>
+                        <constraint firstAttribute="trailing" secondItem="OPh-xc-OUu" secondAttribute="trailing" id="a2S-dz-2Yz"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4H-aG-zHe" userLabel="Image Crop View Container">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
+                    <subviews>
+                        <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2d4-7o-5oe" customClass="CXMainScreenScrollViewCustomization" customModule="Lefoodie" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="2d4-7o-5oe" secondAttribute="trailing" id="BJ3-D2-TDJ"/>
+                        <constraint firstAttribute="width" secondItem="X4H-aG-zHe" secondAttribute="height" multiplier="1:1" priority="750" constant="-50" id="PiH-Ps-LNz"/>
+                        <constraint firstItem="2d4-7o-5oe" firstAttribute="leading" secondItem="X4H-aG-zHe" secondAttribute="leading" id="sYV-rT-Spd"/>
+                        <constraint firstItem="2d4-7o-5oe" firstAttribute="top" secondItem="X4H-aG-zHe" secondAttribute="top" id="wGG-g8-GLY"/>
+                        <constraint firstAttribute="bottom" secondItem="2d4-7o-5oe" secondAttribute="bottom" id="wSq-Be-CUO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="X4H-aG-zHe" firstAttribute="leading" secondItem="VbF-PP-PQz" secondAttribute="leading" id="3h2-EB-KNI"/>
+                <constraint firstItem="X4H-aG-zHe" firstAttribute="top" secondItem="VbF-PP-PQz" secondAttribute="top" id="4Q3-yn-t5x"/>
+                <constraint firstItem="cXZ-fC-e7w" firstAttribute="top" secondItem="VbF-PP-PQz" secondAttribute="top" id="Ktp-xa-A1S"/>
+                <constraint firstItem="cXZ-fC-e7w" firstAttribute="leading" secondItem="VbF-PP-PQz" secondAttribute="leading" id="NSX-aD-6Gs"/>
+                <constraint firstAttribute="bottom" secondItem="cXZ-fC-e7w" secondAttribute="bottom" id="VM3-a0-bUX"/>
+                <constraint firstAttribute="trailing" secondItem="cXZ-fC-e7w" secondAttribute="trailing" id="dvV-Sh-9ht"/>
+                <constraint firstAttribute="trailing" secondItem="X4H-aG-zHe" secondAttribute="trailing" id="vv6-Nx-7Sn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="OPh-xc-OUu" id="21k-ao-TML"/>
+                <outlet property="collectionViewConstraintHeight" destination="JLG-uK-RnQ" id="N2l-nF-XR0"/>
+                <outlet property="imageCropView" destination="2d4-7o-5oe" id="o9D-Fs-txo"/>
+                <outlet property="imageCropViewConstraintTop" destination="4Q3-yn-t5x" id="uGh-XA-n0C"/>
+                <outlet property="imageCropViewContainer" destination="X4H-aG-zHe" id="8ON-9r-xiB"/>
+            </connections>
+            <point key="canvasLocation" x="439" y="-85"/>
+        </view>
+    </objects>
+</document>
