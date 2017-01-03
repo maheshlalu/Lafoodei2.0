@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //self.setUpMagicalDB()
         print( getDocumentsDirectory())
 
+        
+        
         return true
     }
     
