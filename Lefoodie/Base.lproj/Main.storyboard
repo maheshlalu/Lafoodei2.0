@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1I9-Z9-xfv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="neB-Mn-YpF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -39,9 +39,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-6x-cLB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vtW-cQ-mqz">
                                 <rect key="frame" x="16" y="469" width="343" height="190"/>
                                 <subviews>
@@ -165,14 +162,10 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="OsY-6x-cLB" firstAttribute="leading" secondItem="T7k-kL-git" secondAttribute="leading" id="NcW-fi-Crh"/>
-                            <constraint firstItem="OsY-6x-cLB" firstAttribute="top" secondItem="T7k-kL-git" secondAttribute="top" id="dxM-pe-hCa"/>
-                            <constraint firstItem="CEA-4s-A2I" firstAttribute="top" secondItem="OsY-6x-cLB" secondAttribute="bottom" id="hu3-UF-lti"/>
                             <constraint firstItem="vtW-cQ-mqz" firstAttribute="leading" secondItem="T7k-kL-git" secondAttribute="leading" constant="16" id="pse-vL-r03"/>
                             <constraint firstAttribute="trailing" secondItem="vtW-cQ-mqz" secondAttribute="trailing" constant="16" id="qvI-F8-0Mc"/>
-                            <constraint firstAttribute="trailing" secondItem="OsY-6x-cLB" secondAttribute="trailing" id="rp4-tY-vxY"/>
                             <constraint firstItem="CEA-4s-A2I" firstAttribute="top" secondItem="vtW-cQ-mqz" secondAttribute="bottom" constant="8" id="u2o-mU-hRv"/>
                         </constraints>
                     </view>
@@ -180,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecr-hs-pSJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="-111"/>
+            <point key="canvasLocation" x="-313" y="-224"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="NIe-gY-bWp">
@@ -248,9 +241,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="N99-wA-2TN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j2N-Eg-ech">
                                 <rect key="frame" x="16" y="362" width="343" height="297"/>
                                 <subviews>
@@ -328,15 +318,11 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N99-wA-2TN" firstAttribute="leading" secondItem="hhw-eR-WI9" secondAttribute="leading" id="1bR-Or-DwI"/>
-                            <constraint firstItem="KLw-cZ-Nfy" firstAttribute="top" secondItem="N99-wA-2TN" secondAttribute="bottom" id="4Fh-jo-Idf"/>
                             <constraint firstAttribute="trailing" secondItem="j2N-Eg-ech" secondAttribute="trailing" constant="16" id="AKE-qm-n5S"/>
-                            <constraint firstItem="N99-wA-2TN" firstAttribute="top" secondItem="hhw-eR-WI9" secondAttribute="top" id="MML-C7-pTA"/>
                             <constraint firstItem="j2N-Eg-ech" firstAttribute="leading" secondItem="hhw-eR-WI9" secondAttribute="leading" constant="16" id="X1e-8T-wYK"/>
                             <constraint firstItem="KLw-cZ-Nfy" firstAttribute="top" secondItem="j2N-Eg-ech" secondAttribute="bottom" constant="8" id="cAy-nD-64a"/>
-                            <constraint firstAttribute="trailing" secondItem="N99-wA-2TN" secondAttribute="trailing" id="poz-8j-SLK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JEZ-rF-6km"/>

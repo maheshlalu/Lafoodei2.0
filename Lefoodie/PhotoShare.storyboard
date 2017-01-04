@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vac-WU-rrJ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Share Foodie Pic View Controller-->
+        <scene sceneID="FCN-t8-s5Z">
+            <objects>
+                <viewController id="vac-WU-rrJ" customClass="LFShareFoodiePicViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yt1-gm-IHu"/>
+                        <viewControllerLayoutGuide type="bottom" id="yh3-q3-dGJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xr4-HZ-prv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUN-GA-tVO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="46"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4dv-ic-ccG">
+                                        <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrt-Ac-Uka">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Back"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE YOUR FOODIE ADVENTURE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQK-MA-F4q">
+                                                <rect key="frame" x="44" y="0.0" width="315" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4dv-ic-ccG" secondAttribute="trailing" constant="8" id="Pmt-ey-3Lh"/>
+                                    <constraint firstAttribute="height" constant="46" id="h9T-FG-UTB"/>
+                                    <constraint firstItem="4dv-ic-ccG" firstAttribute="leading" secondItem="eUN-GA-tVO" secondAttribute="leading" constant="8" id="mIW-rj-dSb"/>
+                                    <constraint firstAttribute="bottom" secondItem="4dv-ic-ccG" secondAttribute="bottom" constant="8" id="wwe-4G-Wfw"/>
+                                    <constraint firstItem="4dv-ic-ccG" firstAttribute="top" secondItem="eUN-GA-tVO" secondAttribute="top" constant="8" id="xwk-7i-Fj3"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fhl-wS-BmN">
+                                <rect key="frame" x="0.0" y="66" width="375" height="547"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vac-WU-rrJ" id="dr0-58-SXe"/>
+                                    <outlet property="delegate" destination="vac-WU-rrJ" id="U3V-n4-yK8"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvE-lw-1sx">
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="wOQ-fw-ab6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="POST">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postBtnAction:" destination="vac-WU-rrJ" eventType="touchUpInside" id="Czp-Fw-qnG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eUN-GA-tVO" firstAttribute="leading" secondItem="xr4-HZ-prv" secondAttribute="leading" id="28n-IG-Rmu"/>
+                            <constraint firstItem="Fhl-wS-BmN" firstAttribute="top" secondItem="eUN-GA-tVO" secondAttribute="bottom" id="2nj-f4-2mc"/>
+                            <constraint firstAttribute="trailing" secondItem="Fhl-wS-BmN" secondAttribute="trailing" id="4HD-4h-NIq"/>
+                            <constraint firstItem="yh3-q3-dGJ" firstAttribute="top" secondItem="uvE-lw-1sx" secondAttribute="bottom" id="4XD-48-N9X"/>
+                            <constraint firstAttribute="trailing" secondItem="uvE-lw-1sx" secondAttribute="trailing" id="8JV-bf-HTR"/>
+                            <constraint firstItem="uvE-lw-1sx" firstAttribute="top" secondItem="Fhl-wS-BmN" secondAttribute="bottom" constant="2" id="CHm-J7-qmM"/>
+                            <constraint firstAttribute="trailing" secondItem="eUN-GA-tVO" secondAttribute="trailing" id="EWC-sH-kR8"/>
+                            <constraint firstItem="Fhl-wS-BmN" firstAttribute="leading" secondItem="xr4-HZ-prv" secondAttribute="leading" id="FvP-RE-05q"/>
+                            <constraint firstItem="Fhl-wS-BmN" firstAttribute="top" secondItem="eUN-GA-tVO" secondAttribute="bottom" id="Lc1-d2-xUJ"/>
+                            <constraint firstItem="uvE-lw-1sx" firstAttribute="leading" secondItem="xr4-HZ-prv" secondAttribute="leading" id="O9K-VQ-uid"/>
+                            <constraint firstItem="eUN-GA-tVO" firstAttribute="top" secondItem="Yt1-gm-IHu" secondAttribute="bottom" id="zlw-39-rYN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sharePhotoTableView" destination="Fhl-wS-BmN" id="4y6-Jv-LpD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CK1-Bi-c2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85.599999999999994" y="116.49175412293854"/>
+        </scene>
+    </scenes>
+</document>

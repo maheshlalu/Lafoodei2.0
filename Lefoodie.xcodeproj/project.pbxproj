@@ -62,6 +62,17 @@
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
 		183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */; };
 		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
+		18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */; };
+		18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */; };
+		18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */; };
+		18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179421E1CC305001EDF45 /* LFSharePostTableViewCell.swift */; };
+		18F1794A1E1CC305001EDF45 /* LFSharePostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F179431E1CC305001EDF45 /* LFSharePostTableViewCell.xib */; };
+		18F1794B1E1CC305001EDF45 /* LFSocialShareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179441E1CC305001EDF45 /* LFSocialShareTableViewCell.swift */; };
+		18F1794C1E1CC305001EDF45 /* LFSocialShareTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F179451E1CC305001EDF45 /* LFSocialShareTableViewCell.xib */; };
+		18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F1794D1E1CC31B001EDF45 /* PhotoShare.storyboard */; };
+		18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179501E1CD45F001EDF45 /* CXAppConfig.swift */; };
+		18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */; };
+		18F179561E1CDE9C001EDF45 /* pacifico.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18F179551E1CDE80001EDF45 /* pacifico.regular.ttf */; };
 		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
 		D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */; };
@@ -147,6 +158,17 @@
 		183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
+		18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFChooseLocationTableViewCell.swift; sourceTree = "<group>"; };
+		18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFChooseLocationTableViewCell.xib; sourceTree = "<group>"; };
+		18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFShareFoodiePicViewController.swift; sourceTree = "<group>"; };
+		18F179421E1CC305001EDF45 /* LFSharePostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSharePostTableViewCell.swift; sourceTree = "<group>"; };
+		18F179431E1CC305001EDF45 /* LFSharePostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFSharePostTableViewCell.xib; sourceTree = "<group>"; };
+		18F179441E1CC305001EDF45 /* LFSocialShareTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSocialShareTableViewCell.swift; sourceTree = "<group>"; };
+		18F179451E1CC305001EDF45 /* LFSocialShareTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFSocialShareTableViewCell.xib; sourceTree = "<group>"; };
+		18F1794D1E1CC31B001EDF45 /* PhotoShare.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoShare.storyboard; sourceTree = "<group>"; };
+		18F179501E1CD45F001EDF45 /* CXAppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAppConfig.swift; sourceTree = "<group>"; };
+		18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CXProjectConfiguration.plist; sourceTree = "<group>"; };
+		18F179551E1CDE80001EDF45 /* pacifico.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pacifico.regular.ttf; sourceTree = "<group>"; };
 		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.release.xcconfig"; sourceTree = "<group>"; };
@@ -292,9 +314,11 @@
 				1896A5C61E153F32008530A4 /* Controllers */,
 				1896A5C51E153F2B008530A4 /* View */,
 				1896A5C41E153F26008530A4 /* Model */,
+				18F179541E1CDE6D001EDF45 /* Font */,
 				18160CDF1E14EB0F00C2E5AE /* AppDelegate.swift */,
 				18160CE11E14EB0F00C2E5AE /* ViewController.swift */,
 				18160CE31E14EB0F00C2E5AE /* Main.storyboard */,
+				18F1794D1E1CC31B001EDF45 /* PhotoShare.storyboard */,
 				18160CE91E14EB0F00C2E5AE /* Assets.xcassets */,
 				18160CEB1E14EB0F00C2E5AE /* LaunchScreen.storyboard */,
 				18160CEE1E14EB0F00C2E5AE /* Info.plist */,
@@ -362,6 +386,7 @@
 		1896A5C41E153F26008530A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18F1794F1E1CD452001EDF45 /* AppConfiguration */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -379,6 +404,7 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
 				1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */,
 				1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */,
@@ -403,6 +429,37 @@
 				1835655E1E166D1500E7A531 /* NSDate+date.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		18F1793E1E1CC2DB001EDF45 /* PostShareView */ = {
+			isa = PBXGroup;
+			children = (
+				18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */,
+				18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */,
+				18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */,
+				18F179421E1CC305001EDF45 /* LFSharePostTableViewCell.swift */,
+				18F179431E1CC305001EDF45 /* LFSharePostTableViewCell.xib */,
+				18F179441E1CC305001EDF45 /* LFSocialShareTableViewCell.swift */,
+				18F179451E1CC305001EDF45 /* LFSocialShareTableViewCell.xib */,
+			);
+			name = PostShareView;
+			sourceTree = "<group>";
+		};
+		18F1794F1E1CD452001EDF45 /* AppConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				18F179501E1CD45F001EDF45 /* CXAppConfig.swift */,
+				18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */,
+			);
+			name = AppConfiguration;
+			sourceTree = "<group>";
+		};
+		18F179541E1CDE6D001EDF45 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				18F179551E1CDE80001EDF45 /* pacifico.regular.ttf */,
+			);
+			name = Font;
 			sourceTree = "<group>";
 		};
 		1AF90FF33FE1F0D20ED29765 /* Frameworks */ = {
@@ -546,16 +603,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F179561E1CDE9C001EDF45 /* pacifico.regular.ttf in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
+				18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */,
 				1825CCB11E1B769D00CD3C3B /* CXAlbumView.xib in Resources */,
 				127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */,
 				183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */,
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
 				18160CEA1E14EB0F00C2E5AE /* Assets.xcassets in Resources */,
+				18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */,
+				18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */,
 				127861CE1E1A298900D64F16 /* LFHomeFooterTableViewCell.xib in Resources */,
 				1825CCE11E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib in Resources */,
 				18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */,
 				1825CCB81E1B769D00CD3C3B /* CXCameraView.xib in Resources */,
+				18F1794A1E1CC305001EDF45 /* LFSharePostTableViewCell.xib in Resources */,
+				18F1794C1E1CC305001EDF45 /* LFSocialShareTableViewCell.xib in Resources */,
 				127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */,
 				1825CCDE1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib in Resources */,
 				1825CCB51E1B769D00CD3C3B /* CXAlbumCollectionViewCell.xib in Resources */,
@@ -722,16 +785,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */,
 				1825CCB71E1B769D00CD3C3B /* CXCameraView.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
 				1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */,
 				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
+				18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */,
 				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
 				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
+				18F1794B1E1CC305001EDF45 /* LFSocialShareTableViewCell.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
 				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
@@ -744,11 +810,13 @@
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
+				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				1825CCB21E1B769D00CD3C3B /* CXCameraSourceViewController.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
 				1825CCB01E1B769D00CD3C3B /* CXAlbumView.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
+				18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */,
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,

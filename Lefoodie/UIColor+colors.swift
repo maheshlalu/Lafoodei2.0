@@ -31,4 +31,17 @@ extension UIColor{
             alpha: CGFloat(1.0)
         )
     }
+    
+    /*Application TheamColr*/
+   open class  func appTheamColor() -> UIColor{
+        
+        return UIColor(
+            red: 225.0 / 255.0,
+            green: 205.0 / 255.0,
+            blue:  0.0 / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    //RGB(225,205,0)
 }

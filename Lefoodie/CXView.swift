@@ -26,6 +26,12 @@ class CXView: UIView {
         }
     }
     
+//    @IBInspectable var appColor: UIColor = UIColor.white {
+//        didSet {
+//            self.backgroundColor = UIColor.appTheamColor()
+//        }
+//    }
+    
     @IBInspectable var borderWidth: CGFloat = 1.0 {
         didSet {
             layer.borderWidth = borderWidth

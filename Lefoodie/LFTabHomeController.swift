@@ -93,7 +93,7 @@ extension LFTabHomeController:UITabBarControllerDelegate{
             cameraCntrl.delegate = self
             cameraCntrl.cropHeightRatio = 0.6
             self.present(cameraCntrl, animated: true, completion: nil)
-            tabBarController.selectedIndex = self.previousIndex
+           // tabBarController.selectedIndex = self.previousIndex
         }else{
             self.previousIndex = tabBarController.selectedIndex
             
