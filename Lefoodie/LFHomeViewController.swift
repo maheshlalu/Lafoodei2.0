@@ -62,13 +62,13 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row == 0 {
-            return 75
+            return 55
 
         }else if indexPath.row == 1 {
             return 200
 
         }else if indexPath.row == 2 {
-            return 75
+            return 55
 
         }
         return 0

@@ -1,38 +1,45 @@
 //
-//  LFSearchViewController.swift
-//  Lefoodie
+//  ViewController.swift
+//  LeFoodie
 //
-//  Created by Rama kuppa on 02/01/17.
-//  Copyright © 2017 NOVO. All rights reserved.
+//  Created by Rambabu Mannam on 03/01/17.
+//  Copyright © 2017 Rambabu Mannam. All rights reserved.
 //
 
 import UIKit
 
-class LFSearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class LFSearchViewController: UIViewController {
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var searchTypeLabel: UILabel!
+    
+    @IBOutlet weak var containerView: UIView!
+    var navController1 = UINavigationController()
 
-    @IBOutlet weak var foodItemsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "LFFoodItemsListTableViewCell", bundle: nil)
-        self.foodItemsTableView.register(nib, forCellReuseIdentifier: "LFFoodItemsListTableViewCell")
-
-        // Do any additional setup after loading the view.
+        searchBtn.layer.cornerRadius = 3
+        searchBtn.clipsToBounds = true
+        searchTypeLabel.layer.cornerRadius = 3
+        searchTypeLabel.clipsToBounds = true
+        
+        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
+        navController1 = UINavigationController(rootViewController: VC1)
+        navController1.isNavigationBarHidden = true
+        
+        addChildViewController(self.navController1)
+        self.navController1.view.frame = self.containerView.bounds
+        self.containerView.addSubview(navController1.view)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        
-      return 4
-        
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LFFoodItemsListTableViewCell", for: indexPath)as? LFFoodItemsListTableViewCell
-        return cell!
-        
-    }
+
 
 }
+
+
+
+
