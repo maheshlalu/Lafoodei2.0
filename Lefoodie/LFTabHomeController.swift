@@ -17,11 +17,11 @@ class LFTabHomeController: UITabBarController {
         super.viewDidLoad()
         self.delegate = self
         // Do any additional setup after loading the view.
+         self.previousIndex = 0
         self.setUpTabControllers()
-        UITabBar.appearance().tintColor = UIColor.white
-        UITabBar.appearance().barTintColor = UIColor.yellow
-        UITabBar.appearance().unselectedItemTintColor = UIColor.white
-        UITabBar.appearance().isTranslucent = false
+        self.tabBar.barTintColor = UIColor.init(red: 253/250, green: 205/250, blue: 0/250, alpha: 5)
+        self.tabBar.tintColor = UIColor.white
+        self.tabBar.unselectedItemTintColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,27 +53,32 @@ class LFTabHomeController: UITabBarController {
         let homeContoller : LFHomeViewController = (storyBoard.instantiateViewController(withIdentifier: "LFHomeViewController") as? LFHomeViewController)!
        // homeContoller.title = "Home"
         //firstTab.title = "UPDATES"
-        homeContoller.tabBarItem.image = UIImage(named: "home")
+        homeContoller.tabBarItem.image = UIImage(named: "HomeIcon")
         
         /*Search Controller */
         let searchContoller : LFSearchViewController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchViewController") as? LFSearchViewController)!
          //searchContoller.title = "Search"
-        searchContoller.tabBarItem.image = UIImage(named: "home")
+        //searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
+        searchContoller.tabBarItem.image = UIImage(named: "HomeIcon")
+
 
         /*Camera controller */
           let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
          //cameraControl.title = "Camera"
-        cameraControl.tabBarItem.image = UIImage(named: "home")
+        //cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
+        cameraControl.tabBarItem.image = UIImage(named: "HomeIcon")
 
         /*Notification Controller */
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!
          //notificatonContoller.title = "notificatoin"
-        notificatonContoller.tabBarItem.image = UIImage(named: "home")
+       // notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
+        notificatonContoller.tabBarItem.image = UIImage(named: "HomeIcon")
 
         /*Profile Controller */
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
          //profileContoller.title = "Profile"
-        profileContoller.tabBarItem.image = UIImage(named: "home")
+       // profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
+        profileContoller.tabBarItem.image = UIImage(named: "HomeIcon")
 
         self.tabBarController?.setViewControllers([homeContoller,searchContoller,cameraControl,notificatonContoller,profileContoller], animated: true)
 
@@ -93,14 +98,15 @@ extension LFTabHomeController:UITabBarControllerDelegate{
             cameraCntrl.delegate = self
             cameraCntrl.cropHeightRatio = 0.6
             self.present(cameraCntrl, animated: true, completion: nil)
-           // tabBarController.selectedIndex = self.previousIndex
+            tabBarController.selectedIndex = self.previousIndex
         }else{
             self.previousIndex = tabBarController.selectedIndex
             
         }
         
-        
-        
+        let tabBar = tabBarController.tabBar
+        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.black, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
+        print("clicked\(viewController)")
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool{
@@ -169,3 +175,15 @@ extension  LFTabHomeController:CXCameraSourceDelegate{
     
 }
 
+extension UIImage {
+    
+    func createSelectionIndicator(color: UIColor, size: CGSize, lineWidth: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(CGRect(x: 0, y: size.height - lineWidth, width: size.width, height: lineWidth))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+    
+}

@@ -14,7 +14,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCells()
-        
+        self.selectedTabBar()
     }
     
     
@@ -22,6 +22,12 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.homeTableView.register(UINib(nibName: "LFHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHeaderTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeCenterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeCenterTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeFooterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeFooterTableViewCell")
+    }
+    
+    func selectedTabBar(){
+        
+        let tabBar = self.tabBarController?.tabBar
+        tabBar?.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.black, size: CGSize(width: (tabBar?.frame.width)!/CGFloat((tabBar?.items!.count)!), height: (tabBar?.frame.height)!), lineWidth: 3.0)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
