@@ -80,9 +80,10 @@ class LFTabHomeController: UITabBarController {
         let profileNav = UINavigationController(rootViewController: profileContoller)
         profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
 
-        self.tabBarController?.setViewControllers([homeNav,searchContoller,cameraControl,notificationNav,profileNav], animated: true)
+        //self.setViewControllers([homeNav,searchContoller,cameraControl,notificationNav,profileNav], animated: true)
 
-        
+        self.viewControllers = [homeNav,searchContoller,cameraControl,notificationNav,profileNav]
+
     }
 
     

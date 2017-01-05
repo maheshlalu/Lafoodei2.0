@@ -92,7 +92,7 @@ let signIn = GIDSignIn.sharedInstance()
                     email = userData!["email"] as! String
                     
                     print("\(email)\(firstName)\(lastName)\(profilePic)")
-                    
+                    self.goToTabBar()
                     
                 } catch {
                     NSLog("Account Information could not be loaded")
@@ -113,6 +113,10 @@ let signIn = GIDSignIn.sharedInstance()
     //mark:- facebook integration
     
     
+    func goToTabBar(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.navigateToTabBar()
+    }
     
     @IBAction func facebookBtnAction(_ sender: UIButton) {
         
@@ -148,8 +152,8 @@ let signIn = GIDSignIn.sharedInstance()
                     print(result!)
                     print(self.facebookResponseDict)
 //                    CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred) in
-//    
-//                        
+                                self.goToTabBar()
+//
 //                    })
                     
                 }

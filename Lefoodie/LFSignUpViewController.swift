@@ -11,18 +11,25 @@ import UIKit
 class LFSignUpViewController: UIViewController {
 
     @IBAction func CreateAccountBtnAction(_ sender: UIButton) {
-        
-        
-//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as UIViewController
-        
-        let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController") as UIViewController
-        self.present(viewcontroller, animated: true, completion: nil)
-        
+      //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController") as UIViewController
+    
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.navigateToTabBar()
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
 
         // Do any additional setup after loading the view.
+    }
+    
+    func navigateToTabBar(){
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let homeVC = LFTabHomeController() as UITabBarController
+        appDelegate.window?.rootViewController = homeVC
+        appDelegate.window?.makeKeyAndVisible()
     }
 
     override func didReceiveMemoryWarning() {
