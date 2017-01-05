@@ -59,16 +59,25 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
+        self.present(viewcontroller, animated: true, completion: nil)
+        
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row == 0 {
-            return 55
+            return 50
 
         }else if indexPath.row == 1 {
             return 200
 
         }else if indexPath.row == 2 {
-            return 72
+            return 60
 
         }
         return 0

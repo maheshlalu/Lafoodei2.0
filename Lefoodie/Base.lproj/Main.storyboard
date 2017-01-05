@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="neB-Mn-YpF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sp5-yC-zen">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="pacifico.regular.ttf">
+            <string>Pacifico-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -23,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="-133"/>
+            <point key="canvasLocation" x="1639.2" y="232.53373313343329"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Or7-bC-y7K">
@@ -101,6 +106,10 @@
                                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="emailSignupBtnAction:" destination="neB-Mn-YpF" eventType="touchUpInside" id="ukw-eA-ru0"/>
+                                                                    <segue destination="a5g-3m-1Kv" kind="push" id="OvT-35-aaA"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -149,9 +158,29 @@
                                     <constraint firstAttribute="height" constant="190" id="Lha-lH-Jt7"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="82Q-RU-fgf">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="MLy-TF-dWZ"/>
+                                    <constraint firstAttribute="height" constant="150" id="eDj-qK-84h"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeFoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4y-1v-pNn">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="Z2N-LW-n1u"/>
+                                    <constraint firstAttribute="width" constant="343" id="obC-4e-i4Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="82Q-RU-fgf" firstAttribute="centerX" secondItem="T7k-kL-git" secondAttribute="centerX" id="0Ns-ao-bMb"/>
+                            <constraint firstItem="L4y-1v-pNn" firstAttribute="centerX" secondItem="T7k-kL-git" secondAttribute="centerX" id="F2F-Be-7sB"/>
+                            <constraint firstItem="L4y-1v-pNn" firstAttribute="top" secondItem="82Q-RU-fgf" secondAttribute="bottom" constant="2" id="dnz-Eu-9hr"/>
+                            <constraint firstItem="82Q-RU-fgf" firstAttribute="top" secondItem="dCo-zn-P3r" secondAttribute="bottom" constant="52" id="eI2-aF-mEV"/>
                             <constraint firstItem="vtW-cQ-mqz" firstAttribute="leading" secondItem="T7k-kL-git" secondAttribute="leading" constant="16" id="pse-vL-r03"/>
                             <constraint firstAttribute="trailing" secondItem="vtW-cQ-mqz" secondAttribute="trailing" constant="16" id="qvI-F8-0Mc"/>
                             <constraint firstItem="CEA-4s-A2I" firstAttribute="top" secondItem="vtW-cQ-mqz" secondAttribute="bottom" constant="8" id="u2o-mU-hRv"/>
@@ -161,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecr-hs-pSJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530" y="-331"/>
+            <point key="canvasLocation" x="1348" y="-331.48425787106447"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="NIe-gY-bWp">
@@ -217,10 +246,10 @@
             </objects>
             <point key="canvasLocation" x="-7" y="-1115"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="ImP-XZ-KRC">
             <objects>
-                <viewController id="a5g-3m-1Kv" sceneMemberID="viewController">
+                <viewController id="a5g-3m-1Kv" customClass="LFSignUpViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sBw-ky-XOU"/>
                         <viewControllerLayoutGuide type="bottom" id="KLw-cZ-Nfy"/>
@@ -267,6 +296,9 @@
                                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="CreateAccountBtnAction:" destination="a5g-3m-1Kv" eventType="touchUpInside" id="Bec-ap-ivd"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Creating An Account,Your Greeting On Our Terms of Service And Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gp-PY-zdA">
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -297,24 +329,45 @@
                                     <constraint firstAttribute="bottom" secondItem="V9h-eH-Ae2" secondAttribute="bottom" id="uyh-2Y-zLk"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-e2-UCf">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="70v-FF-xlt"/>
+                                    <constraint firstAttribute="height" constant="150" id="gBX-aN-cDS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeFoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m69-5j-110">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="9Ku-bA-2Vc"/>
+                                    <constraint firstAttribute="height" constant="47" id="wGU-ve-cvu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="sOH-e2-UCf" firstAttribute="centerX" secondItem="hhw-eR-WI9" secondAttribute="centerX" id="1xw-NM-G6G"/>
                             <constraint firstAttribute="trailing" secondItem="j2N-Eg-ech" secondAttribute="trailing" constant="16" id="AKE-qm-n5S"/>
+                            <constraint firstItem="m69-5j-110" firstAttribute="top" secondItem="sOH-e2-UCf" secondAttribute="bottom" constant="2" id="AcJ-J1-c5U"/>
                             <constraint firstItem="j2N-Eg-ech" firstAttribute="leading" secondItem="hhw-eR-WI9" secondAttribute="leading" constant="16" id="X1e-8T-wYK"/>
                             <constraint firstItem="KLw-cZ-Nfy" firstAttribute="top" secondItem="j2N-Eg-ech" secondAttribute="bottom" constant="8" id="cAy-nD-64a"/>
+                            <constraint firstItem="sOH-e2-UCf" firstAttribute="top" secondItem="sBw-ky-XOU" secondAttribute="bottom" constant="102" id="eGp-84-gUF"/>
+                            <constraint firstItem="m69-5j-110" firstAttribute="centerX" secondItem="hhw-eR-WI9" secondAttribute="centerX" id="h0G-TQ-qze"/>
+                            <constraint firstItem="m69-5j-110" firstAttribute="top" secondItem="sOH-e2-UCf" secondAttribute="bottom" constant="2" id="uAO-K9-mzi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JEZ-rF-6km"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8c-hZ-geY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134" y="-331"/>
+            <point key="canvasLocation" x="2196" y="-434.03298350824593"/>
         </scene>
-        <!--View Controller-->
+        <!--Food Detail View Controller-->
         <scene sceneID="o3c-dV-9ye">
             <objects>
-                <viewController id="jZj-Ip-RKa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LFFoodDetailViewController" id="jZj-Ip-RKa" customClass="LFFoodDetailViewController" customModule="Lefoodie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XTs-cw-aix"/>
                         <viewControllerLayoutGuide type="bottom" id="iNa-Jg-Zgd"/>
@@ -325,12 +378,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPa-NJ-ulE">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="K8g-4O-mZ9"/>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U3t-Zy-Zul">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="K8g-4O-mZ9">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="220" id="mjr-ya-fKe"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="U3t-Zy-Zul" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="Cuz-IC-DGo"/>
                                             <constraint firstAttribute="height" constant="60" id="FuV-vw-1Hq"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkU-wv-nyi">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -338,7 +403,7 @@
                                             <constraint firstAttribute="height" constant="30" id="NG5-rk-vqo"/>
                                             <constraint firstAttribute="width" constant="30" id="ULc-Jm-LPh"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Settings.png"/>
+                                        <state key="normal" image="SettingIcon"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHs-Gr-jmV">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -346,7 +411,7 @@
                                             <constraint firstAttribute="width" constant="30" id="f4k-vS-mzO"/>
                                             <constraint firstAttribute="height" constant="30" id="hi0-uf-mI3"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="ShareIcon.png"/>
+                                        <state key="normal" image="UploadIcon"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUs-85-ueZ">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -356,120 +421,130 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="WriteIcon.png"/>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="d4P-W1-RQY">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H@( Cafe-BurlingName,CA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s5-bI-fjH">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="oIa-kM-ytI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5Ry-0h-GF5">
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVF-Jh-Hs8">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <state key="normal" title="46 Followers "/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-aG-0B6">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <state key="normal" title="Following 46"/>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Pj7-UV-3dS"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="hup-db-C9g"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="U3t-Zy-Zul" firstAttribute="top" secondItem="GPa-NJ-ulE" secondAttribute="top" constant="199" id="3OZ-fq-T6G"/>
                                     <constraint firstItem="BHs-Gr-jmV" firstAttribute="leading" secondItem="CUs-85-ueZ" secondAttribute="trailing" constant="17" id="4Ha-7R-dPg"/>
-                                    <constraint firstAttribute="bottom" secondItem="U3t-Zy-Zul" secondAttribute="bottom" constant="8" id="Gbw-bq-CzM"/>
-                                    <constraint firstAttribute="bottom" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="44" id="HII-p9-v5s"/>
-                                    <constraint firstItem="BHs-Gr-jmV" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="6" id="IKf-v1-UBZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="d4P-W1-RQY" secondAttribute="trailing" constant="23" id="Hdq-1l-Ico"/>
+                                    <constraint firstItem="BHs-Gr-jmV" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="7" id="IKf-v1-UBZ"/>
                                     <constraint firstItem="K8g-4O-mZ9" firstAttribute="leading" secondItem="GPa-NJ-ulE" secondAttribute="leading" id="K90-dS-OyW"/>
+                                    <constraint firstItem="d4P-W1-RQY" firstAttribute="top" secondItem="U3t-Zy-Zul" secondAttribute="bottom" constant="12" id="Mjw-l3-R6B"/>
                                     <constraint firstAttribute="trailing" secondItem="BHs-Gr-jmV" secondAttribute="trailing" constant="8" id="Pwu-5s-aZ5"/>
-                                    <constraint firstItem="BkU-wv-nyi" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="6" id="Yox-g1-s0B"/>
+                                    <constraint firstItem="BkU-wv-nyi" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="7" id="Yox-g1-s0B"/>
                                     <constraint firstItem="U3t-Zy-Zul" firstAttribute="centerX" secondItem="GPa-NJ-ulE" secondAttribute="centerX" id="ZQh-DD-yy7"/>
                                     <constraint firstAttribute="trailing" secondItem="K8g-4O-mZ9" secondAttribute="trailing" id="dor-fh-jWj"/>
+                                    <constraint firstItem="d4P-W1-RQY" firstAttribute="leading" secondItem="GPa-NJ-ulE" secondAttribute="leading" constant="25" id="fX8-WV-4oX"/>
                                     <constraint firstItem="K8g-4O-mZ9" firstAttribute="top" secondItem="GPa-NJ-ulE" secondAttribute="top" id="fbj-ZH-NcL"/>
                                     <constraint firstItem="BkU-wv-nyi" firstAttribute="leading" secondItem="GPa-NJ-ulE" secondAttribute="leading" constant="8" id="r3y-Hb-K5d"/>
-                                    <constraint firstItem="CUs-85-ueZ" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="6" id="xIE-zB-p36"/>
+                                    <constraint firstItem="CUs-85-ueZ" firstAttribute="top" secondItem="K8g-4O-mZ9" secondAttribute="bottom" constant="7" id="xIE-zB-p36"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Z3-g7-mno" customClass="RestaurentDetailsView" customModule="Lefoodie" customModuleProvider="target">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H@( Cafe-BurlingName,CA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s5-bI-fjH">
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="oIa-kM-ytI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5Ry-0h-GF5">
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVF-Jh-Hs8">
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="46 Followers "/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-aG-0B6">
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Following 46"/>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Pj7-UV-3dS"/>
-                                        </constraints>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="AIV-wA-ReD">
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5W7-Y6-vLf" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Reservation"/>
+                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                                <state key="normal" title="Reservation">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="18"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.97254901959999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNc-Dd-fyd" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Follow"/>
+                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                                <state key="normal" title="Follow">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="18"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.97254901959999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BM-Gh-dSa" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Directions"/>
+                                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                                <state key="normal" title="Directions">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="18"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.97254901959999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="C2Q-PE-d3L"/>
+                                            <constraint firstAttribute="height" constant="40" id="C2Q-PE-d3L"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="AIV-wA-ReD" secondAttribute="bottom" constant="25" id="B1a-wn-agg"/>
-                                    <constraint firstItem="5Ry-0h-GF5" firstAttribute="top" secondItem="3s5-bI-fjH" secondAttribute="bottom" constant="2" id="BSQ-XX-BlB"/>
-                                    <constraint firstAttribute="trailing" secondItem="3s5-bI-fjH" secondAttribute="trailing" constant="8" id="Cd7-5z-kUU"/>
-                                    <constraint firstItem="AIV-wA-ReD" firstAttribute="top" secondItem="5Ry-0h-GF5" secondAttribute="bottom" constant="6" id="FnC-xy-u9i"/>
-                                    <constraint firstItem="3s5-bI-fjH" firstAttribute="leading" secondItem="5Z3-g7-mno" secondAttribute="leading" constant="8" id="GlR-s9-6kH"/>
-                                    <constraint firstItem="3s5-bI-fjH" firstAttribute="top" secondItem="5Z3-g7-mno" secondAttribute="top" constant="3" id="Nii-Kn-FwK"/>
                                     <constraint firstAttribute="trailing" secondItem="AIV-wA-ReD" secondAttribute="trailing" constant="8" id="QUk-2U-RA3"/>
-                                    <constraint firstItem="5Ry-0h-GF5" firstAttribute="leading" secondItem="5Z3-g7-mno" secondAttribute="leading" constant="8" id="bwK-ev-CMv"/>
                                     <constraint firstAttribute="height" constant="128" id="l4d-R5-c8D"/>
+                                    <constraint firstItem="AIV-wA-ReD" firstAttribute="top" secondItem="5Z3-g7-mno" secondAttribute="top" constant="3" id="mDb-nu-8Sh"/>
                                     <constraint firstItem="AIV-wA-ReD" firstAttribute="leading" secondItem="5Z3-g7-mno" secondAttribute="leading" constant="8" id="myq-NZ-QzN"/>
-                                    <constraint firstAttribute="trailing" secondItem="5Ry-0h-GF5" secondAttribute="trailing" constant="8" id="qRE-hc-eq7"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GPa-NJ-ulE" firstAttribute="leading" secondItem="264-BS-zPo" secondAttribute="leading" id="7Sh-Z7-a9s"/>
                             <constraint firstItem="5Z3-g7-mno" firstAttribute="leading" secondItem="264-BS-zPo" secondAttribute="leading" id="97r-ZV-aVI"/>
@@ -481,10 +556,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="W24-5t-5bW"/>
+                    <connections>
+                        <outlet property="directionBtn" destination="3BM-Gh-dSa" id="bnS-i8-yDO"/>
+                        <outlet property="followBtn" destination="MNc-Dd-fyd" id="qP6-tM-aq9"/>
+                        <outlet property="reservationBtn" destination="5W7-Y6-vLf" id="mtW-sL-gdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2m-hA-IUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2831.25" y="71.83098591549296"/>
+            <point key="canvasLocation" x="5648.8000000000002" y="71.514242878560722"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="VzR-nG-qDH">
@@ -502,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1C-qx-kT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4475" y="97"/>
+            <point key="canvasLocation" x="7292" y="96.7016491754123"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="cSP-jE-UfJ">
@@ -539,14 +619,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbl-lG-xj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="881"/>
+            <point key="canvasLocation" x="1880.8" y="880.20989505247383"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xUY-Nt-PiW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aHt-kL-0Ld" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46W-6i-BHl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="46W-6i-BHl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -554,7 +634,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KhG-xO-chV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-529" y="-61"/>
+            <point key="canvasLocation" x="1348" y="-61.619190404797607"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="LtQ-8Z-vLY">
@@ -606,7 +686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghQ-Jg-ePG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6309.375" y="5.28169014084507"/>
+            <point key="canvasLocation" x="9125.6000000000004" y="4.9475262368815596"/>
         </scene>
         <!--Favourite View Controller-->
         <scene sceneID="D5U-bS-KzW">
@@ -658,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubu-C9-Y0d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6875.625" y="-63.380281690140848"/>
+            <point key="canvasLocation" x="9692" y="-63.418290854572717"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="nBA-mt-MJS">
@@ -791,7 +871,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCb-1n-BIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5589.375" y="31.690140845070424"/>
+            <point key="canvasLocation" x="8405.6000000000004" y="31.03448275862069"/>
         </scene>
         <!--Search Places View Controller-->
         <scene sceneID="Upd-01-Gbt">
@@ -885,7 +965,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXD-KV-ArN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2006" y="-282"/>
+            <point key="canvasLocation" x="3884" y="-282.00899550224892"/>
         </scene>
         <!--Foodie View Controller-->
         <scene sceneID="ti1-2C-K9Z">
@@ -980,7 +1060,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHr-Ey-h3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2006" y="322"/>
+            <point key="canvasLocation" x="2944.8000000000002" y="321.58920539730138"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="fDR-dT-Fzl">
@@ -1089,23 +1169,74 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tLv-U2-FK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="-44"/>
+            <point key="canvasLocation" x="3103.1999999999998" y="-44.527736131934034"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q5L-t0-sdh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sp5-yC-zen" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hNH-5P-5FT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="neB-Mn-YpF" kind="relationship" relationship="rootViewController" id="Jwr-Ce-qBW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hyw-jV-0Tf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="408.80000000000001" y="-331.48425787106447"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="avQ-Zy-mL6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b1V-Fe-Ozx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BFp-Go-ACk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jeL-uh-fOw" kind="relationship" relationship="rootViewController" id="bgH-4Y-d1N"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yUz-Ll-OBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941.60000000000002" y="880.20989505247383"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dxN-Z1-If2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DAQ-0F-LyV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5KF-eM-ttp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jZj-Ip-RKa" kind="relationship" relationship="rootViewController" id="p3m-DB-lg3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9QQ-Fr-w5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4709.6000000000004" y="71.514242878560722"/>
         </scene>
     </scenes>
     <resources>
         <image name="Back-48.png" width="30" height="30"/>
         <image name="DotImage" width="16" height="16"/>
         <image name="Forward-48.png" width="30" height="30"/>
-        <image name="HomeImage.jpg" width="192" height="263"/>
         <image name="Marker-30.png" width="30" height="30"/>
         <image name="Search Filled-30.png" width="30" height="30"/>
         <image name="SettingIcon" width="40" height="40"/>
-        <image name="Settings.png" width="192" height="263"/>
-        <image name="ShareIcon.png" width="192" height="263"/>
         <image name="UploadIcon" width="40" height="40"/>
         <image name="WriteIcon.png" width="192" height="263"/>
+        <image name="apple-touch-icon" width="1024" height="1155"/>
         <image name="images.jpeg" width="30" height="30"/>
-        <image name="images.jpg" width="750" height="563"/>
         <image name="sampmeHome" width="768" height="724"/>
         <image name="user" width="194" height="259"/>
     </resources>

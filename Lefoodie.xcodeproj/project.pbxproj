@@ -20,6 +20,8 @@
 		127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DB1E1A2A0200D64F16 /* CXButton.swift */; };
 		127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DC1E1A2A0200D64F16 /* CXView.swift */; };
 		127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DD1E1A2A0200D64F16 /* CXTextField.swift */; };
+		12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */; };
+		12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */; };
 		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
 		1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */; };
 		1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */; };
@@ -114,6 +116,8 @@
 		127861DB1E1A2A0200D64F16 /* CXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXButton.swift; sourceTree = "<group>"; };
 		127861DC1E1A2A0200D64F16 /* CXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXView.swift; sourceTree = "<group>"; };
 		127861DD1E1A2A0200D64F16 /* CXTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXTextField.swift; sourceTree = "<group>"; };
+		12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSignUpViewController.swift; sourceTree = "<group>"; };
+		12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodDetailViewController.swift; sourceTree = "<group>"; };
 		14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lefoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1809BE471E16364E00888D34 /* UIColor+colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colors.swift"; sourceTree = "<group>"; };
 		1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableArray+array.swift"; sourceTree = "<group>"; };
@@ -427,6 +431,8 @@
 				1825CCDA1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift */,
 				1825CCDB1E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib */,
 				1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */,
+				12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */,
+				12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */,
 				183FBCC21E1A378D00A0A8CC /* TabBar */,
 				127861D71E1A29D600D64F16 /* Login */,
 				127861CF1E1A299400D64F16 /* Search */,
@@ -802,6 +808,7 @@
 			files = (
 				18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */,
 				1825CCB71E1B769D00CD3C3B /* CXCameraView.swift in Sources */,
+				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
 				1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */,
@@ -810,6 +817,7 @@
 				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
 				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
+				12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
 				18F1794B1E1CC305001EDF45 /* LFSocialShareTableViewCell.swift in Sources */,
@@ -993,12 +1001,14 @@
 			baseConfigurationReference = D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
 				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.Lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1011,12 +1021,14 @@
 			baseConfigurationReference = 419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
 				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.Lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";

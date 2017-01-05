@@ -1,24 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Pacifico.otf">
-            <string>Pacifico</string>
+        <array key="pacifico.regular.ttf">
+            <string>Pacifico-Regular</string>
         </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
@@ -28,51 +24,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-I2-XXx">
-                                <rect key="frame" x="124.33333333333331" y="50" width="165.33333333333337" height="184"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSz-U7-mrX">
+                                <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="204" id="D3p-Vl-Il6"/>
+                                    <constraint firstAttribute="width" constant="343" id="sV9-3G-fwP"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="6bW-11-dbK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="Cph-qb-PBN"/>
+                                    <constraint firstAttribute="width" constant="170" id="bEN-Vw-TcC"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeFoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFs-0A-PHB">
-                                <rect key="frame" x="66.666666666666686" y="242" width="280.66666666666663" height="72"/>
-                                <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="41"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A place for your best" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIn-cF-VUi">
-                                <rect key="frame" x="57.666666666666657" y="344" width="299" height="15"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyProfile_Favorites_logo" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-4E-vBr">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="i4k-ky-YJd"/>
+                                    <constraint firstAttribute="width" constant="232" id="p5h-sx-NbO"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Place For Your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3R-pL-EOY">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="3ad-uY-rBt"/>
+                                    <constraint firstAttribute="width" constant="343" id="IOV-K8-8E2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foodie adventures!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLy-cB-Ws1">
-                                <rect key="frame" x="-11.666666666666657" y="354" width="437.33333333333337" height="44"/>
-                                <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foodies Advantures!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-y0-6YY">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Dou-2N-Xrj"/>
+                                    <constraint firstAttribute="width" constant="343" id="co3-Tc-3R6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZLy-cB-Ws1" firstAttribute="top" secondItem="hIn-cF-VUi" secondAttribute="bottom" constant="-5" id="Ijq-gr-dzX"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="18:80" id="LIf-9s-U8u"/>
-                            <constraint firstItem="hIn-cF-VUi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MFU-hz-tvY"/>
-                            <constraint firstItem="xFs-0A-PHB" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="61:160" id="Mkx-ey-MIv"/>
-                            <constraint firstItem="xFs-0A-PHB" firstAttribute="top" secondItem="BDG-I2-XXx" secondAttribute="bottom" constant="8" id="Mtd-D3-qWS"/>
-                            <constraint firstItem="hIn-cF-VUi" firstAttribute="top" secondItem="xFs-0A-PHB" secondAttribute="bottom" constant="30" id="Psl-wD-U6Q"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="30" id="WZZ-K8-t0p"/>
-                            <constraint firstItem="xFs-0A-PHB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dAm-ao-247"/>
-                            <constraint firstItem="hIn-cF-VUi" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="13:32" id="enZ-5l-NI7"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kKG-Hr-2BY"/>
-                            <constraint firstItem="ZLy-cB-Ws1" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="315:667" constant="89.715142428785612" id="t8b-S5-5qB"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.25" id="v7Q-LI-C15"/>
-                            <constraint firstItem="ZLy-cB-Ws1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zNV-MQ-t1m"/>
+                            <constraint firstItem="lyf-y0-6YY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="12g-gK-qiQ"/>
+                            <constraint firstItem="l3R-pL-EOY" firstAttribute="top" secondItem="g7M-4E-vBr" secondAttribute="bottom" constant="69" id="1aa-Es-bIG"/>
+                            <constraint firstItem="6bW-11-dbK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="36" id="2JU-oG-BuZ"/>
+                            <constraint firstItem="rSz-U7-mrX" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="6jZ-1I-aRT"/>
+                            <constraint firstItem="6bW-11-dbK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ydc-AY-aqC"/>
+                            <constraint firstItem="l3R-pL-EOY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eC3-X6-fdg"/>
+                            <constraint firstItem="rSz-U7-mrX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kvU-rT-MWf"/>
+                            <constraint firstItem="g7M-4E-vBr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="n9l-YP-ygU"/>
+                            <constraint firstItem="g7M-4E-vBr" firstAttribute="top" secondItem="rSz-U7-mrX" secondAttribute="bottom" constant="15" id="org-9F-mPK"/>
+                            <constraint firstItem="lyf-y0-6YY" firstAttribute="top" secondItem="l3R-pL-EOY" secondAttribute="bottom" constant="5" id="zpp-9v-UYn"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1170" y="51"/>
+            <point key="canvasLocation" x="-1170.4000000000001" y="50.824587706146929"/>
         </scene>
     </scenes>
     <resources>
+        <image name="MyProfile_Favorites_logo" width="392" height="123"/>
         <image name="apple-touch-icon" width="1024" height="1155"/>
     </resources>
 </document>

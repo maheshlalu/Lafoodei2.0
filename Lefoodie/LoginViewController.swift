@@ -17,6 +17,11 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegate {
     var facebookResponseDict: NSDictionary! = nil
 
+    @IBAction func emailSignupBtnAction(_ sender: UIButton) {
+        
+//        let vc = LFSignUpViewController()
+//        self.present(vc, animated: true, completion: nil)
+    }
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var facebookLoginBtn: UIButton!
    
