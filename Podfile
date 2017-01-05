@@ -15,6 +15,8 @@ pod "KRProgressHUD"
 pod 'Google/SignIn'
 pod 'Firebase/Core'
 pod 'Firebase/Crash'
+pod 'SwifterSwift'
+
   target 'LefoodieTests' do
     inherit! :search_paths
     # Pods for testing

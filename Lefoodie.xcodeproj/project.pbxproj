@@ -62,6 +62,7 @@
 		183FBCD51E1A88A100A0A8CC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */; };
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
 		183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */; };
+		185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185FAF631E1E4D43009479A3 /* NavBarExtension.swift */; };
 		187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B01E1D398D00D6668B /* LFSearchViewController.swift */; };
 		187039B31E1D399400D6668B /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */; };
 		187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */; };
@@ -165,6 +166,7 @@
 		183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		185FAF631E1E4D43009479A3 /* NavBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarExtension.swift; sourceTree = "<group>"; };
 		187039B01E1D398D00D6668B /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
 		187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
 		187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNearByCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				1809BE471E16364E00888D34 /* UIColor+colors.swift */,
 				1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */,
 				1835655E1E166D1500E7A531 /* NSDate+date.swift */,
+				185FAF631E1E4D43009479A3 /* NavBarExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
 				12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
+				185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
 				18F1794B1E1CC305001EDF45 /* LFSocialShareTableViewCell.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,

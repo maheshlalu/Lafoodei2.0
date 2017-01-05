@@ -30,6 +30,9 @@ class LFSearchViewController: UIViewController {
         addChildViewController(self.navController1)
         self.navController1.view.frame = self.containerView.bounds
         self.containerView.addSubview(navController1.view)
+        
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,6 +12,9 @@ class LFNotificationController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
 
         // Do any additional setup after loading the view.
     }
