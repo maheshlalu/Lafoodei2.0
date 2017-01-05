@@ -23,6 +23,8 @@ class LFUserProfileViewController: UIViewController {
         self.userImageView.clipsToBounds = true
         tabViews()
         
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         
         // Do any additional setup after loading the view.
     }

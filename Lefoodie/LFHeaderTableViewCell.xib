@@ -11,22 +11,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="YZL-di-o1g" userLabel="LFHeaderTableViewCell" customClass="LFHeaderTableViewCell" customModule="Lefoodie" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="321" height="65"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="YZL-di-o1g" userLabel="LFHeaderTableViewCell" customClass="LFHeaderTableViewCell" customModule="Lefoodie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZL-di-o1g" id="ugc-So-ych">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="64.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
-                        <rect key="frame" x="3" y="8" width="50" height="50"/>
+                        <rect key="frame" x="5" y="5" width="40" height="39.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="aXT-ab-dhB"/>
-                            <constraint firstAttribute="height" constant="50" id="xmB-pJ-drz"/>
+                            <constraint firstAttribute="width" constant="40" id="aXT-ab-dhB"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                <real key="value" value="25"/>
+                                <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="1"/>
@@ -36,20 +35,20 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-WQ-iKH">
-                        <rect key="frame" x="60" y="12" width="201" height="41"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-WQ-iKH">
+                        <rect key="frame" x="52" y="5" width="216" height="41"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balachandra" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
-                                <rect key="frame" x="0.0" y="0.0" width="201" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jackblack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
+                                <rect key="frame" x="0.0" y="0.0" width="216" height="19.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kfc Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
-                                <rect key="frame" x="0.0" y="22" width="201" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
+                                <rect key="frame" x="0.0" y="21.5" width="216" height="19.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -59,12 +58,12 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-aD-MbQ">
-                        <rect key="frame" x="280" y="14" width="34" height="34"/>
+                        <rect key="frame" x="287" y="14" width="34" height="18.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="lct-LV-2fr"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -72,15 +71,16 @@
                 <constraints>
                     <constraint firstItem="g9k-WQ-iKH" firstAttribute="leading" secondItem="dtw-0V-Pbf" secondAttribute="trailing" constant="7" id="1Pr-gC-TMu"/>
                     <constraint firstAttribute="bottom" secondItem="vIc-aD-MbQ" secondAttribute="bottom" constant="17" id="8op-vm-RMU"/>
-                    <constraint firstItem="dtw-0V-Pbf" firstAttribute="leading" secondItem="ugc-So-ych" secondAttribute="leading" constant="3" id="CUc-Fi-P8K"/>
+                    <constraint firstItem="dtw-0V-Pbf" firstAttribute="leading" secondItem="ugc-So-ych" secondAttribute="leading" constant="5" id="CUc-Fi-P8K"/>
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="leading" secondItem="g9k-WQ-iKH" secondAttribute="trailing" constant="19" id="HwQ-T9-XJy"/>
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="14" id="Ihu-Mh-ZhB"/>
-                    <constraint firstAttribute="trailing" secondItem="vIc-aD-MbQ" secondAttribute="trailing" constant="7" id="SEV-fg-9gR"/>
-                    <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="8" id="mb4-mm-7J6"/>
-                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="12" id="zKI-iG-VFR"/>
+                    <constraint firstAttribute="trailing" secondItem="vIc-aD-MbQ" secondAttribute="trailing" constant="5" id="SEV-fg-9gR"/>
+                    <constraint firstAttribute="bottom" secondItem="dtw-0V-Pbf" secondAttribute="bottom" constant="5" id="X4C-Pq-KMb"/>
+                    <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="mb4-mm-7J6"/>
+                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="zKI-iG-VFR"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="34.5" y="64.5"/>
+            <point key="canvasLocation" x="37" y="57"/>
         </tableViewCell>
     </objects>
     <resources>

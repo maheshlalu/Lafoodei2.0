@@ -53,6 +53,7 @@ class LFTabHomeController: UITabBarController {
         let homeContoller : LFHomeViewController = (storyBoard.instantiateViewController(withIdentifier: "LFHomeViewController") as? LFHomeViewController)!
        // homeContoller.title = "Home"
         //firstTab.title = "UPDATES"
+        let homeNav = UINavigationController(rootViewController: homeContoller)
         homeContoller.tabBarItem.image = UIImage(named: "HomeIcon")
         
         /*Search Controller */
@@ -69,14 +70,17 @@ class LFTabHomeController: UITabBarController {
         /*Notification Controller */
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!
          //notificatonContoller.title = "notificatoin"
+        let notificationNav = UINavigationController(rootViewController: notificatonContoller)
+
        notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
 
         /*Profile Controller */
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
          //profileContoller.title = "Profile"
+        let profileNav = UINavigationController(rootViewController: profileContoller)
         profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
 
-        self.tabBarController?.setViewControllers([homeContoller,searchContoller,cameraControl,notificatonContoller,profileContoller], animated: true)
+        self.tabBarController?.setViewControllers([homeNav,searchContoller,cameraControl,notificationNav,profileNav], animated: true)
 
         
     }
