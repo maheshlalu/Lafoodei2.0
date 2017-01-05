@@ -15,6 +15,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         super.viewDidLoad()
         self.registerCells()
         self.selectedTabBar()
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
     }
     
     

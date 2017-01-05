@@ -56,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     
+    func navigateToTabBar(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let homeVC = LFTabHomeController() as UITabBarController
+        appDelegate.window?.rootViewController = homeVC
+        appDelegate.window?.makeKeyAndVisible()
+    }
 
 
     func applicationWillResignActive(_ application: UIApplication) {
