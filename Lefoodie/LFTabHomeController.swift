@@ -58,27 +58,23 @@ class LFTabHomeController: UITabBarController {
         /*Search Controller */
         let searchContoller : LFSearchViewController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchViewController") as? LFSearchViewController)!
          //searchContoller.title = "Search"
-        //searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
-        searchContoller.tabBarItem.image = UIImage(named: "HomeIcon")
+        searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
 
 
         /*Camera controller */
           let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
          //cameraControl.title = "Camera"
-        //cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
-        cameraControl.tabBarItem.image = UIImage(named: "HomeIcon")
+        cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
 
         /*Notification Controller */
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!
          //notificatonContoller.title = "notificatoin"
-       // notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
-        notificatonContoller.tabBarItem.image = UIImage(named: "HomeIcon")
+       notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
 
         /*Profile Controller */
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
          //profileContoller.title = "Profile"
-       // profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
-        profileContoller.tabBarItem.image = UIImage(named: "HomeIcon")
+        profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
 
         self.tabBarController?.setViewControllers([homeContoller,searchContoller,cameraControl,notificatonContoller,profileContoller], animated: true)
 

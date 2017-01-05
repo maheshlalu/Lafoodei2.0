@@ -29,21 +29,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-I2-XXx">
-                                <rect key="frame" x="101.33333333333331" y="50" width="211.33333333333337" height="220.66666666666669"/>
+                                <rect key="frame" x="124.33333333333331" y="50" width="165.33333333333337" height="184"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeFoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFs-0A-PHB">
-                                <rect key="frame" x="66.666666666666686" y="278.66666666666669" width="280.66666666666663" height="72"/>
+                                <rect key="frame" x="66.666666666666686" y="242" width="280.66666666666663" height="72"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="41"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A place for your best" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIn-cF-VUi">
-                                <rect key="frame" x="57.666666666666657" y="380.66666666666669" width="299" height="15"/>
+                                <rect key="frame" x="57.666666666666657" y="344" width="299" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foodie adventures!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLy-cB-Ws1">
-                                <rect key="frame" x="-11.666666666666657" y="390.66666666666669" width="437.33333333333337" height="44"/>
+                                <rect key="frame" x="-11.666666666666657" y="354" width="437.33333333333337" height="44"/>
                                 <fontDescription key="fontDescription" name="Pacifico" family="Pacifico" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZLy-cB-Ws1" firstAttribute="top" secondItem="hIn-cF-VUi" secondAttribute="bottom" constant="-5" id="Ijq-gr-dzX"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="23:80" id="LIf-9s-U8u"/>
+                            <constraint firstItem="BDG-I2-XXx" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="18:80" id="LIf-9s-U8u"/>
                             <constraint firstItem="hIn-cF-VUi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MFU-hz-tvY"/>
                             <constraint firstItem="xFs-0A-PHB" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="61:160" id="Mkx-ey-MIv"/>
                             <constraint firstItem="xFs-0A-PHB" firstAttribute="top" secondItem="BDG-I2-XXx" secondAttribute="bottom" constant="8" id="Mtd-D3-qWS"/>
@@ -62,7 +62,7 @@
                             <constraint firstItem="hIn-cF-VUi" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="13:32" id="enZ-5l-NI7"/>
                             <constraint firstItem="BDG-I2-XXx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kKG-Hr-2BY"/>
                             <constraint firstItem="ZLy-cB-Ws1" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="315:667" constant="89.715142428785612" id="t8b-S5-5qB"/>
-                            <constraint firstItem="BDG-I2-XXx" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.3" id="v7Q-LI-C15"/>
+                            <constraint firstItem="BDG-I2-XXx" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.25" id="v7Q-LI-C15"/>
                             <constraint firstItem="ZLy-cB-Ws1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zNV-MQ-t1m"/>
                         </constraints>
                     </view>

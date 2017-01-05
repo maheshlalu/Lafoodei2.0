@@ -33,6 +33,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="sampmeHome" width="750" height="563"/>
+        <image name="sampmeHome" width="768" height="724"/>
     </resources>
 </document>

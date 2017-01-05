@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1I9-Z9-xfv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="neB-Mn-YpF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -174,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecr-hs-pSJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-313" y="-224"/>
+            <point key="canvasLocation" x="-530" y="-331"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="NIe-gY-bWp">
@@ -330,7 +330,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8c-hZ-geY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="-192"/>
+            <point key="canvasLocation" x="134" y="-331"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="o3c-dV-9ye">
@@ -584,7 +584,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aHt-kL-0Ld" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="46W-6i-BHl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46W-6i-BHl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
