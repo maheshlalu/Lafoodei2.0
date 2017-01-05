@@ -21,7 +21,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSz-U7-mrX">
@@ -33,14 +33,8 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="6bW-11-dbK">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="170" id="Cph-qb-PBN"/>
-                                    <constraint firstAttribute="width" constant="170" id="bEN-Vw-TcC"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyProfile_Favorites_logo" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-4E-vBr">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="i4k-ky-YJd"/>
-                                    <constraint firstAttribute="width" constant="232" id="p5h-sx-NbO"/>
+                                    <constraint firstAttribute="height" constant="130" id="Cph-qb-PBN"/>
+                                    <constraint firstAttribute="width" constant="130" id="bEN-Vw-TcC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Place For Your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3R-pL-EOY">
@@ -62,18 +56,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyProfile_Favorites_logo" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-4E-vBr">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="i4k-ky-YJd"/>
+                                    <constraint firstAttribute="width" constant="232" id="p5h-sx-NbO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lyf-y0-6YY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="12g-gK-qiQ"/>
-                            <constraint firstItem="l3R-pL-EOY" firstAttribute="top" secondItem="g7M-4E-vBr" secondAttribute="bottom" constant="69" id="1aa-Es-bIG"/>
+                            <constraint firstItem="l3R-pL-EOY" firstAttribute="top" secondItem="g7M-4E-vBr" secondAttribute="bottom" constant="47" id="1aa-Es-bIG"/>
                             <constraint firstItem="6bW-11-dbK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="36" id="2JU-oG-BuZ"/>
                             <constraint firstItem="rSz-U7-mrX" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="6jZ-1I-aRT"/>
-                            <constraint firstItem="6bW-11-dbK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ydc-AY-aqC"/>
+                            <constraint firstItem="6bW-11-dbK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-20" id="Ydc-AY-aqC"/>
                             <constraint firstItem="l3R-pL-EOY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eC3-X6-fdg"/>
                             <constraint firstItem="rSz-U7-mrX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kvU-rT-MWf"/>
                             <constraint firstItem="g7M-4E-vBr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="n9l-YP-ygU"/>
-                            <constraint firstItem="g7M-4E-vBr" firstAttribute="top" secondItem="rSz-U7-mrX" secondAttribute="bottom" constant="15" id="org-9F-mPK"/>
+                            <constraint firstItem="g7M-4E-vBr" firstAttribute="top" secondItem="rSz-U7-mrX" secondAttribute="bottom" constant="-27" id="org-9F-mPK"/>
                             <constraint firstItem="lyf-y0-6YY" firstAttribute="top" secondItem="l3R-pL-EOY" secondAttribute="bottom" constant="5" id="zpp-9v-UYn"/>
                         </constraints>
                     </view>
@@ -83,7 +83,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MyProfile_Favorites_logo" width="392" height="123"/>
+        <image name="MyProfile_Favorites_logo" width="89" height="50"/>
         <image name="apple-touch-icon" width="1024" height="1155"/>
     </resources>
 </document>
