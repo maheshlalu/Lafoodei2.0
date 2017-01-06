@@ -51,16 +51,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LeFoodie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4y-1v-pNn">
-                                <rect key="frame" x="62.5" y="198.5" width="252.5" height="62"/>
+                                <rect key="frame" x="63" y="199" width="252" height="62"/>
                                 <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="-12" translatesAutoresizingMaskIntoConstraints="NO" id="yDR-Kx-rh4">
-                                <rect key="frame" x="70" y="625.5" width="235" height="33.5"/>
+                                <rect key="frame" x="70" y="626" width="235" height="33"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8F-pc-syU">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="33.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="BZs-r4-x2k"/>
@@ -70,7 +70,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqM-Ru-VtG">
-                                        <rect key="frame" x="188" y="0.0" width="47" height="33.5"/>
+                                        <rect key="frame" x="188" y="0.0" width="47" height="33"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,7 +79,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FG7-Uu-vYM">
-                                <rect key="frame" x="37.5" y="392" width="300" height="200"/>
+                                <rect key="frame" x="38" y="392" width="300" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7g-re-J9o" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="61.5"/>
@@ -244,14 +244,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-e2-UCf">
-                                <rect key="frame" x="109.5" y="25" width="156" height="162.5"/>
+                                <rect key="frame" x="110" y="25" width="156" height="163"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wGT-Oq-cv3">
-                                <rect key="frame" x="37.5" y="328.5" width="300" height="333.5"/>
+                                <rect key="frame" x="38" y="329" width="300" height="333"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rhF-Tt-113">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
@@ -261,7 +261,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3K-4T-OWb">
-                                        <rect key="frame" x="0.0" y="68.5" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="68" width="300" height="60.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
@@ -271,7 +271,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1D-2E-cOy">
-                                        <rect key="frame" x="0.0" y="136.5" width="300" height="60.5"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="300" height="60"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
@@ -281,7 +281,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYB-tF-P3D" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205" width="300" height="60"/>
+                                        <rect key="frame" x="0.0" y="204.5" width="300" height="60.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                         <state key="normal" title="Create account">
@@ -303,7 +303,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Creating An Account,Your Greeting On Our Terms of Service And Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gp-PY-zdA">
-                                        <rect key="frame" x="0.0" y="273" width="300" height="60.5"/>
+                                        <rect key="frame" x="0.0" y="273" width="300" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -372,7 +372,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="U3t-Zy-Zul" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
-                                        <rect key="frame" x="157.5" y="199" width="60" height="60"/>
+                                        <rect key="frame" x="158" y="199" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="Cuz-IC-DGo"/>
                                             <constraint firstAttribute="height" constant="60" id="FuV-vw-1Hq"/>
@@ -579,8 +579,27 @@
                     <view key="view" contentMode="scaleToFill" id="bas-NE-eQL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.95294117649999999" green="0.4039215686" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jZX-V4-JiV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="FGZ-4h-8K5" id="1Xa-Dh-2Dz"/>
+                                    <outlet property="delegate" destination="FGZ-4h-8K5" id="8WQ-va-7ef"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9kP-cc-Y12" firstAttribute="top" secondItem="jZX-V4-JiV" secondAttribute="bottom" id="MTv-2F-kEa"/>
+                            <constraint firstItem="jZX-V4-JiV" firstAttribute="top" secondItem="bas-NE-eQL" secondAttribute="top" id="VEW-OX-Ur0"/>
+                            <constraint firstItem="jZX-V4-JiV" firstAttribute="leading" secondItem="bas-NE-eQL" secondAttribute="leading" id="blM-Cw-bgD"/>
+                            <constraint firstAttribute="trailing" secondItem="jZX-V4-JiV" secondAttribute="trailing" id="xom-yB-sd1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="notificationTableView" destination="jZX-V4-JiV" id="Xdd-b1-KsY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1C-qx-kT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1227,7 +1246,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vp" translatesAutoresizingMaskIntoConstraints="NO" id="VTQ-Rm-IBb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VTQ-Rm-IBb" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
                                 <rect key="frame" x="158" y="186" width="65" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="IZj-fI-q3g"/>
@@ -1235,10 +1254,10 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                        <real key="value" value="28"/>
+                                        <real key="value" value="36"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1.5"/>
+                                        <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="2"/>
@@ -1358,11 +1377,11 @@
         <image name="Marker-30" width="30" height="30"/>
         <image name="SettingIcon" width="40" height="40"/>
         <image name="UploadIcon" width="40" height="40"/>
+        <image name="UserProfileIcon" width="30" height="30"/>
         <image name="WriteIcon.png" width="192" height="263"/>
         <image name="apple-touch-icon" width="1024" height="1155"/>
         <image name="images" width="284" height="178"/>
         <image name="images.jpeg" width="30" height="30"/>
-        <image name="sampmeHome" width="768" height="724"/>
-        <image name="vp" width="1024" height="1155"/>
+        <image name="sampmeHome" width="750" height="382"/>
     </resources>
 </document>

@@ -65,8 +65,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
-        self.present(viewcontroller, animated: true, completion: nil)
+      //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
+        //self.present(viewcontroller, animated: true, completion: nil)
         
     }
     

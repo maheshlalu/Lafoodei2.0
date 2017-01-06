@@ -10,7 +10,7 @@ import UIKit
 
 class LFNotificationController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var nameArray = ["Aaliyah Cramer Followed You.","","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list"]
+    var nameArray = ["Alexandra added a photo to Best Cocktails Ever! list.","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list"]
     
     @IBOutlet weak var notificationTableView: UITableView!
     
@@ -58,7 +58,7 @@ class LFNotificationController: UIViewController,UITableViewDataSource,UITableVi
         }
         else
         {
-            return 65
+            return 68
         }
     }
     
