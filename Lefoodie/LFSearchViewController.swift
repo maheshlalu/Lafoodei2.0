@@ -9,37 +9,120 @@
 import UIKit
 
 class LFSearchViewController: UIViewController {
-    @IBOutlet weak var searchBtn: UIButton!
+    
+    @IBOutlet weak var prevBtn: UIButton!
+   
+    @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var searchTypeLabel: UILabel!
     
     @IBOutlet weak var containerView: UIView!
-    var navController1 = UINavigationController()
+    var count = Int()
+    var navController = UINavigationController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBtn.layer.cornerRadius = 3
-        searchBtn.clipsToBounds = true
         searchTypeLabel.layer.cornerRadius = 3
         searchTypeLabel.clipsToBounds = true
         
-        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
-        navController1 = UINavigationController(rootViewController: VC1)
-        navController1.isNavigationBarHidden = true
+        count = 1
+        searchTypeLabel.text = "Places"
+        prevBtn.isEnabled = false
+
         
-        addChildViewController(self.navController1)
-        self.navController1.view.frame = self.containerView.bounds
-        self.containerView.addSubview(navController1.view)
-        
-        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func nextBtnAction(_ sender: AnyObject) {
+        if count < 3 {
+            count = count + 1
+            var destVC = UIViewController()
+            
+            if count == 1 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
+                searchTypeLabel.text = "Places"
+                prevBtn.isEnabled = false
+                nextBtn.isEnabled = true
+               
+                
+            }
+            else if count == 2 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
+                searchTypeLabel.text = "Foodies"
+                prevBtn.isEnabled = true
+                nextBtn.isEnabled = true
+                
+            }
+            else if count == 3 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
+                searchTypeLabel.text = "Hashtags"
+                prevBtn.isEnabled = true
+                nextBtn.isEnabled = false
+                
+            }
+            
+            navController = UINavigationController(rootViewController: destVC)
+            navController.isNavigationBarHidden = true
+            
+            addChildViewController(self.navController)
+            self.navController.view.frame = self.containerView.bounds
+            self.containerView.addSubview(navController.view)
 
+        }
+        
+        
+    }
+
+    @IBAction func prevBtnAction(_ sender: AnyObject) {
+        
+        if count > 1 {
+            count = count - 1
+            var destVC = UIViewController()
+            
+            if count == 1 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
+                searchTypeLabel.text = "Places"
+                prevBtn.isEnabled = false
+                nextBtn.isEnabled = true
+                
+                
+            }
+            else if count == 2 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
+                searchTypeLabel.text = "Foodies"
+                prevBtn.isEnabled = true
+                nextBtn.isEnabled = true
+
+                
+            }
+            else if count == 3 {
+                
+                destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
+                searchTypeLabel.text = "Hashtags"
+                prevBtn.isEnabled = true
+                nextBtn.isEnabled = false
+                
+            }
+            
+            navController = UINavigationController(rootViewController: destVC)
+            navController.isNavigationBarHidden = true
+            
+            addChildViewController(self.navController)
+            self.navController.view.frame = self.containerView.bounds
+            self.containerView.addSubview(navController.view)
+            
+        }
+        
+    }
 
 }
 

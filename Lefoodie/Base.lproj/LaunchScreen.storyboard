@@ -14,76 +14,56 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSz-U7-mrX">
-                                <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="204" id="D3p-Vl-Il6"/>
-                                    <constraint firstAttribute="width" constant="343" id="sV9-3G-fwP"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="6bW-11-dbK">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="Cph-qb-PBN"/>
-                                    <constraint firstAttribute="width" constant="130" id="bEN-Vw-TcC"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="PfS-3T-IUX">
+                                <frame key="frameInset" minX="101" minY="34" width="117" height="132"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Place For Your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3R-pL-EOY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="33H-fI-OXZ">
+                                <frame key="frameInset" minX="107" minY="170" width="111" height="58"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A Place For Your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3R-pL-EOY">
+                                <frame key="frameInset" minX="-10" minY="291" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="3ad-uY-rBt"/>
-                                    <constraint firstAttribute="width" constant="343" id="IOV-K8-8E2"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foodies Advantures!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-y0-6YY">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="Dou-2N-Xrj"/>
-                                    <constraint firstAttribute="width" constant="343" id="co3-Tc-3R6"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Foodies Advantures!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-y0-6YY">
+                                <frame key="frameInset" minX="-10" minY="330" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyProfile_Favorites_logo" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-4E-vBr">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="i4k-ky-YJd"/>
-                                    <constraint firstAttribute="width" constant="232" id="p5h-sx-NbO"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80392156862745101" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lyf-y0-6YY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="12g-gK-qiQ"/>
-                            <constraint firstItem="l3R-pL-EOY" firstAttribute="top" secondItem="g7M-4E-vBr" secondAttribute="bottom" constant="47" id="1aa-Es-bIG"/>
-                            <constraint firstItem="6bW-11-dbK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="36" id="2JU-oG-BuZ"/>
-                            <constraint firstItem="rSz-U7-mrX" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="6jZ-1I-aRT"/>
-                            <constraint firstItem="6bW-11-dbK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-20" id="Ydc-AY-aqC"/>
-                            <constraint firstItem="l3R-pL-EOY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eC3-X6-fdg"/>
-                            <constraint firstItem="rSz-U7-mrX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kvU-rT-MWf"/>
-                            <constraint firstItem="g7M-4E-vBr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="n9l-YP-ygU"/>
-                            <constraint firstItem="g7M-4E-vBr" firstAttribute="top" secondItem="rSz-U7-mrX" secondAttribute="bottom" constant="-27" id="org-9F-mPK"/>
-                            <constraint firstItem="lyf-y0-6YY" firstAttribute="top" secondItem="l3R-pL-EOY" secondAttribute="bottom" constant="5" id="zpp-9v-UYn"/>
+                            <constraint firstItem="33H-fI-OXZ" firstAttribute="top" secondItem="PfS-3T-IUX" secondAttribute="bottom" constant="4" id="EmD-I7-Q5o"/>
+                            <constraint firstItem="PfS-3T-IUX" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="14" id="UD9-Je-qgm"/>
+                            <constraint firstItem="PfS-3T-IUX" firstAttribute="trailing" secondItem="33H-fI-OXZ" secondAttribute="trailing" id="UFo-7R-NPS"/>
+                            <constraint firstItem="PfS-3T-IUX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="b5q-TL-drL"/>
+                            <constraint firstItem="PfS-3T-IUX" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="iJ8-SU-4DU"/>
+                            <constraint firstItem="33H-fI-OXZ" firstAttribute="top" secondItem="PfS-3T-IUX" secondAttribute="bottom" constant="4" id="jAh-Cd-QlR"/>
+                            <constraint firstItem="PfS-3T-IUX" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="rX9-Qx-pAt"/>
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1170.4000000000001" y="50.824587706146929"/>
+            <point key="canvasLocation" x="-1173.75" y="48.75"/>
         </scene>
     </scenes>
     <resources>
-        <image name="MyProfile_Favorites_logo" width="89" height="50"/>
+        <image name="Logo" width="243" height="137"/>
         <image name="apple-touch-icon" width="1024" height="1155"/>
     </resources>
 </document>

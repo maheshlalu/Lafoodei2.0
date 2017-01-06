@@ -62,6 +62,8 @@
 		183FBCD51E1A88A100A0A8CC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */; };
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
 		183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */; };
+		1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */; };
+		1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */; };
 		185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185FAF631E1E4D43009479A3 /* NavBarExtension.swift */; };
 		187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B01E1D398D00D6668B /* LFSearchViewController.swift */; };
 		187039B31E1D399400D6668B /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */; };
@@ -166,6 +168,8 @@
 		183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsTableViewCell.swift; sourceTree = "<group>"; };
+		1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		185FAF631E1E4D43009479A3 /* NavBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarExtension.swift; sourceTree = "<group>"; };
 		187039B01E1D398D00D6668B /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
 		187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 		127861CF1E1A299400D64F16 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */,
+				1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */,
 				187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */,
 				187039BA1E1D39A700D6668B /* LFMapInstance.swift */,
 				187039B61E1D399F00D6668B /* LFFoodieViewController.swift */,
@@ -811,6 +817,7 @@
 			files = (
 				18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */,
 				1825CCB71E1B769D00CD3C3B /* CXCameraView.swift in Sources */,
+				1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */,
 				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
@@ -837,6 +844,7 @@
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
+				1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,

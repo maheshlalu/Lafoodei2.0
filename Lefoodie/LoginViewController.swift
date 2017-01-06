@@ -45,7 +45,8 @@ let signIn = GIDSignIn.sharedInstance()
         signIn?.delegate = self;
         signIn?.uiDelegate = self
       
-        
+        self.navigationController?.isNavigationBarHidden = true
+
         
         // Do any additional setup after loading the view, typically from a nib.
     }
