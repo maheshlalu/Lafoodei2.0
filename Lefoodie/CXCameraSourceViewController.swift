@@ -46,8 +46,8 @@ extension CXCameraSourceDelegate {
     func CXClosed() {}
 }
 
-public var CXBaseTintColor   = UIColor.hex("#FFFFFF", alpha: 1.0)
-public var CXTintColor       = UIColor.hex("#F38181", alpha: 1.0)
+public var CXBaseTintColor   = UIColor.appTheamColor()
+public var CXTintColor       = UIColor.appTheamColor()
 public var CXBackgroundColor = UIColor.hex("#3B3D45", alpha: 1.0)
 
 public var CXAlbumImage : UIImage? = nil
@@ -251,10 +251,7 @@ class CXCameraSourceViewController: UIViewController {
                                                         
                                                         DispatchQueue.main.async(execute: {
                                                             self.delegate?.CXImageSelected(result!, source: self.mode)
-                                                            
-                                                            self.dismiss(animated: true, completion: {
-                                                                self.delegate?.CXDismissedWithImage(result!, source: self.mode)
-                                                            })
+                                                          
                                                         })
                 }
             })

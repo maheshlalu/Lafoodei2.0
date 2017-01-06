@@ -26,15 +26,15 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-r8-HRo">
                                         <rect key="frame" x="0.0" y="0.0" width="147.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="  Facebook" image="fb">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSZ-4M-BbT">
                                         <rect key="frame" x="147.5" y="0.0" width="147.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="  Twitter" image="twtr">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="  Twitter" image="twitter">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
@@ -45,14 +45,14 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAN-3z-32x">
                                         <rect key="frame" x="0.0" y="0.0" width="147.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="  Tumblr" image="tb">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="  Tumblr" image="tmblr">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hig-WK-yyc">
                                         <rect key="frame" x="147.5" y="0.0" width="147.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="  Flickr" image="flkr">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -79,9 +79,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="fb" width="20" height="20"/>
-        <image name="flkr" width="20" height="20"/>
-        <image name="tb" width="20" height="20"/>
-        <image name="twtr" width="20" height="20"/>
+        <image name="fb" width="30" height="30"/>
+        <image name="flkr" width="30" height="30"/>
+        <image name="tmblr" width="30" height="30"/>
+        <image name="twitter" width="30" height="30"/>
     </resources>
 </document>

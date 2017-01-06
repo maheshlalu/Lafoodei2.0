@@ -9,21 +9,22 @@
 import UIKit
 
 class LFTabHomeController: UITabBarController {
-
+    
     
     var previousIndex : Int!
+    var navController:UINavigationController!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.delegate = self
-        // Do any additional setup after loading the view.
-         self.previousIndex = 0
+        self.previousIndex = 0
         self.setUpTabControllers()
         self.tabBar.barTintColor = UIColor.init(red: 253/250, green: 205/250, blue: 0/250, alpha: 5)
         self.tabBar.tintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.white
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,63 +32,49 @@ class LFTabHomeController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // self.selectedIndex = self.previousIndex
+        // self.selectedIndex = self.previousIndex
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     func setUpTabControllers(){
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         /*Home Controller*/
         let homeContoller : LFHomeViewController = (storyBoard.instantiateViewController(withIdentifier: "LFHomeViewController") as? LFHomeViewController)!
-       // homeContoller.title = "Home"
+        // homeContoller.title = "Home"
         //firstTab.title = "UPDATES"
         let homeNav = UINavigationController(rootViewController: homeContoller)
         homeContoller.tabBarItem.image = UIImage(named: "HomeIcon")
         
         /*Search Controller */
         let searchContoller : LFSearchViewController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchViewController") as? LFSearchViewController)!
-         //searchContoller.title = "Search"
+        //searchContoller.title = "Search"
         searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
-
-
+        
+        
         /*Camera controller */
-          let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
-         //cameraControl.title = "Camera"
+        let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
+        //cameraControl.title = "Camera"
         cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
-
+        
         /*Notification Controller */
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!
-         //notificatonContoller.title = "notificatoin"
+        //notificatonContoller.title = "notificatoin"
         let notificationNav = UINavigationController(rootViewController: notificatonContoller)
-
-       notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
-
+        
+        notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
+        
         /*Profile Controller */
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
-         //profileContoller.title = "Profile"
+        //profileContoller.title = "Profile"
         let profileNav = UINavigationController(rootViewController: profileContoller)
         profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
-
+        
         //self.setViewControllers([homeNav,searchContoller,cameraControl,notificationNav,profileNav], animated: true)
-
+        
         self.viewControllers = [homeNav,searchContoller,cameraControl,notificationNav,profileNav]
-
+        
     }
 
-    
-    
 }
 
 extension LFTabHomeController:UITabBarControllerDelegate{
@@ -98,7 +85,9 @@ extension LFTabHomeController:UITabBarControllerDelegate{
             let cameraCntrl = CXCameraSourceViewController()
             cameraCntrl.delegate = self
             cameraCntrl.cropHeightRatio = 0.6
-            self.present(cameraCntrl, animated: true, completion: nil)
+            self.navController = UINavigationController(rootViewController: cameraCntrl)
+            self.present(navController, animated: true, completion: nil)
+            navController.isNavigationBarHidden = true
             tabBarController.selectedIndex = self.previousIndex
         }else{
             self.previousIndex = tabBarController.selectedIndex
@@ -119,37 +108,42 @@ extension LFTabHomeController:UITabBarControllerDelegate{
 extension  LFTabHomeController:CXCameraSourceDelegate{
     
     func CXImageSelected(_ image: UIImage, source: CXMode){
-        
+        let storyBoard = UIStoryboard(name: "PhotoShare", bundle: Bundle.main)
+        let profileContoller : LFShareFoodiePicViewController = (storyBoard.instantiateViewController(withIdentifier: "LFShareFoodiePicViewController") as? LFShareFoodiePicViewController)!
         switch source {
         case .camera:
             print("Image captured from Camera")
+            profileContoller.postImage = image
+            self.navController?.pushViewController(profileContoller, animated: true)
+            
         case .library:
             print("Image selected from Camera Roll")
+            profileContoller.postImage = image
+            self.navController?.pushViewController(profileContoller, animated: true)
+            
         default:
             print("Image selected")
+            profileContoller.postImage = image
+            self.navController?.pushViewController(profileContoller, animated: true)
+            
         }
-        
-        
-        //imageView.image = image
-        
     }
     
     func CXDismissedWithImage(_ image: UIImage, source: CXMode){
         switch source {
         case .camera:
-            print("Called just after dismissed FusumaViewController using Camera")
+            print("Called just after dismissed using Camera")
         case .library:
-            print("Called just after dismissed FusumaViewController using Camera Roll")
+            print("Called just after dismissed using Camera Roll")
         default:
-            print("Called just after dismissed FusumaViewController")
+            print("Called just after dismissed")
         }
-        
     }
     
     func CXClosed(){
         
         print("Called when the close button is pressed")
-    
+        
     }
     
     func CXCameraRollUnauthorized() {
@@ -172,7 +166,7 @@ extension  LFTabHomeController:CXCameraSourceDelegate{
         
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     
 }
 

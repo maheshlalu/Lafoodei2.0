@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,37 +19,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGp-zc-1Nf">
-                        <rect key="frame" x="5" y="5" width="310" height="260.5"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="NHf-dV-0xg">
-                                <rect key="frame" x="0.0" y="0.0" width="79" height="260.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="9YO-OV-Ix2"/>
-                                    <constraint firstAttribute="height" constant="87" id="xbi-w4-m8u"/>
-                                </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="39C-Ew-f76">
-                                <rect key="frame" x="79" y="0.0" width="231" height="260.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
-                            </textView>
-                        </subviews>
-                    </stackView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="39C-Ew-f76">
+                        <rect key="frame" x="87" y="0.0" width="233" height="96"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                    </textView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="NHf-dV-0xg">
+                        <rect key="frame" x="5" y="8" width="79" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="79" id="9YO-OV-Ix2"/>
+                            <constraint firstAttribute="height" constant="64" id="iwZ-75-U3U"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="qGp-zc-1Nf" secondAttribute="trailing" constant="5" id="bWh-c5-cfQ"/>
-                    <constraint firstItem="qGp-zc-1Nf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ltJ-29-24a"/>
-                    <constraint firstItem="qGp-zc-1Nf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="qXK-Zo-938"/>
-                    <constraint firstAttribute="bottom" secondItem="qGp-zc-1Nf" secondAttribute="bottom" constant="5" id="wC5-EQ-Bp0"/>
+                    <constraint firstAttribute="bottom" secondItem="39C-Ew-f76" secondAttribute="bottom" id="BUE-xH-F9f"/>
+                    <constraint firstItem="39C-Ew-f76" firstAttribute="leading" secondItem="NHf-dV-0xg" secondAttribute="trailing" constant="3" id="HnL-qP-JAa"/>
+                    <constraint firstItem="NHf-dV-0xg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-3" id="STr-Z5-LYp"/>
+                    <constraint firstAttribute="topMargin" secondItem="NHf-dV-0xg" secondAttribute="top" id="g6S-Nt-ik6"/>
+                    <constraint firstAttribute="trailing" secondItem="39C-Ew-f76" secondAttribute="trailing" id="rKn-At-6za"/>
+                    <constraint firstItem="39C-Ew-f76" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="w15-Xa-qN6"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="postDescTxtView" destination="39C-Ew-f76" id="LUK-7x-QrU"/>
+                <outlet property="sharedPic" destination="NHf-dV-0xg" id="oY5-MA-fT7"/>
+            </connections>
             <point key="canvasLocation" x="-84" y="-52.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user" width="194" height="259"/>
+        <image name="bg2" width="654" height="369"/>
     </resources>
 </document>

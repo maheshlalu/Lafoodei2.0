@@ -18,26 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locate" translatesAutoresizingMaskIntoConstraints="NO" id="LEN-gB-AEM">
+                        <rect key="frame" x="8" y="11" width="21" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="Xcd-Gn-Dpc"/>
+                            <constraint firstAttribute="height" constant="20" id="o21-ws-TOL"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eog-Wc-g8n">
-                        <rect key="frame" x="51" y="4" width="261" height="35"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="37" y="11" width="261" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_button" translatesAutoresizingMaskIntoConstraints="NO" id="LEN-gB-AEM">
-                        <rect key="frame" x="8" y="4" width="35" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="Xcd-Gn-Dpc"/>
-                            <constraint firstAttribute="height" constant="35" id="o21-ws-TOL"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="LEN-gB-AEM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="6tp-4p-pCe"/>
-                    <constraint firstAttribute="bottom" secondItem="eog-Wc-g8n" secondAttribute="bottom" constant="4" id="9K1-xE-fhw"/>
-                    <constraint firstAttribute="trailing" secondItem="eog-Wc-g8n" secondAttribute="trailing" constant="8" id="VxV-pT-aPs"/>
-                    <constraint firstItem="eog-Wc-g8n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="jvo-52-zot"/>
-                    <constraint firstAttribute="bottom" secondItem="LEN-gB-AEM" secondAttribute="bottom" constant="4" id="q7S-Mw-TjD"/>
+                    <constraint firstItem="LEN-gB-AEM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="6tp-4p-pCe"/>
+                    <constraint firstAttribute="bottom" secondItem="eog-Wc-g8n" secondAttribute="bottom" constant="12" id="9K1-xE-fhw"/>
+                    <constraint firstAttribute="trailing" secondItem="eog-Wc-g8n" secondAttribute="trailing" constant="22" id="VxV-pT-aPs"/>
+                    <constraint firstItem="eog-Wc-g8n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="jvo-52-zot"/>
+                    <constraint firstAttribute="bottom" secondItem="LEN-gB-AEM" secondAttribute="bottom" constant="12" id="q7S-Mw-TjD"/>
                     <constraint firstItem="LEN-gB-AEM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="wZX-DF-Fr5"/>
                     <constraint firstItem="eog-Wc-g8n" firstAttribute="leading" secondItem="LEN-gB-AEM" secondAttribute="trailing" constant="8" id="yrj-TC-bsJ"/>
                 </constraints>
@@ -46,6 +46,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="video_button" width="40" height="40"/>
+        <image name="locate" width="20" height="20"/>
     </resources>
 </document>

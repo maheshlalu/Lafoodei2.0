@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
+		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
 		127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C01E1A297300D64F16 /* LFHomeViewController.swift */; };
 		127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */; };
 		127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */; };
@@ -106,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		127861C01E1A297300D64F16 /* LFHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeViewController.swift; sourceTree = "<group>"; };
 		127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */,
+				114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */,
 				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
 				1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */,
@@ -637,6 +643,7 @@
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
 				18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */,
 				1825CCB11E1B769D00CD3C3B /* CXAlbumView.xib in Resources */,
+				114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */,
 				127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */,
 				183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */,
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
@@ -685,7 +692,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */ = {
@@ -700,7 +707,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */ = {
@@ -775,7 +782,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */ = {
@@ -832,6 +839,7 @@
 				185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,
 				18F1794B1E1CC305001EDF45 /* LFSocialShareTableViewCell.swift in Sources */,
+				114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
 				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
