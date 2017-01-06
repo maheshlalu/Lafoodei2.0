@@ -9,19 +9,52 @@
 import UIKit
 
 class LFSignUpViewController: UIViewController {
+    @IBOutlet weak var tersOfServiceLbl: UILabel!
 
     @IBAction func CreateAccountBtnAction(_ sender: UIButton) {
       //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController") as UIViewController
     
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.navigateToTabBar()
+        
+ 
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+        let firstWord   = "By creating an account, you are agreeing to our \n"
+        let secondWord = "Terms of service"
+        let thirdWord   = "Privacy policy"
+        // let finaString =  NSAttributedString(string: firstWord).
+        
+        
+        let attributedText = NSMutableAttributedString(string:firstWord)
+        attributedText.append(attributedString(from: secondWord, nonBoldRange: NSMakeRange(0, secondWord.characters.count-1)))
+        attributedText.append(NSAttributedString(string: " and "))
+        attributedText.append(attributedString(from: thirdWord, nonBoldRange: NSMakeRange(0, thirdWord.characters.count-1)))
+
+        
+        tersOfServiceLbl.attributedText =  attributedText
 
         // Do any additional setup after loading the view.
+    }
+    
+    func attributedString(from string: String, nonBoldRange: NSRange?) -> NSAttributedString {
+        //let fontSize = UIFont.systemFontSize
+        let attrs = [
+            NSFontAttributeName:UIFont.boldSystemFont(ofSize: 14),
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        let nonBoldAttribute = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14),
+            ]
+        let attrStr = NSMutableAttributedString(string: string, attributes: attrs)
+        if let range = nonBoldRange {
+            attrStr.setAttributes(nonBoldAttribute, range: range)
+        }
+        return attrStr
     }
     
     func navigateToTabBar(){
@@ -48,4 +81,13 @@ class LFSignUpViewController: UIViewController {
     }
     */
 
+}
+
+extension UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -30,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print( getDocumentsDirectory())
 
         
+        for strin in UIFont.familyNames {
+            
+            print(strin)
+        }
+        
         
         return true
     }

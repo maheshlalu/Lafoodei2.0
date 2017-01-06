@@ -76,10 +76,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return 50
 
         }else if indexPath.row == 1 {
-            return 200
+            return 220
 
         }else if indexPath.row == 2 {
-            return 60
+            return 55
 
         }
         return 0
