@@ -10,6 +10,9 @@ import UIKit
 
 class LFSharePostTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var sharedPic: UIImageView!
+    @IBOutlet weak var postDescTxtView: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

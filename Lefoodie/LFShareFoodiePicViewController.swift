@@ -10,10 +10,15 @@ import UIKit
 
 class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
+    @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var sharePhotoTableView: UITableView!
-
+    var navController: UINavigationController!
+    var postImage:UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        postBtn.setTitleColor(UIColor.appTheamColor(), for: .normal)
         
         let nibSharePost = UINib(nibName: "LFSharePostTableViewCell", bundle: nil)
         self.sharePhotoTableView.register(nibSharePost, forCellReuseIdentifier: "LFSharePostTableViewCell")
@@ -43,6 +48,7 @@ class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UIT
         
         if indexPath.section == 0{
             let cellSharePost = tableView.dequeueReusableCell(withIdentifier: "LFSharePostTableViewCell", for: indexPath)as? LFSharePostTableViewCell
+            cellSharePost?.sharedPic.image = postImage
             return cellSharePost!
             
         }else if indexPath.section == 1{
@@ -84,9 +90,10 @@ class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UIT
             
             let v = view as! UITableViewHeaderFooterView
             let button = UIButton(type: .system) // let preferred over var here
-            button.frame = CGRect(x: v.frame.size.width/2 - 100, y:10 , width: 200, height: 50)
-            button.backgroundColor = UIColor.yellow
+            button.frame = CGRect(x: v.frame.size.width/2 - 100, y:10 , width: 200, height: 45)
+            button.backgroundColor = UIColor.appTheamColor()
             button.setTitle("Choose Another Location", for: UIControlState.normal)
+            button.setTitleColor(UIColor.white, for: .normal)
             button.layer.cornerRadius = 3
             button.addTarget(self, action: #selector(chooseLocation), for: UIControlEvents.touchUpInside)
             v.addSubview(button)
@@ -102,6 +109,11 @@ class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UIT
         self.sharePhotoTableView.endEditing(true)
     }
     @IBAction func postBtnAction(_ sender: Any) {
+        
+    }
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        //self.navController?.popToRootViewController(animated: true)
     }
     
 }

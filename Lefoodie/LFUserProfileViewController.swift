@@ -33,29 +33,24 @@ class LFUserProfileViewController: UIViewController {
         
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
-        
-        
+
         let controller1:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
         controller1.title = "PHOTOS"
         controllerArray.append(controller1)
         
         let controller2 : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
-        controller2.title = "FAVOURITES"
+        controller2.title = "FAVORITES"
         controllerArray.append(controller2)
-        
-        
-        
+
         let parameters: [CAPSPageMenuOption] = [
-            .selectionIndicatorColor(UIColor.yellow),
-            .selectedMenuItemLabelColor(UIColor.white),
+            .selectionIndicatorColor(UIColor.appTheamColor()),
+            .selectedMenuItemLabelColor(UIColor.appTheamColor()),
             .menuHeight(40),
-            .scrollMenuBackgroundColor(UIColor.gray),
+            .scrollMenuBackgroundColor(UIColor.white),
             .menuItemWidth(self.view.frame.size.width/2-16)
         ]
         
-        
         self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.uiView.frame.width, height: self.uiView.frame.height), pageMenuOptions: parameters)
-        
         self.uiView.addSubview(self.pageMenu!.view)
         
     }
