@@ -19,6 +19,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
     }
     
+
     
     func registerCells(){
         self.homeTableView.register(UINib(nibName: "LFHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHeaderTableViewCell")

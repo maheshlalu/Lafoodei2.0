@@ -23,6 +23,7 @@ class LFTabHomeController: UITabBarController {
         self.tabBar.barTintColor = UIColor.init(red: 253/250, green: 205/250, blue: 0/250, alpha: 5)
         self.tabBar.tintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.white
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,8 +33,62 @@ class LFTabHomeController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // self.selectedIndex = self.previousIndex
+        self.addCameraButton()
     }
+    
+    func addCameraButton(){
+        
+        let imageCameraButton: UIImage! = UIImage(named: "CameraIcon")
+        
+        // Creates a Button
+        let cameraButton = UIButton()
+        
+        // Sets width and height to the Button
+        cameraButton.frame = CGRect(x: 0, y: 0, width: tabBar.frame.size.width/7.5, height: tabBar.frame.size.height)
+        
+        // Sets image to the Button
+        cameraButton.setBackgroundImage(imageCameraButton, for: .normal)
+        //        cameraButton.contentMode = .scaleAspectFit
+        
+        // Sets the center of the Button to the center of the TabBar
+        cameraButton.center = self.tabBar.center
+        cameraButton.backgroundColor = UIColor.white
+        cameraButton.addTarget(self, action: #selector(cameraAction), for: .touchUpInside)
+        cameraButton.contentMode = .scaleAspectFit
+        
+        // Adds the Button to the view
+        self.view.addSubview(cameraButton)
+    }
+    
+    
+    func cameraAction()
+    {
+        
+        //        let cameraCntrl = CXCameraSourceViewController()
+        //        cameraCntrl.delegate = self
+        //        cameraCntrl.cropHeightRatio = 0.6
+        //        self.navController = UINavigationController(rootViewController: cameraCntrl)
+        //        self.present(navController, animated: true, completion: nil)
+        //        navController.isNavigationBarHidden = true
+        // let viewcontroller = UIViewController()
+        
+        //if viewcontroller.isKind(of: LFTabCameraViewController.self){
+        let cameraCntrl = CXCameraSourceViewController()
+        cameraCntrl.delegate = self
+        cameraCntrl.cropHeightRatio = 0.6
+        self.navController = UINavigationController(rootViewController: cameraCntrl)
+        self.present(navController, animated: true, completion: nil)
+        navController.isNavigationBarHidden = true
+        tabBarController?.selectedIndex = self.previousIndex
+        //        }else{
+        //            self.previousIndex = tabBarController?.selectedIndex
+        //
+        //        }
+        //        
+        
+        
+    }
+    
     func setUpTabControllers(){
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -51,10 +106,13 @@ class LFTabHomeController: UITabBarController {
         searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
         
         
+        
         /*Camera controller */
         let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
         //cameraControl.title = "Camera"
         cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
+        cameraControl.tabBarController?.tabBar.tintColor = UIColor.clear
+        //cameraControl.tabBarItem.
         
         /*Notification Controller */
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!

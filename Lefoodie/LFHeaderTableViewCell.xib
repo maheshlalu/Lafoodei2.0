@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,17 +12,16 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZL-di-o1g" id="ugc-So-ych">
-                <rect key="frame" x="0.0" y="0.0" width="326" height="49"/>
+                <frame key="frameInset" width="326" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
-                        <rect key="frame" x="5" y="5" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="aXT-ab-dhB"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                <real key="value" value="20"/>
+                                <real key="value" value="19"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="1"/>
@@ -36,17 +32,14 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-WQ-iKH">
-                        <rect key="frame" x="52" y="5" width="216" height="41"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jackblack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
-                                <rect key="frame" x="0.0" y="0.0" width="216" height="19.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
-                                <rect key="frame" x="0.0" y="21.5" width="216" height="19.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -54,11 +47,10 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="41" id="Fpd-rB-sE9"/>
+                            <constraint firstAttribute="height" constant="28" id="Fpd-rB-sE9"/>
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-aD-MbQ">
-                        <rect key="frame" x="287" y="14" width="34" height="19"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="lct-LV-2fr"/>
@@ -70,20 +62,20 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="g9k-WQ-iKH" firstAttribute="leading" secondItem="dtw-0V-Pbf" secondAttribute="trailing" constant="7" id="1Pr-gC-TMu"/>
-                    <constraint firstAttribute="bottom" secondItem="vIc-aD-MbQ" secondAttribute="bottom" constant="17" id="8op-vm-RMU"/>
+                    <constraint firstAttribute="bottom" secondItem="vIc-aD-MbQ" secondAttribute="bottom" constant="20.5" id="8op-vm-RMU"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="leading" secondItem="ugc-So-ych" secondAttribute="leading" constant="5" id="CUc-Fi-P8K"/>
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="leading" secondItem="g9k-WQ-iKH" secondAttribute="trailing" constant="19" id="HwQ-T9-XJy"/>
-                    <constraint firstItem="vIc-aD-MbQ" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="14" id="Ihu-Mh-ZhB"/>
+                    <constraint firstItem="vIc-aD-MbQ" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="Ihu-Mh-ZhB"/>
                     <constraint firstAttribute="trailing" secondItem="vIc-aD-MbQ" secondAttribute="trailing" constant="5" id="SEV-fg-9gR"/>
                     <constraint firstAttribute="bottom" secondItem="dtw-0V-Pbf" secondAttribute="bottom" constant="5" id="X4C-Pq-KMb"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="mb4-mm-7J6"/>
-                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="zKI-iG-VFR"/>
+                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="zKI-iG-VFR"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="37" y="57"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user" width="194" height="259"/>
+        <image name="user" width="120" height="126"/>
     </resources>
 </document>
