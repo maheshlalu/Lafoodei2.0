@@ -648,7 +648,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aHt-kL-0Ld" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46W-6i-BHl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="46W-6i-BHl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -672,7 +672,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cVz-1q-DDf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Diw-0v-YTh">
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -725,7 +725,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SVf-VY-BW0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="F9n-L6-Em9">
                                     <size key="itemSize" width="310" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -734,7 +734,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8iG-5T-tgG">
-                                        <rect key="frame" x="32.5" y="5" width="310" height="150"/>
+                                        <rect key="frame" x="33" y="5" width="310" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="150"/>
@@ -769,7 +769,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sp5-yC-zen" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNH-5P-5FT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hNH-5P-5FT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -787,7 +787,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b1V-Fe-Ozx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BFp-Go-ACk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BFp-Go-ACk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -805,7 +805,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DAQ-0F-LyV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5KF-eM-ttp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5KF-eM-ttp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

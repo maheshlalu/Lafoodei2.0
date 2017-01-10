@@ -14,16 +14,16 @@ class LFFavouriteViewController: UIViewController,UICollectionViewDataSource,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "LFFavouritesCollectionViewCell", bundle: nil)
-self.favouritesCollectionView.register(nib, forCellWithReuseIdentifier: "LFFavouritesCollectionViewCell")
+        self.favouritesCollectionView.register(nib, forCellWithReuseIdentifier: "LFFavouritesCollectionViewCell")
+        self.view.backgroundColor = UIColor.white
+        
         // Do any additional setup after loading the view.
     }
     
-    
+    //MARK:
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
-        
         return 1
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

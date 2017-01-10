@@ -1024,6 +1024,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = NO;
@@ -1036,7 +1037,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e25d1ec9-f884-42a8-bc8e-388025161fba";
+				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
 				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
 				SWIFT_VERSION = 3.0;
 			};
@@ -1060,7 +1061,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e25d1ec9-f884-42a8-bc8e-388025161fba";
+				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
 				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
 				SWIFT_VERSION = 3.0;
 			};

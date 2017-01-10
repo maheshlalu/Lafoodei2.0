@@ -16,7 +16,7 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         
         let nib = UINib(nibName: "LFPhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(nib, forCellWithReuseIdentifier: "LFPhotoCollectionViewCell")
-
+        self.view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     

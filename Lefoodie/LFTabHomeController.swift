@@ -99,12 +99,14 @@ class LFTabHomeController: UITabBarController {
         //firstTab.title = "UPDATES"
         let homeNav = UINavigationController(rootViewController: homeContoller)
         homeContoller.tabBarItem.image = UIImage(named: "HomeIcon")
-        
+        homeContoller.tabBarItem.title = nil
+        homeContoller.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         /*Search Controller */
         let searchContoller : LFSearchViewController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchViewController") as? LFSearchViewController)!
         //searchContoller.title = "Search"
         searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
-        
+        searchContoller.tabBarItem.title = nil
+        searchContoller.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         
         
         /*Camera controller */
@@ -118,14 +120,17 @@ class LFTabHomeController: UITabBarController {
         let notificatonContoller : LFNotificationController = (storyBoard.instantiateViewController(withIdentifier: "LFNotificationController") as? LFNotificationController)!
         //notificatonContoller.title = "notificatoin"
         let notificationNav = UINavigationController(rootViewController: notificatonContoller)
-        
         notificatonContoller.tabBarItem.image = UIImage(named: "NotificationIcon")
+        notificatonContoller.tabBarItem.title = nil
+        notificatonContoller.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         
         /*Profile Controller */
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
         //profileContoller.title = "Profile"
         let profileNav = UINavigationController(rootViewController: profileContoller)
         profileContoller.tabBarItem.image = UIImage(named: "UserProfileIcon")
+        profileContoller.tabBarItem.title = nil
+        profileContoller.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         
         //self.setViewControllers([homeNav,searchContoller,cameraControl,notificationNav,profileNav], animated: true)
         

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="196"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="8C5-vj-aGJ" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="8C5-vj-aGJ" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
                         <rect key="frame" x="5" y="7" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="JKm-8z-iyT"/>
@@ -61,7 +61,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cnm-Kx-fti">
                         <rect key="frame" x="66" y="23.5" width="230" height="142.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-Dw-mDz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-Dw-mDz">
                                 <rect key="frame" x="0.0" y="0.0" width="230" height="142.5"/>
                             </imageView>
                         </subviews>
@@ -94,7 +94,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="bg2" width="654" height="369"/>
         <image name="clock" width="20" height="20"/>
-        <image name="sampmeHome" width="750" height="382"/>
+        <image name="user" width="120" height="126"/>
     </resources>
 </document>
