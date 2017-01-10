@@ -1,36 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="gWc-25-k0y" userLabel="LFHomeFooterTableViewCell" customClass="LFHomeFooterTableViewCell" customModule="Lefoodie" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="425" height="46"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="gWc-25-k0y" userLabel="LFHomeFooterTableViewCell" customClass="LFHomeFooterTableViewCell" customModule="Lefoodie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="425" height="57"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gWc-25-k0y" id="WLk-wK-yMS">
-                <frame key="frameInset" width="425" height="45"/>
+                <rect key="frame" x="0.0" y="0.0" width="425" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivR-pW-Vl8">
+                        <rect key="frame" x="388" y="5" width="30" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="nQ0-gr-7nh"/>
+                            <constraint firstAttribute="width" constant="30" id="nQ0-gr-7nh"/>
                             <constraint firstAttribute="height" constant="21" id="w3X-Cf-ofi"/>
                         </constraints>
                         <state key="normal" image="MeniIcon"/>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3N8-Sr-Nh0">
+                        <rect key="frame" x="16" y="8" width="150" height="45"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-GA-yDG">
+                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efW-Vm-4x3">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efW-Vm-4x3">
+                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="LikeIcon"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-aU-5am">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="143 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuZ-aU-5am">
+                                        <rect key="frame" x="0.0" y="36" width="42.5" height="9"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="8"/>
                                         <nil key="highlightedColor"/>
@@ -38,12 +46,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aHE-Ek-dVU">
+                                <rect key="frame" x="45.5" y="0.0" width="49" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-v9-F0o">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-v9-F0o">
+                                        <rect key="frame" x="4.5" y="0.0" width="40" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="CommentsIcon"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9S7-uM-PYN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9S7-uM-PYN">
+                                        <rect key="frame" x="2" y="36" width="45.5" height="9"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="8"/>
                                         <nil key="textColor"/>
@@ -52,12 +63,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-O2-SVW">
+                                <rect key="frame" x="97.5" y="0.0" width="52.5" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOn-K9-HaU">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOn-K9-HaU">
+                                        <rect key="frame" x="6" y="0.0" width="40" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="FavouritesIcon"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khz-dR-AT7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15 Favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khz-dR-AT7">
+                                        <rect key="frame" x="2" y="36" width="48.5" height="9"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="8"/>
                                         <nil key="textColor"/>
@@ -67,7 +81,7 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="34" id="BSN-fj-PKl"/>
+                            <constraint firstAttribute="height" constant="45" id="BSN-fj-PKl"/>
                             <constraint firstAttribute="width" constant="150" id="zh1-iE-ZS1"/>
                         </constraints>
                     </stackView>
@@ -79,13 +93,13 @@
                     <constraint firstItem="3N8-Sr-Nh0" firstAttribute="leading" secondItem="WLk-wK-yMS" secondAttribute="leading" constant="16" id="bjA-KW-wSd"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-30.5" y="25"/>
+            <point key="canvasLocation" x="-30.5" y="30.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CommentsIcon" width="25" height="25"/>
-        <image name="FavouritesIcon" width="25" height="25"/>
-        <image name="LikeIcon" width="25" height="25"/>
-        <image name="MeniIcon" width="20" height="20"/>
+        <image name="CommentsIcon" width="40" height="40"/>
+        <image name="FavouritesIcon" width="40" height="40"/>
+        <image name="LikeIcon" width="40" height="40"/>
+        <image name="MeniIcon" width="40" height="40"/>
     </resources>
 </document>

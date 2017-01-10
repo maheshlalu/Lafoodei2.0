@@ -110,7 +110,7 @@ class LFTabHomeController: UITabBarController {
         /*Camera controller */
         let cameraControl : LFTabCameraViewController = (storyBoard.instantiateViewController(withIdentifier: "LFTabCameraViewController") as? LFTabCameraViewController)!
         //cameraControl.title = "Camera"
-        cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
+        //cameraControl.tabBarItem.image = UIImage(named: "CameraIcon")
         cameraControl.tabBarController?.tabBar.tintColor = UIColor.clear
         //cameraControl.tabBarItem.
         
