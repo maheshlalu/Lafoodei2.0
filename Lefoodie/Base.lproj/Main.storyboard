@@ -22,7 +22,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.69019607839999997" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CEA-4s-A2I"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T7k-kL-git">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="82Q-RU-fgf">
@@ -175,7 +175,7 @@
                         <viewControllerLayoutGuide type="bottom" id="AVf-Pv-VpK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YFI-f3-FFI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -194,7 +194,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NiJ-BW-AQf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3db-nJ-5yH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -229,7 +229,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KLw-cZ-Nfy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hhw-eR-WI9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-e2-UCf">
@@ -344,7 +344,7 @@
                         <viewControllerLayoutGuide type="bottom" id="iNa-Jg-Zgd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="264-BS-zPo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPa-NJ-ulE">
@@ -546,7 +546,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9kP-cc-Y12"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bas-NE-eQL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jZX-V4-JiV">
@@ -582,7 +582,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VyB-lK-NjL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7Tw-2g-tk4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x1r-0Z-VhQ">
@@ -615,7 +615,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aHt-kL-0Ld" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="46W-6i-BHl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46W-6i-BHl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -634,7 +634,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9w1-jF-gHU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CAw-RZ-l8u">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cVz-1q-DDf">
@@ -686,7 +686,7 @@
                         <viewControllerLayoutGuide type="bottom" id="98W-hp-Nr2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nzM-4M-9l0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SVf-VY-BW0">
@@ -699,7 +699,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8iG-5T-tgG">
-                                        <rect key="frame" x="5" y="5" width="310" height="150"/>
+                                        <rect key="frame" x="145" y="5" width="310" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="150"/>
@@ -738,7 +738,7 @@
                         <viewControllerLayoutGuide type="bottom" id="c2D-5s-4da"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sBf-JF-zUR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aM-hb-vOS">
@@ -773,7 +773,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sp5-yC-zen" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hNH-5P-5FT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNH-5P-5FT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -791,7 +791,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b1V-Fe-Ozx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BFp-Go-ACk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BFp-Go-ACk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -809,7 +809,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DAQ-0F-LyV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="5KF-eM-ttp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5KF-eM-ttp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -831,7 +831,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eQh-SR-36H"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zhd-FV-ISO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-uN-fmf">
@@ -1222,7 +1222,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BAr-eU-zZX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gMz-pK-TiY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sampmeHome" translatesAutoresizingMaskIntoConstraints="NO" id="HGI-JO-C3f">
@@ -1345,7 +1345,7 @@
         <image name="SettingIcon" width="30" height="30"/>
         <image name="UploadIcon" width="40" height="40"/>
         <image name="WriteIcon.png" width="192" height="263"/>
-        <image name="apple-touch-icon" width="95" height="108"/>
+        <image name="apple-touch-icon" width="103" height="115"/>
         <image name="images" width="284" height="178"/>
         <image name="images.jpeg" width="30" height="30"/>
         <image name="sampmeHome" width="750" height="382"/>
