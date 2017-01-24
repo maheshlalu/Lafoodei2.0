@@ -11,16 +11,36 @@ import UIKit
 
 class LFUserProfileViewController: UIViewController {
     
+ 
+    
+
     
     @IBOutlet weak var uiView: UIView!
     var pageMenu : CAPSPageMenu?
+    var tap: UITapGestureRecognizer?
     
-    @IBOutlet weak var userImageView: UIImageView!
+    
+ 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-        self.userImageView.layer.cornerRadius = 38
-        self.userImageView.clipsToBounds = true
+        //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
+        
+//        scrollView.contentSize = CGSize(width: self.uiView.frame.width, height: self.uiView.frame.height+100)
+//        tabBarControllerRef = self.tabBarController as! CustomTabBarClass
+//        tabBarControllerRef!.navigationControllerRef = self.navigationController as! CustomNavigationBarClass
+//        tabBarControllerRef!.viewControllerRef = self
+        
+
+
+     
+//        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
+        
+       
+        handleTap()
+        
         tabViews()
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
@@ -29,7 +49,21 @@ class LFUserProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+   func handleTap()
+   {
+//     uiView.removeFromSuperview()
+    }
+    
     func tabViews(){
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        //uiView.isUserInteractionEnabled = true
+        
+        
+       
+        
+   
+        self.view.addSubview(uiView)
         
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
@@ -54,6 +88,12 @@ class LFUserProfileViewController: UIViewController {
         self.uiView.addSubview(self.pageMenu!.view)
         
     }
+    
+    
+   
+    
+  
+
     
     
 }

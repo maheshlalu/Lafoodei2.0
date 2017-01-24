@@ -8,11 +8,14 @@
 
 import UIKit
 
-class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
-
+class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITabBarControllerDelegate {
+var canScrollToTop:Bool = true
     @IBOutlet weak var photoCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //        self.photoCollectionView.resetScrollPositionToTop()
+        photoCollectionView.setContentOffset(CGPoint.zero, animated: true)
         
         let nib = UINib(nibName: "LFPhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(nib, forCellWithReuseIdentifier: "LFPhotoCollectionViewCell")
@@ -21,6 +24,16 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     
     
+//    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+//        
+//        // Allows scrolling to top on second tab bar click
+//        if (viewController.isKindOfClass(CustomNavigationBarClass) && tabBarController.selectedIndex == 0) {
+//            if (viewControllerRef!.canScrollToTop) {
+//                viewControllerRef!.scrollToTop()
+//            }
+//        }
+//    }
+//    
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
         
@@ -55,9 +68,17 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         return 3
     }
 
-   
-
-   
-
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        canScrollToTop = true
+    }
+    
+    // Called when the view becomes unavailable
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        canScrollToTop = false
+    }
 }
+
+
+

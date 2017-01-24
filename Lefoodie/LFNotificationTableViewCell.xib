@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="196"/>
+                <frame key="frameInset" width="320" height="197"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="8C5-vj-aGJ" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
-                        <rect key="frame" x="5" y="7" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="JKm-8z-iyT"/>
                             <constraint firstAttribute="height" constant="50" id="yLJ-TH-Khd"/>
@@ -35,14 +31,12 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aliyah Cramer Followed You." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fr-jo-PUM">
-                        <rect key="frame" x="66" y="8" width="233" height="13.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5Min Ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exu-xA-dP6">
-                        <rect key="frame" x="87" y="168" width="206" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="206" id="fLK-dg-5HR"/>
@@ -53,17 +47,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="aS9-VK-JGT">
-                        <rect key="frame" x="63" y="168" width="20" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="FRS-t7-yx8"/>
+                            <constraint firstAttribute="width" constant="20" id="AVT-hg-pcY"/>
+                            <constraint firstAttribute="height" constant="20" id="FRS-t7-yx8"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cnm-Kx-fti">
-                        <rect key="frame" x="66" y="23.5" width="230" height="142.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-Dw-mDz">
-                                <rect key="frame" x="0.0" y="0.0" width="230" height="142.5"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="qsG-Dw-mDz"/>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" constant="230" id="4V4-fu-6Jm"/>
@@ -73,17 +64,17 @@
                 <constraints>
                     <constraint firstItem="exu-xA-dP6" firstAttribute="leading" secondItem="aS9-VK-JGT" secondAttribute="trailing" constant="4" id="0MG-oJ-MFk"/>
                     <constraint firstItem="Cnm-Kx-fti" firstAttribute="top" secondItem="6Fr-jo-PUM" secondAttribute="bottom" constant="2" id="3KF-Wo-9Uv"/>
-                    <constraint firstItem="8C5-vj-aGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-3" id="8K8-fl-NkR"/>
-                    <constraint firstItem="aS9-VK-JGT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="63" id="AJB-V7-q5F"/>
+                    <constraint firstItem="aS9-VK-JGT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="66" id="4I1-lb-fkv"/>
+                    <constraint firstItem="8C5-vj-aGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="8K8-fl-NkR"/>
+                    <constraint firstItem="exu-xA-dP6" firstAttribute="top" secondItem="Cnm-Kx-fti" secondAttribute="bottom" constant="1" id="Bi2-m3-Svi"/>
                     <constraint firstAttribute="trailing" secondItem="6Fr-jo-PUM" secondAttribute="trailing" constant="21" id="GhJ-wf-B8S"/>
+                    <constraint firstItem="aS9-VK-JGT" firstAttribute="top" secondItem="Cnm-Kx-fti" secondAttribute="bottom" constant="1" id="URC-ll-rya"/>
                     <constraint firstItem="6Fr-jo-PUM" firstAttribute="leading" secondItem="8C5-vj-aGJ" secondAttribute="trailing" constant="11" id="Yyw-aN-M2u"/>
-                    <constraint firstItem="aS9-VK-JGT" firstAttribute="top" secondItem="Cnm-Kx-fti" secondAttribute="bottom" constant="2" id="aBl-58-mCT"/>
                     <constraint firstItem="8C5-vj-aGJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="e7H-ok-uUb"/>
                     <constraint firstAttribute="bottom" secondItem="aS9-VK-JGT" secondAttribute="bottom" constant="7.5" id="jce-82-axY"/>
                     <constraint firstItem="6Fr-jo-PUM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="pfK-M4-p3O"/>
                     <constraint firstItem="8C5-vj-aGJ" firstAttribute="top" secondItem="6Fr-jo-PUM" secondAttribute="top" constant="-1" id="t4n-1q-azU"/>
                     <constraint firstItem="Cnm-Kx-fti" firstAttribute="leading" secondItem="8C5-vj-aGJ" secondAttribute="trailing" constant="11" id="te7-ht-nmt"/>
-                    <constraint firstItem="exu-xA-dP6" firstAttribute="top" secondItem="Cnm-Kx-fti" secondAttribute="bottom" constant="2" id="we0-mu-9K3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
