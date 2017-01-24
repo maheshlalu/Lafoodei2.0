@@ -163,8 +163,8 @@ class CXCameraSourceViewController: UIViewController {
             let heightRatio = getCropHeightRatio()
             cameraView.croppedAspectRatioConstraint = NSLayoutConstraint(item: cameraView.previewViewContainer, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: cameraView.previewViewContainer, attribute: NSLayoutAttribute.width, multiplier: heightRatio, constant: 0)
             
-            cameraView.fullAspectRatioConstraint.isActive = false
-            cameraView.croppedAspectRatioConstraint?.isActive = true
+            //cameraView.fullAspectRatioConstraint.isActive = false
+            //cameraView.croppedAspectRatioConstraint?.isActive = true
         } else {
             cameraView.fullAspectRatioConstraint.isActive = true
             cameraView.croppedAspectRatioConstraint?.isActive = false

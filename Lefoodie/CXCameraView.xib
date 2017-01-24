@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,44 +14,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-iN-XnR">
-                    <rect key="frame" x="0.0" y="50" width="400" height="450"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="750" id="c7p-Vi-MbH"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-Ex-ctR">
-                    <rect key="frame" x="0.0" y="500" width="400" height="100"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-ce-j1s">
-                            <rect key="frame" x="166" y="16" width="68" height="68"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="68" id="Etb-93-1mS"/>
-                                <constraint firstAttribute="width" constant="68" id="V1J-1n-cLp"/>
-                            </constraints>
-                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                            <state key="normal" image="shutter_button"/>
-                            <connections>
-                                <action selector="shotButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="ksK-aw-KRD"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe0-2z-oYY">
-                            <rect key="frame" x="15" y="30" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="fY0-Qj-yJH"/>
-                                <constraint firstAttribute="height" constant="40" id="kM5-T7-D0e"/>
-                            </constraints>
-                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
-                            <state key="normal" image="ic_loop"/>
-                            <connections>
-                                <action selector="flipButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="bEh-Z4-3LQ"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG5-Vl-lfd">
-                            <rect key="frame" x="345" y="30" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="dRj-fW-S73"/>
-                                <constraint firstAttribute="width" constant="40" id="wXs-2l-4U1"/>
+                                <constraint firstAttribute="height" constant="30" id="dRj-fW-S73"/>
+                                <constraint firstAttribute="width" constant="30" id="wXs-2l-4U1"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" image="ic_flash_off"/>
@@ -62,15 +26,45 @@
                                 <action selector="flashButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="vow-KL-odz"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe0-2z-oYY">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="fY0-Qj-yJH"/>
+                                <constraint firstAttribute="height" constant="30" id="kM5-T7-D0e"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                            <state key="normal" image="ic_loop"/>
+                            <connections>
+                                <action selector="flipButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="bEh-Z4-3LQ"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="Dzd-Ex-ctR" secondAttribute="leading" constant="15" id="3Wa-E1-VS1"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="YGq-KL-3zT"/>
-                        <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="15" id="bGt-Wx-eOI"/>
-                        <constraint firstItem="IG5-Vl-lfd" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="ftW-aL-Ypw"/>
-                        <constraint firstItem="gsV-ce-j1s" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="gHD-r7-SYQ"/>
-                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" id="mXh-lX-ALp"/>
+                        <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="8" id="BO0-YE-F1W"/>
+                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="eHG-iN-XnR" secondAttribute="leading" constant="8" id="LHP-WC-loj"/>
+                        <constraint firstAttribute="bottom" secondItem="Pe0-2z-oYY" secondAttribute="bottom" constant="8" id="a1V-ZH-UVI"/>
+                        <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="250" id="c7p-Vi-MbH"/>
+                        <constraint firstAttribute="bottom" secondItem="IG5-Vl-lfd" secondAttribute="bottom" constant="8" id="sPJ-mk-eP5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-Ex-ctR">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-ce-j1s">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="Etb-93-1mS"/>
+                                <constraint firstAttribute="width" constant="60" id="V1J-1n-cLp"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                            <state key="normal" image="shutter_button"/>
+                            <connections>
+                                <action selector="shotButtonPressed:" destination="nPs-oI-T6o" eventType="touchUpInside" id="ksK-aw-KRD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="995" constant="100" id="YGq-KL-3zT"/>
+                        <constraint firstItem="gsV-ce-j1s" firstAttribute="centerY" secondItem="Dzd-Ex-ctR" secondAttribute="centerY" constant="-9" id="gHD-r7-SYQ"/>
                         <constraint firstItem="gsV-ce-j1s" firstAttribute="centerX" secondItem="Dzd-Ex-ctR" secondAttribute="centerX" id="vTG-9D-p8r"/>
                     </constraints>
                 </view>

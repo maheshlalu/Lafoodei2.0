@@ -26,7 +26,7 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-GA-yDG">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efW-Vm-4x3">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efW-Vm-4x3">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
                                         <state key="normal" image="LikeIcon"/>
@@ -71,13 +71,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="BSN-fj-PKl"/>
-                            <constraint firstAttribute="width" constant="130" id="zh1-iE-ZS1"/>
+                            <constraint firstAttribute="width" constant="125" id="zh1-iE-ZS1"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3N8-Sr-Nh0" firstAttribute="top" secondItem="WLk-wK-yMS" secondAttribute="top" constant="1" id="3Is-f4-rae"/>
-                    <constraint firstItem="ivR-pW-Vl8" firstAttribute="top" secondItem="WLk-wK-yMS" secondAttribute="top" constant="5" id="8QZ-Pq-rr8"/>
+                    <constraint firstItem="ivR-pW-Vl8" firstAttribute="top" secondItem="WLk-wK-yMS" secondAttribute="top" constant="2" id="8QZ-Pq-rr8"/>
                     <constraint firstAttribute="trailing" secondItem="ivR-pW-Vl8" secondAttribute="trailing" constant="7" id="Wzf-b0-fV8"/>
                     <constraint firstItem="3N8-Sr-Nh0" firstAttribute="leading" secondItem="WLk-wK-yMS" secondAttribute="leading" constant="16" id="bjA-KW-wSd"/>
                 </constraints>
@@ -86,9 +86,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CommentsIcon" width="24" height="24"/>
-        <image name="FavouritesIcon" width="24" height="24"/>
-        <image name="LikeIcon" width="24" height="24"/>
+        <image name="CommentsIcon" width="35" height="32"/>
+        <image name="FavouritesIcon" width="35" height="32"/>
+        <image name="LikeIcon" width="35" height="32"/>
         <image name="MeniIcon" width="40" height="40"/>
     </resources>
 </document>

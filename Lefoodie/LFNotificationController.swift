@@ -47,6 +47,8 @@ class LFNotificationController: UIViewController,UITableViewDataSource,UITableVi
         {
                 cell?.imageStackView.isHidden = true
         }
+        
+        tableView.separatorStyle = .singleLine
         return cell!
     }
     

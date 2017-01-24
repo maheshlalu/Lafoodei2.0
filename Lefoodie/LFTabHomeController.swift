@@ -44,18 +44,17 @@ class LFTabHomeController: UITabBarController {
         let cameraButton = UIButton()
         
         // Sets width and height to the Button
-        cameraButton.frame = CGRect(x: 0, y: 0, width: tabBar.frame.size.width/7.5, height: tabBar.frame.size.height)
+        cameraButton.frame = CGRect(x: 0, y: 0, width: tabBar.frame.size.width/5, height: tabBar.frame.size.height)
+        
         
         // Sets image to the Button
         cameraButton.setBackgroundImage(imageCameraButton, for: .normal)
         //        cameraButton.contentMode = .scaleAspectFit
-        
         // Sets the center of the Button to the center of the TabBar
         cameraButton.center = self.tabBar.center
         cameraButton.backgroundColor = UIColor.white
         cameraButton.addTarget(self, action: #selector(cameraAction), for: .touchUpInside)
-        cameraButton.contentMode = .scaleAspectFit
-        
+        cameraButton.contentMode = .scaleAspectFill
         // Adds the Button to the view
         self.view.addSubview(cameraButton)
     }
