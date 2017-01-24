@@ -73,7 +73,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="userImageView" destination="dtw-0V-Pbf" id="tuq-CQ-So7"/>
+                <outlet property="lbl_Title" destination="siG-xa-jLV" id="hBY-0b-L6O"/>
             </connections>
             <point key="canvasLocation" x="37" y="57"/>
         </tableViewCell>
