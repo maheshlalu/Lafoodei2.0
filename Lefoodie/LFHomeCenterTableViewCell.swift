@@ -10,6 +10,7 @@ import UIKit
 
 class LFHomeCenterTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var ImgView_Logo: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

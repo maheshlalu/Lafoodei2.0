@@ -12,10 +12,14 @@ pod 'Alamofire', '~> 4.0'
 pod 'MagicalRecord/Shorthand'
 pod 'MagicalRecord/Shorthand'
 pod "KRProgressHUD"
+pod 'MBProgressHUD', '~> 1.0'
 pod 'Google/SignIn'
 pod 'Firebase/Core'
 pod 'Firebase/Crash'
 pod 'SwifterSwift'
+pod 'SDWebImage', '~> 3.8'
+pod 'GSKStretchyHeaderView'
+pod 'Masonry'
 
   target 'LefoodieTests' do
     inherit! :search_paths

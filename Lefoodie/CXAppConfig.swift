@@ -375,5 +375,37 @@ class CXAppConfig {
         return stringFromDate
     }
     
+    //MARK - 
+    
+    func resultString(input: AnyObject) -> String{
+        if let value: AnyObject = input {
+            var reqType : String!
+            switch value {
+            case let i as NSNumber:
+                reqType = "\(i)"
+            case let s as NSString:
+                reqType = "\(s)"
+                break
+            case let a as NSArray:
+                reqType = "\(a.object(at: 0))"
+                break
+            default:
+                reqType = "Invalid Format"
+            }
+            return reqType
+        }
+        return ""
+    }
+    
+    func getTheDataInDictionaryFromKey(sourceDic:NSDictionary,sourceKey:NSString) ->String{
+        let keyExists = sourceDic[sourceKey] != nil
+        if keyExists {
+            // now val is not nil and the Optional has been unwrapped, so use it
+            return self.resultString(input: sourceDic[sourceKey]! as AnyObject)
+        }
+        return ""
+        
+    }
+    
     
 }

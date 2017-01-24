@@ -86,6 +86,8 @@
 		18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179501E1CD45F001EDF45 /* CXAppConfig.swift */; };
 		18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */; };
 		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
+		890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
+		896073541E36015800551545 /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896073531E36015800551545 /* CXDataService.swift */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
 		D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */; };
 /* End PBXBuildFile section */
@@ -197,6 +199,10 @@
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.release.xcconfig"; sourceTree = "<group>"; };
 		5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		890CA7861E3765D3002A4CE8 /* Lefoodie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lefoodie-Bridging-Header.h"; sourceTree = "<group>"; };
+		890CA7871E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
+		890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
+		896073531E36015800551545 /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
 		C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.debug.xcconfig"; sourceTree = "<group>"; };
 		D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -339,6 +345,7 @@
 		18160CDE1E14EB0F00C2E5AE /* Lefoodie */ = {
 			isa = PBXGroup;
 			children = (
+				896073521E36013800551545 /* Data service Classes */,
 				183FBCC91E1A83CE00A0A8CC /* Social */,
 				127861DA1E1A29EC00D64F16 /* Others */,
 				1896A5C71E154650008530A4 /* Extensions */,
@@ -458,11 +465,14 @@
 		1896A5C71E154650008530A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				890CA7871E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
+				890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 				1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */,
 				1809BE471E16364E00888D34 /* UIColor+colors.swift */,
 				1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */,
 				1835655E1E166D1500E7A531 /* NSDate+date.swift */,
 				185FAF631E1E4D43009479A3 /* NavBarExtension.swift */,
+				890CA7861E3765D3002A4CE8 /* Lefoodie-Bridging-Header.h */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -506,6 +516,14 @@
 				1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		896073521E36013800551545 /* Data service Classes */ = {
+			isa = PBXGroup;
+			children = (
+				896073531E36015800551545 /* CXDataService.swift */,
+			);
+			name = "Data service Classes";
 			sourceTree = "<group>";
 		};
 		F280C9F5E7FBF4249A5126EC /* Pods */ = {
@@ -600,6 +618,7 @@
 					18160CDB1E14EB0F00C2E5AE = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 95Y7Y2H9V8;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 					18160CF21E14EB1000C2E5AE = {
@@ -692,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */ = {
@@ -707,7 +726,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */ = {
@@ -782,7 +801,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */ = {
@@ -854,6 +873,7 @@
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
+				896073541E36015800551545 /* CXDataService.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
 				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
@@ -870,6 +890,7 @@
 				187039B71E1D399F00D6668B /* LFFoodieViewController.swift in Sources */,
 				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
 				187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */,
+				890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1024,6 +1045,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
@@ -1039,6 +1061,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
 				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
+				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1049,6 +1073,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = NO;
@@ -1063,6 +1088,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
 				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
+				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

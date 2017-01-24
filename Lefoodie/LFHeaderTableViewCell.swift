@@ -10,6 +10,7 @@ import UIKit
 
 class LFHeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lbl_Title: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
