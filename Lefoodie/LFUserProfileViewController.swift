@@ -9,12 +9,13 @@
 
 import UIKit
 //import MDCParallaxView
-
-
-
-
 class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate {
     
+    @IBAction func settingBtnAction(_ sender: UIButton) {
+        
+    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
     @IBOutlet weak var Scroller_ScrollerView: UIScrollView!
     @IBOutlet weak var View_DetailsView: UIView!
     
@@ -26,7 +27,6 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
-    
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         
         print(gestureRecognizer.location(in: self.view))
@@ -36,15 +36,9 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             let translation = gestureRecognizer.translation(in: self.view)
             // note: 'view' is optional and need to be unwrapped
             gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
-            
-            
-            
-            
-            
-            
+
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
-            
-            
+ 
         }
     }
     
@@ -63,6 +57,8 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
+       
+
         
         if sender.state == .began {
             trayOriginalCenter = uiView.center
@@ -98,19 +94,18 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     override func viewDidLoad() {
         
         self.automaticallyAdjustsScrollViewInsets = false
-        trayDownOffset = 20
-        trayUp = uiView.center
-        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
-        if UIScreen.main.bounds.size.width == 320
-        {
-            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-            
-            
-            // self.uiView.frame.size = CGSize(width: 320, height: 500)
-            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-        }
-        
+//      let yPosition = uiView.frame.origin.y - 20
+        trayDownOffset = 30
+    
+        trayDown = CGPoint(x:uiView.center.x ,y: uiView.center.y-120)
+//        if UIScreen.main.bounds.size.width == 320
+//        {
+//            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+//            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+//            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+//        }
         super.viewDidLoad()
+        
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
         
@@ -123,35 +118,27 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         
         //        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         //        self.uiView.addGestureRecognizer(gestureRecognizer)
-        
-        
-        
-        
-        
-        
-        
+
         //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
         
         //        scrollView.contentSize = CGSize(width: self.uiView.frame.width, height: self.uiView.frame.height+100)
         //        tabBarControllerRef = self.tabBarController as! CustomTabBarClass
         //        tabBarControllerRef!.navigationControllerRef = self.navigationController as! CustomNavigationBarClass
         //        tabBarControllerRef!.viewControllerRef = self
-        
-        
-        
-        
+
         //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         
         
-        handleTap()
+        self.handleTap()
         
-        tabViews()
+        self.tabViews()
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        }
         
         // Do any additional setup after loading the view.
-    }
+   
     
     func handleTap()
     {
@@ -179,7 +166,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             .menuItemWidth(self.view.frame.size.width/2-16)
         ]
         
-        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.uiView.frame.width, height: self.uiView.frame.height), pageMenuOptions: parameters)
         
         self.uiView.addSubview((self.pageMenu?.view)!)
         
@@ -190,8 +177,6 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         
         print(">>>>>>")
     }
-    
-    
-    
+
 }
 

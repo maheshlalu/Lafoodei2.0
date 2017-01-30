@@ -23,6 +23,7 @@
 		127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DB1E1A2A0200D64F16 /* CXButton.swift */; };
 		127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DC1E1A2A0200D64F16 /* CXView.swift */; };
 		127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DD1E1A2A0200D64F16 /* CXTextField.swift */; };
+		12B25B401E3F7BE900519436 /* LFProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */; };
 		12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */; };
 		12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */; };
 		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
@@ -127,6 +128,7 @@
 		127861DB1E1A2A0200D64F16 /* CXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXButton.swift; sourceTree = "<group>"; };
 		127861DC1E1A2A0200D64F16 /* CXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXView.swift; sourceTree = "<group>"; };
 		127861DD1E1A2A0200D64F16 /* CXTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXTextField.swift; sourceTree = "<group>"; };
+		12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFProfileSettingViewController.swift; sourceTree = "<group>"; };
 		12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSignUpViewController.swift; sourceTree = "<group>"; };
 		12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodDetailViewController.swift; sourceTree = "<group>"; };
 		14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lefoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,6 +459,7 @@
 				114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */,
 				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
+				12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */,
 				1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */,
 				1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */,
 				1825CCD91E1BE97300CD3C3B /* LFFavouriteViewController.swift */,
@@ -854,6 +857,7 @@
 			files = (
 				18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */,
 				1825CCB71E1B769D00CD3C3B /* CXCameraView.swift in Sources */,
+				12B25B401E3F7BE900519436 /* LFProfileSettingViewController.swift in Sources */,
 				1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */,
 				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
