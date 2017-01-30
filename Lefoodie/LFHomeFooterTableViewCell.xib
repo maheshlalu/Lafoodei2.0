@@ -18,7 +18,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivR-pW-Vl8">
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="nQ0-gr-7nh"/>
-                            <constraint firstAttribute="height" constant="21" id="w3X-Cf-ofi"/>
+                            <constraint firstAttribute="height" constant="20" id="w3X-Cf-ofi"/>
                         </constraints>
                         <state key="normal" image="MeniIcon"/>
                     </button>

@@ -10,62 +10,68 @@ import UIKit
 
 class LFSignUpViewController: UIViewController {
     @IBOutlet weak var tersOfServiceLbl: UILabel!
-
-   
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
+    var alertTextField:UITextField! = nil
+    let limitLength = 10
+    //MARK:TextFields validation
     @IBAction func CreateAccountBtnAction(_ sender: UIButton) {
-      //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController") as UIViewController
-    
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.navigateToTabBar()
+        if (self.userNameTextField.text?.characters.count) == 0
+        {
+            showAlert(message: "Please enter user name")
+        }
+        else if (self.emailTextField.text?.characters.count) == 0
+        {
+            showAlert(message: "Please enter Email Id")
+        }
+        else if (self.passwordTextField.text?.characters.count) == 0
+        {
+            showAlert(message: "Please enter Password")
+        }
+        else if !self.isValidEmail(email: self.emailTextField.text!)
+        {
+            showAlert(message: "Please enter valid mail")
+        }
+        else{
+            
+            print("All fields have data")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.navigateToTabBar()
+        }
         
+    }
+    
+    //MARK: Show textfield alert
+    func showAlert(message:String)
+    {
+        let alert = UIAlertController.init(title: "LeFoodie", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         self.navigationController?.isNavigationBarHidden = true
-        
         let firstWord   = "By creating an account, you are agreeing to our \n"
         let secondWord = "Terms of service"
         let thirdWord   = "Privacy policy"
         // let finaString =  NSAttributedString(string: firstWord).
         
-        
         let attributedText = NSMutableAttributedString(string:firstWord)
         attributedText.append(attributedString(from: secondWord, nonBoldRange: NSMakeRange(0, secondWord.characters.count-1)))
         attributedText.append(NSAttributedString(string: " and "))
         attributedText.append(attributedString(from: thirdWord, nonBoldRange: NSMakeRange(0, thirdWord.characters.count-1)))
-
-        
         tersOfServiceLbl.attributedText =  attributedText
-        
-        
-//        NotificationCenter.defaultCenter.addObserver(self,
-//                                                         selector: #selector(LFSignUpViewController.keyboardWillShow(_:)),
-//                                                         name: UIKeyboardWillShowNotification,
-//                                                         object: nil)
-//        NotificationCenter.defaultCenter.addObserver(self,
-//                                                         selector: #selector(LFSignUpViewController.keyboardWillHide(_:)),
-//                                                         name: UIKeyboardWillHideNotification,
-//                                                         object: nil)
-//        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
-//        self.stackView.addGestureRecognizer(tap)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(LFSignUpViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(LFSignUpViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.stackView.addGestureRecognizer(tap)
-
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -92,18 +98,28 @@ class LFSignUpViewController: UIViewController {
         appDelegate.window?.rootViewController = homeVC
         appDelegate.window?.makeKeyAndVisible()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func isValidEmail(email: String) -> Bool {
+        // print("validate email: \(email)")
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailTest.evaluate(with: email) {
+            return true
+        }
+        return false
+    }
     func handleTap(sender: UITapGestureRecognizer? = nil) {
         // handling code
         self.view.endEditing(true)
     }
     
+    //MARK: Keyboard Delegate
     func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if view.frame.origin.y == 0{
@@ -125,14 +141,8 @@ class LFSignUpViewController: UIViewController {
             }
         }
     }
-    
-    
-   
-
+    //MARK: Textfield Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        
-        //        textField.resignFirstResponder()
-        //        return true
         self.view.endEditing(true)
         return true
     }
@@ -141,27 +151,9 @@ class LFSignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//        self.stackView.resignFirstResponder()
-//    }
-
-   
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-
 }
 
 
-    
+
 
 

@@ -11,11 +11,11 @@ import GoogleSignIn
 import  Google
 import FBSDKCoreKit
 import FBSDKLoginKit
-
-
-
+import MagicalRecord
+import CoreData
 class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegate {
     var facebookResponseDict: NSDictionary! = nil
+    var googleResponseDict: NSDictionary! = nil
 
     @IBAction func emailSignupBtnAction(_ sender: UIButton) {
         
@@ -26,6 +26,8 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
     @IBOutlet weak var facebookLoginBtn: UIButton!
    
 let signIn = GIDSignIn.sharedInstance()
+    
+    //MARK: Google Signin
     
     @IBAction func googleSignInBtnAction(_ sender: UIButton) {
         
@@ -44,6 +46,7 @@ let signIn = GIDSignIn.sharedInstance()
         signIn?.shouldFetchBasicProfile = true
         signIn?.delegate = self;
         signIn?.uiDelegate = self
+        self.setUpDelegatesForGoogle()
       
         self.navigationController?.isNavigationBarHidden = true
 
@@ -51,9 +54,37 @@ let signIn = GIDSignIn.sharedInstance()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+//    func setUpNavigationBar()
+//    {
+//        self.title = "Login"
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSForegroundColorAttributeName: UIColor.white,
+//            NSFontAttributeName: UIFont(name: "Roboto-Bold", size: 20)!
+//        ]
+//        
+//        let btn1 = UIButton(type: .custom)
+//        btn1.setImage(UIImage(named: "back-120"), for: .normal)
+//        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        btn1.addTarget(self, action: #selector(LoginViewController.), for: .touchUpInside)
+//        let barButton = UIBarButtonItem(customView: btn1)
+//        barButton.tintColor = UIColor.white
+//        self.navigationItem.leftBarButtonItem  = barButton
+//    }
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func setUpDelegatesForGoogle()
+    {
+        signIn?.shouldFetchBasicProfile = true
+        signIn?.delegate = self
+        signIn?.uiDelegate = self
+        
     }
     
     func sign(_ signIn: GIDSignIn!,
@@ -66,7 +97,7 @@ let signIn = GIDSignIn.sharedInstance()
               dismiss viewController: UIViewController!) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func sign(_ signIn: GIDSignIn!, didSignInFor user:GIDGoogleUser!,
               withError error: Error!) {
         // Perform any operations on signed in user here.
@@ -77,7 +108,7 @@ let signIn = GIDSignIn.sharedInstance()
             var profilePic = ""
             var email = ""
             
-            
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             let url = NSURL(string:  "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)")
             let session = URLSession.shared
@@ -93,8 +124,18 @@ let signIn = GIDSignIn.sharedInstance()
                     email = userData!["email"] as! String
                     
                     print("\(email)\(firstName)\(lastName)\(profilePic)")
-                    self.goToTabBar()
-                    
+                    self.googleResponseDict = userData as NSDictionary!
+                    MagicalRecord.save({ (localContext) in
+                        
+                        UserProfile.mr_truncateAll(in: localContext)
+                    })
+                    CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred) in
+                        CXDataService.sharedInstance.hideLoader()
+                        
+                        self.showAlert()
+                        
+                    })
+
                 } catch {
                     NSLog("Account Information could not be loaded")
                 }
@@ -129,43 +170,69 @@ let signIn = GIDSignIn.sharedInstance()
                 if fbloginresult.grantedPermissions != nil {
                     if(fbloginresult.grantedPermissions.contains("email"))
                     {
+                        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
                         self.getFBUserData()
                         fbLoginManager.logOut()
                         
                     }
                 }
             }
-            else {
-                print(error?.localizedDescription)
-            }
         }
-
         
         
     }
-   
-    
+   //MARK: GetFacebook Userdata
     func getFBUserData(){
         if((FBSDKAccessToken.current()) != nil){
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).start(completionHandler: { (connection, result, error) -> Void in
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     self.facebookResponseDict = result as! [String : AnyObject] as NSDictionary!
                     print(result!)
                     print(self.facebookResponseDict)
-//                    CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred) in
-                                self.goToTabBar()
-//
-//                    })
+                    //For removing existing user from CoreData
+                    MagicalRecord.save({ (localContext) in
+                        
+                        UserProfile.mr_truncateAll(in: localContext)
+                    })
                     
+                    CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred) in
+                        CXDataService.sharedInstance.hideLoader()
+                        print(isRegistred)
+                        self.showAlert()
+                        
+                    })
+                    
+                    
+                    
+                }
+                else {
+                    CXDataService.sharedInstance.hideLoader()
+                    return
                 }
             })
         }
     }
-    
+
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         let loginManager: FBSDKLoginManager = FBSDKLoginManager()
         loginManager.logOut()
     }
     
+    func showAlert()
+    {
+        let alertController = UIAlertController(title: "LeFoodie", message: "You are Successfully Logged in", preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController")as! LFHomeViewController
+            self.present(storyboard, animated: true, completion: nil)
+            
+            //self.delegate?.loginSucceeded()
+            //self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+  
 }
 

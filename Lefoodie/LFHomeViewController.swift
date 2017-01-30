@@ -15,7 +15,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var Arr_Main = NSMutableArray()
     
     override func viewDidLoad() {
-        self.serviceAPICall(PageNumber: "0", PageSize: "10")
+       // self.serviceAPICall(PageNumber: "0", PageSize: "10")
         super.viewDidLoad()
         self.registerCells()
         self.selectedTabBar()
@@ -60,7 +60,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.Arr_Main.count
+        return 5 //self.Arr_Main.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -74,19 +74,25 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     {
         
         var cell = UITableViewCell()
-        let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
+        //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
         if indexPath.row == 0 {
-          let cell1  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             
-            cell1.lbl_Title.text = (Dict_Detail.value(forKey: "category") as AnyObject) as? String
+            cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
+            
+         /* let cell1  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
+            
+            cell1.lbl_Title.text = (Dict_Detail.value(forKey: "category") as AnyObject) as? String*/
             
             
         }else if indexPath.row == 1 {
-            let cell_2  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
+           
+            cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
+            
+            /*let cell_2  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
             
             let imgurl_Url = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: Dict_Detail as! NSDictionary, sourceKey: "logo")
             let url_Url:NSURL = NSURL(string: imgurl_Url as String)!
-            cell_2.ImgView_Logo.setImageWith(url_Url as URL!, usingActivityIndicatorStyle: .white)
+            cell_2.ImgView_Logo.setImageWith(url_Url as URL!, usingActivityIndicatorStyle: .white)*/
             
         }else if indexPath.row == 2 {
               cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!

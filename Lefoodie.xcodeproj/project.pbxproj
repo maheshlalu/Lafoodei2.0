@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
+		125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125BD6961E3B1CD1000FA4C7 /* CX_SocialIntegration.swift */; };
 		127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C01E1A297300D64F16 /* LFHomeViewController.swift */; };
 		127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */; };
 		127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */; };
@@ -112,6 +113,7 @@
 /* Begin PBXFileReference section */
 		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
+		125BD6961E3B1CD1000FA4C7 /* CX_SocialIntegration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_SocialIntegration.swift; sourceTree = "<group>"; };
 		127861C01E1A297300D64F16 /* LFHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeViewController.swift; sourceTree = "<group>"; };
 		127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -243,6 +245,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		125BD6951E3B1C70000FA4C7 /* AppDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				125BD6961E3B1CD1000FA4C7 /* CX_SocialIntegration.swift */,
+			);
+			name = AppDataManager;
+			sourceTree = "<group>";
+		};
 		127861BF1E1A295700D64F16 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +309,7 @@
 		127861DA1E1A29EC00D64F16 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				125BD6951E3B1C70000FA4C7 /* AppDataManager */,
 				1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */,
 				127861DB1E1A2A0200D64F16 /* CXButton.swift */,
 				127861DC1E1A2A0200D64F16 /* CXView.swift */,
@@ -875,6 +886,7 @@
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				896073541E36015800551545 /* CXDataService.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
+				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
 				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
@@ -1059,8 +1071,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
-				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
+				PROVISIONING_PROFILE = "be753d7c-e8b1-4732-a787-a168574a7a0a";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1086,8 +1098,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "56043f3e-982c-4b83-aefd-1bf9eaef1898";
-				PROVISIONING_PROFILE_SPECIFIER = LE_Dist;
+				PROVISIONING_PROFILE = "be753d7c-e8b1-4732-a787-a168574a7a0a";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

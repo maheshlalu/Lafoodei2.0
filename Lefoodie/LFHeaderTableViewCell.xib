@@ -18,16 +18,17 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="aXT-ab-dhB"/>
+                            <constraint firstAttribute="height" constant="40" id="gQH-Ek-Dku"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                <real key="value" value="19"/>
+                                <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -67,7 +68,6 @@
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="leading" secondItem="g9k-WQ-iKH" secondAttribute="trailing" constant="19" id="HwQ-T9-XJy"/>
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="Ihu-Mh-ZhB"/>
                     <constraint firstAttribute="trailing" secondItem="vIc-aD-MbQ" secondAttribute="trailing" constant="5" id="SEV-fg-9gR"/>
-                    <constraint firstAttribute="bottom" secondItem="dtw-0V-Pbf" secondAttribute="bottom" constant="5" id="X4C-Pq-KMb"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="mb4-mm-7J6"/>
                     <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="zKI-iG-VFR"/>
                 </constraints>

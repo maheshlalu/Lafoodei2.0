@@ -8,8 +8,9 @@
 
 import UIKit
 
-class LFSearchViewController: UIViewController {
+class LFSearchViewController: UIViewController,UISearchBarDelegate {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var prevBtn: UIButton!
    
     @IBOutlet weak var nextBtn: UIButton!
@@ -32,11 +33,22 @@ class LFSearchViewController: UIViewController {
         
     
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+   
+    
+   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
     @IBAction func nextBtnAction(_ sender: AnyObject) {
         if count < 3 {
             count = count + 1
@@ -76,8 +88,7 @@ class LFSearchViewController: UIViewController {
             self.containerView.addSubview(navController.view)
 
         }
-        
-        
+                
     }
 
     @IBAction func prevBtnAction(_ sender: AnyObject) {

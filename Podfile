@@ -7,9 +7,10 @@ target 'Lefoodie' do
 
   # Pods for Lefoodie
 pod 'AFNetworking', '~> 3.1'
+pod 'MagicalRecord/Shorthand'
 pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
 pod 'Alamofire', '~> 4.0'
-pod 'MagicalRecord/Shorthand'
+
 pod 'MagicalRecord/Shorthand'
 pod "KRProgressHUD"
 pod 'MBProgressHUD', '~> 1.0'
