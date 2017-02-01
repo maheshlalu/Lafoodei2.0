@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
+		120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */; };
+		120514D11E40921300D2345E /* LFItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D01E40921200D2345E /* LFItemDetailViewController.swift */; };
+		120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */; };
+		120514D91E40926300D2345E /* LFItemHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514D71E40926300D2345E /* LFItemHeaderTableViewCell.xib */; };
+		120514DC1E40927700D2345E /* LFItemCenterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514DA1E40927700D2345E /* LFItemCenterTableViewCell.swift */; };
+		120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514DB1E40927700D2345E /* LFItemCenterTableViewCell.xib */; };
+		120514E01E40928B00D2345E /* LFItemFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514DE1E40928B00D2345E /* LFItemFooterTableViewCell.swift */; };
+		120514E11E40928B00D2345E /* LFItemFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514DF1E40928B00D2345E /* LFItemFooterTableViewCell.xib */; };
+		120514E31E40A3A400D2345E /* LFSearchItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514E21E40A3A400D2345E /* LFSearchItemsViewController.swift */; };
+		120514E51E40BD6400D2345E /* LFUserDetailEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514E41E40BD6400D2345E /* LFUserDetailEditViewController.swift */; };
+		120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */; };
+		120514E91E40BE5700D2345E /* LFEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */; };
 		125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125BD6961E3B1CD1000FA4C7 /* CX_SocialIntegration.swift */; };
 		127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C01E1A297300D64F16 /* LFHomeViewController.swift */; };
 		127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */; };
@@ -114,6 +126,18 @@
 /* Begin PBXFileReference section */
 		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
+		120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFRestaurentDetailsViewController.swift; sourceTree = "<group>"; };
+		120514D01E40921200D2345E /* LFItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemDetailViewController.swift; sourceTree = "<group>"; };
+		120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		120514D71E40926300D2345E /* LFItemHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFItemHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		120514DA1E40927700D2345E /* LFItemCenterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemCenterTableViewCell.swift; sourceTree = "<group>"; };
+		120514DB1E40927700D2345E /* LFItemCenterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFItemCenterTableViewCell.xib; sourceTree = "<group>"; };
+		120514DE1E40928B00D2345E /* LFItemFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemFooterTableViewCell.swift; sourceTree = "<group>"; };
+		120514DF1E40928B00D2345E /* LFItemFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFItemFooterTableViewCell.xib; sourceTree = "<group>"; };
+		120514E21E40A3A400D2345E /* LFSearchItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchItemsViewController.swift; sourceTree = "<group>"; };
+		120514E41E40BD6400D2345E /* LFUserDetailEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserDetailEditViewController.swift; sourceTree = "<group>"; };
+		120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFEditTableViewCell.swift; sourceTree = "<group>"; };
+		120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFEditTableViewCell.xib; sourceTree = "<group>"; };
 		125BD6961E3B1CD1000FA4C7 /* CX_SocialIntegration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CX_SocialIntegration.swift; sourceTree = "<group>"; };
 		127861C01E1A297300D64F16 /* LFHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeViewController.swift; sourceTree = "<group>"; };
 		127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -287,6 +311,7 @@
 				187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */,
 				187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */,
 				187039B01E1D398D00D6668B /* LFSearchViewController.swift */,
+				120514E21E40A3A400D2345E /* LFSearchItemsViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -459,7 +484,18 @@
 				114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */,
 				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
+				120514E41E40BD6400D2345E /* LFUserDetailEditViewController.swift */,
+				120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */,
+				120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */,
 				12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */,
+				120514D01E40921200D2345E /* LFItemDetailViewController.swift */,
+				120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */,
+				120514D71E40926300D2345E /* LFItemHeaderTableViewCell.xib */,
+				120514DA1E40927700D2345E /* LFItemCenterTableViewCell.swift */,
+				120514DB1E40927700D2345E /* LFItemCenterTableViewCell.xib */,
+				120514DE1E40928B00D2345E /* LFItemFooterTableViewCell.swift */,
+				120514DF1E40928B00D2345E /* LFItemFooterTableViewCell.xib */,
+				120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */,
 				1825CCD71E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift */,
 				1825CCD81E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.xib */,
 				1825CCD91E1BE97300CD3C3B /* LFFavouriteViewController.swift */,
@@ -673,20 +709,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */,
+				120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
 				18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */,
 				1825CCB11E1B769D00CD3C3B /* CXAlbumView.xib in Resources */,
 				114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */,
+				120514E91E40BE5700D2345E /* LFEditTableViewCell.xib in Resources */,
 				127861CA1E1A298900D64F16 /* LFHeaderTableViewCell.xib in Resources */,
 				183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */,
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
 				18160CEA1E14EB0F00C2E5AE /* Assets.xcassets in Resources */,
 				18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */,
 				18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */,
+				120514D91E40926300D2345E /* LFItemHeaderTableViewCell.xib in Resources */,
 				127861CE1E1A298900D64F16 /* LFHomeFooterTableViewCell.xib in Resources */,
 				1825CCE11E1BE97300CD3C3B /* LFPhotoCollectionViewCell.xib in Resources */,
 				18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */,
 				1825CCB81E1B769D00CD3C3B /* CXCameraView.xib in Resources */,
+				120514E11E40928B00D2345E /* LFItemFooterTableViewCell.xib in Resources */,
 				18F1794A1E1CC305001EDF45 /* LFSharePostTableViewCell.xib in Resources */,
 				18F1794C1E1CC305001EDF45 /* LFSocialShareTableViewCell.xib in Resources */,
 				127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */,
@@ -855,6 +895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				120514E51E40BD6400D2345E /* LFUserDetailEditViewController.swift in Sources */,
 				18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */,
 				1825CCB71E1B769D00CD3C3B /* CXCameraView.swift in Sources */,
 				12B25B401E3F7BE900519436 /* LFProfileSettingViewController.swift in Sources */,
@@ -880,22 +921,26 @@
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
 				187039B31E1D399400D6668B /* LFSearchPlacesViewController.swift in Sources */,
 				1825CCD61E1BE94D00CD3C3B /* LFUserProfileViewController.swift in Sources */,
+				120514D11E40921300D2345E /* LFItemDetailViewController.swift in Sources */,
 				187039B91E1D39A300D6668B /* LFFoodiesTableViewCell.swift in Sources */,
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
+				120514DC1E40927700D2345E /* LFItemCenterTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				896073541E36015800551545 /* CXDataService.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,
+				120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
 				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				1825CCB21E1B769D00CD3C3B /* CXCameraSourceViewController.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
+				120514E01E40928B00D2345E /* LFItemFooterTableViewCell.swift in Sources */,
 				1825CCB01E1B769D00CD3C3B /* CXAlbumView.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
 				18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */,
@@ -905,9 +950,12 @@
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
 				187039B71E1D399F00D6668B /* LFFoodieViewController.swift in Sources */,
 				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
+				120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */,
 				187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */,
+				120514E31E40A3A400D2345E /* LFSearchItemsViewController.swift in Sources */,
 				890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
+				120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

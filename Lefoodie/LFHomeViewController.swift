@@ -131,6 +131,14 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
       //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
         //self.present(viewcontroller, animated: true, completion: nil)
         
+        if indexPath.row == 0
+        {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as! LFRestaurentDetailsViewController
+            self.navigationController?.pushViewController(storyboard, animated: true)
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

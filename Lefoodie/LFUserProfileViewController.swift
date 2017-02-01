@@ -57,34 +57,71 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
-       
-
         
         if sender.state == .began {
             trayOriginalCenter = uiView.center
             
-            print("Gesture began")
+            //  print("Gesture began")
         } else if sender.state == .changed {
             
             uiView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            // print(CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y))
             
-            print("Gesture is changing")
+            //print("Gesture is changing")
         } else if sender.state == .ended {
-            
-            if velocity.y > 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.uiView.center = self.trayDown
-                    print("Moving Down")
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    //  self.uiView.center = self.trayUp
-                    self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+            UIView.transition(with: self.uiView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
+                
+                if velocity.y > 0 {
                     
-                    print("Moving up")
+                    
+                    // UIView.animate(withDuration: 0.3) {
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.8333435058599)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 439.5)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 477.666656494141)
+                        
+                    }
+                    
+                    
+                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    // print("moving down")
+                    // }
+                } else {
+                    // UIView.animate(withDuration: 0.3) {
+                    
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 64.833343505859)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 114.5)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 148.999984741211)
+                        
+                    }
+                    
+                    
+                    // self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+                    //self.uiView.center = self.trayUp
+                    
+                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    // print("moving up")
+                    
+                    //}
                 }
-            }
-            print("Gesture ended")
+                }, completion: nil)
+            
+            
+            
+            //print("Gesture ended")
         }
     }
     
@@ -94,18 +131,28 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     override func viewDidLoad() {
         
         self.automaticallyAdjustsScrollViewInsets = false
-//      let yPosition = uiView.frame.origin.y - 20
-        trayDownOffset = 30
-    
-        trayDown = CGPoint(x:uiView.center.x ,y: uiView.center.y-120)
-//        if UIScreen.main.bounds.size.width == 320
-//        {
-//            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-//            // self.uiView.frame.size = CGSize(width: 320, height: 500)
-//            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-//        }
-        super.viewDidLoad()
+        if UIScreen.main.bounds.size.width == 320
+        {
+            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+            trayDownOffset = 20
+            
+            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+        }else if UIScreen.main.bounds.size.width == 375
+        {
+            trayDownOffset = 20
+            
+            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+            
+            
+        }
         
+        trayUp = uiView.center
+        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
+        
+        
+        super.viewDidLoad()
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
         
@@ -113,21 +160,37 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         uiView.isUserInteractionEnabled = true
         uiView.addGestureRecognizer(panGestureRecognizer)
         
+        if UIScreen.main.bounds.size.width == 320
+        {
+            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+            
+            trayDownOffset = 40
+            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+        }
         
         // tableView.contentInset = UIEdgeInsetsMake(250, 0, 0, 0)
         
         //        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         //        self.uiView.addGestureRecognizer(gestureRecognizer)
-
+        
+        
+        
+        
+        
+        
+        
         //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
         
         //        scrollView.contentSize = CGSize(width: self.uiView.frame.width, height: self.uiView.frame.height+100)
         //        tabBarControllerRef = self.tabBarController as! CustomTabBarClass
         //        tabBarControllerRef!.navigationControllerRef = self.navigationController as! CustomNavigationBarClass
         //        tabBarControllerRef!.viewControllerRef = self
-
-        //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         
+        
+        
+        
+        //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         
         self.handleTap()
         

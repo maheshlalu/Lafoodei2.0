@@ -10,6 +10,13 @@ import UIKit
 
 class LFProfileSettingViewController: UIViewController {
 
+    @IBAction func settingBtnAction(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
+        self.navigationController?.pushViewController(storyboard!, animated: true)
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
