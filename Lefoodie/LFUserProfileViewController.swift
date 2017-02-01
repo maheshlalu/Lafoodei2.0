@@ -9,12 +9,13 @@
 
 import UIKit
 //import MDCParallaxView
-
-
-
-
 class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate {
     
+    @IBAction func settingBtnAction(_ sender: UIButton) {
+        
+    let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
     @IBOutlet weak var Scroller_ScrollerView: UIScrollView!
     @IBOutlet weak var View_DetailsView: UIView!
     
@@ -26,7 +27,6 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
-    
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         
         print(gestureRecognizer.location(in: self.view))
@@ -36,15 +36,9 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             let translation = gestureRecognizer.translation(in: self.view)
             // note: 'view' is optional and need to be unwrapped
             gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
-            
-            
-            
-            
-            
-            
+
             gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
-            
-            
+ 
         }
     }
     
@@ -67,28 +61,67 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         if sender.state == .began {
             trayOriginalCenter = uiView.center
             
-            print("Gesture began")
+            //  print("Gesture began")
         } else if sender.state == .changed {
             
             uiView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
+            // print(CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y))
             
-            print("Gesture is changing")
+            //print("Gesture is changing")
         } else if sender.state == .ended {
-            
-            if velocity.y > 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.uiView.center = self.trayDown
-                    print("Moving Down")
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    //  self.uiView.center = self.trayUp
-                    self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+            UIView.transition(with: self.uiView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
+                
+                if velocity.y > 0 {
                     
-                    print("Moving up")
+                    
+                    // UIView.animate(withDuration: 0.3) {
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.8333435058599)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 439.5)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 477.666656494141)
+                        
+                    }
+                    
+                    
+                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    // print("moving down")
+                    // }
+                } else {
+                    // UIView.animate(withDuration: 0.3) {
+                    
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 64.833343505859)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 114.5)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 148.999984741211)
+                        
+                    }
+                    
+                    
+                    // self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+                    //self.uiView.center = self.trayUp
+                    
+                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    // print("moving up")
+                    
+                    //}
                 }
-            }
-            print("Gesture ended")
+                }, completion: nil)
+            
+            
+            
+            //print("Gesture ended")
         }
     }
     
@@ -98,17 +131,26 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     override func viewDidLoad() {
         
         self.automaticallyAdjustsScrollViewInsets = false
-        trayDownOffset = 20
-        trayUp = uiView.center
-        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
         if UIScreen.main.bounds.size.width == 320
         {
             // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-            
+            trayDownOffset = 20
             
             // self.uiView.frame.size = CGSize(width: 320, height: 500)
             self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+        }else if UIScreen.main.bounds.size.width == 375
+        {
+            trayDownOffset = 20
+            
+            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+            
+            
         }
+        
+        trayUp = uiView.center
+        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
+        
         
         super.viewDidLoad()
         
@@ -118,6 +160,14 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         uiView.isUserInteractionEnabled = true
         uiView.addGestureRecognizer(panGestureRecognizer)
         
+        if UIScreen.main.bounds.size.width == 320
+        {
+            // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+            
+            trayDownOffset = 40
+            // self.uiView.frame.size = CGSize(width: 320, height: 500)
+            self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+        }
         
         // tableView.contentInset = UIEdgeInsetsMake(250, 0, 0, 0)
         
@@ -142,16 +192,16 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         
         //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         
+        self.handleTap()
         
-        handleTap()
-        
-        tabViews()
+        self.tabViews()
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        }
         
         // Do any additional setup after loading the view.
-    }
+   
     
     func handleTap()
     {
@@ -179,7 +229,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             .menuItemWidth(self.view.frame.size.width/2-16)
         ]
         
-        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.uiView.frame.width, height: self.uiView.frame.height), pageMenuOptions: parameters)
         
         self.uiView.addSubview((self.pageMenu?.view)!)
         
@@ -190,8 +240,6 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         
         print(">>>>>>")
     }
-    
-    
-    
+
 }
 

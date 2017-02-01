@@ -11,6 +11,7 @@ import UIKit
 class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITabBarControllerDelegate {
 var canScrollToTop:Bool = true
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    var parantNavigationController = UINavigationController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,6 +67,14 @@ var canScrollToTop:Bool = true
     
     func collectionView(_collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 3
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+//       let navigationController = UINavigationController()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFItemDetailViewController")as? LFItemDetailViewController
+        self.parantNavigationController.pushViewController(storyboard!, animated: true)
+    
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -131,6 +131,14 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
       //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
         //self.present(viewcontroller, animated: true, completion: nil)
         
+        if indexPath.row == 0
+        {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as! LFRestaurentDetailsViewController
+            self.navigationController?.pushViewController(storyboard, animated: true)
+            
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -146,6 +154,29 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
         }
         return 0
+    }
+    
+    @IBAction func Segment_Clicked(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex
+        {
+        case 0:
+            UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: nil, completion: nil)
+            print("Home selected")
+        //show popular view
+        case 1:
+            
+            print("near selected")
+            
+            
+            
+            UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
+            
+        //show history view
+        default:
+            break;
+        }
+        
     }
     
 
