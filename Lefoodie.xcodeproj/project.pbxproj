@@ -90,6 +90,7 @@
 		890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		896073541E36015800551545 /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896073531E36015800551545 /* CXDataService.swift */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
+		897E33941E405EC800937A50 /* LFShooseAnotherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E33931E405EC800937A50 /* LFShooseAnotherLocation.swift */; };
 		D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		890CA7871E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+UIActivityIndicatorForSDWebImage.h"; sourceTree = "<group>"; };
 		890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		896073531E36015800551545 /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
+		897E33931E405EC800937A50 /* LFShooseAnotherLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFShooseAnotherLocation.swift; sourceTree = "<group>"; };
 		C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.debug.xcconfig"; sourceTree = "<group>"; };
 		D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				18F179431E1CC305001EDF45 /* LFSharePostTableViewCell.xib */,
 				18F179441E1CC305001EDF45 /* LFSocialShareTableViewCell.swift */,
 				18F179451E1CC305001EDF45 /* LFSocialShareTableViewCell.xib */,
+				897E33931E405EC800937A50 /* LFShooseAnotherLocation.swift */,
 			);
 			name = PostShareView;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
+				897E33941E405EC800937A50 /* LFShooseAnotherLocation.swift in Sources */,
 				1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */,
 				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
 				18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */,
