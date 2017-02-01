@@ -65,9 +65,9 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         } else if sender.state == .changed {
             
             uiView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
-            // print(CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y))
+             print(CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y))
             
-            //print("Gesture is changing")
+            print("Gesture is changing")
         } else if sender.state == .ended {
             UIView.transition(with: self.uiView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
                 
@@ -77,33 +77,33 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
                     // UIView.animate(withDuration: 0.3) {
                     if UIScreen.main.bounds.size.width == 320
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.8333435058599)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 424.5)
                     }else if UIScreen.main.bounds.size.width == 375
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 439.5)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 481.0)
                     }else if UIScreen.main.bounds.size.width == 414
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 477.666656494141)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y:  517.999984741211)
                         
                     }
                     
                     
-                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                     print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
                     
-                    // print("moving down")
+                     print("moving down")
                     // }
                 } else {
                     // UIView.animate(withDuration: 0.3) {
                     
                     if UIScreen.main.bounds.size.width == 320
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 64.833343505859)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 144.5)
                     }else if UIScreen.main.bounds.size.width == 375
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 114.5)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 192.5)
                     }else if UIScreen.main.bounds.size.width == 414
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 148.999984741211)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 228.333343505859)
                         
                     }
                     
@@ -113,7 +113,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
                     
                     // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
                     
-                    // print("moving up")
+                     print("moving up")
                     
                     //}
                 }
@@ -148,8 +148,8 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             
         }
         
-        trayUp = uiView.center
-        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
+//        trayUp = uiView.center
+//        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
         
         
         super.viewDidLoad()

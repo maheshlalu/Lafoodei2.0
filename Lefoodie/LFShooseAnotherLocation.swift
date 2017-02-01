@@ -81,7 +81,7 @@ class LFShooseAnotherLocation: UIViewController,UITableViewDelegate,UITableViewD
         
         if segue.identifier == "Back_Location" {
             let controller = segue.destination as! LFShareFoodiePicViewController
-            controller.Str_KeyValues = "3"
+            //controller.Str_KeyValues = "3"
         }
         
         
