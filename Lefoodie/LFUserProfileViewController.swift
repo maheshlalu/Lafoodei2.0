@@ -77,13 +77,13 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
                     // UIView.animate(withDuration: 0.3) {
                     if UIScreen.main.bounds.size.width == 320
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 424.5)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 544.0)
                     }else if UIScreen.main.bounds.size.width == 375
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 481.0)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 592.0)
                     }else if UIScreen.main.bounds.size.width == 414
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y:  517.999984741211)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y:  646.0)
                         
                     }
                     
@@ -97,13 +97,13 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
                     
                     if UIScreen.main.bounds.size.width == 320
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 144.5)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 269.0)
                     }else if UIScreen.main.bounds.size.width == 375
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 192.5)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 319.5)
                     }else if UIScreen.main.bounds.size.width == 414
                     {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 228.333343505859)
+                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.33332824707)
                         
                     }
                     
