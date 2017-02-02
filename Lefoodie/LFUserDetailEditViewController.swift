@@ -19,6 +19,9 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var editTableView: UITableView!
+    var moveValue: CGFloat!
+    var moved: Bool = false
+    var activeTextField = UITextField()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,8 +78,8 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     //MARK: Keyboard willshow and Will hide Methods
     func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 0{
-                self.view.frame.origin.y = -(keyboardSize.height-120)
+            if view.frame.origin.y == 20{
+                self.view.frame.origin.y = -(keyboardSize.height-160)
             }
             else {
                 
@@ -87,9 +90,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     func keyboardWillHide(sender: NSNotification) {
         if ((sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
+                self.view.frame.origin.y = 20
             }
             else {
+                
                 
             }
         }
@@ -103,7 +107,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+//    override func viewWillDisappear(_ animated: Bool) {
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//    }
 
 
 }

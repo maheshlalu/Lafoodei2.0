@@ -36,6 +36,7 @@
 		127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DC1E1A2A0200D64F16 /* CXView.swift */; };
 		127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127861DD1E1A2A0200D64F16 /* CXTextField.swift */; };
 		12B25B401E3F7BE900519436 /* LFProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */; };
+		12E21C631E434070007E7450 /* LFFoodietoBusinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E21C621E434070007E7450 /* LFFoodietoBusinessViewController.swift */; };
 		12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */; };
 		12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */; };
 		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
@@ -154,6 +155,7 @@
 		127861DC1E1A2A0200D64F16 /* CXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXView.swift; sourceTree = "<group>"; };
 		127861DD1E1A2A0200D64F16 /* CXTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXTextField.swift; sourceTree = "<group>"; };
 		12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFProfileSettingViewController.swift; sourceTree = "<group>"; };
+		12E21C621E434070007E7450 /* LFFoodietoBusinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodietoBusinessViewController.swift; sourceTree = "<group>"; };
 		12FCB7CE1E1E4A3700433645 /* LFSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSignUpViewController.swift; sourceTree = "<group>"; };
 		12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodDetailViewController.swift; sourceTree = "<group>"; };
 		14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lefoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -487,6 +489,7 @@
 				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
 				120514E41E40BD6400D2345E /* LFUserDetailEditViewController.swift */,
+				12E21C621E434070007E7450 /* LFFoodietoBusinessViewController.swift */,
 				120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */,
 				120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */,
 				12B25B3F1E3F7BE900519436 /* LFProfileSettingViewController.swift */,
@@ -948,6 +951,7 @@
 				1825CCB01E1B769D00CD3C3B /* CXAlbumView.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
 				18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */,
+				12E21C631E434070007E7450 /* LFFoodietoBusinessViewController.swift in Sources */,
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 				187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */,
