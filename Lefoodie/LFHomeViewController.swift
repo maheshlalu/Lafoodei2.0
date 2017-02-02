@@ -162,6 +162,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         {
         case 0:
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: nil, completion: nil)
+           // (sender.subviews[0] as UIView).tintColor = UIColor.black
+            
+
             print("Home selected")
         //show popular view
         case 1:
@@ -169,7 +172,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             print("near selected")
             
             
-            
+           // (sender.subviews[0] as UIView).tintColor = UIColor.black
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
             
         //show history view

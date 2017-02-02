@@ -9,7 +9,7 @@
 
 import UIKit
 //import MDCParallaxView
-class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate {
+class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate {
     
     @IBAction func settingBtnAction(_ sender: UIButton) {
         
@@ -30,6 +30,8 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         
         print(gestureRecognizer.location(in: self.view))
+        
+    
         
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             
@@ -130,6 +132,10 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
     }
     override func viewDidLoad() {
         
+        self.Scroller_ScrollerView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width+1000)
+        
+        //self.automaticallyAdjustsScrollViewInsets = false
+        /*
         self.automaticallyAdjustsScrollViewInsets = false
         if UIScreen.main.bounds.size.width == 320
         {
@@ -167,7 +173,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
             trayDownOffset = 40
             // self.uiView.frame.size = CGSize(width: 320, height: 500)
             self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-        }
+        }*/
         
         // tableView.contentInset = UIEdgeInsetsMake(250, 0, 0, 0)
         
@@ -192,6 +198,13 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         
         //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
         
+//        if UIScreen.main.bounds.size.width == 320
+//        {
+//            self.uiView.frame.size = CGSize(width: 320, height: 400)
+//            //self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
+//            
+//        }
+//        
         self.handleTap()
         
         self.tabViews()
@@ -236,9 +249,36 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate 
         //self.view.addSubview(View_DetailsView)
         
     }
-    @IBAction func Ta(_ sender: Any) {
+    
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        //self.Scroller_ScrollerView.contentOffset.x = 300
+        return true
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
+
+  //  print(">>>>scrollViewDidScroll")
+    
+    }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
+        //print(">>>>scrollViewWillBeginDragging")
+
+
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 200)
+        print(self.Scroller_ScrollerView.contentInset)
+         print(">>>>scrollViewWillEndDragging")
+
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.Scroller_ScrollerView.contentOffset.y = 200
+        print(self.Scroller_ScrollerView.contentInset)
+
         
-        print(">>>>>>")
     }
 
 }
