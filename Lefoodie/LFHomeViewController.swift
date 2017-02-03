@@ -10,26 +10,43 @@ import UIKit
 import SDWebImage
 
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    @IBOutlet weak var segmentController: UISegmentedControl!
 
     @IBOutlet weak var homeTableView: UITableView!
     var Arr_Main = NSMutableArray()
     
     override func viewDidLoad() {
+        
        // self.serviceAPICall(PageNumber: "0", PageSize: "10")
         super.viewDidLoad()
         self.registerCells()
         self.selectedTabBar()
-        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-        
+        self.setSegmentProperties()
     }
     
-
-    
+    //MARK: Segment
+    func setSegmentProperties(){
+        
+        segmentController.layer.cornerRadius = 0.0
+        segmentController.layer.borderColor = UIColor.lightGray.cgColor
+        segmentController.layer.borderWidth = 1.0
+        segmentController.layer.masksToBounds = true
+    }
+   
+    func setNavigationProperties(){
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+    }
+   
     func registerCells(){
         self.homeTableView.register(UINib(nibName: "LFHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHeaderTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeCenterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeCenterTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeFooterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeFooterTableViewCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNavigationProperties()
     }
     
     func selectedTabBar(){
@@ -59,6 +76,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
     }
     
+    //MARK: TableView DataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5 //self.Arr_Main.count
     }
@@ -74,20 +92,20 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     {
         
         var cell = UITableViewCell()
+        
+      
+        //tableView.sel
         //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
         if indexPath.row == 0 {
             
             cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
-            
          /* let cell1  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             
             cell1.lbl_Title.text = (Dict_Detail.value(forKey: "category") as AnyObject) as? String*/
             
-            
         }else if indexPath.row == 1 {
            
             cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
-            
             /*let cell_2  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
             
             let imgurl_Url = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: Dict_Detail as! NSDictionary, sourceKey: "logo")
@@ -98,6 +116,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
               cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
             
         }
+        cell.selectionStyle = .none
 
         return cell
         
@@ -124,7 +143,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.homeTableView.scrollToRowAtIndexPath(indexPaths.last!, atScrollPosition: .Bottom, animated: true)
     }
     */
-    
+    //MARK: TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate {
+class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate{
+    @IBOutlet weak var restaurantView: UIView!
+    @IBOutlet weak var restaurantScrollView: UIScrollView!
     @IBAction func settingBtnAction(_ sender: UIButton) {
         
 //        let storyboard = UIStoryboard(name: "Main", bundlvarnil).instantiateViewController(withIdentifier: "LFItemDetailViewController")as? LFItemDetailViewController
@@ -26,22 +28,23 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         
         tabViews()
       
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
-        //self.automaticallyAdjustsScrollViewInsets = false
-        trayDownOffset = 10
-        trayUp = animationView.center
-        trayDown = CGPoint(x: animationView.center.x-340 ,y: animationView.center.y-50)
-        
+//        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
+//        //self.automaticallyAdjustsScrollViewInsets = false
+//        trayDownOffset = 10
+//        trayUp = animationView.center
+//        trayDown = CGPoint(x: animationView.center.x-340 ,y: animationView.center.y-50)
+//        
         // Configure the screen edges you want to detect.
       
-        animationView.isUserInteractionEnabled = true
-        animationView.addGestureRecognizer(panGestureRecognizer)
+//        animationView.isUserInteractionEnabled = true
+//        animationView.addGestureRecognizer(panGestureRecognizer)
         
         // Do any additional setup after loading the view.
     }
@@ -113,12 +116,40 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             .menuItemWidth(self.view.frame.size.width/2-16)
         ]
         
-        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.animationView.frame.width, height: self.animationView.frame.height), pageMenuOptions: parameters)
+        self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.restaurantView.frame.width, height: self.restaurantView.frame.height), pageMenuOptions: parameters)
         
-        self.animationView.addSubview((self.pageMenu?.view)!)
+        self.restaurantView.addSubview((self.pageMenu?.view)!)
         
         //self.view.addSubview(View_DetailsView)
         
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
+        //print(">>>>scrollViewWillBeginDragging")
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if UIScreen.main.bounds.size.width == 320
+        {
+            
+            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 678)
+            
+        }else if UIScreen.main.bounds.size.width == 375
+        {
+            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 756)
+            
+        }else if UIScreen.main.bounds.size.width == 414
+        {
+            
+            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 870)
+            
+        }
+        
+        // self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)
+        
+        print(">>>> scrollViewWillEndDragging ")
+        //
     }
 
 

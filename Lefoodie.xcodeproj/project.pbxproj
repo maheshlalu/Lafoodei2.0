@@ -105,6 +105,7 @@
 		896073541E36015800551545 /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896073531E36015800551545 /* CXDataService.swift */; };
 		8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */; };
 		897E33941E405EC800937A50 /* LFShooseAnotherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E33931E405EC800937A50 /* LFShooseAnotherLocation.swift */; };
+		8994FB8D1E44BD42004BD2FD /* urls in Resources */ = {isa = PBXBuildFile; fileRef = 8994FB8C1E44BD41004BD2FD /* urls */; };
 		D15A66049790A24B5FB537DE /* Pods_LefoodieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -235,6 +236,7 @@
 		890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+UIActivityIndicatorForSDWebImage.m"; sourceTree = "<group>"; };
 		896073531E36015800551545 /* CXDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXDataService.swift; sourceTree = "<group>"; };
 		897E33931E405EC800937A50 /* LFShooseAnotherLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFShooseAnotherLocation.swift; sourceTree = "<group>"; };
+		8994FB8C1E44BD41004BD2FD /* urls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = urls; sourceTree = "<group>"; };
 		C82DD560931090B6D6967142 /* Pods-LefoodieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D4898037BB40B65495C52B5A /* Pods-Lefoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.debug.xcconfig"; sourceTree = "<group>"; };
 		D5BA1014DDBE2C7B7D965FD0 /* Pods-LefoodieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieTests/Pods-LefoodieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		18160CDE1E14EB0F00C2E5AE /* Lefoodie */ = {
 			isa = PBXGroup;
 			children = (
+				8994FB8C1E44BD41004BD2FD /* urls */,
 				896073521E36013800551545 /* Data service Classes */,
 				183FBCC91E1A83CE00A0A8CC /* Social */,
 				127861DA1E1A29EC00D64F16 /* Others */,
@@ -714,6 +717,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8994FB8D1E44BD42004BD2FD /* urls in Resources */,
 				1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */,
 				120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,

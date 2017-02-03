@@ -13,6 +13,9 @@ class LFFavouriteViewController: UIViewController,UICollectionViewDataSource,UIC
     @IBOutlet weak var favouritesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.favouritesCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 180, right: 0)
+        self.automaticallyAdjustsScrollViewInsets = false
         let nib = UINib(nibName: "LFFavouritesCollectionViewCell", bundle: nil)
         self.favouritesCollectionView.register(nib, forCellWithReuseIdentifier: "LFFavouritesCollectionViewCell")
         self.view.backgroundColor = UIColor.white

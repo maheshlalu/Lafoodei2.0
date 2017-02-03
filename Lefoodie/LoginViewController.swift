@@ -40,6 +40,8 @@ let signIn = GIDSignIn.sharedInstance()
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.facebookLoginBtn.isHidden = true
+        
 //        GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().delegate = self
         

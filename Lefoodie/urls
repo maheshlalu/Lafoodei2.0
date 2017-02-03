@@ -1,0 +1,21 @@
+Url:
+
+http://35.160.251.153:8081/MobileAPIs/postedJobs?
+
+parameters:
+type= User Posts
+Image_URL
+Image_Name
+Name
+MallId
+
+
+getAll products
+
+http://35.160.251.153:8081/Services/getMasters?type=allProducts&pageNumber=1&pageSize=10
+
+
+
+
+getMallIds
+http://35.160.251.153:8081/services/getallmallshelper

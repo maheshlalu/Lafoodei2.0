@@ -270,9 +270,12 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     }else if UIScreen.main.bounds.size.width == 375
     {
          self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 800)
+        
     }else if UIScreen.main.bounds.size.width == 414
     {
-  self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)
+        
+  self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 870)
+        
     }
     
    // self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)

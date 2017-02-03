@@ -102,13 +102,15 @@ class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UIT
     }
     
     func chooseLocation(){
-        print("btn clicked")
+        let storyboard = UIStoryboard(name: "PhotoShare", bundle: nil).instantiateViewController(withIdentifier: "LFShooseAnotherLocation")as! LFShooseAnotherLocation
+        self.navigationController?.pushViewController(storyboard, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.sharePhotoTableView.endEditing(true)
     }
     @IBAction func postBtnAction(_ sender: Any) {
+        
         
     }
     @IBAction func backBtnAction(_ sender: Any) {

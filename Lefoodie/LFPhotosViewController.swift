@@ -12,9 +12,14 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
 var canScrollToTop:Bool = true
     @IBOutlet weak var photoCollectionView: UICollectionView!
     var parantNavigationController = UINavigationController()
+     var intrinsicContentSize: CGSize {
+        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      self.photoCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 180, right: 0)
+       self.automaticallyAdjustsScrollViewInsets = false
         //        self.photoCollectionView.resetScrollPositionToTop()
         photoCollectionView.setContentOffset(CGPoint.zero, animated: true)
         

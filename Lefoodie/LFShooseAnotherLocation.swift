@@ -50,10 +50,11 @@ class LFShooseAnotherLocation: UIViewController,UITableViewDelegate,UITableViewD
     //MARK : Top navigation actions
     
     @IBAction func Btn_CancelBtnTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
         
-        self.dismiss(animated: true, completion: {
-            self.completion()
-        })
+//        self.dismiss(animated: true, completion: {
+//            self.completion()
+//        })
     }
 
     func dismissVCCompletion(completionHandler: @escaping typeCompletionHandler) {
