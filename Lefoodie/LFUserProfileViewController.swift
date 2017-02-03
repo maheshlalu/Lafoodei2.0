@@ -10,15 +10,12 @@
 import UIKit
 //import MDCParallaxView
 class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate {
-    
     @IBAction func settingBtnAction(_ sender: UIButton) {
-        
     let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
         self.navigationController?.pushViewController(storyboard, animated: true)
     }
     @IBOutlet weak var Scroller_ScrollerView: UIScrollView!
     @IBOutlet weak var View_DetailsView: UIView!
-    
     @IBOutlet weak var uiView: UIView!
     var pageMenu : CAPSPageMenu?
     var tap: UITapGestureRecognizer?
@@ -28,12 +25,8 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        
         print(gestureRecognizer.location(in: self.view))
-        
-    
-        
-        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+     if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             
             let translation = gestureRecognizer.translation(in: self.view)
             // note: 'view' is optional and need to be unwrapped
@@ -131,8 +124,10 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
         return true
     }
     override func viewDidLoad() {
-        
-        self.Scroller_ScrollerView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width+1000)
+       // self.Scroller_ScrollerView.contentSize = self.view.frame.size
+        self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+
+       // self.Scroller_ScrollerView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width+1000)
         
         //self.automaticallyAdjustsScrollViewInsets = false
         /*
@@ -264,14 +259,26 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
         //print(">>>>scrollViewWillBeginDragging")
-
-
     }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 200)
-        print(self.Scroller_ScrollerView.contentInset)
-         print(">>>>scrollViewWillEndDragging")
+   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+   
+    if UIScreen.main.bounds.size.width == 320
+    {
+        
+          self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+        
+    }else if UIScreen.main.bounds.size.width == 375
+    {
+         self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 800)
+    }else if UIScreen.main.bounds.size.width == 414
+    {
+  self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)
+    }
+    
+   // self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)
 
+         print(">>>> scrollViewWillEndDragging ")
+//
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
