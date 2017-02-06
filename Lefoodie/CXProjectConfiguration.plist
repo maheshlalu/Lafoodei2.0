@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>MALL_ID</key>
-	<string>20221</string>
+	<string>2</string>
 	<key>AppTheamColor</key>
 	<array>
 		<string>249</string>
@@ -11,11 +11,11 @@
 		<string>48</string>
 	</array>
 	<key>testMallID</key>
-	<string>4</string>
+	<string>2</string>
 	<key>BaseUrl</key>
-	<string>http://storeongo.com:8081/</string>
+	<string>http://35.160.251.153:8081/</string>
 	<key>testBaseUrl</key>
-	<string>http://apps.storeongo.com:8081/</string>
+	<string>http://35.160.251.153:8081/</string>
 	<key>getMaster</key>
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>

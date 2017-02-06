@@ -111,7 +111,18 @@ class LFShareFoodiePicViewController: UIViewController,UITableViewDataSource,UIT
     }
     @IBAction func postBtnAction(_ sender: Any) {
         
+        let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0)
         
+        let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
+        print(cell.postDescTxtView)
+        print(cell.sharedPic)
+        LFDataManager.sharedInstance.sharePost(jsonDic: ["":""], imageData: UIImageJPEGRepresentation(cell.sharedPic.image!, 0.5)!)
+
+        // let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
+        //print(cell.postDescTxtView)
+        // /
+        // let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
+        // print(cell.postDescTxtView)
     }
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

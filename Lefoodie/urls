@@ -10,6 +10,10 @@ Name
 MallId
 
 
+dt=CAMPAIGNS&type=User Posts&category=Products&userId=6&json={"list":[{"Name":"Good product","Image":"http:\/\/35.160.251.153:8085\/coin\/files\/null\/android\/uploads\/2_profilePic.jpg","storeId":"4"}]}&consumerEmail="nadapananagababu@gmail.com"
+
+
+
 getAll products
 
 http://35.160.251.153:8081/Services/getMasters?type=allProducts&pageNumber=1&pageSize=10

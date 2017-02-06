@@ -64,6 +64,57 @@ class CX_SocialIntegration: NSObject {
     }
     
     
+    //MARK: SignUp
+    func applicationRegisterWithSignUp(userDataDic : NSDictionary,completion:@escaping (_ resPonce:Bool) -> Void) {
+        //Before register with facebook check The MACID info API call
+        // http://storeongo.com:8081/Services/getMasters?type=macidinfo&mallId=17018
+        
+        
+        
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type" : "macidinfo" as AnyObject,"mallId" : CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"keyWord" : userDataDic.object(forKey: "userEmailId")! as AnyObject]) { (responseDict) in
+            print(responseDict)
+            let email: String = (userDataDic.object(forKey: "userEmailId") as? String)!
+            
+            if !self.checkTheUserRegisterWithApp(userEmail: email, macidInfoResultDic:responseDict).isRegistred {
+                
+                
+                //Register with app
+                let strFirstName: String = (userDataDic.object(forKey: "firstName") as? String)!
+                let strLastName: String = (userDataDic.object(forKey: "lastName") as? String)!
+                let gender: String = (userDataDic.object(forKey: "gender") as? String)!
+                let email: String = (userDataDic.object(forKey: "userEmailId") as? String)!
+                let passwd : String = (userDataDic.object(forKey: "password") as? String)!
+
+                
+                //picture,data,url
+                let userRegisterDic: NSDictionary = NSDictionary(objects: [CXAppConfig.sharedInstance.getAppMallID(),email,"DEVICES",passwd,strFirstName,strLastName,gender,"","false"],
+                                                                 forKeys: ["orgId" as NSCopying,"userEmailId" as NSCopying,"dt" as NSCopying,"password" as NSCopying,"firstName" as NSCopying,"lastName" as NSCopying,"gender" as NSCopying,"filePath" as NSCopying,"isLoginWithFB" as NSCopying])
+                self.registerWithSocialNewtWokrk(registerDic: userRegisterDic, completion: { (responseDict) in
+                    completion(true)
+                    
+                })
+                //self.profileImageStr = (responseDict.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                //   print("Welcome,\(email) \(strFirstName) \(strLastName) \(gender) ")
+            }else{
+                completion(false)
+                // get the details from server using below url
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"isLoginWithFB":"false" as AnyObject]) { (responseDict) in
+                    //"password":""
+                    
+                    self.saveUserDeatils(userData: responseDict, completion: { (dic) in
+                        completion(false)
+                    })
+                    
+                }
+                //http://localhost:8081/MobileAPIs/loginConsumerForOrg?email=cxsample@gmail.com&orgId=530&dt=DEVICES&isLoginWithFB=true
+            }
+            
+        }
+        
+    }
+
+    
+    
     func checkTheUserRegisterWithApp(userEmail:String , macidInfoResultDic : NSDictionary) -> (isRegistred:Bool, userDic:NSDictionary){
         let resultArray : NSArray = NSArray(array: (macidInfoResultDic.value(forKey: "jobs") as? NSArray)!)
         for mackIDInfoDic in resultArray {

@@ -72,6 +72,7 @@
 		1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */; };
 		1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */; };
 		1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835655E1E166D1500E7A531 /* NSDate+date.swift */; };
+		183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A8CAC1E48777C0068DC34 /* LFDataManager.swift */; };
 		183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */; };
 		183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */; };
 		183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */; };
@@ -199,6 +200,7 @@
 		1825CCDC1E1BE97300CD3C3B /* LFPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPhotosViewController.swift; sourceTree = "<group>"; };
 		1825CCE31E1BE98B00CD3C3B /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		1835655E1E166D1500E7A531 /* NSDate+date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+date.swift"; sourceTree = "<group>"; };
+		183A8CAC1E48777C0068DC34 /* LFDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFDataManager.swift; sourceTree = "<group>"; };
 		183FBCC01E1A2F9500A0A8CC /* CXImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXImageView.swift; sourceTree = "<group>"; };
 		183FBCC31E1A48A300A0A8CC /* LFTabHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTabHomeController.swift; sourceTree = "<group>"; };
 		183FBCC51E1A597E00A0A8CC /* LFNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationController.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				896073531E36015800551545 /* CXDataService.swift */,
+				183A8CAC1E48777C0068DC34 /* LFDataManager.swift */,
 			);
 			name = "Data service Classes";
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				12E21C631E434070007E7450 /* LFFoodietoBusinessViewController.swift in Sources */,
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
+				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,
 				187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
 				187039B71E1D399F00D6668B /* LFFoodieViewController.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MagicalRecord
 
 class LFSignUpViewController: UIViewController {
     @IBOutlet weak var tersOfServiceLbl: UILabel!
@@ -36,13 +37,61 @@ class LFSignUpViewController: UIViewController {
             showAlert(message: "Please enter valid mail")
         }
         else{
-            
+            self.sendSignUpDetails()
             print("All fields have data")
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.navigateToTabBar()
+
         }
         
     }
+    
+    func sendSignUpDetails()
+    {
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
+        let userRegisterDic: NSDictionary = NSDictionary(objects: [self.emailTextField.text!,self.passwordTextField.text!,self.userNameTextField.text!,"",""],
+                                                         forKeys: ["userEmailId" as NSCopying,"password" as NSCopying,"firstName" as NSCopying,"lastName" as NSCopying,"gender" as NSCopying])
+       
+        MagicalRecord.save({ (localContext) in
+            
+            UserProfile.mr_truncateAll(in: localContext)
+        })
+        CX_SocialIntegration.sharedInstance.applicationRegisterWithSignUp(userDataDic: userRegisterDic, completion: { (isRegistred) in
+            
+            if isRegistred {
+                
+                print(isRegistred)
+                self.showAlert(message: "You are Successfully Registered", status: 1)
+            }
+            else {
+                CXDataService.sharedInstance.hideLoader()
+                self.showAlert(message: "This Email already exists", status: 0)
+            }
+            
+            
+        })
+    }
+    
+    
+    func showAlert(message:String,status:Int)
+    {
+        let alertController = UIAlertController(title: "LeFoodie", message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            if status == 0 {
+                
+            }
+            else {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.navigateToTabBar()
+            }
+            
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+        
+    }
+
+    
     
     //MARK: Show textfield alert
     func showAlert(message:String)
