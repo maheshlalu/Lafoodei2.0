@@ -27,6 +27,14 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-eV-VBa" userLabel="Library View">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09t-pU-C50">
+                            <frame key="frameInset" minX="8" minY="130" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.98431372549999996" green="0.7725490196" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4M-Au-Xwb" userLabel="Menu View">
@@ -92,7 +100,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WD4-s1-aVV">
                             <inset key="imageEdgeInsets" minX="2" minY="3" maxX="2" maxY="2"/>
                             <state key="normal" title="CAMERA"/>
-                            <state key="selected" image="B35339F2-D8C7-46AA-83EC-6FA238D89893"/>
+                            <state key="selected" image="62BB6199-2D35-40A2-AC47-0E3E9A9C9A34"/>
                             <connections>
                                 <action selector="photoButtonPressed:" destination="-1" eventType="touchUpInside" id="DX6-c2-yZ9"/>
                             </connections>
@@ -108,7 +116,7 @@
                 <constraint firstItem="C4M-Au-Xwb" firstAttribute="leading" secondItem="vas-k2-IDH" secondAttribute="leading" id="0IM-Ul-IUa"/>
                 <constraint firstAttribute="trailing" secondItem="F1g-eV-VBa" secondAttribute="trailing" id="6ah-n6-5NO"/>
                 <constraint firstItem="C4M-Au-Xwb" firstAttribute="top" secondItem="vas-k2-IDH" secondAttribute="top" id="Acr-qd-YA8"/>
-                <constraint firstItem="F1g-eV-VBa" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="-3" id="Cps-m8-5hD"/>
+                <constraint firstItem="F1g-eV-VBa" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="1" id="Cps-m8-5hD"/>
                 <constraint firstItem="F1g-eV-VBa" firstAttribute="leading" secondItem="vas-k2-IDH" secondAttribute="leading" id="Gic-Rf-yIc"/>
                 <constraint firstItem="glk-8T-Z8d" firstAttribute="top" secondItem="uiC-fs-5el" secondAttribute="bottom" constant="8" id="LQD-GU-0wy"/>
                 <constraint firstAttribute="trailing" secondItem="uiC-fs-5el" secondAttribute="trailing" id="SZt-tv-WeQ"/>
@@ -116,7 +124,6 @@
                 <constraint firstAttribute="bottom" secondItem="glk-8T-Z8d" secondAttribute="bottom" id="XUt-dj-KV2"/>
                 <constraint firstItem="uiC-fs-5el" firstAttribute="leading" secondItem="vas-k2-IDH" secondAttribute="leading" id="XbY-WC-xli"/>
                 <constraint firstAttribute="trailing" secondItem="glk-8T-Z8d" secondAttribute="trailing" id="dGe-79-Pri"/>
-                <constraint firstItem="F1g-eV-VBa" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="-3" id="lcK-6P-dri"/>
                 <constraint firstItem="uiC-fs-5el" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="-3" id="pOm-ad-GcM"/>
                 <constraint firstAttribute="trailing" secondItem="C4M-Au-Xwb" secondAttribute="trailing" id="yMY-cQ-FXo"/>
                 <constraint firstItem="glk-8T-Z8d" firstAttribute="top" secondItem="F1g-eV-VBa" secondAttribute="bottom" constant="8" id="yVt-eR-pQn"/>
@@ -125,7 +132,7 @@
         </view>
     </objects>
     <resources>
-        <image name="B35339F2-D8C7-46AA-83EC-6FA238D89893" width="36" height="36">
+        <image name="62BB6199-2D35-40A2-AC47-0E3E9A9C9A34" width="36" height="36">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

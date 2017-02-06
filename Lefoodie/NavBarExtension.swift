@@ -53,7 +53,7 @@ public extension UINavigationBar {
         let navigation:UINavigationItem = setNavigationItem
         let image = UIImage(named: "MyProfile_Favorites_logo")
         navigation.titleView = UIImageView(image: image)
-        
+
     }
     
 }

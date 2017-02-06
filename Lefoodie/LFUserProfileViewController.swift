@@ -125,7 +125,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     }
     override func viewDidLoad() {
        // self.Scroller_ScrollerView.contentSize = self.view.frame.size
-        self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+//        self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
 
        // self.Scroller_ScrollerView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width+1000)
         

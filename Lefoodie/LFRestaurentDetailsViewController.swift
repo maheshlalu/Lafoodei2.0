@@ -75,22 +75,60 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             animationView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
             
             print("Gesture is changing")
-        } else if sender.state == .ended {
-            
-            if velocity.y > 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.animationView.center = self.trayDown
-                    print("Moving Down")
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    //  self.uiView.center = self.trayUp
-                    self.animationView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+        } else if sender.state == .ended{
+            UIView.transition(with: self.restaurantView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
+                
+                if velocity.y > 0 {
                     
-                    print("Moving up")
+                    
+                    // UIView.animate(withDuration: 0.3) {
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 544.0)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 592.0)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y:  646.0)
+                        
+                    }
+                    
+                    
+                    print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    print("moving down")
+                    // }
+                } else {
+                    // UIView.animate(withDuration: 0.3) {
+                    
+                    if UIScreen.main.bounds.size.width == 320
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 269.0)
+                    }else if UIScreen.main.bounds.size.width == 375
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 319.5)
+                    }else if UIScreen.main.bounds.size.width == 414
+                    {
+                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.33332824707)
+                        
+                    }
+                    
+                    
+                    // self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
+                    //self.uiView.center = self.trayUp
+                    
+                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
+                    
+                    print("moving up")
+                    
+                    //}
                 }
-            }
-            print("Gesture ended")
+                }, completion: nil)
+            
+            
+            
+            //print("Gesture ended")
         }
     }
 
@@ -123,6 +161,17 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         //self.view.addSubview(View_DetailsView)
         
     }
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        //self.Scroller_ScrollerView.contentOffset.x = 300
+        return true
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
+        
+        //  print(">>>>scrollViewDidScroll")
+        
+    }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
@@ -133,11 +182,11 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         if UIScreen.main.bounds.size.width == 320
         {
             
-            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 678)
+            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 670)
             
         }else if UIScreen.main.bounds.size.width == 375
         {
-            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 756)
+            self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 800)
             
         }else if UIScreen.main.bounds.size.width == 414
         {
@@ -150,6 +199,12 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         
         print(">>>> scrollViewWillEndDragging ")
         //
+    }
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.restaurantScrollView.contentOffset.y = 20
+        print(self.restaurantScrollView.contentInset)
+        
+        
     }
 
 

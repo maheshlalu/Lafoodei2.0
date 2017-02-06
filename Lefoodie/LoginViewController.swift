@@ -17,6 +17,9 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
     var facebookResponseDict: NSDictionary! = nil
     var googleResponseDict: NSDictionary! = nil
 
+    @IBAction func signUpBtnAction(_ sender: UIButton) {
+        
+    }
     @IBAction func emailSignupBtnAction(_ sender: UIButton) {
         
 //        let vc = LFSignUpViewController()
@@ -40,7 +43,7 @@ let signIn = GIDSignIn.sharedInstance()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.facebookLoginBtn.isHidden = true
+//        self.facebookLoginBtn.isHidden = true
         
 //        GIDSignIn.sharedInstance().uiDelegate = self
 //        GIDSignIn.sharedInstance().delegate = self

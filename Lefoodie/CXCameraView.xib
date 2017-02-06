@@ -42,17 +42,18 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="8" id="BO0-YE-F1W"/>
                         <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="eHG-iN-XnR" secondAttribute="leading" constant="8" id="LHP-WC-loj"/>
-                        <constraint firstAttribute="bottom" secondItem="Pe0-2z-oYY" secondAttribute="bottom" constant="8" id="a1V-ZH-UVI"/>
-                        <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="250" id="c7p-Vi-MbH"/>
-                        <constraint firstAttribute="bottom" secondItem="IG5-Vl-lfd" secondAttribute="bottom" constant="8" id="sPJ-mk-eP5"/>
+                        <constraint firstAttribute="bottom" secondItem="Pe0-2z-oYY" secondAttribute="bottom" constant="11" id="a1V-ZH-UVI"/>
+                        <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="250" constant="131.5" id="c7p-Vi-MbH"/>
+                        <constraint firstAttribute="bottom" secondItem="IG5-Vl-lfd" secondAttribute="bottom" constant="11" id="sPJ-mk-eP5"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-Ex-ctR">
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-ce-j1s">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="68" id="Etb-93-1mS"/>
-                                <constraint firstAttribute="width" constant="60" id="V1J-1n-cLp"/>
+                                <constraint firstAttribute="height" constant="70" id="Etb-93-1mS"/>
+                                <constraint firstAttribute="width" constant="70" id="V1J-1n-cLp"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" image="shutter_button"/>
@@ -73,7 +74,7 @@
             <constraints>
                 <constraint firstItem="Dzd-Ex-ctR" firstAttribute="top" secondItem="eHG-iN-XnR" secondAttribute="bottom" id="FBH-kk-gHL"/>
                 <constraint firstAttribute="trailing" secondItem="Dzd-Ex-ctR" secondAttribute="trailing" id="JfG-8d-uDX"/>
-                <constraint firstItem="eHG-iN-XnR" firstAttribute="top" secondItem="nPs-oI-T6o" secondAttribute="top" constant="50" id="POP-wJ-EYA"/>
+                <constraint firstItem="eHG-iN-XnR" firstAttribute="top" secondItem="nPs-oI-T6o" secondAttribute="top" id="POP-wJ-EYA"/>
                 <constraint firstAttribute="trailing" secondItem="eHG-iN-XnR" secondAttribute="trailing" id="Zpr-D6-P2A"/>
                 <constraint firstItem="eHG-iN-XnR" firstAttribute="leading" secondItem="nPs-oI-T6o" secondAttribute="leading" id="bbf-jc-5iJ"/>
                 <constraint firstItem="Dzd-Ex-ctR" firstAttribute="leading" secondItem="nPs-oI-T6o" secondAttribute="leading" id="qy9-o7-HPA"/>
@@ -94,6 +95,6 @@
     <resources>
         <image name="ic_flash_off" width="48" height="48"/>
         <image name="ic_loop" width="48" height="48"/>
-        <image name="shutter_button" width="40" height="40"/>
+        <image name="shutter_button" width="60" height="60"/>
     </resources>
 </document>
