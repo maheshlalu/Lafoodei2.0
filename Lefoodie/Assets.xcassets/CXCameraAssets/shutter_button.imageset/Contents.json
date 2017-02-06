@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_radio_button_checked_white_24px.png",
+      "filename" : "ic_radio_button_checked_white_24px@3x-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_radio_button_checked_white_24px@2x.png",
+      "filename" : "ic_radio_button_checked_white_24px@3x-2.png",
       "scale" : "2x"
     },
     {

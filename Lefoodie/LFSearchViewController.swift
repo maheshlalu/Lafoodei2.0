@@ -50,12 +50,12 @@ class LFSearchViewController: UIViewController,UISearchBarDelegate {
     
     
     @IBAction func nextBtnAction(_ sender: AnyObject) {
-        if count < 3 {
-            count = count + 1
+       
+        
             var destVC = UIViewController()
             
             if count == 1 {
-                
+               count = 2
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
                 searchTypeLabel.text = "Places"
                 prevBtn.isEnabled = false
@@ -64,6 +64,7 @@ class LFSearchViewController: UIViewController,UISearchBarDelegate {
                 
             }
             else if count == 2 {
+                count = 3
                 
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
                 searchTypeLabel.text = "Foodies"
@@ -72,11 +73,13 @@ class LFSearchViewController: UIViewController,UISearchBarDelegate {
                 
             }
             else if count == 3 {
+                count = 1
                 
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
                 searchTypeLabel.text = "Hashtags"
                 prevBtn.isEnabled = true
-                nextBtn.isEnabled = false
+                nextBtn.isEnabled = true
+              
                 
             }
             
@@ -87,7 +90,7 @@ class LFSearchViewController: UIViewController,UISearchBarDelegate {
             self.navController.view.frame = self.containerView.bounds
             self.containerView.addSubview(navController.view)
 
-        }
+
                 
     }
 

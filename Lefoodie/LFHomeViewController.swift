@@ -22,20 +22,22 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.registerCells()
         self.selectedTabBar()
         self.setSegmentProperties()
+   
+        
     }
     
     //MARK: Segment
     func setSegmentProperties(){
         
-        segmentController.layer.cornerRadius = 0.0
-        segmentController.layer.borderColor = UIColor.lightGray.cgColor
-        segmentController.layer.borderWidth = 1.0
-        segmentController.layer.masksToBounds = true
+    
+       
+        
     }
    
     func setNavigationProperties(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+
     }
    
     func registerCells(){
