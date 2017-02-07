@@ -20,6 +20,11 @@ class LFSignUpViewController: UIViewController {
     let limitLength = 10
     //MARK:TextFields validation
     @IBAction func CreateAccountBtnAction(_ sender: UIButton) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.navigateToTabBar()
+        return
+        
         if (self.userNameTextField.text?.characters.count) == 0
         {
             showAlert(message: "Please enter user name")

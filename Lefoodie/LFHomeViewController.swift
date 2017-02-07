@@ -14,10 +14,11 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
     @IBOutlet weak var homeTableView: UITableView!
     var Arr_Main = NSMutableArray()
+    var jobsArray = NSArray()
     
     override func viewDidLoad() {
         
-       // self.serviceAPICall(PageNumber: "0", PageSize: "10")
+        self.serviceAPICall(PageNumber: "1", PageSize: "10")
         super.viewDidLoad()
         self.registerCells()
         self.selectedTabBar()
@@ -63,15 +64,16 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         
-        let Url_base = "http://storeongo.com:8081/Services/getMasters?type=allMalls&pageNumber=" + (PageNumber as String) + "&pageSize=" + (PageSize as String)
+        let Url_base = "http://35.160.251.153:8081/Services/getMasters?type=allProducts&pageNumber" + (PageNumber as String) + "&pageSize=" + (PageSize as String)
         let urlStr = NSString.init(string: Url_base)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
             print("Get Data is \(responceDic)")
-            let Str_Email = responceDic.value(forKey: "orgs") as! NSArray
-            print("Email id is\(Str_Email)")
-            self.Arr_Main = Str_Email.mutableCopy() as! NSMutableArray
-            print("Total Arr \(self.Arr_Main)")
+            self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+//            let Str_Email = responceDic.value(forKey: "orgs") as! NSArray
+//            print("Email id is\(Str_Email)")
+//            self.Arr_Main = Str_Email.mutableCopy() as! NSMutableArray
+//            print("Total Arr \(self.Arr_Main)")
             CXDataService.sharedInstance.hideLoader()
             self.homeTableView.reloadData()
         }
@@ -80,7 +82,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     //MARK: TableView DataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5 //self.Arr_Main.count
+        return self.jobsArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -93,34 +95,46 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        var cell = UITableViewCell()
-        
       
         //tableView.sel
         //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
         if indexPath.row == 0 {
             
-            cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
+          let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
          /* let cell1  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             
             cell1.lbl_Title.text = (Dict_Detail.value(forKey: "category") as AnyObject) as? String*/
+            cell.selectionStyle = .none
+            
+            return cell
             
         }else if indexPath.row == 1 {
            
-            cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
+         let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
             /*let cell_2  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
             
             let imgurl_Url = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: Dict_Detail as! NSDictionary, sourceKey: "logo")
             let url_Url:NSURL = NSURL(string: imgurl_Url as String)!
             cell_2.ImgView_Logo.setImageWith(url_Url as URL!, usingActivityIndicatorStyle: .white)*/
+            let jobDict = self.jobsArray[indexPath.section] as! NSDictionary
+            if jobDict.value(forKey: "Image") != nil {
+                let img_Url_Str = jobDict.value(forKey: "Image")
+                let img_Url = NSURL(string: img_Url_Str as! String)
+                cell.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
+            }
             
-        }else if indexPath.row == 2 {
-              cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
+            cell.selectionStyle = .none
+            
+            return cell
+            
+        }else  {
+          let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
+            cell.selectionStyle = .none
+            
+            return cell
             
         }
-        cell.selectionStyle = .none
-
-        return cell
+        
         
     }
     
