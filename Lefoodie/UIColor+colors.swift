@@ -43,5 +43,14 @@ extension UIColor{
         )
     }
     
+    open class  func tableCellBgColor() -> UIColor{
+        
+        return UIColor(
+            red: 231.0 / 255.0,
+            green: 231.0 / 255.0,
+            blue:  231.0 / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
     //RGB(225,205,0)
 }

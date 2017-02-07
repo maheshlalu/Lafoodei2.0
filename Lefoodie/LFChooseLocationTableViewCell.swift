@@ -10,6 +10,7 @@ import UIKit
 
 class LFChooseLocationTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var locationLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
