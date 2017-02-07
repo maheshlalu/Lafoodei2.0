@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,22 +27,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uiC-fs-5el" userLabel="Camera View">
+                    <rect key="frame" x="0.0" y="47" width="375" height="572"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-eV-VBa" userLabel="Library View">
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09t-pU-C50">
-                            <frame key="frameInset" minX="8" minY="130" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.98431372549999996" green="0.7725490196" blue="0.043137254899999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                        </button>
-                    </subviews>
+                    <rect key="frame" x="0.0" y="51" width="375" height="568"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4M-Au-Xwb" userLabel="Menu View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbB-dA-f5c">
+                            <rect key="frame" x="8" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DSV-bt-kQg"/>
                                 <constraint firstAttribute="width" constant="40" id="mGD-hr-8Nq"/>
@@ -53,6 +52,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAMERA ROLL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPm-Z6-uUw">
+                            <rect key="frame" x="80" y="8" width="214" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="qwo-4G-Tl0"/>
                             </constraints>
@@ -61,6 +61,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udG-Vf-D4K">
+                            <rect key="frame" x="312" y="5" width="55" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="55" id="LSt-aZ-SPT"/>
                                 <constraint firstAttribute="height" constant="40" id="hfV-8b-Oig"/>
@@ -88,8 +89,10 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="glk-8T-Z8d">
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5A-EG-8gD">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
                             <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" title="LIBRARY"/>
                             <state key="selected" image="ic_insert_photo"/>
@@ -98,9 +101,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WD4-s1-aVV">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
                             <inset key="imageEdgeInsets" minX="2" minY="3" maxX="2" maxY="2"/>
                             <state key="normal" title="CAMERA"/>
-                            <state key="selected" image="62BB6199-2D35-40A2-AC47-0E3E9A9C9A34"/>
+                            <state key="selected" image="97000A38-7DAE-4316-B2A8-CB16A9CD3594"/>
                             <connections>
                                 <action selector="photoButtonPressed:" destination="-1" eventType="touchUpInside" id="DX6-c2-yZ9"/>
                             </connections>
@@ -132,7 +136,7 @@
         </view>
     </objects>
     <resources>
-        <image name="62BB6199-2D35-40A2-AC47-0E3E9A9C9A34" width="36" height="36">
+        <image name="97000A38-7DAE-4316-B2A8-CB16A9CD3594" width="36" height="36">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

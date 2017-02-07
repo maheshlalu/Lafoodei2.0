@@ -292,6 +292,68 @@ class CXAppConfig {
         
     }
     
+    // MARK : User mail id saving
+    func saveUserMailId(emailID:String){
+    
+    UserDefaults.standard.set(emailID, forKey: "EMAIL_ID")
+        
+    }
+    
+    func getEmailID() ->String{
+    
+        if(UserDefaults.standard.object(forKey: "EMAIL_ID") == nil){
+            print("NULL")
+            return ""
+        }else{
+        
+            return UserDefaults.standard.value(forKey: "EMAIL_ID") as! String
+        }
+    
+    }
+    
+    
+    // MARK : User Name saving
+    func saveUserName(name:String){
+        
+        UserDefaults.standard.set(name, forKey: "USER_NAME")
+        
+    }
+    
+    func getuserName() ->String{
+        
+        if(UserDefaults.standard.object(forKey: "USER_NAME") == nil){
+            print("NULL")
+            return ""
+        }else{
+            print(UserDefaults.standard.value(forKey: "USER_NAME") as! String)
+
+            return UserDefaults.standard.value(forKey: "USER_NAME") as! String
+            
+                    }
+      
+    }
+    
+    // MARK : User Mac ID saving
+    func saveUserMacID(macID:String){
+        
+        UserDefaults.standard.set(macID, forKey: "USER_MACID")
+        
+    }
+    
+    func getuserMacID() ->String{
+        
+        if(UserDefaults.standard.object(forKey: "USER_MACID") == nil){
+            print("NULL")
+            return ""
+        }else{
+            
+            return UserDefaults.standard.value(forKey: "USER_MACID") as! String
+        }
+        
+        
+    }
+    
+    
     
  /*   func getUserUpdateDict() -> NSMutableDictionary {
         
@@ -407,5 +469,30 @@ class CXAppConfig {
         
     }
     
+    
+    func saveUserDataInUserDefaults(responceDic : NSDictionary){
+        print("Values \(responceDic)")
+        
+        // Save all data
+    setUserUpdateDict(dictionary: responceDic.mutableCopy() as! NSMutableDictionary)
+        
+        // Save individual data 
+        let userID = responceDic.value(forKey: "UserId") as! NSNumber
+        saveUserID(userID: String(describing: userID as NSNumber))
+        let emailID = responceDic.value(forKey: "emailId") as! String
+        saveUserMailId(emailID: emailID )
+       let firstName = responceDic.value(forKey: "firstName") as! String
+        saveUserName(name: firstName)
+        let macID = responceDic.value(forKey: "macId") as! String
+        saveUserMacID(macID: macID)
+        let macIDjobId = responceDic.value(forKey: "macIdJobId") as! NSNumber
+        saveMacJobID(macJobId: String(describing: macIDjobId as NSNumber))
+        //print("user id \(userID)\(emailID)\(firstName)\(macID)\(macIDjobId)")
+        
+        
+        
+        
+        
+    }
     
 }

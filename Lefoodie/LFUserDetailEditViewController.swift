@@ -78,8 +78,9 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     //MARK: Keyboard willshow and Will hide Methods
     func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 20{
-                self.view.frame.origin.y = -(keyboardSize.height-160)
+            view.frame.origin.y = 0
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y = -(keyboardSize.height-130)
             }
             else {
                 
@@ -90,13 +91,13 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate {
     func keyboardWillHide(sender: NSNotification) {
         if ((sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 20
+                self.view.frame.origin.y = 65
             }
             else {
                 
-                
             }
         }
+
     }
     //MARK: Textfield Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{

@@ -22,8 +22,8 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
     }
     @IBAction func emailSignupBtnAction(_ sender: UIButton) {
         
-//        let vc = LFSignUpViewController()
-//        self.present(vc, animated: true, completion: nil)
+        let vc = LFSignUpViewController()
+        self.present(vc, animated: true, completion: nil)
     }
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var facebookLoginBtn: UIButton!
@@ -53,7 +53,7 @@ let signIn = GIDSignIn.sharedInstance()
         signIn?.uiDelegate = self
         self.setUpDelegatesForGoogle()
       
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
 
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -228,16 +228,27 @@ let signIn = GIDSignIn.sharedInstance()
         let alertController = UIAlertController(title: "LeFoodie", message: "You are Successfully Logged in", preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFHomeViewController")as! LFHomeViewController
-            self.present(storyboard, animated: true, completion: nil)
-            
-            //self.delegate?.loginSucceeded()
-            //self.navigationController?.popViewController(animated: true)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.navigateToTabBar()
         }
         alertController.addAction(OKAction)
         
         self.present(alertController, animated: true, completion:nil)
     }
+    
+    
+    @IBAction func btnSigninButtonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFSignInViewController")as? LFSignInViewController
+        self.navigationController?.pushViewController(storyboard!, animated: true)
+        
+        
+    }
   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
+        
+    }
 }
 

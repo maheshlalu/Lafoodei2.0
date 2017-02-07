@@ -44,7 +44,7 @@ class LFTabHomeController: UITabBarController {
         let cameraButton = UIButton()
         
         // Sets width and height to the Button
-        cameraButton.frame = CGRect(x: 0, y: 0, width: tabBar.frame.size.height, height: tabBar.frame.size.height)
+        cameraButton.frame = CGRect(x: 0, y: 0, width: tabBar.frame.size.height+20, height: tabBar.frame.size.height)
         
         // Sets image to the Button
         cameraButton.setBackgroundImage(imageCameraButton, for: .normal)

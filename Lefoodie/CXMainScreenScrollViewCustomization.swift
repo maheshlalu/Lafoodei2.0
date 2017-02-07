@@ -12,6 +12,7 @@ import UIKit
 final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDelegate {
     
     var imageView = UIImageView()
+    let btnRotations = UIButton()
     
     var imageSize: CGSize?
     
@@ -67,17 +68,29 @@ final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDeleg
             self.contentSize = CGSize(width: imageView.frame.width + 1, height: imageView.frame.height + 1)
             
             imageView.image = image
+            let frame1 = CGRect(x: 8, y: 165, width: 30, height: 30)
+            btnRotations.frame = frame1
+            let imgve = UIImage(named: "RotateImage")
+            btnRotations.setBackgroundImage(imgve, for: UIControlState.normal)
+            imageView.addSubview(btnRotations)
+            btnRotations.addTarget(self, action:#selector(pressButton(button:)), for: .touchUpInside)
+            
             
             self.zoomScale = 1.0
             
         }
         
     }
+    func pressButton(button:UIButton){
+    
+    print("imaggge")
+    
+    
+    }
     
     required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)!
-        
         self.backgroundColor = CXBackgroundColor
         self.frame.size      = CGSize.zero
         self.clipsToBounds   = true
