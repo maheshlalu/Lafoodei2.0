@@ -17,13 +17,11 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
     var facebookResponseDict: NSDictionary! = nil
     var googleResponseDict: NSDictionary! = nil
 
-    @IBAction func signUpBtnAction(_ sender: UIButton) {
-        
-    }
+    
     @IBAction func emailSignupBtnAction(_ sender: UIButton) {
         
-        let vc = LFSignUpViewController()
-        self.present(vc, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFSignUpViewController")as? LFSignUpViewController
+        self.navigationController?.pushViewController(storyboard!, animated: true)
     }
     @IBOutlet weak var googleLoginBtn: UIButton!
     @IBOutlet weak var facebookLoginBtn: UIButton!

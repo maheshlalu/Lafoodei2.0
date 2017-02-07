@@ -86,6 +86,8 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
            
             CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
             CXDataService.sharedInstance.hideLoader()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.navigateToTabBar()
         }
 
         
