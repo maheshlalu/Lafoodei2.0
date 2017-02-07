@@ -23,7 +23,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.registerCells()
         self.selectedTabBar()
         self.setSegmentProperties()
-   
+      NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         
     }
     
@@ -50,6 +50,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNavigationProperties()
+     
     }
     
     func selectedTabBar(){
@@ -58,6 +59,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         tabBar?.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.black, size: CGSize(width: (tabBar?.frame.width)!/CGFloat((tabBar?.items!.count)!), height: (tabBar?.frame.height)!), lineWidth: 3.0)
     }
     
+    func updatedFeed(){
+        print("Feed Updated")
+        self.serviceAPICall(PageNumber: "1", PageSize: "10")
+    }
     
     //MARK: calling home data from service
     func serviceAPICall(PageNumber: NSString, PageSize: NSString)

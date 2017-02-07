@@ -21,9 +21,9 @@ class LFSignUpViewController: UIViewController {
     //MARK:TextFields validation
     @IBAction func CreateAccountBtnAction(_ sender: UIButton) {
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.navigateToTabBar()
-        return
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.navigateToTabBar()
+//        return
         
         if (self.userNameTextField.text?.characters.count) == 0
         {
@@ -48,7 +48,14 @@ class LFSignUpViewController: UIViewController {
         }
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        
+    }
     func sendSignUpDetails()
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")

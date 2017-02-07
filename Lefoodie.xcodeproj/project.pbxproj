@@ -91,6 +91,7 @@
 		187039B91E1D39A300D6668B /* LFFoodiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */; };
 		187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039BA1E1D39A700D6668B /* LFMapInstance.swift */; };
 		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
+		189EB0EF1E49AF76006D78BB /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189EB0EE1E49AF76006D78BB /* Restaurants.swift */; };
 		18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */; };
 		18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */; };
 		18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */; };
@@ -221,6 +222,7 @@
 		187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodiesTableViewCell.swift; sourceTree = "<group>"; };
 		187039BA1E1D39A700D6668B /* LFMapInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFMapInstance.swift; sourceTree = "<group>"; };
 		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
+		189EB0EE1E49AF76006D78BB /* Restaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 		18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFChooseLocationTableViewCell.swift; sourceTree = "<group>"; };
 		18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFChooseLocationTableViewCell.xib; sourceTree = "<group>"; };
 		18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFShareFoodiePicViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				1896A5C61E153F32008530A4 /* Controllers */,
 				1896A5C51E153F2B008530A4 /* View */,
 				1896A5C41E153F26008530A4 /* Model */,
+				189EB0ED1E49AF3B006D78BB /* DataModel */,
 				18F179541E1CDE6D001EDF45 /* Font */,
 				18160CDF1E14EB0F00C2E5AE /* AppDelegate.swift */,
 				18160CE11E14EB0F00C2E5AE /* ViewController.swift */,
@@ -540,6 +543,14 @@
 				890CA7861E3765D3002A4CE8 /* Lefoodie-Bridging-Header.h */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		189EB0ED1E49AF3B006D78BB /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				189EB0EE1E49AF76006D78BB /* Restaurants.swift */,
+			);
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 		18F1793E1E1CC2DB001EDF45 /* PostShareView */ = {
@@ -929,6 +940,7 @@
 				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
 				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
+				189EB0EF1E49AF76006D78BB /* Restaurants.swift in Sources */,
 				12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
 				185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */,

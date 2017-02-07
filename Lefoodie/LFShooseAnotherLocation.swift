@@ -8,11 +8,16 @@
 
 import UIKit
 
-class LFShooseAnotherLocation: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class LFShooseAnotherLocation: UIViewController {
     
+    var resturantsList = [Restaurants]()
     typealias typeCompletionHandler = () -> ()
     var completion : typeCompletionHandler = {}
 
+    typealias restaurantCompletionBlock = (_ restaurant:Restaurants) -> Void
+
+    typealias selectStoreCompletionHandler = (_ restaurant:Restaurants) -> ()
+    var selectCompletion : selectStoreCompletionHandler = {_ in }
     override func viewDidLoad() {
       
         super.viewDidLoad()
@@ -24,30 +29,7 @@ class LFShooseAnotherLocation: UIViewController,UITableViewDelegate,UITableViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCell(withIdentifier: "CellLocation")
-        
-        Cell?.textLabel?.text = "Location Title"
-        Cell?.textLabel?.textColor = UIColor.gray
-       
-        Cell?.detailTextLabel?.text = "Descrption for laocation"
-         Cell?.detailTextLabel?.textColor = UIColor.lightGray
-        
-        return Cell!
-        
-        
-       
-    }
-  
-    //MARK : Top navigation actions
+        //MARK : Top navigation actions
     
     @IBAction func Btn_CancelBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -90,4 +72,43 @@ class LFShooseAnotherLocation: UIViewController,UITableViewDelegate,UITableViewD
     }
     
 
+}
+
+extension LFShooseAnotherLocation: UITableViewDelegate,UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.resturantsList.count
+    }
+    
+ 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "CellLocation")
+        
+        let resturantData : Restaurants = self.resturantsList[indexPath.row]
+        Cell?.textLabel?.text = resturantData.restaurantName
+        Cell?.textLabel?.textColor = UIColor.gray
+       // Cell?.detailTextLabel?.text = "Descrption for laocation"
+        Cell?.detailTextLabel?.textColor = UIColor.lightGray
+        return Cell!
+     
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let resturantData : Restaurants = self.resturantsList[indexPath.row]
+        self.selectCompletion(resturantData)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+
+}
+
+
+extension LFShooseAnotherLocation{
+    
+    func getTheAllRestaurants(){
+        LFDataManager.sharedInstance.getTheAllRestarantsFromServer { (resultArray) in
+            self.resturantsList = resultArray;
+        }
+    }
 }
