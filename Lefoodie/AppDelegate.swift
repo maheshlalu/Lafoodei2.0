@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userID_SignUP = userDetais.userId! as String as NSString
         }
         print("user id \(userID_SignUP)")
-        if CXAppConfig.sharedInstance.getUserID().isEmpty || userID_SignUP.isEqual(to: ""){
+        if CXAppConfig.sharedInstance.getUserID().isEmpty && userID_SignUP.isEqual(to: ""){
             print("No user id")
         }else{
             navigateToTabBar()

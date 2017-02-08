@@ -124,7 +124,8 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
         flashConfiguration()
         
         self.startCamera()
-        
+        self.flipButton.bringSubview(toFront: self.previewViewContainer)
+        self.flashButton.bringSubview(toFront: self.previewViewContainer)
         NotificationCenter.default.addObserver(self, selector: #selector(CXCameraView.willEnterForegroundNotification(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
