@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,7 +31,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-eV-VBa" userLabel="Library View">
-                    <rect key="frame" x="0.0" y="51" width="375" height="568"/>
+                    <rect key="frame" x="0.0" y="47" width="375" height="581"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4M-Au-Xwb" userLabel="Menu View">
@@ -104,7 +104,7 @@
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
                             <inset key="imageEdgeInsets" minX="2" minY="3" maxX="2" maxY="2"/>
                             <state key="normal" title="CAMERA"/>
-                            <state key="selected" image="97000A38-7DAE-4316-B2A8-CB16A9CD3594"/>
+                            <state key="selected" image="9245DF36-6270-4196-A7F8-BD988E1B6731"/>
                             <connections>
                                 <action selector="photoButtonPressed:" destination="-1" eventType="touchUpInside" id="DX6-c2-yZ9"/>
                             </connections>
@@ -120,7 +120,7 @@
                 <constraint firstItem="C4M-Au-Xwb" firstAttribute="leading" secondItem="vas-k2-IDH" secondAttribute="leading" id="0IM-Ul-IUa"/>
                 <constraint firstAttribute="trailing" secondItem="F1g-eV-VBa" secondAttribute="trailing" id="6ah-n6-5NO"/>
                 <constraint firstItem="C4M-Au-Xwb" firstAttribute="top" secondItem="vas-k2-IDH" secondAttribute="top" id="Acr-qd-YA8"/>
-                <constraint firstItem="F1g-eV-VBa" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="1" id="Cps-m8-5hD"/>
+                <constraint firstItem="F1g-eV-VBa" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="-3" id="Cps-m8-5hD"/>
                 <constraint firstItem="F1g-eV-VBa" firstAttribute="leading" secondItem="vas-k2-IDH" secondAttribute="leading" id="Gic-Rf-yIc"/>
                 <constraint firstItem="glk-8T-Z8d" firstAttribute="top" secondItem="uiC-fs-5el" secondAttribute="bottom" constant="8" id="LQD-GU-0wy"/>
                 <constraint firstAttribute="trailing" secondItem="uiC-fs-5el" secondAttribute="trailing" id="SZt-tv-WeQ"/>
@@ -130,13 +130,13 @@
                 <constraint firstAttribute="trailing" secondItem="glk-8T-Z8d" secondAttribute="trailing" id="dGe-79-Pri"/>
                 <constraint firstItem="uiC-fs-5el" firstAttribute="top" secondItem="C4M-Au-Xwb" secondAttribute="bottom" constant="-3" id="pOm-ad-GcM"/>
                 <constraint firstAttribute="trailing" secondItem="C4M-Au-Xwb" secondAttribute="trailing" id="yMY-cQ-FXo"/>
-                <constraint firstItem="glk-8T-Z8d" firstAttribute="top" secondItem="F1g-eV-VBa" secondAttribute="bottom" constant="8" id="yVt-eR-pQn"/>
+                <constraint firstItem="glk-8T-Z8d" firstAttribute="top" secondItem="F1g-eV-VBa" secondAttribute="bottom" constant="-1" id="yVt-eR-pQn"/>
             </constraints>
             <point key="canvasLocation" x="-6546.5" y="-587.5"/>
         </view>
     </objects>
     <resources>
-        <image name="97000A38-7DAE-4316-B2A8-CB16A9CD3594" width="36" height="36">
+        <image name="9245DF36-6270-4196-A7F8-BD988E1B6731" width="36" height="36">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

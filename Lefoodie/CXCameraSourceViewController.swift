@@ -219,6 +219,26 @@ class CXCameraSourceViewController: UIViewController {
     
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        self.doneImage()
+    }
+    
+}
+
+extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegate {
+    public func getCropHeightRatio() -> CGFloat {
+        return cropHeightRatio
+    }
+    
+    // MARK: FSCameraViewDelegate
+    func cameraShotFinished(_ image: UIImage) {
+        
+        delegate?.CXImageSelected(image, source: mode)
+        self.dismiss(animated: true, completion: {
+            self.doneImage()
+        })
+    }
+    
+    func doneImage(){
         let view = albumView.imageCropView
         
         if CXCropImage {
@@ -251,7 +271,7 @@ class CXCameraSourceViewController: UIViewController {
                                                         
                                                         DispatchQueue.main.async(execute: {
                                                             self.delegate?.CXImageSelected(result!, source: self.mode)
-                                                          
+                                                            
                                                         })
                 }
             })
@@ -265,22 +285,6 @@ class CXCameraSourceViewController: UIViewController {
         }
     }
     
-}
-
-extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegate {
-    public func getCropHeightRatio() -> CGFloat {
-        return cropHeightRatio
-    }
-    
-    // MARK: FSCameraViewDelegate
-    func cameraShotFinished(_ image: UIImage) {
-        
-        delegate?.CXImageSelected(image, source: mode)
-        self.dismiss(animated: true, completion: {
-            
-            self.delegate?.CXDismissedWithImage(image, source: self.mode)
-        })
-    }
     
     public func albumViewCameraRollAuthorized() {
         // in the case that we're just coming back from granting photo gallery permissions

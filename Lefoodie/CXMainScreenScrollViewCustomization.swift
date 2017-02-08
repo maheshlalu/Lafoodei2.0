@@ -68,13 +68,16 @@ final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDeleg
             self.contentSize = CGSize(width: imageView.frame.width + 1, height: imageView.frame.height + 1)
             
             imageView.image = image
-            let frame1 = CGRect(x: 8, y: 165, width: 30, height: 30)
+            let frame1 = CGRect(x: 8, y: 200, width: 30, height: 30)
             btnRotations.frame = frame1
             let imgve = UIImage(named: "RotateImage")
             btnRotations.setBackgroundImage(imgve, for: UIControlState.normal)
             imageView.addSubview(btnRotations)
             btnRotations.addTarget(self, action:#selector(pressButton(button:)), for: .touchUpInside)
             
+            imageView.isUserInteractionEnabled = true
+            btnRotations.isUserInteractionEnabled = true
+            btnRotations.isHidden = false
             
             self.zoomScale = 1.0
             
@@ -82,8 +85,16 @@ final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDeleg
         
     }
     func pressButton(button:UIButton){
-    
-    print("imaggge")
+        print("imaggge")
+
+        if btnRotations.isSelected {
+            self.zoomScale = 1.0
+            
+        }else{
+            self.zoomScale = 1.3
+            
+        }
+        btnRotations.isHidden = false
     
     
     }

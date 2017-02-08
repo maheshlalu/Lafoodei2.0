@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,8 +17,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHG-iN-XnR">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="358"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG5-Vl-lfd">
+                            <rect key="frame" x="362" y="320" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="dRj-fW-S73"/>
                                 <constraint firstAttribute="width" constant="30" id="wXs-2l-4U1"/>
@@ -27,6 +32,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pe0-2z-oYY">
+                            <rect key="frame" x="8" y="320" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="fY0-Qj-yJH"/>
                                 <constraint firstAttribute="height" constant="30" id="kM5-T7-D0e"/>
@@ -40,16 +46,18 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="8" id="BO0-YE-F1W"/>
-                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="eHG-iN-XnR" secondAttribute="leading" constant="8" id="LHP-WC-loj"/>
-                        <constraint firstAttribute="bottom" secondItem="Pe0-2z-oYY" secondAttribute="bottom" constant="11" id="a1V-ZH-UVI"/>
+                        <constraint firstItem="Pe0-2z-oYY" firstAttribute="leading" secondItem="eHG-iN-XnR" secondAttribute="leading" constant="8" id="65f-53-daC"/>
+                        <constraint firstAttribute="bottom" secondItem="IG5-Vl-lfd" secondAttribute="bottom" constant="8" id="808-hZ-LPp"/>
+                        <constraint firstAttribute="trailing" secondItem="IG5-Vl-lfd" secondAttribute="trailing" constant="8" id="K5S-Bu-Voq"/>
                         <constraint firstAttribute="width" secondItem="eHG-iN-XnR" secondAttribute="height" multiplier="3:4" priority="250" constant="131.5" id="c7p-Vi-MbH"/>
-                        <constraint firstAttribute="bottom" secondItem="IG5-Vl-lfd" secondAttribute="bottom" constant="11" id="sPJ-mk-eP5"/>
+                        <constraint firstAttribute="bottom" secondItem="Pe0-2z-oYY" secondAttribute="bottom" constant="8" id="mZ3-q3-YRv"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzd-Ex-ctR">
+                    <rect key="frame" x="0.0" y="358" width="400" height="242"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsV-ce-j1s">
+                            <rect key="frame" x="165" y="77" width="70" height="70"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="Etb-93-1mS"/>
@@ -89,7 +97,7 @@
                 <outlet property="previewViewContainer" destination="eHG-iN-XnR" id="Trl-D0-04S"/>
                 <outlet property="shotButton" destination="gsV-ce-j1s" id="dsO-Ma-jbJ"/>
             </connections>
-            <point key="canvasLocation" x="-633" y="-585"/>
+            <point key="canvasLocation" x="-111" y="-563"/>
         </view>
     </objects>
     <resources>

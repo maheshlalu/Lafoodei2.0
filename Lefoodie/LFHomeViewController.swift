@@ -69,7 +69,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         
-        let Url_base = "http://35.160.251.153:8081/Services/getMasters?type=allProducts&pageNumber" + (PageNumber as String) + "&pageSize=" + (PageSize as String)
+        let Url_base = "http://35.160.251.153:8081/MobileAPIs/getUserPosts?email=\(CXAppConfig.sharedInstance.getEmailID())"
         let urlStr = NSString.init(string: Url_base)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in

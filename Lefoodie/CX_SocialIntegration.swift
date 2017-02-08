@@ -202,6 +202,7 @@ class CX_SocialIntegration: NSObject {
                 enProduct?.lastName = userData.value(forKey:"lastName") as? String
                 enProduct?.userPic =  userData.object(forKey: "userImagePath") as? String
                 enProduct?.macId = userData.value(forKey:"macId") as? String
+                CXAppConfig.sharedInstance.saveUserMailId(emailID: (enProduct?.emailId)!)
                 enProduct?.json = CXAppConfig.sharedInstance.convertDictionayToString(dictionary: userData) as String
                 enProduct?.macIdJobId = CXAppConfig.resultString(input: userData.value(forKey:"macIdJobId")! as AnyObject)
                 CXAppConfig.sharedInstance.saveUserID(userID: (enProduct?.userId)!)
