@@ -37,6 +37,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(strin)
         }
         
+        //MARK: Check UserID
+        
+       // print(" user id\(CXAppConfig.sharedInstance.getUserID())")
+        
+        if CXAppConfig.sharedInstance.getUserID().isEmpty{
+        print("No user id")
+        
+        }else{
+        
+        navigateToTabBar()
+        }
+        // CXAppConfig.sharedInstance.getUserID()
         
         return true
     }

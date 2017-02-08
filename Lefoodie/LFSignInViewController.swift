@@ -17,6 +17,8 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tfEmailtextfield.delegate = self
+        tfPasswordtextfield.delegate = self
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
@@ -82,12 +84,29 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
         print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
-           // print("Get Data is \(responceDic)")
+            print("Get Data is \(responceDic)")
+            let Status = responceDic.value(forKey: "status") as! String
+            if (Status == "-1"){
+            self.showAlert(message: "Invalid Username or Password")
+                CXDataService.sharedInstance.hideLoader()
+            
+            }else {
+               let statusSucce = responceDic.value(forKey: "status")
+                CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
+                print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
+                if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
+                    CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
+                                CXDataService.sharedInstance.hideLoader()
+                    
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.navigateToTabBar()
+                    
+                
+            }
+            }
+            
            
-            CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
-            CXDataService.sharedInstance.hideLoader()
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.navigateToTabBar()
+//
         }
 
         
@@ -140,5 +159,16 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         
+    }
+    
+    //MARK : textfield delegate Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        self.view.endEditing(true)
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

@@ -183,8 +183,9 @@ class LFSignUpViewController: UIViewController {
     //MARK: Keyboard Delegate
     func keyboardWillShow(sender: NSNotification) {
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            view.frame.origin.y = 0
             if view.frame.origin.y == 0{
-                self.view.frame.origin.y = -(keyboardSize.height-60)
+                self.view.frame.origin.y = -(keyboardSize.height-65)
             }
             else {
                 
@@ -195,7 +196,7 @@ class LFSignUpViewController: UIViewController {
     func keyboardWillHide(sender: NSNotification) {
         if ((sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
+                self.view.frame.origin.y = 65
             }
             else {
                 
