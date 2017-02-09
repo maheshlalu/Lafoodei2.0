@@ -16,6 +16,7 @@ import CoreData
 class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegate {
     var facebookResponseDict: NSDictionary! = nil
     var googleResponseDict: NSDictionary! = nil
+    
 
     
     @IBAction func emailSignupBtnAction(_ sender: UIButton) {
@@ -40,6 +41,9 @@ let signIn = GIDSignIn.sharedInstance()
     @IBOutlet weak var signUpEmailBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //tabBarController?.tabBar.isHidden = true
+        
         
 //        self.facebookLoginBtn.isHidden = true
         
@@ -200,9 +204,9 @@ let signIn = GIDSignIn.sharedInstance()
                     
                     CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred) in
                         CXDataService.sharedInstance.hideLoader()
-                        print(isRegistred)
-                        self.showAlert()
-                        
+                       // self.showAlert()
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.navigateToTabBar()
                     })
                     
                     

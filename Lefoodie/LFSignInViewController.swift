@@ -15,6 +15,12 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var tfPasswordtextfield: UITextField!
     @IBOutlet weak var stackView: UIStackView!
 
+    @IBAction func forgotPasswordBtnAction(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFForgotPasswordViewController")
+        self.navigationController?.pushViewController(storyboard, animated: true)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tfEmailtextfield.delegate = self

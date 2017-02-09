@@ -10,6 +10,17 @@
 import UIKit
 
 class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate {
+    
+    @IBOutlet weak var userPic: UIImageView!
+    
+    @IBOutlet weak var userFirstNameLbl: UILabel!
+    
+    @IBOutlet weak var userLastNameLbl: UILabel!
+    
+    @IBOutlet weak var followersCountLbl: UILabel!
+    
+    @IBOutlet weak var followingCountLbl: UILabel!
+    
     @IBAction func settingBtnAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
         self.navigationController?.pushViewController(storyboard, animated: true)
@@ -112,7 +123,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
                     
                     //}
                 }
-            }, completion: nil)
+                }, completion: nil)
             
             
             
