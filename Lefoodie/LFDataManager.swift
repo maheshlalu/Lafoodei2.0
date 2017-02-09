@@ -93,5 +93,53 @@ extension LFDataManager{
         }
     }
     
+    //    func serviceAPICall(PageNumber: NSString, PageSize: NSString)
+
+    func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,completion:@escaping ([LFFeedsData])->Void){
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject]) { (responceDic
+            ) in
+            print("Get Data is \(responceDic)")
+            
+            let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+            var feedsList = [LFFeedsData]()
+            for resData in orgs{
+                let restaurants = LFFeedsData(json: JSON(resData))
+                feedsList.append(restaurants)
+            }
+            
+           // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+            completion(feedsList)
+            CXDataService.sharedInstance.hideLoader()
+        }
+
+        
+    }
+    /*
+     
+     let Url_base = "http://35.160.251.153:8081/MobileAPIs/getUserPosts?email=\(CXAppConfig.sharedInstance.getEmailID())"
+     let urlStr = NSString.init(string: Url_base)
+     CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
+     ) in
+     print("Get Data is \(responceDic)")
+     
+     let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+     var restarurantsLists = [LFFeedsData]()
+     for resData in orgs{
+     let restaurants = LFFeedsData(json: JSON(resData))
+     restarurantsLists.append(restaurants)
+     }
+     
+     self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+     //            let Str_Email = responceDic.value(forKey: "orgs") as! NSArray
+     //            print("Email id is\(Str_Email)")
+     //            self.Arr_Main = Str_Email.mutableCopy() as! NSMutableArray
+     //            print("Total Arr \(self.Arr_Main)")
+     CXDataService.sharedInstance.hideLoader()
+     self.homeTableView.reloadData()
+     }
+     */
+    
+    
 }
 

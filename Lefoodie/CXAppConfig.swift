@@ -151,6 +151,13 @@ class CXAppConfig {
     func getgetPostedAnswers() -> String{
         return config!.value(forKey: "getPostedAnswers") as! String
     }
+    
+    //getHomeFeeds
+    func getHomeFeed() -> String{
+        return config!.value(forKey: "getHomeFeeds") as! String
+    }
+    
+    
   /*
     func getAppTheamColor() -> UIColor {
         
