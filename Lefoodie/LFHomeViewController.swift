@@ -8,13 +8,14 @@
 
 import UIKit
 import SDWebImage
-
+import SwiftyJSON
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
     @IBOutlet weak var homeTableView: UITableView!
     var Arr_Main = NSMutableArray()
     var jobsArray = NSArray()
+    var feedsArray = [LFFeedsData]()
     
     override func viewDidLoad() {
         
@@ -65,29 +66,20 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     //MARK: calling home data from service
-    func serviceAPICall(PageNumber: NSString, PageSize: NSString)
+    func serviceAPICall(PageNumber: String, PageSize: String)
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         
-        let Url_base = "http://35.160.251.153:8081/MobileAPIs/getUserPosts?email=\(CXAppConfig.sharedInstance.getEmailID())"
-        let urlStr = NSString.init(string: Url_base)
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
-            ) in
-            print("Get Data is \(responceDic)")
-            self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
-//            let Str_Email = responceDic.value(forKey: "orgs") as! NSArray
-//            print("Email id is\(Str_Email)")
-//            self.Arr_Main = Str_Email.mutableCopy() as! NSMutableArray
-//            print("Total Arr \(self.Arr_Main)")
-            CXDataService.sharedInstance.hideLoader()
+        LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: "", pageSize: "", userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
+            self.feedsArray = resultFeeds
             self.homeTableView.reloadData()
         }
-        
+ 
     }
     
     //MARK: TableView DataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.jobsArray.count
+        return self.feedsArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -100,47 +92,32 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-      
+        let feeds = self.feedsArray[indexPath.section]
+
         //tableView.sel
         //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
         if indexPath.row == 0 {
             
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
-         /* let cell1  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
-            
-            cell1.lbl_Title.text = (Dict_Detail.value(forKey: "category") as AnyObject) as? String*/
+            cell.lbl_Title.text = feeds.feedUserName
+            cell.cafeNameLbl.text = feeds.feedIDMallName
+            cell.postedTime.text = feeds.feedModificationDate
+            cell.userPicImg.setImageWith(NSURL(string: feeds.feedUserImage) as URL!, usingActivityIndicatorStyle: .white)
             cell.selectionStyle = .none
-            
             return cell
             
         }else if indexPath.row == 1 {
-           
-         let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
-            /*let cell_2  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
-            
-            let imgurl_Url = CXAppConfig.sharedInstance.getTheDataInDictionaryFromKey(sourceDic: Dict_Detail as! NSDictionary, sourceKey: "logo")
-            let url_Url:NSURL = NSURL(string: imgurl_Url as String)!
-            cell_2.ImgView_Logo.setImageWith(url_Url as URL!, usingActivityIndicatorStyle: .white)*/
-            let jobDict = self.jobsArray[indexPath.section] as! NSDictionary
-            if jobDict.value(forKey: "Image") != nil {
-                let img_Url_Str = jobDict.value(forKey: "Image")
-                let img_Url = NSURL(string: img_Url_Str as! String)
-                cell.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
-            }
-            
+            let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
+            let img_Url_Str = feeds.feedImage
+            let img_Url = NSURL(string: img_Url_Str )
+            cell.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
             cell.selectionStyle = .none
-            
             return cell
-            
         }else  {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
             cell.selectionStyle = .none
-            
             return cell
-            
         }
-        
-        
     }
     
     

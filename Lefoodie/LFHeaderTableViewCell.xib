@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,10 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZL-di-o1g" id="ugc-So-ych">
-                <frame key="frameInset" width="326" height="49"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
+                        <rect key="frame" x="5" y="5" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="aXT-ab-dhB"/>
                             <constraint firstAttribute="height" constant="40" id="gQH-Ek-Dku"/>
@@ -28,19 +32,22 @@
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-WQ-iKH">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="g9k-WQ-iKH">
+                        <rect key="frame" x="52" y="5" width="216" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jackblack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
+                                <rect key="frame" x="0.0" y="0.0" width="216" height="22"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
+                                <rect key="frame" x="0.0" y="23" width="216" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="11"/>
                                 <nil key="textColor"/>
@@ -48,13 +55,14 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="28" id="Fpd-rB-sE9"/>
+                            <constraint firstAttribute="height" constant="40" id="Fpd-rB-sE9"/>
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-aD-MbQ">
+                        <rect key="frame" x="258" y="10" width="63" height="19"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="34" id="lct-LV-2fr"/>
+                            <constraint firstAttribute="width" constant="63" id="lct-LV-2fr"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                         <nil key="textColor"/>
@@ -65,17 +73,20 @@
                     <constraint firstItem="g9k-WQ-iKH" firstAttribute="leading" secondItem="dtw-0V-Pbf" secondAttribute="trailing" constant="7" id="1Pr-gC-TMu"/>
                     <constraint firstAttribute="bottom" secondItem="vIc-aD-MbQ" secondAttribute="bottom" constant="20.5" id="8op-vm-RMU"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="leading" secondItem="ugc-So-ych" secondAttribute="leading" constant="5" id="CUc-Fi-P8K"/>
-                    <constraint firstItem="vIc-aD-MbQ" firstAttribute="leading" secondItem="g9k-WQ-iKH" secondAttribute="trailing" constant="19" id="HwQ-T9-XJy"/>
+                    <constraint firstItem="vIc-aD-MbQ" firstAttribute="leading" secondItem="g9k-WQ-iKH" secondAttribute="trailing" constant="-10" id="HwQ-T9-XJy"/>
                     <constraint firstItem="vIc-aD-MbQ" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="Ihu-Mh-ZhB"/>
                     <constraint firstAttribute="trailing" secondItem="vIc-aD-MbQ" secondAttribute="trailing" constant="5" id="SEV-fg-9gR"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="mb4-mm-7J6"/>
-                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="10" id="zKI-iG-VFR"/>
+                    <constraint firstItem="g9k-WQ-iKH" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="zKI-iG-VFR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="cafeNameLbl" destination="jea-WK-jDw" id="olr-HY-VOn"/>
                 <outlet property="lbl_Title" destination="siG-xa-jLV" id="hBY-0b-L6O"/>
+                <outlet property="postedTime" destination="vIc-aD-MbQ" id="wkO-6V-dJH"/>
+                <outlet property="userPicImg" destination="dtw-0V-Pbf" id="Xg9-k7-5kT"/>
             </connections>
-            <point key="canvasLocation" x="37" y="57"/>
+            <point key="canvasLocation" x="-222" y="-144"/>
         </tableViewCell>
     </objects>
     <resources>
