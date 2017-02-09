@@ -18,8 +18,8 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var previewViewContainer: UIView!
     @IBOutlet weak var shotButton: UIButton!
-    @IBOutlet weak var flashButton: UIButton!
-    @IBOutlet weak var flipButton: UIButton!
+    let flashButton: UIButton = UIButton()
+     let flipButton: UIButton = UIButton()
     @IBOutlet weak var fullAspectRatioConstraint: NSLayoutConstraint!
     var croppedAspectRatioConstraint: NSLayoutConstraint?
     
@@ -42,7 +42,6 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
     func initialize() {
         
         if session != nil {
-            
             return
         }
         
@@ -55,9 +54,17 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
         let flipImage = CXFlipImage != nil ? CXFlipImage : UIImage(named: "ic_loop", in: bundle, compatibleWith: nil)
         let shotImage = CXShotImage != nil ? CXShotImage : UIImage(named: "ic_radio_button_checked", in: bundle, compatibleWith: nil)
         
+        flashButton.frame = CGRect(x:self.previewViewContainer.frame.size.width - 45 , y: self.previewViewContainer.frame.size.height - 50, width: 30, height: 30)
+        flashButton.addTarget(self, action: #selector(flashButtonPressed(sender:)), for: .touchUpInside)
+        self.addSubview(flashButton)
+        
+        flipButton.frame = CGRect(x: 8, y: self.previewViewContainer.frame.size.height - 50, width: 30, height: 30)
+        flipButton.addTarget(self, action: #selector(flipButtonPressed(sender:)), for: .touchUpInside)
+        self.addSubview(flipButton)
+        
         if(CXTintIcons) {
-            flashButton.tintColor = CXBaseTintColor
-            flipButton.tintColor  = CXBaseTintColor
+            
+            flipButton.tintColor  = UIColor.white
             shotButton.tintColor  = CXBaseTintColor
             
             flashButton.setImage(flashOffImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
@@ -243,7 +250,7 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
         })
     }
     
-    @IBAction func flipButtonPressed(_ sender: UIButton) {
+     func flipButtonPressed(sender: UIButton) {
         
         if !cameraIsAvailable() {
             
@@ -287,7 +294,7 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
         session?.startRunning()
     }
     
-    @IBAction func flashButtonPressed(_ sender: UIButton) {
+    func flashButtonPressed(sender: UIButton) {
         
         if !cameraIsAvailable() {
             

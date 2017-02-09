@@ -38,11 +38,15 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
         self.getTheDefaultRestarent()
     }
 
- 
+    override func viewWillAppear(_ animated: Bool) {
+        self.sharePhotoTableView.reloadData()
+    }
     
     func chooseLocation(){
         let storyboard = UIStoryboard(name: "PhotoShare", bundle: nil).instantiateViewController(withIdentifier: "LFShooseAnotherLocation")as! LFShooseAnotherLocation
+        storyboard.resturantsList = self.resturantsList
         self.navigationController?.pushViewController(storyboard, animated: true)
+
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -111,6 +115,7 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         }else if indexPath.section == 1{
             let cellChooseLocation = tableView.dequeueReusableCell(withIdentifier: "LFChooseLocationTableViewCell", for: indexPath)as? LFChooseLocationTableViewCell
             if self.resturantsList.count != 0 {
+                print(self.resturantsList[0])
                 let restarurnat : Restaurants = self.resturantsList[0]
                 cellChooseLocation?.locationLbl.text = restarurnat.restaurantName
             }
@@ -166,7 +171,6 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         
         switch indexPath.row {
         case 1:
-           
             let storyBoard = UIStoryboard(name: "PhotoShare", bundle: Bundle.main)
             let chooseLocation : LFShooseAnotherLocation = (storyBoard.instantiateViewController(withIdentifier: "LFShooseAnotherLocation") as? LFShooseAnotherLocation)!
             chooseLocation.resturantsList = self.resturantsList
