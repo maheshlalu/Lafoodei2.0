@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_flash_on_white_48pt.png",
+      "filename" : "^8B7F2F42F985F0F3ECBB67D610A9CF8E5937AC9FA06282B42F^pimgpsh_fullsize_distr.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_flash_on_white_48pt_2x.png",
+      "filename" : "^8B7F2F42F985F0F3ECBB67D610A9CF8E5937AC9FA06282B42F^pimgpsh_fullsize_distr-3.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_flash_on_white_48pt_3x.png",
+      "filename" : "^8B7F2F42F985F0F3ECBB67D610A9CF8E5937AC9FA06282B42F^pimgpsh_fullsize_distr-1.png",
       "scale" : "3x"
     }
   ],

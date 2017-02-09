@@ -23,7 +23,7 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageCropView: CXMainScreenScrollViewCustomization!
     @IBOutlet weak var imageCropViewContainer: UIView!
-    
+    let btnRotations = UIButton()
     @IBOutlet weak var collectionViewConstraintHeight: NSLayoutConstraint!
     @IBOutlet weak var imageCropViewConstraintTop: NSLayoutConstraint!
     
@@ -57,6 +57,13 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func initialize() {
+        
+        let frame1 = CGRect(x: 8, y:150 , width: 35, height: 35)
+        btnRotations.frame = frame1
+        let imgve = UIImage(named: "RotateImage")
+        btnRotations.setBackgroundImage(imgve, for: UIControlState.normal)
+        btnRotations.addTarget(self, action:#selector(pressButton(button:)), for: .touchUpInside)
+        self.addSubview(btnRotations)
         
         if images != nil {
             
@@ -116,6 +123,18 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             
             PHPhotoLibrary.shared().unregisterChangeObserver(self)
         }
+    }
+    
+    
+    func pressButton(button:UIButton){
+        if button.isSelected {
+            imageCropView.zoomScale = 0.8
+            button.isSelected = false
+        }else{
+            imageCropView.zoomScale = 1.5
+            button.isSelected = true
+        }
+        button.isHidden = false
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
