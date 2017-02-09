@@ -71,6 +71,8 @@
 	<string>MobileAPIs/getPostedQuestions?</string>
 	<key>getPostedAnswers</key>
 	<string>MobileAPIs/getPostedAnswers?</string>
+	<key>getHomeFeeds</key>
+	<string>MobileAPIs/getUserPosts?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

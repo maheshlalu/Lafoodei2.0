@@ -11,6 +11,9 @@ import UIKit
 class LFHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lbl_Title: UILabel!
+    @IBOutlet weak var userPicImg: CXImageView!
+    @IBOutlet weak var postedTime: UILabel!
+    @IBOutlet weak var cafeNameLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

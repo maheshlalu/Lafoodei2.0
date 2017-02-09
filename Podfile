@@ -22,6 +22,7 @@ pod 'SDWebImage', '~> 3.8'
 pod 'GSKStretchyHeaderView'
 pod 'Masonry'
 pod 'SwiftyJSON'
+pod "MXParallaxHeader"
 
   target 'LefoodieTests' do
     inherit! :search_paths
