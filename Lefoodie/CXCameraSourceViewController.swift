@@ -231,8 +231,11 @@ extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegat
     
     // MARK: FSCameraViewDelegate
     func cameraShotFinished(_ image: UIImage) {
-        
-          self.doneImage()
+        DispatchQueue.main.async(execute: {
+            self.delegate?.CXImageSelected(image, source: self.mode)
+            
+        })
+          //self.doneImage()
     }
     
     func doneImage(){

@@ -1159,8 +1159,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c758a1a4-e51e-4fbb-868d-425a78cf554f";
-				PROVISIONING_PROFILE_SPECIFIER = LeFoodie_Dist;
+				PROVISIONING_PROFILE = "be753d7c-e8b1-4732-a787-a168574a7a0a";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1186,8 +1186,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c758a1a4-e51e-4fbb-868d-425a78cf554f";
-				PROVISIONING_PROFILE_SPECIFIER = LeFoodie_Dist;
+				PROVISIONING_PROFILE = "be753d7c-e8b1-4732-a787-a168574a7a0a";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
