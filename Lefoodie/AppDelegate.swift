@@ -21,23 +21,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         self.setUpMagicalDB()
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("pathv\(urls[urls.count-1] as URL)")
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        //self.setUpMagicalDB()
+
         print( getDocumentsDirectory())
-        
         
         for strin in UIFont.familyNames {
             print(strin)
         }
-        
-        
         //MARK: Check UserID
+        checkUserId()
+        return true
+        
+    }
+    
+    func setUpMagicalDB() {
+        MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie")
+    }
+    
+    func checkUserId(){
+        
         var userID_SignUP = NSString()
         let user = UserProfile.mr_findAll() as NSArray
         if user.count > 0 {
@@ -50,15 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             navigateToTabBar()
         }
-        return true
-        
     }
-    func setUpMagicalDB() {
-        //MagicalRecord.setupCoreDataStackWithStoreNamed("Silly_Monks")
-        MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie")
-    }
-    
-    
     
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

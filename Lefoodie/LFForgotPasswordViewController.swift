@@ -25,11 +25,48 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func sendAction(_ sender: Any) {//"Please enter valid email address."
+        self.view.endEditing(true)
+        print("Send button")
+        if self.isValidEmail(self.emailTextField.text!) {
+            LFDataManager.sharedInstance.forgotPassword(self.emailTextField.text!, completion: { (responseDict) in
+                print(responseDict)
+                let message = responseDict.value(forKey: "result") as? String
+                let status: Int = Int(responseDict.value(forKey: "status") as! String)!
+                if status == 1{
+                    self.showAlert(message!, status: 1)
+                }
+            })
+        } else {
+            self.showAlert("Please enter valid email address", status: 0)
+        }
+    }
     
     func handleTap(sender: UITapGestureRecognizer? = nil) {
         // handling code
         self.view.endEditing(true)
     }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        //print("validate email: \(email)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailTest.evaluate(with: email) {
+            return true
+        }
+        return false
+    }
+    
+    
+    func showAlert(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "Alert!!!", message:message , preferredStyle: UIAlertControllerStyle.alert)
+        if status == 1{
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     //MARK: KeyboardWillShow And KeyboardWillHide Methods
     
@@ -55,7 +92,6 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
                 
             }
         }
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -66,22 +102,4 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import MagicalRecord
 
 class LFProfileSettingViewController: UIViewController {
     
     @IBAction func logoutBtnAction(_ sender: UIButton) {
+        // Remove all userdefault values
+        if let bundle = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundle)
+        }
         
-
+        //Truncate database
+        MagicalRecord.save({ (localContext) in
+            UserProfile.mr_truncateAll(in: localContext)
+            let appDelVar:AppDelegate = (UIApplication.shared.delegate as? AppDelegate)!
+            appDelVar.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+        })
     }
+    
     @IBAction func settingBtnAction(_ sender: UIButton) {
         
         //        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
@@ -32,5 +43,4 @@ class LFProfileSettingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
