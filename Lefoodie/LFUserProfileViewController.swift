@@ -77,7 +77,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     func scrollUp(){
         print(self.Scroller_ScrollerView.contentOffset)
         let offset : CGFloat = Scroller_ScrollerView.contentOffset.y
-        print(offset)
+        //print(offset)
         if offset >= 0 {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
                 self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0, y: 300)
@@ -90,7 +90,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     
     func scrollDown(){
         let offset : CGFloat = Scroller_ScrollerView.contentOffset.y
-        print(offset)
+      //  print(offset)
         if offset >= 290 {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
                 self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0, y: 0)
@@ -172,7 +172,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
             self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 870)
             
         }
-        print(">>>> scrollViewWillEndDragging ")
+        //print(">>>> scrollViewWillEndDragging ")
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {

@@ -18,7 +18,7 @@ import MagicalRecord
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var storyBoard : UIStoryboard!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.setUpMagicalDB()
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
+        self.storyBoard = self.window?.rootViewController?.storyboard
         print( getDocumentsDirectory())
         
         for strin in UIFont.familyNames {
@@ -157,5 +158,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+}
+
+extension AppDelegate{
+    
+    func logOutFromTheApp(){
+        
+        for view in (self.window?.subviews)!{
+//            let subView = view as?UIView
+            view.removeFromSuperview()
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")as? LoginViewController
+        self.window?.rootViewController = storyboard
+//        self.navigationController?.pushViewController(storyboard!, animated: true)
+    }
 }
 

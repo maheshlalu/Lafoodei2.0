@@ -150,8 +150,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         if indexPath.row == 0
         {
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as! LFRestaurentDetailsViewController
-            self.navigationController?.pushViewController(storyboard, animated: true)
+            //let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as! LFRestaurentDetailsViewController
+          //  self.navigationController?.pushViewController(storyboard, animated: true)
             
         }
         
