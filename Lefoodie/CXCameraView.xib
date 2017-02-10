@@ -17,17 +17,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-zc-Fyc">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="398"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="430"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="3:4" priority="750" constant="101.5" id="2Mw-bT-QGY"/>
+                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="3:4" priority="750" constant="77.5" id="2Mw-bT-QGY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QL-OK-lJG">
-                    <rect key="frame" x="0.0" y="398" width="400" height="202"/>
+                    <rect key="frame" x="0.0" y="428" width="400" height="172"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyE-pm-xxD">
-                            <rect key="frame" x="166" y="67" width="68" height="68"/>
+                            <rect key="frame" x="166" y="52" width="68" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="68" id="8xS-RI-cEa"/>
                                 <constraint firstAttribute="width" constant="68" id="U0F-1i-Wjw"/>
@@ -55,7 +55,7 @@
                 <constraint firstAttribute="bottom" secondItem="9QL-OK-lJG" secondAttribute="bottom" id="WvH-Dc-pqW"/>
                 <constraint firstItem="EuZ-zc-Fyc" firstAttribute="top" secondItem="cO0-wd-KYQ" secondAttribute="top" id="XlY-El-Dfe"/>
                 <constraint firstAttribute="trailing" secondItem="EuZ-zc-Fyc" secondAttribute="trailing" id="cel-Uu-VVM"/>
-                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" id="y3I-9C-Djn"/>
+                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" constant="-2" id="y3I-9C-Djn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
