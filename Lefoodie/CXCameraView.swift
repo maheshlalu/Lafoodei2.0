@@ -233,7 +233,7 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                     DispatchQueue.main.async(execute: { () -> Void in
                         if CXCropImage {
                             let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
-                            delegate.cameraShotFinished(resizedImage)
+                            delegate.cameraShotFinished(image)
                         } else {
                             delegate.cameraShotFinished(image)
                         }
