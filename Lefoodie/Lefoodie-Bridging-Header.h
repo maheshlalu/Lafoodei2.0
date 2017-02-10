@@ -3,4 +3,3 @@
 //
 
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
-#import "MXParallaxHeader.h"
