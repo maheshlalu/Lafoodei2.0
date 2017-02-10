@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZL-di-o1g" id="ugc-So-ych">
-                <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
@@ -40,14 +40,14 @@
                         <rect key="frame" x="52" y="5" width="216" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jackblack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
-                                <rect key="frame" x="0.0" y="0.0" width="216" height="22"/>
+                                <rect key="frame" x="0.0" y="0.0" width="216" height="22.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
-                                <rect key="frame" x="0.0" y="23" width="216" height="17"/>
+                                <rect key="frame" x="0.0" y="23.5" width="216" height="16.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="11"/>
                                 <nil key="textColor"/>

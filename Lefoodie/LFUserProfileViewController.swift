@@ -21,11 +21,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     
     @IBOutlet weak var followingCountLbl: UILabel!
     
-    @IBAction func settingBtnAction(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
-        self.navigationController?.pushViewController(storyboard, animated: true)
-    }
-    @IBOutlet weak var Scroller_ScrollerView: UIScrollView!
+   @IBOutlet weak var Scroller_ScrollerView: UIScrollView!
     @IBOutlet weak var View_DetailsView: UIView!
     @IBOutlet weak var uiView: UIView!
     var pageMenu : CAPSPageMenu?
@@ -59,166 +55,56 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
         // User tapped at the point above. Do something with that if you want.
     }
     
-    func didPan(sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: view)
-        let velocity = sender.velocity(in: view)
-        let translation = sender.translation(in: view)
-        
-        if sender.state == .began {
-            trayOriginalCenter = uiView.center
-            
-            //  print("Gesture began")
-        } else if sender.state == .changed {
-            
-            uiView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
-            print(CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y))
-            
-            print("Gesture is changing")
-        } else if sender.state == .ended {
-            UIView.transition(with: self.uiView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
-                
-                if velocity.y > 0 {
-                    
-                    
-                    // UIView.animate(withDuration: 0.3) {
-                    if UIScreen.main.bounds.size.width == 320
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 544.0)
-                    }else if UIScreen.main.bounds.size.width == 375
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 592.0)
-                    }else if UIScreen.main.bounds.size.width == 414
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y:  646.0)
-                        
-                    }
-                    
-                    
-                    print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
-                    
-                    print("moving down")
-                    // }
-                } else {
-                    // UIView.animate(withDuration: 0.3) {
-                    
-                    if UIScreen.main.bounds.size.width == 320
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 269.0)
-                    }else if UIScreen.main.bounds.size.width == 375
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 319.5)
-                    }else if UIScreen.main.bounds.size.width == 414
-                    {
-                        self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.33332824707)
-                        
-                    }
-                    
-                    
-                    // self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
-                    //self.uiView.center = self.trayUp
-                    
-                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
-                    
-                    print("moving up")
-                    
-                    //}
-                }
-                }, completion: nil)
-            
-            
-            
-            //print("Gesture ended")
-        }
-    }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     override func viewDidLoad() {
-        // self.Scroller_ScrollerView.contentSize = self.view.frame.size
-        //        self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
-        
-        // self.Scroller_ScrollerView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width+1000)
-        
-        //self.automaticallyAdjustsScrollViewInsets = false
-        /*
-         self.automaticallyAdjustsScrollViewInsets = false
-         if UIScreen.main.bounds.size.width == 320
-         {
-         // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-         trayDownOffset = 20
-         
-         // self.uiView.frame.size = CGSize(width: 320, height: 500)
-         self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-         }else if UIScreen.main.bounds.size.width == 375
-         {
-         trayDownOffset = 20
-         
-         // self.uiView.frame.size = CGSize(width: 320, height: 500)
-         self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-         
-         
-         }
-         
-         //        trayUp = uiView.center
-         //        trayDown = CGPoint(x: uiView.center.x ,y: uiView.center.y + trayDownOffset)
-         
-         
-         super.viewDidLoad()
-         
-         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
-         
-         // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
-         uiView.isUserInteractionEnabled = true
-         uiView.addGestureRecognizer(panGestureRecognizer)
-         
-         if UIScreen.main.bounds.size.width == 320
-         {
-         // self.uiView.frame = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-         
-         trayDownOffset = 40
-         // self.uiView.frame.size = CGSize(width: 320, height: 500)
-         self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-         }*/
-        
-        // tableView.contentInset = UIEdgeInsetsMake(250, 0, 0, 0)
-        
-        //        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        //        self.uiView.addGestureRecognizer(gestureRecognizer)
-        
-        
-        
-        
-        
-        
-        
-        //scrollView.contentSize = CGSizeMake(self.view.frame.width, self.view.frame.height+100)
-        
-        //        scrollView.contentSize = CGSize(width: self.uiView.frame.width, height: self.uiView.frame.height+100)
-        //        tabBarControllerRef = self.tabBarController as! CustomTabBarClass
-        //        tabBarControllerRef!.navigationControllerRef = self.navigationController as! CustomNavigationBarClass
-        //        tabBarControllerRef!.viewControllerRef = self
-        
-        
-        
-        
-        //        let tap = UITapGestureRecognizer(target: self, action: Selector(("handleTap:")))
-        
-        //        if UIScreen.main.bounds.size.width == 320
-        //        {
-        //            self.uiView.frame.size = CGSize(width: 320, height: 400)
-        //            //self.uiView.frame.origin = CGPoint(x: uiView.center.x, y:  uiView.center.y)
-        //
-        //        }
-        //
         self.handleTap()
-        
         self.tabViews()
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        
+          NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
+        
+           NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollDown), name:NSNotification.Name(rawValue: "ScrollDown"), object: nil)
+        //self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 1680)
+
     }
     
+    
+    func scrollUp(){
+        print(self.Scroller_ScrollerView.contentOffset)
+        let offset : CGFloat = Scroller_ScrollerView.contentOffset.y
+        print(offset)
+        if offset >= 0 {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0, y: 300)
+            }, completion: { finished in
+            })
+        }
+        
+        
+    }
+    
+    func scrollDown(){
+        let offset : CGFloat = Scroller_ScrollerView.contentOffset.y
+        print(offset)
+        if offset >= 290 {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0, y: 0)
+            }, completion: { finished in
+            })
+        }
+
+    }
+    
+    @IBAction func settingBtnAction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
+   
     // Do any additional setup after loading the view.
     
     
@@ -260,15 +146,13 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
         //self.Scroller_ScrollerView.contentOffset.x = 300
         return true
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView)
-    {
-        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
-        
-        //  print(">>>>scrollViewDidScroll")
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView){
         
     }
+    
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
         //print(">>>>scrollViewWillBeginDragging")
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -292,9 +176,46 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        self.Scroller_ScrollerView.contentOffset.y = 200
-        print(self.Scroller_ScrollerView.contentInset)
+        //self.Scroller_ScrollerView.contentOffset.y = 200
+        //print(self.Scroller_ScrollerView.contentInset)
         
     }
-}
+    
+    
+   /*func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        //let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        let actualPosition: CGPoint = scrollView.contentOffset
 
+        print(scrollView.contentOffset)
+        let offset : CGFloat = scrollView.contentOffset.y
+        print(offset)
+        print(actualPosition)
+        if (actualPosition.y > 0){
+            // Dragging down
+            if offset >= 0 {
+               // self.Scroller_ScrollerView.contentOffset = 0;
+
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                    scrollView.contentOffset = CGPoint(x: 0, y: 400)
+                }, completion: { finished in
+                })
+            }
+        }else{
+            // Dragging up
+            //scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            if offset >= 400 {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                    scrollView.contentOffset = CGPoint(x: 0, y: 0)
+                }, completion: { finished in
+                })
+            }
+
+            //self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+        }
+    }*/
+
+    
+  
+    
+
+}

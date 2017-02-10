@@ -69,7 +69,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func serviceAPICall(PageNumber: String, PageSize: String)
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        
         LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: "", pageSize: "", userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
             self.feedsArray = resultFeeds
             self.homeTableView.reloadData()
