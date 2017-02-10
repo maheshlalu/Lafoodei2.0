@@ -23,7 +23,7 @@ pod 'GSKStretchyHeaderView'
 pod 'Masonry'
 pod 'SwiftyJSON'
 pod "MXParallaxHeader"
-
+pod 'RealmSwift'
   target 'LefoodieTests' do
     inherit! :search_paths
     # Pods for testing
@@ -41,4 +41,6 @@ pod "MXParallaxHeader"
           end
       end
   end
+  
+  
 end
