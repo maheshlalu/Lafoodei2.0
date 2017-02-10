@@ -139,8 +139,9 @@ let signIn = GIDSignIn.sharedInstance()
                     CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred) in
                         CXDataService.sharedInstance.hideLoader()
                         
-                        self.showAlert()
-                        
+                      //  self.showAlert()
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.navigateToTabBar()
                     })
 
                 } catch {

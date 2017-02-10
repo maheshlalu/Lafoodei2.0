@@ -163,15 +163,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate{
     
     func logOutFromTheApp(){
-        
         for view in (self.window?.subviews)!{
-//            let subView = view as?UIView
             view.removeFromSuperview()
         }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")as? LoginViewController
-        self.window?.rootViewController = storyboard
-//        self.navigationController?.pushViewController(storyboard!, animated: true)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let  loginViewController: LoginViewController = (storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController)!
+        let lognNavCntl : UINavigationController = UINavigationController(rootViewController: loginViewController)
+        self.window?.rootViewController = lognNavCntl
     }
 }
 
