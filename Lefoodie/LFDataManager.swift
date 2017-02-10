@@ -115,6 +115,16 @@ extension LFDataManager{
 
         
     }
+    
+    //MARK : FORGOOT PASSWORD
+    
+    func  forgotPassword(_ email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject]) { (responseDict) in
+            completion(responseDict)
+            
+        }
+    }
     /*
      
      let Url_base = "http://35.160.251.153:8081/MobileAPIs/getUserPosts?email=\(CXAppConfig.sharedInstance.getEmailID())"
