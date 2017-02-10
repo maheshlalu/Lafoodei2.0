@@ -58,7 +58,9 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func initialize() {
         
-        let frame1 = CGRect(x: 8, y:150 , width: 35, height: 35)
+        //if UIScreen.main.bounds.size.width == 320
+        
+        let frame1 = CGRect(x: 8, y:UIScreen.main.bounds.size.height - imageCropViewContainer.frame.size.height - 60, width: 35, height: 35)
         btnRotations.frame = frame1
         let imgve = UIImage(named: "RotateImage")
         btnRotations.setBackgroundImage(imgve, for: UIControlState.normal)
