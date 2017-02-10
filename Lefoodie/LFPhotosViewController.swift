@@ -77,14 +77,14 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset: CGPoint = scrollView.contentOffset
-        if currentOffset.y > self.lastContentOffse.y {
+        if currentOffset.y >= 0 {
             print("UP")
-            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "scrollUp"), object: nil)
         }
         else {
             print("Down")
-            
-
+            //ScrollDown
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "ScrollDown"), object: nil)
         }
         self.lastContentOffse = currentOffset
     }
