@@ -10,8 +10,6 @@ import UIKit
 
 class LFFoodDetailViewController: UIViewController {
 
- 
-   
     @IBOutlet weak var directionBtn: UIButton!
     @IBOutlet weak var followBtn: UIButton!
     @IBOutlet weak var reservationBtn: UIButton!

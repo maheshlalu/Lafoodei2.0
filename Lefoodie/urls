@@ -23,3 +23,6 @@ http://35.160.251.153:8081/Services/getMasters?type=allProducts&pageNumber=1&pag
 
 getMallIds
 http://35.160.251.153:8081/services/getallmallshelper
+
+search Foodies
+http://35.160.251.153:8081/Services/getMasters?mallId=2&type=MacIdInfo&keyWord=

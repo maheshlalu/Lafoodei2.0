@@ -112,9 +112,25 @@ extension LFDataManager{
             completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
         }
-
-        
     }
+    
+
+    func getSearchFoodie(keyword:String,completion:@escaping ([SearchFoodies])->Void){
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "type":"MacIdInfo" as AnyObject,"keyWord":keyword as AnyObject]) { (responceDic
+            ) in
+            print("Search Data is \(responceDic)")
+            let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+            var feedsList = [SearchFoodies]()
+            for resData in orgs{
+                let restaurants = SearchFoodies(json: JSON(resData))
+                feedsList.append(restaurants)
+            }
+            completion(feedsList)
+            CXDataService.sharedInstance.hideLoader()
+        }
+    }
+    
     
     //MARK : FORGOOT PASSWORD
     

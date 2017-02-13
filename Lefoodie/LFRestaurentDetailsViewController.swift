@@ -11,14 +11,11 @@ import UIKit
 class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate{
     @IBOutlet weak var restaurantView: UIView!
     @IBOutlet weak var restaurantScrollView: UIScrollView!
-    @IBAction func settingBtnAction(_ sender: UIButton) {
-        
-//        let storyboard = UIStoryboard(name: "Main", bundlvarnil).instantiateViewController(withIdentifier: "LFItemDetailViewController")as? LFItemDetailViewController
-//        self.navigationController?.pushViewController(storyboard!, animated: true)
-        
-    }
-
     @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var foodieName: UILabel!
+    @IBOutlet weak var foodieFollowLbl: UILabel!
+    @IBOutlet weak var foodieImgView: UIImageView!
+    var arr : SearchFoodies!
     var pageMenu : CAPSPageMenu?
     var tap: UITapGestureRecognizer?
     var trayOriginalCenter: CGPoint!
@@ -34,22 +31,35 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         
         tabViews()
-      
-//        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
-//        //self.automaticallyAdjustsScrollViewInsets = false
-//        trayDownOffset = 10
-//        trayUp = animationView.center
-//        trayDown = CGPoint(x: animationView.center.x-340 ,y: animationView.center.y-50)
-//        
-        // Configure the screen edges you want to detect.
-      
-//        animationView.isUserInteractionEnabled = true
-//        animationView.addGestureRecognizer(panGestureRecognizer)
-        
-        // Do any additional setup after loading the view.
+        foodieDetails()
+
     }
     
-   
+    func foodieDetails(){
+        
+        self.foodieName.text = arr.foodieName
+        
+        let imgUrl = URL(string: arr.foodieImage) as URL!
+        if imgUrl != nil{
+           foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
+            
+        }else{
+            foodieImgView.image = UIImage(named: "placeHolder")
+        }
+        
+        let following = arr.foodieFollowingCount
+        let follower = arr.foodieFollowerCount
+        foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
+        
+    }
+    
+    @IBAction func settingBtnAction(_ sender: UIButton) {
+        
+        //        let storyboard = UIStoryboard(name: "Main", bundlvarnil).instantiateViewController(withIdentifier: "LFItemDetailViewController")as? LFItemDetailViewController
+        //        self.navigationController?.pushViewController(storyboard!, animated: true)
+        
+    }
+    
     func didTap(sender: UITapGestureRecognizer) {
         let location = sender.location(in: view)
         // User tapped at the point above. Do something with that if you want.
@@ -64,8 +74,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
 
-        
-        
         if sender.state == .began {
             trayOriginalCenter = animationView.center
             
@@ -138,7 +146,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         var controllerArray : [UIViewController] = []
         
         let controller1:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
-        controller1.parantNavigationController = self.navigationController!
         controller1.title = "FOODIE PHOTOS"
         controllerArray.append(controller1)
         
@@ -203,9 +210,5 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.restaurantScrollView.contentOffset.y = 20
         print(self.restaurantScrollView.contentInset)
-        
-        
     }
-
-
 }
