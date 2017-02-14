@@ -23,15 +23,30 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     
+    @IBOutlet weak var settingsBtn: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
          self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        let menuItem = UIBarButtonItem(image: UIImage(named: "Back-48"), style: .plain, target: self, action: #selector(LFRestaurentDetailsViewController.backBtnClicked))
+        self.navigationItem.leftBarButtonItem = menuItem
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         tabViews()
         foodieDetails()
+        
+        settingsBtn.isHidden = true
+        editBtn.isHidden = true
+        shareBtn.isHidden = true
 
+    }
+    
+    func backBtnClicked()
+    {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func foodieDetails(){
@@ -58,6 +73,12 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         //        self.navigationController?.pushViewController(storyboard!, animated: true)
         
     }
+    
+    @IBAction func followBtnAction(_ sender: AnyObject) {
+        
+        
+    }
+    
     
     func didTap(sender: UITapGestureRecognizer) {
         let location = sender.location(in: view)
