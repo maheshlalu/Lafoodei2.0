@@ -29,7 +29,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-        
         tabViews()
         foodieDetails()
 
