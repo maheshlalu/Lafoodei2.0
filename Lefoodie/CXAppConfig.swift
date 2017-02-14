@@ -158,6 +158,20 @@ class CXAppConfig {
     }
     
     
+    //userFollow
+    
+    func getUserFollowApi()-> String{
+        return config!.value(forKey: "userFollow") as! String
+
+    }
+    
+    
+    //userUnFollow
+    
+    func getUserUnFollowApi()-> String{
+        return config!.value(forKey: "userUnFollow") as! String
+        
+    }
   /*
     func getAppTheamColor() -> UIColor {
         

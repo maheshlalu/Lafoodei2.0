@@ -75,7 +75,7 @@ extension LFDataManager{
 
 //MARK: Get Restaurants
 extension LFDataManager{
-    
+    //MARK: Get All Restaruants from Server
     func getTheAllRestarantsFromServer(completion:@escaping (_ responseDict:[Restaurants]) -> Void){
         //http://35.160.251.153:8081/services/getallmallshelper
         
@@ -95,6 +95,7 @@ extension LFDataManager{
     
     //    func serviceAPICall(PageNumber: NSString, PageSize: NSString)
 
+    //MARK: Get all home feeds from server
     func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,completion:@escaping ([LFFeedsData])->Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject]) { (responceDic
@@ -115,6 +116,8 @@ extension LFDataManager{
     }
     
 
+    //MARK: Get All Foodies from Server
+
     func getSearchFoodie(keyword:String,completion:@escaping ([SearchFoodies])->Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "type":"MacIdInfo" as AnyObject,"keyWord":keyword as AnyObject]) { (responceDic
@@ -133,7 +136,6 @@ extension LFDataManager{
     
     
     //MARK : FORGOOT PASSWORD
-    
     func  forgotPassword(_ email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getForgotPassordUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject]) { (responseDict) in
@@ -141,31 +143,45 @@ extension LFDataManager{
             
         }
     }
-    /*
-     
-     let Url_base = "http://35.160.251.153:8081/MobileAPIs/getUserPosts?email=\(CXAppConfig.sharedInstance.getEmailID())"
-     let urlStr = NSString.init(string: Url_base)
-     CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
-     ) in
-     print("Get Data is \(responceDic)")
-     
-     let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
-     var restarurantsLists = [LFFeedsData]()
-     for resData in orgs{
-     let restaurants = LFFeedsData(json: JSON(resData))
-     restarurantsLists.append(restaurants)
-     }
-     
-     self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
-     //            let Str_Email = responceDic.value(forKey: "orgs") as! NSArray
-     //            print("Email id is\(Str_Email)")
-     //            self.Arr_Main = Str_Email.mutableCopy() as! NSMutableArray
-     //            print("Total Arr \(self.Arr_Main)")
-     CXDataService.sharedInstance.hideLoader()
-     self.homeTableView.reloadData()
-     }
-     */
     
     
+    //Follow
+    
+    func followTheUser(otherUserItemCode:String){
+   // http://35.160.251.153:8081/Services/createORGetJobInstance?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=true
+        
+        
+        let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":otherUserItemCode,"trackOnlyOnce":"true"];
+        print(userFollowDic)
+
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (responce) in
+            
+            print(responce)
+        }
+        
+        
+    }
+    
+    
+    func unFollowTheUser(otherUserItemCode:String){
+        //http://35.160.251.153:8081/Services/deleteJobInstanceOrActivity?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=false
+        
+        let userUnFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":otherUserItemCode,"trackOnlyOnce":"true"];
+        print(userUnFollowDic)
+
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserUnFollowApi(), parameters: userUnFollowDic as [String : AnyObject]?) { (responce) in
+            print(responce)
+
+        }
+        
+    }
+    
+    //Get Followers
+    //http://localhost:8081/MobileAPIs/getFollowers?email=sriram.badeti@gmail.com&macId=9711fdc1-f0dc-49ae-99dc-524224e541d1
+    
+    //Get Followings
+    //http://localhost:8081/MobileAPIs/getFollowing?email=sriram.badeti@gmail.com
 }
+
+
 

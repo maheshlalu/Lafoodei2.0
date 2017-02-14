@@ -73,6 +73,10 @@
 	<string>MobileAPIs/getPostedAnswers?</string>
 	<key>getHomeFeeds</key>
 	<string>MobileAPIs/getUserPosts?</string>
+	<key>userFollow</key>
+	<string>Services/createORGetJobInstance?</string>
+	<key>userUnFollow</key>
+	<string>Services/deleteJobInstanceOrActivity?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>
