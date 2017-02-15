@@ -77,6 +77,10 @@
 	<string>Services/createORGetJobInstance?</string>
 	<key>userUnFollow</key>
 	<string>Services/deleteJobInstanceOrActivity?</string>
+	<key>getUserFollowers</key>
+	<string>MobileAPIs/getFollowers?</string>
+	<key>getUserFollowings</key>
+	<string>MobileAPIs/getFollowing?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

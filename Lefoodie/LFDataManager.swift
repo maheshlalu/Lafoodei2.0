@@ -10,6 +10,7 @@ import UIKit
 import AFNetworking
 import Alamofire
 import SwiftyJSON
+import MagicalRecord
 
 private var sharedManager:LFDataManager! = LFDataManager()
 
@@ -158,8 +159,6 @@ extension LFDataManager{
             
             print(responce)
         }
-        
-        
     }
     
     
@@ -179,8 +178,91 @@ extension LFDataManager{
     //Get Followers
     //http://localhost:8081/MobileAPIs/getFollowers?email=sriram.badeti@gmail.com&macId=9711fdc1-f0dc-49ae-99dc-524224e541d1
     
+    func getFollowers()
+    {
+        //macId = Item code in macId info
+            let followerDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"macId":CXAppConfig.sharedInstance.getuserMacID()]
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowers(), parameters: followerDic as [String : AnyObject]?) { (responseDict) in
+            print(responseDict)
+            
+            let userData = responseDict.value(forKey: "jobs") as! NSArray
+            if userData.count > 0 {
+                self.saveFollowerInfoInDB(userData: userData,isFollower:true, completion: { (dic) in
+                    // completion(responseDict)
+                })
+
+            }
+        
+        }
+    }
+    
     //Get Followings
     //http://localhost:8081/MobileAPIs/getFollowing?email=sriram.badeti@gmail.com
+    
+    func getFollowings()
+    {
+        let followingDic = ["email":CXAppConfig.sharedInstance.getEmailID()]
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowings(), parameters: followingDic as [String : AnyObject]?) { (responseDict) in
+            print(responseDict) 
+            
+            let userData = responseDict.value(forKey: "jobs") as! NSArray
+            if userData.count > 0 {
+                self.saveFollowerInfoInDB(userData: userData,isFollower:false, completion: { (dic) in
+                    // completion(responseDict)
+                })
+                
+            }
+            
+        }
+    }
+    
+    //saving followers/following details into DB
+    func saveFollowerInfoInDB(userData:NSArray,isFollower:Bool,completion:@escaping () -> Void){
+        let jobsArray = userData.value(forKey: "jobs") as! NSArray
+    
+        MagicalRecord.save({ (localContext) in
+            for i in 0...jobsArray.count - 1 {
+                let dict = jobsArray[i] as! NSDictionary
+            
+            let enFollower =  NSEntityDescription.insertNewObject(forEntityName: "UserProfile", into: localContext!) as? Followers
+                enFollower?.followerId = CXAppConfig.resultString(input: dict.value(forKey:"id")! as AnyObject)
+                enFollower?.followerEmail = dict.value(forKey:"Email") as? String
+                enFollower?.followerName = dict.value(forKey:"FullName") as? String
+                enFollower?.followerImage = dict.value(forKey:"Image") as? String
+                enFollower?.followerItemCode =  dict.value(forKey:"ItemCode") as? String
+                enFollower?.followerUserId = CXAppConfig.resultString(input: dict.value(forKey:"UserId")! as AnyObject)
+                enFollower?.noOfFollowers = CXAppConfig.resultString(input: dict.value(forKey:"followers")! as AnyObject)
+                enFollower?.noOfFollowings = CXAppConfig.resultString(input: dict.value(forKey:"following")! as AnyObject)
+                
+                if isFollower {
+                    enFollower?.isFollower = true
+                    enFollower?.isFollowing = false
+                }
+                else {
+                    enFollower?.isFollower = false
+                    enFollower?.isFollowing = true
+                }
+            }
+            
+           
+        }) { (success, error) in
+            if success == true {
+                completion()
+            } else {
+            }
+        }
+        
+    }
+    
+    func getOtherPosts(){
+        
+    }
+    
+    //get The other user posts
+    //http://localhost:8081/MobileAPIs/getUserPosts?email=cxsample@gmail.com&myPosts=true&pageNumber=1&pageSize=2
+    
 }
 
 

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15F34" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Followers" representedClassName="Followers" syncable="YES">
+        <attribute name="followerEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerItemCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followerUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFollower" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFollowing" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noOfFollowers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noOfFollowings" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="UserProfile" representedClassName="UserProfile" syncable="YES" codeGenerationType="class">
         <attribute name="emailId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,5 +27,6 @@
     </entity>
     <elements>
         <element name="UserProfile" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Followers" positionX="-63" positionY="63" width="128" height="195"/>
     </elements>
 </model>

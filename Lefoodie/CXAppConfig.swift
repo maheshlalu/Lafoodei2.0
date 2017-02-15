@@ -172,6 +172,14 @@ class CXAppConfig {
         return config!.value(forKey: "userUnFollow") as! String
         
     }
+    
+    func getUserFollowers() -> String{
+        return config!.value(forKey: "getUserFollowers") as! String
+    }
+    
+    func getUserFollowings() -> String{
+        return config!.value(forKey: "getUserFollowings") as! String
+    }
   /*
     func getAppTheamColor() -> UIColor {
         

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setUpMagicalDB() {
-        MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie")
+        MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
     func checkUserId(){

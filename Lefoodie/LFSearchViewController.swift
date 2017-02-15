@@ -24,7 +24,7 @@ class LFSearchViewController: UIViewController {
         searchTypeLabel.layer.cornerRadius = 3
         searchTypeLabel.clipsToBounds = true
         
-        count = 1
+        count = 2
         searchTypeLabel.text = "Places"
         prevBtn.isEnabled = false
   
