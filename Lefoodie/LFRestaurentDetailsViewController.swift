@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate,UIScrollViewDelegate{
+class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var restaurantView: UIView!
     @IBOutlet weak var restaurantScrollView: UIScrollView!
     @IBOutlet weak var animationView: UIView!
@@ -23,26 +23,41 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     
+    
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var followBtn: CXButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
+        self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
         
+        tabViews()
+        foodieDetails()
+        settingsBtn.isHidden = true
+        editBtn.isHidden = true
+        shareBtn.isHidden = true
+        self.registerNotificaton()
+    }
+    
+    
+    func registerNotificaton(){
+        NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollDown), name:NSNotification.Name(rawValue: "ScrollDown"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         let menuItem = UIBarButtonItem(image: UIImage(named: "Back-48"), style: .plain, target: self, action: #selector(LFRestaurentDetailsViewController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        tabViews()
-        foodieDetails()
-        
-        settingsBtn.isHidden = true
-        editBtn.isHidden = true
-        shareBtn.isHidden = true
-
     }
+    
     
     func backBtnClicked()
     {
@@ -60,7 +75,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         }else{
             foodieImgView.image = UIImage(named: "placeHolder")
         }
-        
         let following = arr.foodieFollowingCount
         let follower = arr.foodieFollowerCount
         foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
@@ -76,90 +90,14 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     @IBAction func followBtnAction(_ sender: AnyObject) {
         
-        
-    }
-    
-    
-    func didTap(sender: UITapGestureRecognizer) {
-        let location = sender.location(in: view)
-        // User tapped at the point above. Do something with that if you want.
-    }
-    func didScreenEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
-        // Do something when the user does a screen edge pan.
-    }
-   
-
-    func didPan(sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: view)
-        let velocity = sender.velocity(in: view)
-        let translation = sender.translation(in: view)
-
-        if sender.state == .began {
-            trayOriginalCenter = animationView.center
-            
-            print("Gesture began")
-        } else if sender.state == .changed {
-            
-            animationView.center = CGPoint(x: trayOriginalCenter.x, y: trayOriginalCenter.y + translation.y)
-            
-            print("Gesture is changing")
-        } else if sender.state == .ended{
-            UIView.transition(with: self.restaurantView, duration: 0.3, options: UIViewAnimationOptions.curveLinear, animations: {
-                
-                if velocity.y > 0 {
-                    
-                    
-                    // UIView.animate(withDuration: 0.3) {
-                    if UIScreen.main.bounds.size.width == 320
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 544.0)
-                    }else if UIScreen.main.bounds.size.width == 375
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 592.0)
-                    }else if UIScreen.main.bounds.size.width == 414
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y:  646.0)
-                        
-                    }
-                    
-                    
-                    print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
-                    
-                    print("moving down")
-                    // }
-                } else {
-                    // UIView.animate(withDuration: 0.3) {
-                    
-                    if UIScreen.main.bounds.size.width == 320
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 269.0)
-                    }else if UIScreen.main.bounds.size.width == 375
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 319.5)
-                    }else if UIScreen.main.bounds.size.width == 414
-                    {
-                        self.restaurantView.center = CGPoint(x: self.trayOriginalCenter.x, y: 352.33332824707)
-                        
-                    }
-                    
-                    
-                    // self.uiView.center = CGPoint(x: self.trayOriginalCenter.x, y: 145.833343505859)
-                    //self.uiView.center = self.trayUp
-                    
-                    // print(CGPoint(x: self.trayOriginalCenter.x, y: self.trayOriginalCenter.y))
-                    
-                    print("moving up")
-                    
-                    //}
-                }
-                }, completion: nil)
-            
-            
-            
-            //print("Gesture ended")
+        if followBtn.titleLabel?.text == "Follower" {
+            followBtn.setTitle("Following", for: .normal)
+        }
+        else {
+            followBtn.setTitle("Follower", for: .normal)
         }
     }
-
+ 
     func tabViews(){
         
         // Initialize view controllers to display and place in array
@@ -188,6 +126,40 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         //self.view.addSubview(View_DetailsView)
         
     }
+
+}
+
+
+
+extension LFRestaurentDetailsViewController : UIScrollViewDelegate{
+    
+    
+    func scrollUp(){
+        print(self.restaurantScrollView.contentOffset)
+        let offset : CGFloat = restaurantScrollView.contentOffset.y
+        //print(offset)
+        if offset >= 0 {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                self.restaurantScrollView.contentOffset = CGPoint(x: 0, y: 250)
+            }, completion: { finished in
+            })
+        }
+        
+        
+    }
+    
+    func scrollDown(){
+        let offset : CGFloat = restaurantScrollView.contentOffset.y
+        //  print(offset)
+        if offset >= 250 {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                self.restaurantScrollView.contentOffset = CGPoint(x: 0, y: 0)
+            }, completion: { finished in
+            })
+        }
+        
+    }
+    
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         //self.Scroller_ScrollerView.contentOffset.x = 300
         return true
@@ -206,7 +178,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if UIScreen.main.bounds.size.width == 320
+       /* if UIScreen.main.bounds.size.width == 320
         {
             
             self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 670)
@@ -220,7 +192,10 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             
             self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 870)
             
-        }
+        }*/
+        
+        self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height+250)
+
         
         // self.Scroller_ScrollerView.contentSize = CGSize(width: self.view.frame.size.width, height: 845)
         
@@ -232,3 +207,4 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         print(self.restaurantScrollView.contentInset)
     }
 }
+

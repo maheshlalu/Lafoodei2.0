@@ -23,7 +23,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     var moveValue: CGFloat!
     var moved: Bool = false
     var activeTextField = UITextField()
-    var nameArray = ["First Name","Last Name","Birth Date","E-Mail","Phone"]
+    var nameArray = ["First Name","Last Name","Birth Day(Optional)","Gender(Optional.)","E-Mail","Phone Number(Optional)"]
     override func viewDidLoad() {
         super.viewDidLoad()
         

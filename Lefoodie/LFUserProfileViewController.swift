@@ -101,7 +101,7 @@ class LFUserProfileViewController: UIViewController,UIGestureRecognizerDelegate,
     }
     
     @IBAction func settingBtnAction(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFProfileSettingViewController")as! LFProfileSettingViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFOptionsViewController")as! LFOptionsViewController
         self.navigationController?.pushViewController(storyboard, animated: true)
     }
    
