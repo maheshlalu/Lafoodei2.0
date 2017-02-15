@@ -1,3 +1,4 @@
+
 //
 //  LFHomeViewController.swift
 //  Lefoodie
@@ -100,7 +101,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             cell.lbl_Title.text = feeds.feedUserName
             cell.cafeNameLbl.text = feeds.feedIDMallName
-            cell.postedTime.text = feeds.feedModificationDate
+            cell.postedTime.text = feeds.feedCreatedDate.timeAgoSinceDate(numericDates: true)
             cell.userPicImg.setImageWith(NSURL(string: feeds.feedUserImage) as URL!, usingActivityIndicatorStyle: .white)
             cell.selectionStyle = .none
             return cell

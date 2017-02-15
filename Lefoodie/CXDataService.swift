@@ -43,7 +43,7 @@ class CXDataService: NSObject {
 //            }
 //            
             let configuration = URLSessionConfiguration.default
-            configuration.timeoutIntervalForRequest = 60*60
+            configuration.timeoutIntervalForRequest = 10//60*60
             
             let sessionManager = Alamofire.SessionManager(configuration: configuration)
             
@@ -68,6 +68,10 @@ class CXDataService: NSObject {
                             //timeout here
                            // KRProgressHUD.dismiss()
                             self.showAlertView(status: 0)
+                        }
+                        if error._code == NSURLErrorNetworkConnectionLost{
+                            self.showAlertView(status: 0)
+
                         }
                         print("\n\nAuth request failed with error:\n \(error)")
                         break
@@ -125,5 +129,8 @@ open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[St
         UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
-   
+    /*Auth request failed with error:
+     Error Domain=NSURLErrorDomain Code=-1001 "The request timed out." UserInfo={NSUnderlyingError=0x608000e59d40 {Error Domain=kCFErrorDomainCFNetwork Code=-1001 "(null)" UserInfo={_kCFStreamErrorCodeKey=-2102, _kCFStreamErrorDomainKey=4}}, NSErrorFailingURLStringKey=http://35.160.251.153:8081/MobileAPIs/getUserPosts?, NSErrorFailingURLKey=http://35.160.251.153:8081/MobileAPIs/getUserPosts?, _kCFStreamErrorDomainKey=4, _kCFStreamErrorCodeKey=-2102, NSLocalizedDescription=The request timed out.}
+     clicked<Lefoodie.LFSearchViewController: 0x7fb460f0dc20>
+     clicked<UINavigationController: 0x7fb462*/
 }

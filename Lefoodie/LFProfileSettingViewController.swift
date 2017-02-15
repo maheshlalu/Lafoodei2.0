@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MagicalRecord
+//import MagicalRecord
 
 class LFProfileSettingViewController: UIViewController {
     
@@ -26,7 +26,7 @@ class LFProfileSettingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showAlert(_ message:String, status:Int) {
+    /*func showAlert(_ message:String, status:Int) {
         let alert = UIAlertController(title: "Alert", message:message , preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
@@ -50,10 +50,10 @@ class LFProfileSettingViewController: UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
 
-    }
+    }*/
     
     @IBAction func logoutBtnAction(_ sender: UIButton) {
-        self.showAlert("Are you sure?", status: 0)
+        //self.showAlert("Are you sure?", status: 0)
         
         // Remove all userdefault values
        
@@ -61,7 +61,7 @@ class LFProfileSettingViewController: UIViewController {
     
     @IBAction func settingBtnAction(_ sender: UIButton) {
         
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
-        //        self.navigationController?.pushViewController(storyboard!, animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFOptionsViewController")as? LFOptionsViewController
+                self.navigationController?.pushViewController(storyboard!, animated: true)
     }
 }
