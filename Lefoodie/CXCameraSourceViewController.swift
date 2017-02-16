@@ -240,7 +240,7 @@ extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegat
     
     func doneImage(){
         let view = albumView.imageCropView
-        
+        print(view)
         if CXCropImage {
             let normalizedX = (view?.contentOffset.x)! / (view?.contentSize.width)!
             let normalizedY = (view?.contentOffset.y)! / (view?.contentSize.height)!

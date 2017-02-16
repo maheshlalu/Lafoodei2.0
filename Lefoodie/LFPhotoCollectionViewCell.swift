@@ -10,6 +10,7 @@ import UIKit
 
 class LFPhotoCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var photoiImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

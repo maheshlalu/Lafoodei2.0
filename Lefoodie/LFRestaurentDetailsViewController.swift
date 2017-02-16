@@ -115,13 +115,16 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
         
-        let controller1:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
-        controller1.title = "FOODIE PHOTOS"
-        controllerArray.append(controller1)
+        let photosCntl:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
+        photosCntl.title = "PHOTOS"
+        photosCntl.isMyPosts = false
+        photosCntl.userEmail = self.selectedFoodie.foodieEmail
         
-        let controller2 : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
-        controller2.title = "ACCOUNT PHOTOS"
-        controllerArray.append(controller2)
+        controllerArray.append(photosCntl)
+        
+        let favoriteCntl : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
+        favoriteCntl.title = "FAVOURITES"
+        controllerArray.append(favoriteCntl)
         
         let parameters: [CAPSPageMenuOption] = [
             .selectionIndicatorColor(UIColor.appTheamColor()),

@@ -29,15 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.storyBoard = self.window?.rootViewController?.storyboard
         print( getDocumentsDirectory())
-        
-     
-        //MARK: Check UserID
+    //MARK: Check UserID
         checkUserId()
-        
-        
+   
         print("Realm DB path \(Realm.Configuration.defaultConfiguration.fileURL)")
-        
-        
 
         return true
         

@@ -220,9 +220,11 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                         ih = image.size.height
                     }
                     
+                    print(ih)
+                    print(iw)
                     // Frame size
                     let sw = self.previewViewContainer.frame.width
-                    
+                    print(sw)
                     // The center coordinate along Y axis
                     let rcy = ih * 0.5
                     

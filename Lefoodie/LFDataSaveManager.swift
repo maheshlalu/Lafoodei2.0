@@ -35,12 +35,11 @@ class LFDataSaveManager: NSObject {
     func saveTheUserDetails(userDataDic:JSON){
         
         // LFMyProfile
-        let realm = try! Realm()
+        let relamInstance = try! Realm()
         // Query Realm for userProfile contains name
-        let userData = realm.objects(LFMyProfile.self).filter("userId=='\(userDataDic["id"].stringValue)'")
+        let userData = relamInstance.objects(LFMyProfile.self).filter("userId=='\(userDataDic["id"].stringValue)'")
         if userData.count == 0 {
             //Insert The Data
-            let relamInstance = try! Realm()
             try! relamInstance.write({
                 let myProfileData = LFMyProfile()
                 myProfileData.userId = userDataDic["id"].stringValue
@@ -64,59 +63,31 @@ class LFDataSaveManager: NSObject {
         
     }
     
-    /*
-     /*
-     
-     id: 327,
-     ItemCode: "e9ff366c-211a-490d-8b66-9806b5990d5d",
-     UserId: "30",
-     createdById: 2,
-     jobTypeId: 83,
-     jobTypeName: "MacIdInfo",
-     createdByFullName: "LeFoodie",
-     publicURL: "http://35.160.251.153/app/2/Devices;MacIdInfo;327;_;SingleProduct",
-     privateToUser: "balachandrabhogapurapu@gmail.com",
-     PackageName: "",
-     Name: "BHOGAPURAPU BALACHANDRA",
-     password: "102043852215875143164",
-     Image: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-     Description: "",
-     FullName: "BHOGAPURAPU BALACHANDRA",
-     mobileNo: "",
-     address: "",
-     city: "",
-     state: "",
-     country: "",
-     firstName: "BHOGAPURAPU",
-     lastName: "BALACHANDRA",
-     userBannerPath: "",
-     lattitude: "",
-     Email: "balachandrabhogapurapu@gmail.com",
-     gender: "0",
-     longitude: "",
-     hrsOfOperation: [ ],
-     Attachments: [ ],
-     Additional_Details: { },
-     jobComments: [ ],
-     Current_Job_Status: "Active",
-     Current_Job_StatusId: 165,
-     Next_Seq_Nos: "2",
-     CreatedSubJobs: [ ],
-     Next_Job_Statuses: [],
-     Insights: [ ],
-     overallRating: "0.0",
-     totalReviews: "0",
-     following: 5,
-     followers: 1,
-     favourites: [ ],
-     favouritesCount: 0,
-     malldetails: {},
-     macIdInfodetails: ""     */
-     
-
-     
-     */
     
+    func saveTheUserPhotos(list:[LFFeedsData]){
+        let relamInstance = try! Realm()
+        for feedData in list {
+            let userData = relamInstance.objects(LFUserPhotos.self).filter("feedID=='\(feedData.feedID)'")
+            if userData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let userPhotos = LFUserPhotos()
+                    userPhotos.feedID = feedData.feedID
+                    userPhotos.feedName = feedData.feedName
+                    userPhotos.feedImage = feedData.feedImage
+                    userPhotos.feedItemCode = feedData.feedItemCode
+                    userPhotos.feedUserEmail = feedData.feedUserEmail
+                    relamInstance.add(userPhotos)
+                })
+            }
+        }
+        // LFMyProfile
+        // Query Realm for userProfile contains name
+   
+
+    }
+    
+
     
 /*
     Delete the Data in Realm 

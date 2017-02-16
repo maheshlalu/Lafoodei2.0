@@ -14,7 +14,10 @@ class LFFoodieViewController: UIViewController {
     @IBOutlet weak var foodieViewTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+       // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
         serviceAPICall(keyword:"")
+
     }
     
     //MARK: calling foodie data from service

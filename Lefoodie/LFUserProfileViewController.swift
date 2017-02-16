@@ -26,21 +26,24 @@ class LFUserProfileViewController: UIViewController {
     var myProfile : LFMyProfile!
     
     override func viewDidLoad() {
-        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+     
         self.tabViews()
         self.notificationRegistration()
         self.populatedData()
-        LFDataManager.sharedInstance.getUserPosts(userEmail: CXAppConfig.sharedInstance.getEmailID(), myPosts: true, pageNumber: "", pageSize: "")
+        self.setNavigationProperty()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-//        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-//        
-//    }
-//    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+  }
+    
+    
+    func setNavigationProperty(){
+        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+
+    }
+    
     func notificationRegistration(){
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollDown), name:NSNotification.Name(rawValue: "ScrollDown"), object: nil)
@@ -70,13 +73,15 @@ class LFUserProfileViewController: UIViewController {
         
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
-        let controller1:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
-        controller1.title = "PHOTOS"
-        controllerArray.append(controller1)
+        let photosControl:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
+        photosControl.title = "PHOTOS"
+        photosControl.isMyPosts = true
+        photosControl.userEmail = CXAppConfig.sharedInstance.getEmailID()
+        controllerArray.append(photosControl)
         
-        let controller2 : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
-        controller2.title = "FAVORITES"
-        controllerArray.append(controller2)
+        let favoriteContl : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
+        favoriteContl.title = "FAVORITES"
+        controllerArray.append(favoriteContl)
         
         let parameters: [CAPSPageMenuOption] = [
             .selectionIndicatorColor(UIColor.appTheamColor()),
@@ -95,6 +100,10 @@ class LFUserProfileViewController: UIViewController {
     }
     
 }
+
+
+
+
 
 extension LFUserProfileViewController:UIScrollViewDelegate{
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
@@ -160,4 +169,24 @@ extension LFUserProfileViewController:UIScrollViewDelegate{
         }
         
     }
+}
+
+
+extension LFUserProfileViewController {
+    
+    
+    func getTheUserPostedPhots(email:String,isMyposts:Bool){
+        
+//        LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: isMyposts, pageNumber: "", pageSize: "") { (responce) in
+//            
+//            print(responce)
+//        }
+        // LFDataManager.sharedInstance.getUserPosts(userEmail: "", myPosts: true, pageNumber: "0", pageS
+        
+        LFDataManager.sharedInstance.getUserPosts(userEmail: "", myPosts: isMyposts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
+            
+        }
+        
+    }
+    
 }

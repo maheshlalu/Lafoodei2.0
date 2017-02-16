@@ -309,9 +309,8 @@ extension LFDataManager{
     }
     
     //MARK: Get User Posts
-    func getUserPosts(userEmail:String,myPosts:Bool,pageNumber:String,pageSize:String){
-        
-        
+    func getUserPosts(userEmail:String,myPosts:Bool,pageNumber:String,pageSize:String,completion:@escaping (_ responce:Bool,_ results:[LFFeedsData]) -> Void){
+  
         var parameterDic = [String:String]()
         if myPosts == true {
             //if myPosts is "true" get the login user Photos
@@ -334,11 +333,17 @@ extension LFDataManager{
                 feedsList.append(restaurants)
             }
             
+            if myPosts == true {
+               LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
+            }
+            
         // LFDataSaveManager.sharedInstance.saveTheUserUploadPosts(feedDataList: feedsList)
             
             // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
            // completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
+            
+            completion(true, feedsList)
         }
     }
     
@@ -392,6 +397,14 @@ extension LFDataManager{
             completion(responseDict)
         }
     }
+    
+    //MARK : Update Multiple properties
+    
+//    func getUpdateMultipleProperties(jobId:String,jsonString:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+//        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUpdatedUserDetails(), parameters: ["jobId":jobId as AnyObject, "jsonString":jsonString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responceDic) in
+//            completion(responceDic)
+//        }
+//    }
     
 }
 
