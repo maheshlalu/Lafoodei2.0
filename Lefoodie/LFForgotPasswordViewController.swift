@@ -60,10 +60,13 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     
     func showAlert(_ message:String, status:Int) {
         let alert = UIAlertController(title: "Alert!!!", message:message , preferredStyle: UIAlertControllerStyle.alert)
-        if status == 1{
-            self.navigationController?.popToRootViewController(animated: true)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
     
