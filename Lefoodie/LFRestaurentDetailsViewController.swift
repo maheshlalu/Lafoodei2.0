@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MagicalRecord
 
 class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var restaurantView: UIView!
@@ -15,7 +16,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     @IBOutlet weak var foodieName: UILabel!
     @IBOutlet weak var foodieFollowLbl: UILabel!
     @IBOutlet weak var foodieImgView: UIImageView!
-    var arr : SearchFoodies!
+    var selectedFoodie : SearchFoodies!
     var pageMenu : CAPSPageMenu?
     var tap: UITapGestureRecognizer?
     var trayOriginalCenter: CGPoint!
@@ -40,8 +41,17 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         editBtn.isHidden = true
         shareBtn.isHidden = true
         self.registerNotificaton()
+        setUpFollowBtnStatus()
     }
     
+    func setUpFollowBtnStatus()
+    {
+        let predicate = NSPredicate.init(format: "followerUserId = %@", selectedFoodie.foodieUserId)
+       let  dataArray = Followers.mr_findAll(with: predicate) as NSArray
+        if dataArray.count > 0 {
+            followBtn.setTitle("UnFollow", for: .normal)
+        }
+    }
     
     func registerNotificaton(){
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
@@ -66,17 +76,17 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     func foodieDetails(){
         
-        self.foodieName.text = arr.foodieName
+        self.foodieName.text = selectedFoodie.foodieName
         
-        let imgUrl = URL(string: arr.foodieImage) as URL!
+        let imgUrl = URL(string: selectedFoodie.foodieImage) as URL!
         if imgUrl != nil{
            foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
             
         }else{
             foodieImgView.image = UIImage(named: "placeHolder")
         }
-        let following = arr.foodieFollowingCount
-        let follower = arr.foodieFollowerCount
+        let following = selectedFoodie.foodieFollowingCount
+        let follower = selectedFoodie.foodieFollowerCount
         foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         
     }
@@ -90,11 +100,13 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     @IBAction func followBtnAction(_ sender: AnyObject) {
         
-        if followBtn.titleLabel?.text == "Follower" {
-            followBtn.setTitle("Following", for: .normal)
+        if followBtn.titleLabel?.text == "Follow" {
+            followBtn.setTitle("UnFollow", for: .normal)
+            LFDataManager.sharedInstance.followTheUser(foodieDetails: selectedFoodie)
         }
         else {
-            followBtn.setTitle("Follower", for: .normal)
+            followBtn.setTitle("Follow", for: .normal)
+            LFDataManager.sharedInstance.unFollowTheUser(foodieDetails: selectedFoodie)
         }
     }
  

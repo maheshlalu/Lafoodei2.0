@@ -24,12 +24,12 @@ class CXDataService: NSObject {
         self.progress.mode = MBProgressHUDMode.indeterminate
         self.progress.labelText = message
         self.progress.show(animated: true)
-    
+        
         
     }
     
     func hideLoader(){
-     self.progress.hide(animated: true)
+        self.progress.hide(animated: true)
     }
     
     
@@ -38,10 +38,10 @@ class CXDataService: NSObject {
             print(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getMasterUrl())
             print(parameters)
             
-//            KRProgressHUD.show(progressHUDStyle: .black, maskType: .black, activityIndicatorStyle: .white, font: CXAppConfig.sharedInstance.appMediumFont(), message: "", image: nil) {
-//                
-//            }
-//            
+            //            KRProgressHUD.show(progressHUDStyle: .black, maskType: .black, activityIndicatorStyle: .white, font: CXAppConfig.sharedInstance.appMediumFont(), message: "", image: nil) {
+            //
+            //            }
+            //
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = 10//60*60
             
@@ -60,18 +60,18 @@ class CXDataService: NSObject {
                             let JSON = result as! NSDictionary
                             //completion((response.result.value as? NSDictionary)!)
                             completion(JSON)
-                           // KRProgressHUD.dismiss()
+                            // KRProgressHUD.dismiss()
                         }
                         break
                     case .failure(let error):
                         if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
                             //timeout here
-                           // KRProgressHUD.dismiss()
+                            // KRProgressHUD.dismiss()
                             self.showAlertView(status: 0)
                         }
                         if error._code == NSURLErrorNetworkConnectionLost{
                             self.showAlertView(status: 0)
-
+                            
                         }
                         print("\n\nAuth request failed with error:\n \(error)")
                         break
@@ -82,34 +82,60 @@ class CXDataService: NSObject {
             // Alamofire.request("",method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: [:])
         }
     }
-
-open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
- 
-    print(urlstring)
-    print(parameters)
-    Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
-        .validate()
-        .validate(contentType: ["application/json"])
-        .responseJSON { response in
-            switch (response.result) {
-            case .success:
-                //to get JSON return value
-                if let result = response.result.value {
-                    let JSON = result as! NSDictionary
-                    //completion((response.result.value as? NSDictionary)!)
-                    completion(JSON)
+    
+    open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        
+        print(urlstring)
+        print(parameters)
+        Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
+            .validate()
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                switch (response.result) {
+                case .success:
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        //completion((response.result.value as? NSDictionary)!)
+                        completion(JSON)
+                    }
+                    break
+                case .failure(let error):
+                    if error._code == NSURLErrorTimedOut {
+                        //timeout here
+                    }
+                    print("\n\nAuth request failed with error:\n \(error)")
+                    break
                 }
-                break
-            case .failure(let error):
-                if error._code == NSURLErrorTimedOut {
-                    //timeout here
-                }
-                print("\n\nAuth request failed with error:\n \(error)")
-                break
-            }
-            
+                
+        }
+        
     }
-
+    
+    open func followOrUnFollowServiceCall(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ response:Bool) -> Void){
+        
+        print(urlstring)
+        print(parameters)
+        Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
+            .validate()
+            .validate(contentType: ["application/json"])
+            .responseJSON { response in
+                switch (response.result) {
+                case .success:
+                    completion(true)
+                    
+                    break
+                case .failure(let error):
+                    if error._code == NSURLErrorTimedOut {
+                        //timeout here
+                        completion(false)
+                    }
+                    print("\n\nAuth request failed with error:\n \(error)")
+                    break
+                }
+                
+        }
+        
     }
     
     func showAlertView(status:Int) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import MagicalRecord
+import SwiftyJSON
 private var _SingletonSharedInstance:CX_SocialIntegration! = CX_SocialIntegration()
 
 class CX_SocialIntegration: NSObject {
@@ -189,6 +190,11 @@ class CX_SocialIntegration: NSObject {
     }
     
     func saveUserDeatils(userData:NSDictionary,completion:@escaping () -> Void){
+        
+        LFDataManager.sharedInstance.getTheUserDetails(userEmail: (userData.value(forKey:"emailId") as? String)!) {
+            
+        }
+        
         MagicalRecord.save({ (localContext) in
             let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "UserProfile", into: localContext!) as? UserProfile
             print(userData)
@@ -211,6 +217,7 @@ class CX_SocialIntegration: NSObject {
             }
         }) { (success, error) in
             if success == true {
+                LFDataManager.sharedInstance.getFollowersDetails()
                 completion()
             } else {
             }

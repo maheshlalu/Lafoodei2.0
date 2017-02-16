@@ -99,6 +99,7 @@
 		18AFA64D1E5424BA00D4D653 /* LFOptionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFA64B1E5424BA00D4D653 /* LFOptionalTableViewCell.swift */; };
 		18AFA64E1E5424BA00D4D653 /* LFOptionalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AFA64C1E5424BA00D4D653 /* LFOptionalTableViewCell.xib */; };
 		18AFA6501E5424CE00D4D653 /* LFOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFA64F1E5424CE00D4D653 /* LFOptionsViewController.swift */; };
+		18AFA6521E543E1D00D4D653 /* LFDataSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFA6511E543E1D00D4D653 /* LFDataSaveManager.swift */; };
 		18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */; };
 		18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */; };
 		18F179481E1CC305001EDF45 /* LFShareFoodiePicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */; };
@@ -240,6 +241,7 @@
 		18AFA64B1E5424BA00D4D653 /* LFOptionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFOptionalTableViewCell.swift; sourceTree = "<group>"; };
 		18AFA64C1E5424BA00D4D653 /* LFOptionalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFOptionalTableViewCell.xib; sourceTree = "<group>"; };
 		18AFA64F1E5424CE00D4D653 /* LFOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFOptionsViewController.swift; sourceTree = "<group>"; };
+		18AFA6511E543E1D00D4D653 /* LFDataSaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFDataSaveManager.swift; sourceTree = "<group>"; };
 		18F1793F1E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFChooseLocationTableViewCell.swift; sourceTree = "<group>"; };
 		18F179401E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFChooseLocationTableViewCell.xib; sourceTree = "<group>"; };
 		18F179411E1CC305001EDF45 /* LFShareFoodiePicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFShareFoodiePicViewController.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				183A8CAC1E48777C0068DC34 /* LFDataManager.swift */,
 				2BB625F11E5336D600F5FD63 /* Followers+CoreDataClass.swift */,
 				2BB625F21E5336D600F5FD63 /* Followers+CoreDataProperties.swift */,
+				18AFA6511E543E1D00D4D653 /* LFDataSaveManager.swift */,
 			);
 			name = "Data service Classes";
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
+				18AFA6521E543E1D00D4D653 /* LFDataSaveManager.swift in Sources */,
 				896073541E36015800551545 /* CXDataService.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,

@@ -62,7 +62,7 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         //LFRestaurentDetailsViewController
         let dict = foodiesArr[indexPath.row]
         let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
-        restaurentView.arr = dict
+        restaurentView.selectedFoodie = dict
         let navController = UINavigationController(rootViewController: restaurentView)
         navController.navigationItem.hidesBackButton = false
         self.present(navController, animated:true, completion: nil)

@@ -13,7 +13,7 @@ import Firebase
 import Google
 import GoogleSignIn
 import MagicalRecord
-
+import RealmSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -30,11 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.storyBoard = self.window?.rootViewController?.storyboard
         print( getDocumentsDirectory())
         
-        for strin in UIFont.familyNames {
-            print(strin)
-        }
+     
         //MARK: Check UserID
         checkUserId()
+        
+        
+        print("Realm DB path \(Realm.Configuration.defaultConfiguration.fileURL)")
+        
+        
+
         return true
         
     }
