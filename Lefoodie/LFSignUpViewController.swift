@@ -72,6 +72,7 @@ class LFSignUpViewController: UIViewController {
                 
                 print(isRegistred)
                 self.showAlert(message: "You are Successfully Registered", status: 1)
+                UserDefaults.standard.set(true, forKey: "isLoggedUser")
             }
             else {
                 CXDataService.sharedInstance.hideLoader()

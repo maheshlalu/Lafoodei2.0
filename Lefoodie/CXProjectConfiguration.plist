@@ -45,6 +45,8 @@
 	<string>MobileAPIs/postedJobs?</string>
 	<key>forgotPassordMethod</key>
 	<string>MobileAPIs/forgotpwd?</string>
+	<key>changePassword</key>
+	<string>MobileAPIs/changePassword?</string>
 	<key>updateProfile</key>
 	<string>MobileAPIs/updateUserDetails?</string>
 	<key>photoUpload</key>
