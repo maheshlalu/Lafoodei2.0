@@ -11,7 +11,7 @@ import GoogleSignIn
 
 class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate {
     //var strKeyvalues = NSString()
-    var alertTextField:UITextField! = nil
+    //var alertTextField:UITextField! = nil
     //var nameArray = ["First Name","Last Name","Birth Date","E-Mail","Phone"]
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -71,9 +71,19 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             
         }else if sender.titleLabel?.text == "Save" {
             sender.isSelected = !sender.isSelected
+            let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0)
+            let cell: LFEditTableViewCell = self.editTableView.cellForRow(at: indexPath as IndexPath) as! LFEditTableViewCell
+            print(cell.infoTextfield.text)
             //Save action
         }
-        self.editTableView.reloadData()
+        
+        
+        
+        
+//        print(cell.currentPasswordTextField.text)
+//        print(cell.newPasswordTextField.text)
+//        print(cell.againNewPasswordTextFiled.text)
+        //self.editTableView.reloadData()
     }
     
     

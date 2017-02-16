@@ -101,6 +101,7 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
                 CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
                 print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
                 if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
+                    UserDefaults.standard.set(true, forKey: "isLoggedUser")
                     CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
                                 CXDataService.sharedInstance.hideLoader()
                     

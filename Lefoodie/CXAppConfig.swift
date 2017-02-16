@@ -62,7 +62,11 @@ class CXAppConfig {
     func getForgotPassordUrl() -> String {
         return config!.value(forKey: "forgotPassordMethod") as! String
     }
-    
+    //changePassword
+    func getChangePassword() -> String {
+        return config!.value(forKey: "changePassword") as! String
+    }
+
     func getPlaceOrderUrl() -> String{
         return config!.value(forKey: "placeOrder") as! String
     }
@@ -517,11 +521,7 @@ class CXAppConfig {
         let macIDjobId = responceDic.value(forKey: "macIdJobId") as! NSNumber
         saveMacJobID(macJobId: String(describing: macIDjobId as NSNumber))
         //print("user id \(userID)\(emailID)\(firstName)\(macID)\(macIDjobId)")
-        
-        
-        
-        
-        
+
     }
     
 }

@@ -13,15 +13,25 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     
     @IBOutlet weak var optionsTableView: UITableView!
     let sections = ["INVITE","Follow People","Accounts"]
-    let items = [["Facebook Friends"],["Facebook Friends","Contacts"],["Edit Profile","Change Password","Logout"]]
-
+    var items = [NSArray]()
+    var isLoggedUser:Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //isLoggedUser
+        isLoggedUser = UserDefaults.standard.value(forKey: "isLoggedUser") as! Bool
+      
+        if isLoggedUser == true{
+            items = [["Facebook Friends"],["Facebook Friends","Contacts"],["Edit Profile","Change Password","Logout"]]
+        }else{
+            items = [["Facebook Friends"],["Facebook Friends","Contacts"],["Edit Profile","Logout"]]
+        }
         
         self.navigationProperty()
         let nib = UINib(nibName: "LFOptionalTableViewCell", bundle: nil)
         self.optionsTableView.register(nib, forCellReuseIdentifier: "LFOptionalTableViewCell")
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -43,15 +53,15 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
         let v = view as! UITableViewHeaderFooterView
         //v.textLabel?.font = UIFont(name: "Arial", size: 8)
         v.textLabel?.textColor = UIColor.lightGray
-        v.textLabel?.font = UIFont.boldSystemFont(ofSize: 8)
+        v.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     }
     func numberOfSections(in tableView: UITableView) -> Int
     {
         
-       return self.sections.count
+        return self.sections.count
         
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
@@ -60,12 +70,13 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-       
-       let cell = tableView.dequeueReusableCell(withIdentifier: "LFOptionalTableViewCell", for: indexPath)as? LFOptionalTableViewCell
-    
-        cell?.nameLabel.text = self.items[indexPath.section][indexPath.row]
-        cell?.nameLabel.font = UIFont(name: "Arial", size: 10)
-       cell?.selectionStyle = .none
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LFOptionalTableViewCell", for: indexPath)as? LFOptionalTableViewCell
+        
+        cell?.nameLabel.text = self.items[indexPath.section][indexPath.row] as? String
+        cell?.nameLabel.font = UIFont(name: "Arial", size: 14)
+        cell?.selectionStyle = .none
+        tableView.separatorStyle = .none
         return cell!
     }
     
@@ -84,16 +95,35 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 && indexPath.row == 0
-        {
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
-            self.navigationController?.pushViewController(storyboard!, animated: true)
-        }
-        else if indexPath.section == 2 && indexPath.row == 2
-        {
-            
-          self.showAlert("Are u sure", status: 0)
+        
+        
+        if isLoggedUser == true{
+            if indexPath.section == 2 && indexPath.row == 0
+            {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
+                self.navigationController?.pushViewController(storyboard!, animated: true)
+            }
+            else if indexPath.section == 2 && indexPath.row == 2
+            {
+                
+                self.showAlert("Are You Sure", status: 0)
+            }
+            else if indexPath.section == 2 && indexPath.row == 1
+            {
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFChangePasswordViewController")as? LFChangePasswordViewController
+                self.navigationController?.pushViewController(storyboard!, animated: true)
+            }
+        }else{
+            if indexPath.section == 2 && indexPath.row == 0
+            {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserDetailEditViewController")as? LFUserDetailEditViewController
+                self.navigationController?.pushViewController(storyboard!, animated: true)
+            }
+            else if indexPath.section == 2 && indexPath.row == 1
+            {
+                self.showAlert("Are You Sure", status: 0)
+            }
         }
     }
     
@@ -123,7 +153,7 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
         
     }
     
-   
-
+    
+    
     
 }

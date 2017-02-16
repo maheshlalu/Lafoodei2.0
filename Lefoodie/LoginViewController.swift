@@ -129,7 +129,7 @@ let signIn = GIDSignIn.sharedInstance()
                     lastName = userData!["family_name"] as! String
                     profilePic = userData!["picture"] as! String
                     email = userData!["email"] as! String
-                    
+                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
                     print("\(email)\(firstName)\(lastName)\(profilePic)")
                     self.googleResponseDict = userData as NSDictionary!
                     MagicalRecord.save({ (localContext) in
@@ -197,6 +197,7 @@ let signIn = GIDSignIn.sharedInstance()
                     self.facebookResponseDict = result as! [String : AnyObject] as NSDictionary!
                     print(result!)
                     print(self.facebookResponseDict)
+                    UserDefaults.standard.set(false, forKey: "isLoggedUser")
                     //For removing existing user from CoreData
                     MagicalRecord.save({ (localContext) in
                         
