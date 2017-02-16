@@ -168,7 +168,9 @@ class CX_SocialIntegration: NSObject {
     
     
     func saveUserDetailsFromMacIDInfo(userData:NSDictionary){
-        
+        LFDataManager.sharedInstance.getTheUserDetails(userEmail: (userData.value(forKey:"emailId") as? String)!) {
+            
+        }
         
         MagicalRecord.save({ (localContext) in
             let enProduct =  NSEntityDescription.insertNewObject(forEntityName: "UserProfile", into: localContext!) as? UserProfile

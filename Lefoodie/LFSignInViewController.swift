@@ -85,7 +85,7 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
     // MARK : signin Details
     func signin(){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
-         let signInUrl = CXAppConfig.sharedInstance.getBaseUrl() + "MobileAPIs/loginConsumerForOrg?orgId="+CXAppConfig.sharedInstance.getAppMallID()+"&email="+self.tfEmailtextfield.text!+"&dt=DEVICES&password="+self.tfPasswordtextfield.text!
+        let signInUrl = CXAppConfig.sharedInstance.getBaseUrl() + "MobileAPIs/loginConsumerForOrg?orgId="+CXAppConfig.sharedInstance.getAppMallID()+"&email="+self.tfEmailtextfield.text!+"&dt=DEVICES&password="+self.tfPasswordtextfield.text!
         let urlStr = NSString.init(string: signInUrl)
         print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
@@ -93,31 +93,28 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
             print("Get Data is \(responceDic)")
             let Status = responceDic.value(forKey: "status") as! String
             if (Status == "-1"){
-            self.showAlert(message: "Invalid Username or Password")
+                self.showAlert(message: "Invalid Username or Password")
                 CXDataService.sharedInstance.hideLoader()
-            
+                
             }else {
-               let statusSucce = responceDic.value(forKey: "status")
+                let statusSucce = responceDic.value(forKey: "status")
                 CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
                 print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
                 if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
+                    LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!) {
+                        
+                    }
                     UserDefaults.standard.set(true, forKey: "isLoggedUser")
                     CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
-                                CXDataService.sharedInstance.hideLoader()
+                    CXDataService.sharedInstance.hideLoader()
                     
-                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                appDelegate.navigateToTabBar()
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.navigateToTabBar()
                     
-                
+                    
+                }
             }
-            }
-            
-           
-//
         }
-
-        
-
     }
     
     func showAlert(message:String)
