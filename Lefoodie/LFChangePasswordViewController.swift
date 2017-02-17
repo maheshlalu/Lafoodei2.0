@@ -74,6 +74,10 @@ class LFChangePasswordViewController: UIViewController,UITableViewDataSource,UIT
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 300
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "LFChangePasswordTableViewCell", for: indexPath)as? LFChangePasswordTableViewCell
         cell?.selectionStyle = .none

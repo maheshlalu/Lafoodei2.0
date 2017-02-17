@@ -63,9 +63,17 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
 
         CXDataService.sharedInstance.showLoader(view: self.view, message: "")
 
-        LFDataManager.sharedInstance.imageUpload(imageData: UIImageJPEGRepresentation(cell.sharedPic.image!, 0.5)!) { (Response) in
+        LFDataManager.sharedInstance.imageUpload(imageData: UIImageJPEGRepresentation(postImage, 0.2)!) { (Response) in
+            
+            if Response.allKeys.count == 0 {
+                //CXDataService.sharedInstance.hideLoader()
+               return
+            }
+        
+            
             let restarurnat : Restaurants = self.resturantsList[0]
             let imgStr = Response.value(forKey: "filePath") as! String
+            print(imgStr)
             let dict:NSMutableDictionary = NSMutableDictionary()
             dict.setObject(cell.postDescTxtView.text!, forKey: "Name" as NSCopying)
             dict.setObject(imgStr, forKey: "Image" as NSCopying)

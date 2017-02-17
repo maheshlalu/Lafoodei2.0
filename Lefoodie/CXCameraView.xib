@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,20 +17,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-zc-Fyc">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="430"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="514"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="3:4" priority="750" constant="77.5" id="2Mw-bT-QGY"/>
+                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="3:4" priority="750" constant="14.5" id="2Mw-bT-QGY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QL-OK-lJG">
-                    <rect key="frame" x="0.0" y="428" width="400" height="172"/>
+                    <rect key="frame" x="0.0" y="516" width="400" height="84"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyE-pm-xxD">
-                            <rect key="frame" x="166" y="52" width="68" height="68"/>
+                            <rect key="frame" x="150" y="-8" width="100" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="68" id="8xS-RI-cEa"/>
-                                <constraint firstAttribute="width" constant="68" id="U0F-1i-Wjw"/>
+                                <constraint firstAttribute="height" constant="100" id="8xS-RI-cEa"/>
+                                <constraint firstAttribute="width" constant="100" id="U0F-1i-Wjw"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" image="shutter_button"/>
@@ -41,7 +41,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="N0x-Gd-QRM"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="84" id="N0x-Gd-QRM"/>
                         <constraint firstItem="RyE-pm-xxD" firstAttribute="centerX" secondItem="9QL-OK-lJG" secondAttribute="centerX" id="OTY-Xf-xNM"/>
                         <constraint firstItem="RyE-pm-xxD" firstAttribute="centerY" secondItem="9QL-OK-lJG" secondAttribute="centerY" id="YXA-WC-piA"/>
                     </constraints>
@@ -55,7 +55,7 @@
                 <constraint firstAttribute="bottom" secondItem="9QL-OK-lJG" secondAttribute="bottom" id="WvH-Dc-pqW"/>
                 <constraint firstItem="EuZ-zc-Fyc" firstAttribute="top" secondItem="cO0-wd-KYQ" secondAttribute="top" id="XlY-El-Dfe"/>
                 <constraint firstAttribute="trailing" secondItem="EuZ-zc-Fyc" secondAttribute="trailing" id="cel-Uu-VVM"/>
-                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" constant="-2" id="y3I-9C-Djn"/>
+                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" constant="2" id="y3I-9C-Djn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -64,7 +64,7 @@
                 <outlet property="previewViewContainer" destination="EuZ-zc-Fyc" id="B4F-30-U69"/>
                 <outlet property="shotButton" destination="RyE-pm-xxD" id="xCv-OO-vRO"/>
             </connections>
-            <point key="canvasLocation" x="-238" y="-818"/>
+            <point key="canvasLocation" x="-99" y="-879"/>
         </view>
     </objects>
     <resources>

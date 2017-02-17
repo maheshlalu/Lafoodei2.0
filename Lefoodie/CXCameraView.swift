@@ -113,7 +113,7 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                 
                 self.previewViewContainer.layer.addSublayer(videoLayer!)
                 
-                session.sessionPreset = AVCaptureSessionPresetPhoto
+                session.sessionPreset = AVCaptureSessionPresetMedium
                 
                 session.startRunning()
                 
@@ -202,8 +202,10 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                 
                 self.session?.stopRunning()
                 
-                let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+                //let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
                 
+                let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+
                 if let image = UIImage(data: data!), let delegate = self.delegate {
                     
                     // Image size
@@ -220,22 +222,26 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                         ih = image.size.height
                     }
                     
-                    print(ih)
-                    print(iw)
+
                     // Frame size
+                    
+                    
+                    
                     let sw = self.previewViewContainer.frame.width
                     print(sw)
                     // The center coordinate along Y axis
                     let rcy = ih * 0.5
                     
-                    let imageRef = image.cgImage?.cropping(to: CGRect(x: rcy-iw*0.5, y: 0 , width: iw, height: iw))
+                    let imageRef = image.cgImage?.cropping(to: CGRect(x: 0, y: 0 , width: iw, height: iw))
                     
-                    
-                    
+                    //let imageViewImg = UIImage(cgImage: image as! CGImage, scale: 1.0, orientation: UIImageOrientation.right)
+
                     DispatchQueue.main.async(execute: { () -> Void in
                         if CXCropImage {
                             let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
                             delegate.cameraShotFinished(resizedImage)
+                           // UIImageWriteToSavedPhotosAlbum(resizedImage, nil, nil, nil)
+
                         } else {
                             delegate.cameraShotFinished(image)
                         }

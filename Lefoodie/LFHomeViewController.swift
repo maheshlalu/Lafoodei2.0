@@ -17,7 +17,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var Arr_Main = NSMutableArray()
     var jobsArray = NSArray()
     var feedsArray = [LFFeedsData]()
-    
+    var refreshControl : UIRefreshControl!
+
     override func viewDidLoad() {
         
         self.serviceAPICall(PageNumber: "1", PageSize: "10")
@@ -25,6 +26,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.registerCells()
         self.selectedTabBar()
         self.setSegmentProperties()
+        self.addThePullTorefresh()
       NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         
     }
@@ -40,6 +42,21 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func setNavigationProperties(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+
+    }
+    
+    //MARK: Add The PullToRefresh
+    
+    func addThePullTorefresh(){
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        self.homeTableView.addSubview(self.refreshControl)
+        //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+    }
+    
+     func refresh(sender:UIRefreshControl) {
+        self.serviceAPICall(PageNumber: "1", PageSize: "10")
 
     }
    
@@ -73,6 +90,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: "", pageSize: "", userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
             self.feedsArray = resultFeeds
             self.homeTableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
  
     }

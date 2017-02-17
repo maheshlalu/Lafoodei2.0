@@ -8,7 +8,7 @@
 
 import UIKit
 import MagicalRecord
-
+import RealmSwift
 class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var optionsTableView: UITableView!
@@ -138,6 +138,7 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
             }
             let appDelVar:AppDelegate = (UIApplication.shared.delegate as? AppDelegate)!
             appDelVar.logOutFromTheApp()
+            self.deleteUserDataFromRealm()
             //Truncate database
             MagicalRecord.save({ (localContext) in
                 UserProfile.mr_truncateAll(in: localContext)
@@ -151,6 +152,23 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    
+    func deleteUserDataFromRealm(){
+        
+        let realm = try! Realm()
+        
+        let userData = realm.objects(LFMyProfile.self)
+        
+        try! realm.write {
+            realm.delete(userData)
+        }
+        
+        let userPhotos = realm.objects(LFUserPhotos.self)
+        try! realm.write {
+            realm.delete(userPhotos)
+        }
     }
     
     
