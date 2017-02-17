@@ -30,7 +30,7 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
         print("Send button")
         if self.isValidEmail(self.emailTextField.text!) {
             LFDataManager.sharedInstance.forgotPassword(self.emailTextField.text!, completion: { (responseDict) in
-                print(responseDict)
+               // print(responseDict)
                 let message = responseDict.value(forKey: "result") as? String
                 let status: Int = Int(responseDict.value(forKey: "status") as! String)!
                 if status == 1{

@@ -22,6 +22,7 @@ class LFUserProfileViewController: UIViewController {
     @IBOutlet weak var uiView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var userBannerImbView: UIImageView!
     var pageMenu : CAPSPageMenu?
     var myProfile : LFMyProfile!
     
@@ -29,12 +30,12 @@ class LFUserProfileViewController: UIViewController {
      
         self.tabViews()
         self.notificationRegistration()
-        self.populatedData()
         self.setNavigationProperty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.populatedData()
   }
     
     
@@ -54,6 +55,7 @@ class LFUserProfileViewController: UIViewController {
         self.myProfile = realm.objects(LFMyProfile.self).first
     
         self.userPic.setImageWith(NSURL(string: self.myProfile.userPic) as URL!, usingActivityIndicatorStyle: .white)
+        self.userBannerImbView.setImageWith(NSURL(string: self.myProfile.userBannerPic) as URL!, usingActivityIndicatorStyle: .white)
         self.userFirstNameLbl.text = self.myProfile.userFirstName
         self.userLastNameLbl.text = self.myProfile.userLastName
         self.followingCountLbl.text = "\(self.myProfile.userFollwing) Follwing"

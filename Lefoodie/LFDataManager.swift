@@ -30,7 +30,7 @@ extension LFDataManager{
     
     func sharePost(jsonDic:NSDictionary,imageData:Data,completion:@escaping (_ responseDict:Bool) -> Void){
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"6" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject]) { (responseDict) in
-            print(responseDict)
+            //print(responseDict)
             let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
             if status == 1{
                 CXDataService.sharedInstance.hideLoader()
@@ -88,7 +88,7 @@ extension LFDataManager{
         
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"services/getallmallshelper", parameters: ["":"" as AnyObject]) { (responseDict) in
-            print(responseDict)
+           // print(responseDict)
             //orgs
             let orgs : NSArray = (responseDict.value(forKey: "orgs") as?NSArray)!
             var restarurantsLists = [Restaurants]()
@@ -107,7 +107,7 @@ extension LFDataManager{
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject]) { (responceDic
             ) in
-            print("Get Data is \(responceDic)")
+           // print("Get Data is \(responceDic)")
             
             let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
             var feedsList = [LFFeedsData]()
@@ -159,11 +159,11 @@ extension LFDataManager{
         
         
         let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":foodieDetails.foodieItemCode,"trackOnlyOnce":"true"];
-        print(userFollowDic)
+        //print(userFollowDic)
         
         CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (response) in
             
-            print(response)
+           // print(response)
             if response {
                 self.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false, completion: { (dic) in
                     // completion(responseDict)
@@ -173,7 +173,7 @@ extension LFDataManager{
                 
             }
             
-            print(response)
+           // print(response)
         }
     }
     
@@ -182,11 +182,11 @@ extension LFDataManager{
         //http://35.160.251.153:8081/Services/deleteJobInstanceOrActivity?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=false
         
         let userUnFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":foodieDetails.foodieItemCode,"trackOnlyOnce":"true"];
-        print(userUnFollowDic)
+       // print(userUnFollowDic)
         
         CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserUnFollowApi(), parameters: userUnFollowDic as [String : AnyObject]?) { (response) in
             
-            print(response)
+           // print(response)
             if response {
                 let predicate = NSPredicate.init(format: "followerUserId = %@", foodieDetails.foodieUserId)
                 Followers.mr_deleteAll(matching: predicate)
@@ -196,7 +196,7 @@ extension LFDataManager{
                 
             }
             
-            print(response)
+           // print(response)
         }
     }
     
@@ -209,7 +209,7 @@ extension LFDataManager{
         let followerDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"macId":CXAppConfig.sharedInstance.getuserMacID()]
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowers(), parameters: followerDic as [String : AnyObject]?) { (responseDict) in
-            print(responseDict)
+           // print(responseDict)
             
             let userData = responseDict.value(forKey: "jobs") as! NSArray
             if userData.count > 0 {
@@ -229,7 +229,7 @@ extension LFDataManager{
         let followingDic = ["email":CXAppConfig.sharedInstance.getEmailID()]
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowings(), parameters: followingDic as [String : AnyObject]?) { (responseDict) in
-            print(responseDict)
+            //print(responseDict)
             
             let userData = responseDict.value(forKey: "jobs") as! NSArray
             if userData.count > 0 {
@@ -330,7 +330,7 @@ extension LFDataManager{
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: parameterDic as [String : AnyObject]?) { (responceDic
             ) in
-            print("Get Data is \(responceDic)")
+            //print("Get Data is \(responceDic)")
             
             let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
             var feedsList = [LFFeedsData]()

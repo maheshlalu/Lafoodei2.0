@@ -57,8 +57,8 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
         let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0)
         
         let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
-        print(cell.postDescTxtView)
-        print(cell.sharedPic)
+        //print(cell.postDescTxtView)
+        //print(cell.sharedPic)
         
 
         CXDataService.sharedInstance.showLoader(view: self.view, message: "")
@@ -73,14 +73,14 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
             
             let restarurnat : Restaurants = self.resturantsList[0]
             let imgStr = Response.value(forKey: "filePath") as! String
-            print(imgStr)
+           // print(imgStr)
             let dict:NSMutableDictionary = NSMutableDictionary()
             dict.setObject(cell.postDescTxtView.text!, forKey: "Name" as NSCopying)
             dict.setObject(imgStr, forKey: "Image" as NSCopying)
             dict.setObject(restarurnat.restaurantID, forKey: "storeId" as NSCopying)
             //dict.setObject(mobile, forKey: "Phone Number" as NSCopying
             LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
-                print(success)
+              //  print(success)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
                 self.dismiss(animated: true, completion: nil)
             })
@@ -123,7 +123,7 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         }else if indexPath.section == 1{
             let cellChooseLocation = tableView.dequeueReusableCell(withIdentifier: "LFChooseLocationTableViewCell", for: indexPath)as? LFChooseLocationTableViewCell
             if self.resturantsList.count != 0 {
-                print(self.resturantsList[0])
+                //print(self.resturantsList[0])
                 let restarurnat : Restaurants = self.resturantsList[0]
                 cellChooseLocation?.locationLbl.text = restarurnat.restaurantName
             }

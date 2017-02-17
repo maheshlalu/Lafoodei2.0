@@ -293,7 +293,7 @@ class CX_SocialIntegration: NSObject {
     func varifyingEmailForOTP(comsumerEmailId:String, completion:@escaping (_ responseDict:NSDictionary) -> Void) {
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getVarifyingEmailOTP(), parameters: ["ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":comsumerEmailId as AnyObject]) { (responseDict) in
-            print(responseDict)
+            //print(responseDict)
             completion(responseDict)
             
         }
@@ -302,7 +302,7 @@ class CX_SocialIntegration: NSObject {
     // Sending OTP
     func sendingOTPToGivenNumber(consumerEmailId:String, mobile:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSendingOTP(), parameters: ["ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":consumerEmailId as AnyObject,"mobile":"91\(mobile)" as AnyObject]) { (responseDict) in
-            print(responseDict)
+           // print(responseDict)
             completion(responseDict)
         }
         
@@ -312,7 +312,7 @@ class CX_SocialIntegration: NSObject {
     func validatingRecievedOTP(consumerEmailId:String, enteredOTP:String, completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getComparingOTP(), parameters: ["ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"consumerEmail":consumerEmailId as AnyObject,"otp":enteredOTP as AnyObject]) { (responseDict) in
-            print(responseDict)
+           // print(responseDict)
             completion(responseDict)
             
         }

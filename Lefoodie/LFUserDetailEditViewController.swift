@@ -30,6 +30,13 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     var birthDayTxtFld = UITextField()
     var phoneNumberTxtFld = UITextField()
     
+    var isPicUpdated = false
+    var isBannerUpdated = false
+
+    var bannaerPath = ""
+    var userPic = ""
+    let jsonDic : NSMutableDictionary = NSMutableDictionary()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +58,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         let nib = UINib(nibName: "LFEditTableViewCell", bundle: nil)
         self.editTableView.register(nib, forCellReuseIdentifier: "LFEditTableViewCell")
         buttoncreated()
+        self.setImages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,11 +68,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     
     func setImages(){
         self.myProfile = realm.objects(LFMyProfile.self).first
-        print(self.myProfile)
-        
         self.userDpImaView.setImageWith(NSURL(string: self.myProfile.userPic) as URL!, usingActivityIndicatorStyle: .white)
-       // self.bannerImgView.setImageWith(NSURL(string: self.myProfile.userPic) as URL!, usingActivityIndicatorStyle: .white)
-    
+        self.bannerImgView.setImageWith(NSURL(string: self.myProfile.userBannerPic) as URL!, usingActivityIndicatorStyle: .white)
+        self.userPic = self.myProfile.userPic
+        self.bannaerPath = self.myProfile.userBannerPic
     }
     //Button Created
     func buttoncreated(){
@@ -95,7 +102,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             //enabling textfields
             var cell = LFEditTableViewCell()
             for i in 0...4{
-                
                 let indexPath : NSIndexPath = NSIndexPath(row:i, section: 0)
                 cell = self.editTableView.cellForRow(at: indexPath as IndexPath) as! LFEditTableViewCell
                 cell.infoTextfield.isUserInteractionEnabled = true
@@ -111,9 +117,33 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
            // self.imageUpload(key:"IMG_DATA_DP")
              CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
             
-            self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
-                self.sumbitDetails(imageStr: responceStr)
-            })
+            if self.isPicUpdated {
+                self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
+                    self.jsonDic.setObject(responceStr, forKey: "Image" as NSCopying)
+                    self.userPic = responceStr
+                    if self.isBannerUpdated{
+                        self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
+                            self.bannaerPath = responceStr
+                            self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
+                            self.sumbitDetails(imageStr: responceStr)
+                        })
+                    }else{
+                        self.sumbitDetails(imageStr: responceStr)
+                    }
+                })
+            }else if self.isBannerUpdated{
+                self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
+                    self.bannaerPath = responceStr
+                    self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
+                        self.sumbitDetails(imageStr: responceStr)
+                })
+            }else{
+                self.sumbitDetails(imageStr: "")
+            }
+            
+
+            
+           
             
            // self.imageUpload(key: "IMG_DATA_BI")
             //sumbitDetails
@@ -133,20 +163,32 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         let dateOfBirth = birthDayTxtFld.text!
         
         
-        let jsonDic : NSMutableDictionary = NSMutableDictionary()
         jsonDic.setObject(firstName, forKey: "firstName" as NSCopying)
         jsonDic.setObject(lastName, forKey: "lastName" as NSCopying)
         jsonDic.setObject(mobileNo, forKey: "mobileNo" as NSCopying)
         jsonDic.setObject(dateOfBirth, forKey: "DOB" as NSCopying)
-        jsonDic.setObject(imageStr, forKey: "Image" as NSCopying)
-        //     jsonDic.setObject("", forKey: "userBannerPath" as NSCopying)
-        
-        
-        print(jsonDic)
+        //jsonDic.setObject(imageStr, forKey: "Image" as NSCopying)
+        //jsonDic.setObject("", forKey: "userBannerPath" as NSCopying)
         
         self.activeTheUser(parameterDic: jsonDic, jobId: jobId)
         
     }
+    
+    
+    func updateTheProfileInLocalDB(){
+        let realm = try! Realm()
+        try! realm.write {
+            self.myProfile.userFirstName =  self.firstNameTxtFld.text!
+            self.myProfile.userLastName =  self.lastNameTxtFld.text!
+            self.myProfile.userMobileNumber =  self.phoneNumberTxtFld.text!
+            self.myProfile.userDOB =  self.birthDayTxtFld.text!
+            self.myProfile.userBannerPic = self.bannaerPath
+            self.myProfile.userPic = self.userPic
+
+        }
+
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return nameArray.count
@@ -161,7 +203,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         cell?.stackView.addGestureRecognizer(tap)
         tableView.allowsSelection = false
         self.myProfile = realm.objects(LFMyProfile.self).first
-        print(self.myProfile)
         
         cell?.selectionStyle = .none
 
@@ -176,7 +217,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             lastNameTxtFld = (cell?.infoTextfield)!
         }else if cell?.nameLabel.text == "Birth Day(Optional)"{
             cell?.infoTextfield.tag = 300
-            //cell?.infoTextfield.text = self.myProfile.userFirstName
+            cell?.infoTextfield.text = self.myProfile.userDOB
             birthDayTxtFld = (cell?.infoTextfield)!
         }else if cell?.nameLabel.text == "E-Mail"{
             cell?.infoTextfield.tag = 500
@@ -208,18 +249,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     func handleTapForBanner(sender:UITapGestureRecognizer? = nil) {
         imagePickerAction()
         
-//        let alert = UIAlertController(title: "Alert", message: "Are You Sure?", preferredStyle: .alert)
-//        let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
-//            
-//            
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) -> Void in
-//            
-//        }
-//        alert.addAction(defaultAction)
-//        alert.addAction(cancelAction)
-//        present(alert, animated: true, completion:nil)
-        
     }
     
     func handleTapForDp(sender: UITapGestureRecognizer? = nil) {
@@ -235,7 +264,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         let chooseFromPhotos: UIAlertAction = UIAlertAction(title: "Choose From Photos", style: .default)
         { action -> Void in
-            print("choose from photos")
+            //print("choose from photos")
             let image = UIImagePickerController()
             image.delegate = self
             image.sourceType = .photoLibrary
@@ -246,7 +275,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         let capturePicture: UIAlertAction = UIAlertAction(title: "Capture Image", style: .default)
         { action -> Void in
-            print("camera shot")
+            //print("camera shot")
             let picker = UIImagePickerController()
             picker.allowsEditing = false
             picker.delegate = self
@@ -272,18 +301,20 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             if isDP{
                 userDpImaView.contentMode = .scaleToFill
                 userDpImaView.image = pickedImage
-                self.dpLayer.isHidden = true
+                //self.dpLayer.isHidden = true
                 let image = pickedImage as UIImage
-                
-                
+           
                 let imageData = NSData(data: UIImageJPEGRepresentation(image, 0.5)!)
+                self.isPicUpdated = true
+                isDP = false
                 UserDefaults.standard.set(imageData, forKey: "IMG_DATA_DP")
             }else{
                 bannerImgView.contentMode = .scaleToFill
                 bannerImgView.image = pickedImage
-                self.BannerLayer.isHidden = true
+               // self.BannerLayer.isHidden = true
                 let image = pickedImage as UIImage
                 let imageData = NSData(data: UIImageJPEGRepresentation(image, 0.5)!)
+                self.isBannerUpdated = true
                 UserDefaults.standard.set(imageData, forKey: "IMG_DATA_BI")
             }
             
@@ -414,10 +445,11 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     func showAlert(message:String, status:Int){
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
-            
+            self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) -> Void in
-          
+            self.navigationController?.popViewController(animated: true)
+
         }
         alert.addAction(defaultAction)
         alert.addAction(cancelAction)
@@ -437,10 +469,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         }
         
         let jsonStringFormat = String(data:(jsonData as NSData) as Data, encoding: String.Encoding.utf8)
-        print(jsonStringFormat!)
+       // print(jsonStringFormat!)
         
         LFDataManager.sharedInstance.getUpdateMultipleProperties(jobId: jobId, jsonString: jsonStringFormat!) { (responseDict) in
-                print(responseDict)
+                //print(responseDict)
             DispatchQueue.main.async {
                 // do something
                 CXDataService.sharedInstance.hideLoader()
@@ -448,6 +480,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                 let message = responseDict.value(forKey: "message") as! String
                 let status = Int(responseDict.value(forKey: "status") as! String)
                 self.showAlert(message: message, status: status!)
+                self.updateTheProfileInLocalDB()
             }
             
         }
@@ -458,7 +491,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     func imageUpload(key:String,uploadCompletion:@escaping (_ responceStr:String)->Void){
         let imgData = UserDefaults.standard.value(forKey: key)
         LFDataManager.sharedInstance.imageUpload(imageData: imgData as! Data) { (responseDict) in
-            print(responseDict)
+          //  print(responseDict)
             let status: Int = Int(responseDict.value(forKey: "status") as! String)!
             
             if status == 1{

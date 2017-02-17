@@ -157,7 +157,7 @@ extension LFTabHomeController:UITabBarControllerDelegate{
         
         let tabBar = tabBarController.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.black, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 3.0)
-        print("clicked\(viewController)")
+       // print("clicked\(viewController)")
     }
     
     public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool{
@@ -173,17 +173,17 @@ extension  LFTabHomeController:CXCameraSourceDelegate{
         let profileContoller : LFShareFoodiePicViewController = (storyBoard.instantiateViewController(withIdentifier: "LFShareFoodiePicViewController") as? LFShareFoodiePicViewController)!
         switch source {
         case .camera:
-            print("Image captured from Camera")
+            //print("Image captured from Camera")
             profileContoller.postImage = image
             self.navController?.pushViewController(profileContoller, animated: true)
             
         case .library:
-            print("Image selected from Camera Roll")
+            //print("Image selected from Camera Roll")
             profileContoller.postImage = image
             self.navController?.pushViewController(profileContoller, animated: true)
             
         default:
-            print("Image selected")
+           // print("Image selected")
             profileContoller.postImage = image
             self.navController?.pushViewController(profileContoller, animated: true)
             
@@ -192,18 +192,18 @@ extension  LFTabHomeController:CXCameraSourceDelegate{
     
     func CXDismissedWithImage(_ image: UIImage, source: CXMode){
         switch source {
-        case .camera:
-            print("Called just after dismissed using Camera")
-        case .library:
-            print("Called just after dismissed using Camera Roll")
-        default:
-            print("Called just after dismissed")
+        case .camera: break
+            //print("Called just after dismissed using Camera")
+        case .library: break
+           // print("Called just after dismissed using Camera Roll")
+        default: break
+           // print("Called just after dismissed")
         }
     }
     
     func CXClosed(){
         
-        print("Called when the close button is pressed")
+       // print("Called when the close button is pressed")
         
     }
     

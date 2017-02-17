@@ -79,7 +79,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func updatedFeed(){
-        print("Feed Updated")
+        //print("Feed Updated")
         self.serviceAPICall(PageNumber: "1", PageSize: "10")
     }
     
@@ -200,11 +200,11 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
            // (sender.subviews[0] as UIView).tintColor = UIColor.black
             
 
-            print("Home selected")
+           // print("Home selected")
         //show popular view
         case 1:
             
-            print("near selected")
+          //  print("near selected")
             
             
            // (sender.subviews[0] as UIView).tintColor = UIColor.black

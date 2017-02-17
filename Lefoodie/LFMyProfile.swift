@@ -29,6 +29,7 @@ class LFMyProfile: Object {
     
     dynamic var userFollowers = ""
     dynamic var userFollwing = ""
+    dynamic var userDOB = ""
 
 
     

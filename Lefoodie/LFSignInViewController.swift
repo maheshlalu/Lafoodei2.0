@@ -90,7 +90,7 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
         print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
-            print("Get Data is \(responceDic)")
+           // print("Get Data is \(responceDic)")
             let Status = responceDic.value(forKey: "status") as! String
             if (Status == "-1"){
                 self.showAlert(message: "Invalid Username or Password")

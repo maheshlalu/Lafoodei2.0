@@ -43,7 +43,7 @@ class LFSignUpViewController: UIViewController {
         }
         else{
             self.sendSignUpDetails()
-            print("All fields have data")
+            //print("All fields have data")
 
         }
         
@@ -70,7 +70,7 @@ class LFSignUpViewController: UIViewController {
             
             if isRegistred {
                 
-                print(isRegistred)
+                //print(isRegistred)
                 self.showAlert(message: "You are Successfully Registered", status: 1)
                 UserDefaults.standard.set(true, forKey: "isLoggedUser")
             }

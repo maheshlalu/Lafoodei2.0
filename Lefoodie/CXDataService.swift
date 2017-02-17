@@ -85,8 +85,8 @@ class CXDataService: NSObject {
     
     open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
-        print(urlstring)
-        print(parameters)
+       // print(urlstring)
+       // print(parameters)
         Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
             .validate()
             .validate(contentType: ["application/json"])
@@ -114,8 +114,8 @@ class CXDataService: NSObject {
     
     open func followOrUnFollowServiceCall(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ response:Bool) -> Void){
         
-        print(urlstring)
-        print(parameters)
+      //  print(urlstring)
+       // print(parameters)
         Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
             .validate()
             .validate(contentType: ["application/json"])

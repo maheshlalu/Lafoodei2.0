@@ -56,6 +56,8 @@ class LFDataSaveManager: NSObject {
 
                 myProfileData.userFollowers = userDataDic["followers"].stringValue
                 myProfileData.userFollwing = userDataDic["following"].stringValue
+                myProfileData.userDOB = userDataDic["DOB"].stringValue
+                myProfileData.userBannerPic = userDataDic["userBannerPath"].stringValue
 
                 relamInstance.add(myProfileData)
             })

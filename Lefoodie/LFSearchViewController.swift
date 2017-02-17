@@ -138,14 +138,14 @@ extension LFSearchViewController : UISearchBarDelegate {
         }else if searchText.isEmpty{
             //self.search.view.removeFromSuperview()
             //self.offersTableView.reloadData()
-            print("SearchTextEmptyMethod")
+           // print("SearchTextEmptyMethod")
         }
         
     }
     
     func loadDefaultList (){
         if count == 2{
-            print("Foodie section")
+           // print("Foodie section")
             
         }
     }
@@ -174,7 +174,7 @@ extension LFSearchViewController : UISearchBarDelegate {
     func doSearch () {
         
         if count == 3{
-        print("Foodie section")
+        //print("Foodie section")
         
         }
 //        self.search = self.storyboard?.instantiateViewController(withIdentifier: "ProductSearchViewController") as! ProductSearchViewController

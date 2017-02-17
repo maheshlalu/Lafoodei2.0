@@ -123,14 +123,14 @@ let signIn = GIDSignIn.sharedInstance()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 do {
                     let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
-                    print(userData)
+                    //print(userData)
                     
                     firstName = userData!["given_name"] as! String
                     lastName = userData!["family_name"] as! String
                     profilePic = userData!["picture"] as! String
                     email = userData!["email"] as! String
                     UserDefaults.standard.set(false, forKey: "isLoggedUser")
-                    print("\(email)\(firstName)\(lastName)\(profilePic)")
+                    //print("\(email)\(firstName)\(lastName)\(profilePic)")
                     self.googleResponseDict = userData as NSDictionary!
                     MagicalRecord.save({ (localContext) in
                         
@@ -195,8 +195,8 @@ let signIn = GIDSignIn.sharedInstance()
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     self.facebookResponseDict = result as! [String : AnyObject] as NSDictionary!
-                    print(result!)
-                    print(self.facebookResponseDict)
+                   // print(result!)
+                   // print(self.facebookResponseDict)
                     UserDefaults.standard.set(false, forKey: "isLoggedUser")
                     //For removing existing user from CoreData
                     MagicalRecord.save({ (localContext) in
