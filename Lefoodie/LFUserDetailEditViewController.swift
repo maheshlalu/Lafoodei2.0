@@ -422,12 +422,12 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         let jsonStringFormat = String(data:(jsonData as NSData) as Data, encoding: String.Encoding.utf8)
         print(jsonStringFormat!)
         
-        LFDataManager.sharedInstance.getUpdateMultipleProperties(jobId: <#T##String#>, jsonString: <#T##String#>) { (responseDict) in
+       /* LFDataManager.sharedInstance.getUpdateMultipleProperties(jobId: <#T##String#>, jsonString: <#T##String#>) { (responseDict) in
                 print(responseDict)
                 let message = responseDict.value(forKey: "message") as! String
                 let status = Int(responseDict.value(forKey: "status") as! String)
                 self.showAlert(message: message, status: status!)
-        }
+        }*/
     }
     
     //Image Upload
