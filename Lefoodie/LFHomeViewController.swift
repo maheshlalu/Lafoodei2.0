@@ -49,7 +49,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func addThePullTorefresh(){
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
         self.homeTableView.addSubview(self.refreshControl)
         //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
