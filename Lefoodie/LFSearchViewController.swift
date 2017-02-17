@@ -24,12 +24,8 @@ class LFSearchViewController: UIViewController {
         
         searchTypeLabel.layer.cornerRadius = 3
         searchTypeLabel.clipsToBounds = true
-        
         count = 1
-       
         searchTypeLabel.text = "Places"
-    
-  
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -25,6 +25,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     let realm = try! Realm()
     var resultDate:String = String()
     var isDP:Bool = false
+    var firstNameTxtFld = UITextField()
+    var lastNameTxtFld = UITextField()
+    var birthDayTxtFld = UITextField()
+    var phoneNumberTxtFld = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +84,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         if(sender.titleLabel?.text == "Edit")
         {
+            sender.setTitle("Save", for: .normal)
             sender.isSelected = !sender.isSelected
             sender.setImage(UIImage(named:"item1"), for: UIControlState.normal)
             
@@ -100,46 +105,48 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             }
  
         }else if sender.titleLabel?.text == "Save" {
-            sender.isSelected = !sender.isSelected
             
+            sender.setTitle("Edit", for: .normal)
+            sender.isSelected = !sender.isSelected
+           // self.imageUpload(key:"IMG_DATA_DP")
+             CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
+            
+            self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
+                self.sumbitDetails(imageStr: responceStr)
+            })
+            
+           // self.imageUpload(key: "IMG_DATA_BI")
             //sumbitDetails
         }
     }
+    
     // Pls edit the stuff
-    /*    func sumbitDetails(){
-     LoadingView.show(true)
-     let number : NSNumber = NSUserDefaults.standardUserDefaults().valueForKey("MACID_JOBID") as! NSNumber
-     let jobId : String = number.stringValue
-     
-     let firstName = self.fristNameTxtField.text
-     let lastName = self.lastNameTxtField.text
-     let fullName = "\(firstName!) \(lastName!)"
-     let Email = self.emailTxtField.text
-     let state = self.stateTxtField.text
-     let city = self.cityTxtField.text
-     let address = self.addressTxtField.text
-     let mobileNo = self.moblieTxtField.text
-     let country = self.countryTxtField.text
-     
-     
-     let jsonDic : NSMutableDictionary = NSMutableDictionary()
-     jsonDic.setObject(firstName!, forKey: "firstName" as NSCopying)
-     jsonDic.setObject(lastName!, forKey: "lastName" as NSCopying)
-     jsonDic.setObject(Email!, forKey: "Email" as NSCopying)
-     jsonDic.setObject(mobileNo!, forKey: "mobileNo" as NSCopying)
-     jsonDic.setObject(address!, forKey: "address" as NSCopying)
-     jsonDic.setObject(city!, forKey: "city" as NSCopying)
-     jsonDic.setObject(state!, forKey: "state" as NSCopying)
-     jsonDic.setObject(country!, forKey: "country" as NSCopying)
-     jsonDic.setObject(fullName, forKey: "FullName" as NSCopying)
-     
-     print(jsonDic)
-     
-     self.activeTheUser(jsonDic, jobId: jobId)
-     LoadingView.hide()
-     self.submitDetails = true
-     
-     }*/
+    func sumbitDetails(imageStr: String){
+        
+        let realm = try! Realm()
+        let myProfile = realm.objects(LFMyProfile.self).first
+        let jobId : String = (myProfile?.userId)!
+        
+        let firstName = firstNameTxtFld.text!
+        let lastName = lastNameTxtFld.text!
+        let mobileNo = phoneNumberTxtFld.text!
+        let dateOfBirth = birthDayTxtFld.text!
+        
+        
+        let jsonDic : NSMutableDictionary = NSMutableDictionary()
+        jsonDic.setObject(firstName, forKey: "firstName" as NSCopying)
+        jsonDic.setObject(lastName, forKey: "lastName" as NSCopying)
+        jsonDic.setObject(mobileNo, forKey: "mobileNo" as NSCopying)
+        jsonDic.setObject(dateOfBirth, forKey: "DOB" as NSCopying)
+        jsonDic.setObject(imageStr, forKey: "Image" as NSCopying)
+        //     jsonDic.setObject("", forKey: "userBannerPath" as NSCopying)
+        
+        
+        print(jsonDic)
+        
+        self.activeTheUser(parameterDic: jsonDic, jobId: jobId)
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return nameArray.count
@@ -162,12 +169,15 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         if cell?.nameLabel.text == "First Name"{
             cell?.infoTextfield.tag = 100
             cell?.infoTextfield.text = self.myProfile.userFirstName
+            firstNameTxtFld = (cell?.infoTextfield)!
         }else if cell?.nameLabel.text == "Last Name"{
             cell?.infoTextfield.tag = 200
             cell?.infoTextfield.text = self.myProfile.userLastName
+            lastNameTxtFld = (cell?.infoTextfield)!
         }else if cell?.nameLabel.text == "Birth Day(Optional)"{
             cell?.infoTextfield.tag = 300
             //cell?.infoTextfield.text = self.myProfile.userFirstName
+            birthDayTxtFld = (cell?.infoTextfield)!
         }else if cell?.nameLabel.text == "E-Mail"{
             cell?.infoTextfield.tag = 500
             cell?.infoTextfield.text = self.myProfile.userEmail
@@ -175,6 +185,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             cell?.infoTextfield.tag = 600
             cell?.infoTextfield.keyboardType = .phonePad
             cell?.infoTextfield.text = self.myProfile.userMobileNumber
+            phoneNumberTxtFld = (cell?.infoTextfield)!
         }
         
         return cell!
@@ -262,15 +273,21 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                 userDpImaView.contentMode = .scaleToFill
                 userDpImaView.image = pickedImage
                 self.dpLayer.isHidden = true
+                let image = pickedImage as UIImage
+                
+                
+                let imageData = NSData(data: UIImageJPEGRepresentation(image, 0.5)!)
+                UserDefaults.standard.set(imageData, forKey: "IMG_DATA_DP")
             }else{
                 bannerImgView.contentMode = .scaleToFill
                 bannerImgView.image = pickedImage
                 self.BannerLayer.isHidden = true
+                let image = pickedImage as UIImage
+                let imageData = NSData(data: UIImageJPEGRepresentation(image, 0.5)!)
+                UserDefaults.standard.set(imageData, forKey: "IMG_DATA_BI")
             }
             
-            let image = pickedImage as UIImage
-            let imageData = NSData(data: UIImagePNGRepresentation(image)!)
-            UserDefaults.standard.set(imageData, forKey: "IMG_DATA")
+            
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -422,18 +439,24 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         let jsonStringFormat = String(data:(jsonData as NSData) as Data, encoding: String.Encoding.utf8)
         print(jsonStringFormat!)
         
-       /* LFDataManager.sharedInstance.getUpdateMultipleProperties(jobId: <#T##String#>, jsonString: <#T##String#>) { (responseDict) in
+        LFDataManager.sharedInstance.getUpdateMultipleProperties(jobId: jobId, jsonString: jsonStringFormat!) { (responseDict) in
                 print(responseDict)
+            DispatchQueue.main.async {
+                // do something
+                CXDataService.sharedInstance.hideLoader()
+                
                 let message = responseDict.value(forKey: "message") as! String
                 let status = Int(responseDict.value(forKey: "status") as! String)
                 self.showAlert(message: message, status: status!)
-        }*/
+            }
+            
+        }
     }
     
     //Image Upload
     
-    func imageUpload(){
-        let imgData = UserDefaults.standard.value(forKey: "IMG_DATA")
+    func imageUpload(key:String,uploadCompletion:@escaping (_ responceStr:String)->Void){
+        let imgData = UserDefaults.standard.value(forKey: key)
         LFDataManager.sharedInstance.imageUpload(imageData: imgData as! Data) { (responseDict) in
             print(responseDict)
             let status: Int = Int(responseDict.value(forKey: "status") as! String)!
@@ -443,9 +466,9 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                 //let number : NSNumber = NSUserDefaults.standardUserDefaults().valueForKey("MACID_JOBID") as! NSNumber
                 //let jobId : String = number.stringValue
                 let imgUrl = responseDict.value(forKey: "filePath") as! String
-                let jsonDic : NSMutableDictionary = NSMutableDictionary()
-                jsonDic.setObject(imgUrl, forKey: "Image" as NSCopying)
-                print(jsonDic)
+                uploadCompletion(imgUrl)
+                //let jsonDic : NSMutableDictionary = NSMutableDictionary()
+               //jsonDic.setObject(imgUrl, forKey: "Image" as NSCopying)
                 //self.activeTheUser(jsonDic, jobId: jobId)
             }
         }

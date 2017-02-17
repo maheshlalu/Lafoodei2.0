@@ -64,9 +64,15 @@ extension LFDataManager{
              print("error")
              return
              }*/
-            let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-            let myDic = dataString?.convertStringToDictionary()  //self.convertStringToDictionary(dataString! as String)
-            completion(myDic!)
+            
+            if (data != nil){
+                let dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                let myDic = dataString?.convertStringToDictionary()  //self.convertStringToDictionary(dataString! as String)
+                completion(myDic!)
+            }else{
+                completion(NSDictionary())
+            }
+
         }
         task.resume()
         
@@ -400,11 +406,11 @@ extension LFDataManager{
     
     //MARK : Update Multiple properties
     
-//    func getUpdateMultipleProperties(jobId:String,jsonString:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
-//        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUpdatedUserDetails(), parameters: ["jobId":jobId as AnyObject, "jsonString":jsonString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responceDic) in
-//            completion(responceDic)
-//        }
-//    }
+    func getUpdateMultipleProperties(jobId:String,jsonString:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUpdatedUserDetails(), parameters: ["jobId":jobId as AnyObject, "jsonString":jsonString as AnyObject,"ownerId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responceDic) in
+            completion(responceDic)
+        }
+    }
     
     
   
