@@ -10,6 +10,7 @@ import UIKit
 
 class LFHomeFooterTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var alertBtn: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

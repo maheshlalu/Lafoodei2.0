@@ -134,6 +134,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }else  {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
             cell.selectionStyle = .none
+            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
             return cell
         }
     }
@@ -222,6 +223,32 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
 }
 
+
+extension LFHomeViewController{
+    func actionAlertSheet()
+    {
+        
+        let alert = UIAlertController()
+        alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
+        }))
+        alert.addAction(UIAlertAction(title: "Add to Favorites List", style: .default, handler: { (action) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Share to Facebook", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Copy Share URL", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        }))
+        alert.self.present(alert, animated: true, completion: nil)
+    }
+}
 
 //MARK: TableView Pagination
 

@@ -7,23 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>803211070847-552fk8b896jocpef952a6gg8abgk2q8m.apps.googleusercontent.com</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>21707349297-60r35u5fa2n37bfm4002ga33sdl6jt37.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m</string>
+	<string>com.googleusercontent.apps.21707349297-60r35u5fa2n37bfm4002ga33sdl6jt37</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCJSaR7jqHXr3y64e1cFhBsW1WoHB6pI-A</string>
+	<string>AIzaSyCSOnTlr4NvyhRmJig3spg0QmyzWWsheJE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>803211070847</string>
+	<string>21707349297</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ongo.Lefoodie</string>
+	<string>com.ongo.lefoodie</string>
 	<key>PROJECT_ID</key>
-	<string>lefoodie-b3d59</string>
+	<string>ongoplatform</string>
 	<key>STORAGE_BUCKET</key>
-	<string>lefoodie-b3d59.appspot.com</string>
+	<string>ongoplatform.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:803211070847:ios:35134688ab6d11c1</string>
+	<string>1:21707349297:ios:21a9910112312509</string>
 	<key>DATABASE_URL</key>
-	<string>https://lefoodie-b3d59.firebaseio.com</string>
+	<string>https://ongoplatform.firebaseio.com</string>
 </dict>
 </plist>

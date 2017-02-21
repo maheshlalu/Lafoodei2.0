@@ -24,22 +24,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpMagicalDB()
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("pathv\(urls[urls.count-1] as URL)")
-        FIRApp.configure()
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
+        //FIRApp.configure()
         self.storyBoard = self.window?.rootViewController?.storyboard
         print( getDocumentsDirectory())
-    //MARK: Check UserID
+        //MARK: Check UserID
         checkUserId()
-   
+        self.registerNotification(application: application)
         print("Realm DB path \(Realm.Configuration.defaultConfiguration.fileURL)")
-
         return true
-        
     }
     
     func setUpMagicalDB() {
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
+    }
+    
+    func registerNotification(application:UIApplication){
+    let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+ 
+        
+        // [END register_for_notifications]
+        FIRApp.configure()
+        
+        // [START add_token_refresh_observer]
+        // Add observer for InstanceID token refresh callback.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.tokenRefreshNotification),
+                                               name: .firInstanceIDTokenRefresh,
+                                               object: nil)
+        // [END add_token_refresh_observer]
+    }
+    
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+        }
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return;
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
     }
     
     func checkUserId(){
@@ -85,6 +131,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appDelegate.window?.makeKeyAndVisible()
     }
     
+    // [END connect_to_fcm]
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+    // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+    // the InstanceID token.
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+        
+        let characterSet = CharacterSet(charactersIn: "<>")
+        let deviceTokenString = deviceToken.description.trimmingCharacters(in: characterSet).replacingOccurrences(of: " ", with: "");
+        print(deviceTokenString)
+        // With swizzling disabled you must set the APNs token here.
+         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.sandbox)
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -172,3 +235,5 @@ extension AppDelegate{
     }
 }
 
+/*
+ */
