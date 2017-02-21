@@ -10,13 +10,12 @@ pod 'AFNetworking', '~> 3.1'
 pod 'MagicalRecord/Shorthand'
 pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
 pod 'Alamofire', '~> 4.0'
-
+pod 'Firebase/Messaging'
 pod 'MagicalRecord/Shorthand'
 pod "KRProgressHUD"
 pod 'MBProgressHUD', '~> 1.0'
 pod 'Google/SignIn'
 pod 'Firebase/Core'
-pod 'Firebase/Crash'
 pod 'SwifterSwift'
 pod 'SDWebImage', '~> 3.8'
 pod 'GSKStretchyHeaderView'
@@ -40,6 +39,7 @@ pod 'RealmSwift'
               config.build_settings['SWIFT_VERSION'] = '3.0'
           end
       end
+      
   end
   
   

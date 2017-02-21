@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,18 +15,22 @@
             <rect key="frame" x="0.0" y="0.0" width="425" height="47"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gWc-25-k0y" id="WLk-wK-yMS">
-                <frame key="frameInset" width="425" height="46"/>
+                <rect key="frame" x="0.0" y="0.0" width="425" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5QS-Pz-DIm">
+                        <rect key="frame" x="9" y="4" width="114" height="40"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yZj-a5-dy0">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-Bp-ryq">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="LikeIcon"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="143Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jK5-Fg-uCC">
+                                        <rect key="frame" x="0.0" y="32" width="35" height="8"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="7"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -31,12 +38,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Ag-WE-ZAq">
+                                <rect key="frame" x="37" y="0.0" width="38" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPN-V2-SV6">
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="CommentsIcon"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Comments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osj-LY-56i">
+                                        <rect key="frame" x="0.0" y="32" width="38" height="8"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="7"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -44,12 +54,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JMB-bm-qIU">
+                                <rect key="frame" x="77" y="0.0" width="37" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-1K-QEn">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="FavouritesIcon"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z21-VF-14O">
+                                        <rect key="frame" x="0.0" y="32" width="37" height="8"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="7"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -63,6 +76,7 @@
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1C2-tY-UER">
+                        <rect key="frame" x="377" y="2" width="40" height="40"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="JAo-yc-oH5"/>
@@ -78,6 +92,9 @@
                     <constraint firstItem="1C2-tY-UER" firstAttribute="top" secondItem="WLk-wK-yMS" secondAttribute="top" constant="2" id="zfP-Jy-MCZ"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="alertBtn" destination="1C2-tY-UER" id="Fbc-YH-0Ju"/>
+            </connections>
             <point key="canvasLocation" x="-94" y="-11"/>
         </tableViewCell>
     </objects>
