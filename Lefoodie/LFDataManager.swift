@@ -11,6 +11,7 @@ import AFNetworking
 import Alamofire
 import SwiftyJSON
 import MagicalRecord
+import RealmSwift
 
 private var sharedManager:LFDataManager! = LFDataManager()
 
@@ -91,6 +92,7 @@ extension LFDataManager{
            // print(responseDict)
             //orgs
             let orgs : NSArray = (responseDict.value(forKey: "orgs") as?NSArray)!
+            LFDataSaveManager.sharedInstance.savePlacesInDB(list: orgs)
             var restarurantsLists = [Restaurants]()
             for resData in orgs{
                 let restaurants = Restaurants(json: JSON(resData))
@@ -165,8 +167,9 @@ extension LFDataManager{
             
            // print(response)
             if response {
-                self.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false, completion: { (dic) in
+                LFDataSaveManager.sharedInstance.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false, completion: { (dic) in
                     // completion(responseDict)
+                    
                 })
             }
             else {
@@ -188,9 +191,14 @@ extension LFDataManager{
             
            // print(response)
             if response {
-                let predicate = NSPredicate.init(format: "followerUserId = %@", foodieDetails.foodieUserId)
-                Followers.mr_deleteAll(matching: predicate)
-                NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+                let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", foodieDetails.foodieUserId)
+
+                let realm = try! Realm()
+                let data = realm.objects(LFFollowers.self).filter(predicate)
+                let obj = data.first
+                    try! realm.write {
+                        realm.delete(obj!)
+                }
             }
             else {
                 
@@ -213,7 +221,7 @@ extension LFDataManager{
             
             let userData = responseDict.value(forKey: "jobs") as! NSArray
             if userData.count > 0 {
-                self.saveFollowerInfoInDBFromService(userData: userData,isFollower:true, completion: { (dic) in
+                LFDataSaveManager.sharedInstance.saveFollowerInfoInDBFromService(userData: userData,isFollower:true, completion: { (dic) in
                     // completion(responseDict)
                 })
                 
@@ -233,7 +241,7 @@ extension LFDataManager{
             
             let userData = responseDict.value(forKey: "jobs") as! NSArray
             if userData.count > 0 {
-                self.saveFollowerInfoInDBFromService(userData: userData,isFollower:false, completion: { (dic) in
+                LFDataSaveManager.sharedInstance.saveFollowerInfoInDBFromService(userData: userData,isFollower:false, completion: { (dic) in
                     completion(true)
                 })
                 
@@ -281,6 +289,7 @@ extension LFDataManager{
     }
     
     func saveFollowerInfoInDB(userData:SearchFoodies,isFollower:Bool,completion:@escaping () -> Void){
+        
         
         MagicalRecord.save({ (localContext) in
             

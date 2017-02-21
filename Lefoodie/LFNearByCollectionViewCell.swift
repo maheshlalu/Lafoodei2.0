@@ -9,5 +9,7 @@
 import UIKit
 
 class LFNearByCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var placeImage: UIImageView!
     
+    @IBOutlet weak var placeName: UILabel!
 }

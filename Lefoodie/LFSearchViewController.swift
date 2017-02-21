@@ -48,22 +48,19 @@ class LFSearchViewController: UIViewController {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
             searchTypeLabel.text = "Places"
-           
-            
-            
+    
         }
         else if count == 2 {
             
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
             searchTypeLabel.text = "Foodies"
             
-            
         }
         else if count == 3 {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
             searchTypeLabel.text = "Hashtags"
-            
+
         }
         
         navController = UINavigationController(rootViewController: destVC)
@@ -72,9 +69,7 @@ class LFSearchViewController: UIViewController {
         addChildViewController(self.navController)
         self.navController.view.frame = self.containerView.bounds
         self.containerView.addSubview(navController.view)
-        
-        
-        
+    
     }
     
     @IBAction func prevBtnAction(_ sender: AnyObject) {
@@ -92,18 +87,21 @@ class LFSearchViewController: UIViewController {
               
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
                 searchTypeLabel.text = "Places"
+
                 
             }
             else if count == 2 {
               
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
                 searchTypeLabel.text = "Foodies"
+
                 
             }
             else if count == 3 {
                 
                 destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
                 searchTypeLabel.text = "Hashtags"
+
                 
             }
             
@@ -112,15 +110,13 @@ class LFSearchViewController: UIViewController {
             addChildViewController(self.navController)
             self.navController.view.frame = self.containerView.bounds
             self.containerView.addSubview(navController.view)
-        
-        
     }
 }
 
 extension LFSearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar){
         self.searchBar.resignFirstResponder()
-        self.doSearch()
+        self.doSearch(searchText: searchBar.text!)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -138,15 +134,21 @@ extension LFSearchViewController : UISearchBarDelegate {
         }else if searchText.isEmpty{
             //self.search.view.removeFromSuperview()
             //self.offersTableView.reloadData()
-           // print("SearchTextEmptyMethod")
+            print("SearchTextEmptyMethod")
         }
         
     }
     
     func loadDefaultList (){
-        if count == 2{
-           // print("Foodie section")
-            
+        let searchText = ""
+        if count == 1 {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlacesSearchNotification"), object: searchText)
+        }
+        else if count == 2{
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "FoodieSearchNotification"), object: searchText)
+        }
+        else if count == 3 {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "HashTagsSearchNotification"), object: searchText)
         }
     }
     
@@ -171,11 +173,16 @@ extension LFSearchViewController : UISearchBarDelegate {
         
     }
     
-    func doSearch () {
+    func doSearch (searchText:String) {
         
-        if count == 3{
-        //print("Foodie section")
-        
+        if count == 1 {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlacesSearchNotification"), object: searchText)
+        }
+        else if count == 2{
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "FoodieSearchNotification"), object: searchText)
+        }
+        else if count == 3 {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "HashTagsSearchNotification"), object: searchText)
         }
 //        self.search = self.storyboard?.instantiateViewController(withIdentifier: "ProductSearchViewController") as! ProductSearchViewController
 //        search.view.frame = CGRect(x: 0,y: self.productsSearchBar.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)

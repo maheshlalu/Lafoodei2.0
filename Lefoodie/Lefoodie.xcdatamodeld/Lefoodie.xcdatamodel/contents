@@ -26,7 +26,7 @@
         <attribute name="userPic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserProfile" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="Followers" positionX="-63" positionY="63" width="128" height="195"/>
+        <element name="UserProfile" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

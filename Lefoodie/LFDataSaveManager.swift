@@ -89,6 +89,102 @@ class LFDataSaveManager: NSObject {
 
     }
     
+    func savePlacesInDB(list:NSArray){
+        let relamInstance = try! Realm()
+
+        for i in 0...list.count - 1 {
+            
+            let dict = list[i] as! NSDictionary
+            
+            let placesData = relamInstance.objects(LFPlaces.self).filter("id=='\(dict.value(forKey: "id")!)'")
+            if placesData.count == 0 {
+            //Insert The Data
+            try! relamInstance.write({
+                let place = LFPlaces()
+                place.id = dict.value(forKey: "id") as! String
+                place.category = dict.value(forKey: "category") as! String
+                place.image = dict.value(forKey: "logo") as! String
+                relamInstance.add(place)
+            })
+            }
+
+        }
+    }
+    
+    func saveFollowerInfoInDB(userData:SearchFoodies,isFollower:Bool,completion:@escaping () -> Void){
+        
+        let relamInstance = try! Realm()
+        
+        let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: userData.foodieId as AnyObject))'")
+        if foodieData.count == 0 {
+            //Insert The Data
+            try! relamInstance.write({
+                let enFollower = LFFollowers()
+                enFollower.followerId = CXAppConfig.resultString(input: userData.foodieId as AnyObject)
+                enFollower.followerEmail = userData.foodieEmail
+                enFollower.followerName = userData.foodieName
+                enFollower.followerImage = userData.foodieImage
+                enFollower.followerItemCode =  userData.foodieItemCode
+                enFollower.followerUserId = CXAppConfig.resultString(input: userData.foodieUserId as AnyObject)
+                enFollower.noOfFollowers = CXAppConfig.resultString(input: userData.foodieFollowerCount as AnyObject)
+                enFollower.noOfFollowings = CXAppConfig.resultString(input: userData.foodieFollowingCount as AnyObject)
+                
+                if isFollower {
+                    enFollower.isFollower = true
+                    enFollower.isFollowing = false
+                }
+                else {
+                    enFollower.isFollower = false
+                    enFollower.isFollowing = true
+                }
+
+                relamInstance.add(enFollower)
+            })
+        }
+    }
+    
+    func saveFollowerInfoInDBFromService(userData:NSArray,isFollower:Bool,completion:@escaping () -> Void){
+        
+        let relamInstance = try! Realm()
+        
+        for i in 0...userData.count - 1 {
+            let dict = userData[i] as! NSDictionary
+            
+            let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: dict.value(forKey:"id")! as AnyObject))'")
+            
+            if foodieData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let enFollower = LFFollowers()
+                    enFollower.followerId = CXAppConfig.resultString(input: dict.value(forKey:"id")! as AnyObject)
+                    enFollower.followerEmail = (dict.value(forKey:"Email") as? String)!
+                    enFollower.followerName = (dict.value(forKey:"FullName") as? String)!
+                    enFollower.followerImage = (dict.value(forKey:"Image") as? String)!
+                    enFollower.followerItemCode =  (dict.value(forKey:"ItemCode") as? String)!
+                    enFollower.followerUserId = CXAppConfig.resultString(input: dict.value(forKey:"UserId")! as AnyObject)
+                    enFollower.noOfFollowers = CXAppConfig.resultString(input: dict.value(forKey:"followers")! as AnyObject)
+                    enFollower.noOfFollowings = CXAppConfig.resultString(input: dict.value(forKey:"following")! as AnyObject)
+                    
+                    if isFollower {
+                        enFollower.isFollower = true
+                        enFollower.isFollowing = false
+                    }
+                    else {
+                        enFollower.isFollower = false
+                        enFollower.isFollowing = true
+                    }
+                    
+                    relamInstance.add(enFollower)
+                })
+            }
+
+        }
+        
+}
+
+
+
+    
 
     
 /*

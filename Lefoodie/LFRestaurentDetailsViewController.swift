@@ -8,6 +8,7 @@
 
 import UIKit
 import MagicalRecord
+import RealmSwift
 
 class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate{
     @IBOutlet weak var restaurantView: UIView!
@@ -23,6 +24,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
+    var myProfile : LFMyProfile!
     
     
     @IBOutlet weak var settingsBtn: UIButton!
@@ -46,8 +48,9 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     func setUpFollowBtnStatus()
     {
-        let predicate = NSPredicate.init(format: "followerUserId = %@", selectedFoodie.foodieUserId)
-       let  dataArray = Followers.mr_findAll(with: predicate) as NSArray
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", selectedFoodie.foodieUserId)
+        let  dataArray = realm.objects(LFFollowers.self).filter(predicate)
         if dataArray.count > 0 {
             followBtn.setTitle("UnFollow", for: .normal)
         }
@@ -103,10 +106,34 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         if followBtn.titleLabel?.text == "Follow" {
             followBtn.setTitle("UnFollow", for: .normal)
             LFDataManager.sharedInstance.followTheUser(foodieDetails: selectedFoodie)
+            self.updateFollwingCountInDB(type: "Increment")
         }
         else {
             followBtn.setTitle("Follow", for: .normal)
             LFDataManager.sharedInstance.unFollowTheUser(foodieDetails: selectedFoodie)
+            self.updateFollwingCountInDB(type: "Decrement")
+        }
+    }
+    
+    func updateFollwingCountInDB(type:String)
+    {
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
+        if type == "Increment" {
+            
+            try! realm.write {
+                var count =  Int(self.myProfile.userFollwing)
+                count = count! + 1
+                self.myProfile.userFollwing =  "\(count!)"
+            }
+
+        }
+        else {
+            try! realm.write {
+                var count =  Int(self.myProfile.userFollwing)
+                count = count! - 1
+                self.myProfile.userFollwing =  "\(count!)"
+            }
         }
     }
  

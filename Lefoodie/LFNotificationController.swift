@@ -12,6 +12,8 @@ class LFNotificationController: UIViewController,UITableViewDataSource,UITableVi
     
     var nameArray = ["Alexandra added a photo to Best Cocktails Ever! list.","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list","Alexandra added a photo to Best Cocktails Ever! list"]
     
+    var notificationData = NSArray()
+    
     @IBOutlet weak var notificationTableView: UITableView!
     
     override func viewDidLoad() {
@@ -22,7 +24,17 @@ class LFNotificationController: UIViewController,UITableViewDataSource,UITableVi
         self.notificationTableView.rowHeight = UITableViewAutomaticDimension
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+        self.notificationServiceCall()
     }
+    
+    func notificationServiceCall()
+    {
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type" : "keys" as AnyObject,"mallId" : CXAppConfig.sharedInstance.getAppMallID() as AnyObject]) { (responseDict) in
+            print(responseDict)
+            self.notificationData = responseDict.value(forKey: "jobs") as! NSArray
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

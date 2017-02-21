@@ -17,8 +17,22 @@ class LFFoodieViewController: UIViewController {
     
        // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
         serviceAPICall(keyword:"")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
 
     }
+    
+     func foodieSearchNotification(_ notification: Notification) {
+        let searchText = notification.object as! String
+        self.serviceAPICall(keyword: searchText)
+        self.foodieViewTableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
+    }
+    
     
     //MARK: calling foodie data from service
     func serviceAPICall(keyword: String){
@@ -34,7 +48,7 @@ class LFFoodieViewController: UIViewController {
 extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodiesArr.count
+        return self.foodiesArr.count
         
     }
     
@@ -63,7 +77,7 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //LFRestaurentDetailsViewController
-        let dict = foodiesArr[indexPath.row]
+        let dict = self.foodiesArr[indexPath.row]
         let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
         restaurentView.selectedFoodie = dict
         let navController = UINavigationController(rootViewController: restaurentView)

@@ -14,6 +14,17 @@ class LFHashTagsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(LFHashTagsViewController.hashTagsSearchNotification(_:)), name:NSNotification.Name(rawValue: "HashTagsSearchNotification"), object: nil)
+        
+    }
+    
+    func hashTagsSearchNotification(_ notification: Notification) {
+        let searchText = notification.object as! String
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {

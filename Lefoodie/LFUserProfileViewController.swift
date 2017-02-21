@@ -58,7 +58,7 @@ class LFUserProfileViewController: UIViewController {
         self.userBannerImbView.setImageWith(NSURL(string: self.myProfile.userBannerPic) as URL!, usingActivityIndicatorStyle: .white)
         self.userFirstNameLbl.text = self.myProfile.userFirstName
         self.userLastNameLbl.text = self.myProfile.userLastName
-        self.followingCountLbl.text = "\(self.myProfile.userFollwing) Follwing"
+        self.followingCountLbl.text = "\(self.myProfile.userFollwing) Following"
         self.followersCountLbl.text = "\(self.myProfile.userFollowers) Follwers"
         
     }

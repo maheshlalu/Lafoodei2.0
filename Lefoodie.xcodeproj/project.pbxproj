@@ -88,14 +88,10 @@
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
 		183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */; };
 		1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */; };
-		1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */; };
 		1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1842A7721E1F7F87004C85C0 /* Pacifico.ttf */; };
 		185F3BEC1E5341F30068F900 /* LFMyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F3BEB1E5341F30068F900 /* LFMyProfile.swift */; };
 		185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185FAF631E1E4D43009479A3 /* NavBarExtension.swift */; };
-		187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B01E1D398D00D6668B /* LFSearchViewController.swift */; };
-		187039B31E1D399400D6668B /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */; };
 		187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */; };
-		187039B71E1D399F00D6668B /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B61E1D399F00D6668B /* LFFoodieViewController.swift */; };
 		187039B91E1D39A300D6668B /* LFFoodiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */; };
 		187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187039BA1E1D39A700D6668B /* LFMapInstance.swift */; };
 		1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */; };
@@ -114,8 +110,14 @@
 		18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F1794D1E1CC31B001EDF45 /* PhotoShare.storyboard */; };
 		18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179501E1CD45F001EDF45 /* CXAppConfig.swift */; };
 		18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */; };
+		2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */; };
+		2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */; };
+		2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */; };
+		2B8AEAF41E5BF69900487223 /* LFSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF31E5BF69900487223 /* LFSearchViewController.swift */; };
 		2BB625F31E5336D600F5FD63 /* Followers+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB625F11E5336D600F5FD63 /* Followers+CoreDataClass.swift */; };
 		2BB625F41E5336D600F5FD63 /* Followers+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB625F21E5336D600F5FD63 /* Followers+CoreDataProperties.swift */; };
+		2BF4B5CA1E5AD0640067AAA5 /* LFPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF4B5C91E5AD0640067AAA5 /* LFPlaces.swift */; };
+		2BF4B5CC1E5AFFF00067AAA5 /* LFFollowers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF4B5CB1E5AFFF00067AAA5 /* LFFollowers.swift */; };
 		6D3BC397C9AA07D711A0D7A5 /* Pods_LefoodieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */; };
 		890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */; };
 		896073541E36015800551545 /* CXDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896073531E36015800551545 /* CXDataService.swift */; };
@@ -233,15 +235,11 @@
 		183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsTableViewCell.swift; sourceTree = "<group>"; };
-		1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		1842A7721E1F7F87004C85C0 /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		185F3BE91E531B000068F900 /* Lefoodie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lefoodie.entitlements; sourceTree = "<group>"; };
 		185F3BEB1E5341F30068F900 /* LFMyProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFMyProfile.swift; sourceTree = "<group>"; };
 		185FAF631E1E4D43009479A3 /* NavBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarExtension.swift; sourceTree = "<group>"; };
-		187039B01E1D398D00D6668B /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
-		187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
 		187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNearByCollectionViewCell.swift; sourceTree = "<group>"; };
-		187039B61E1D399F00D6668B /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
 		187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodiesTableViewCell.swift; sourceTree = "<group>"; };
 		187039BA1E1D39A700D6668B /* LFMapInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFMapInstance.swift; sourceTree = "<group>"; };
 		1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+StringOperation.swift"; sourceTree = "<group>"; };
@@ -262,8 +260,14 @@
 		18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CXProjectConfiguration.plist; sourceTree = "<group>"; };
 		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
+		2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
+		2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
+		2B8AEAF31E5BF69900487223 /* LFSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchViewController.swift; sourceTree = "<group>"; };
 		2BB625F11E5336D600F5FD63 /* Followers+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Followers+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2BB625F21E5336D600F5FD63 /* Followers+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Followers+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2BF4B5C91E5AD0640067AAA5 /* LFPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPlaces.swift; sourceTree = "<group>"; };
+		2BF4B5CB1E5AFFF00067AAA5 /* LFFollowers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFollowers.swift; sourceTree = "<group>"; };
 		419E6FA99BC0A310A978AAFC /* Pods-Lefoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lefoodie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lefoodie/Pods-Lefoodie.release.xcconfig"; sourceTree = "<group>"; };
 		5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		890CA7861E3765D3002A4CE8 /* Lefoodie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lefoodie-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -347,13 +351,13 @@
 			isa = PBXGroup;
 			children = (
 				1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */,
-				1842A76F1E1F6E6C004C85C0 /* LFHashTagsViewController.swift */,
 				187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */,
+				2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */,
+				2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */,
+				2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */,
 				187039BA1E1D39A700D6668B /* LFMapInstance.swift */,
-				187039B61E1D399F00D6668B /* LFFoodieViewController.swift */,
+				2B8AEAF31E5BF69900487223 /* LFSearchViewController.swift */,
 				187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */,
-				187039B21E1D399400D6668B /* LFSearchPlacesViewController.swift */,
-				187039B01E1D398D00D6668B /* LFSearchViewController.swift */,
 				120514E21E40A3A400D2345E /* LFSearchItemsViewController.swift */,
 			);
 			name = Search;
@@ -516,8 +520,10 @@
 		185F3BEA1E5341AF0068F900 /* ReleamModel */ = {
 			isa = PBXGroup;
 			children = (
+				2BF4B5C91E5AD0640067AAA5 /* LFPlaces.swift */,
 				185F3BEB1E5341F30068F900 /* LFMyProfile.swift */,
 				1811778A1E55913B00AAF61C /* LFUserPhotos.swift */,
+				2BF4B5CB1E5AFFF00067AAA5 /* LFFollowers.swift */,
 			);
 			name = ReleamModel;
 			sourceTree = "<group>";
@@ -862,7 +868,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */ = {
@@ -877,7 +883,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */ = {
@@ -952,7 +958,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */ = {
@@ -998,6 +1004,8 @@
 				12B25B401E3F7BE900519436 /* LFProfileSettingViewController.swift in Sources */,
 				1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */,
 				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
+				2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */,
+				2B8AEAF41E5BF69900487223 /* LFSearchViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
 				897E33941E405EC800937A50 /* LFShooseAnotherLocation.swift in Sources */,
@@ -1005,6 +1013,7 @@
 				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
 				18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */,
 				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
+				2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
 				1825CCDF1E1BE97300CD3C3B /* LFFavouriteViewController.swift in Sources */,
 				180A20B31E4C485200E6B2C9 /* LFFeedsData.swift in Sources */,
@@ -1021,7 +1030,6 @@
 				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
-				187039B31E1D399400D6668B /* LFSearchPlacesViewController.swift in Sources */,
 				8976AF581E49C86200527555 /* LFSignInViewController.swift in Sources */,
 				1825CCD61E1BE94D00CD3C3B /* LFUserProfileViewController.swift in Sources */,
 				120514D11E40921300D2345E /* LFItemDetailViewController.swift in Sources */,
@@ -1035,7 +1043,6 @@
 				185F3BEC1E5341F30068F900 /* LFMyProfile.swift in Sources */,
 				120514DC1E40927700D2345E /* LFItemCenterTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
-				1842A7711E1F6E6C004C85C0 /* LFHashTagsViewController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				18AFA6521E543E1D00D4D653 /* LFDataSaveManager.swift in Sources */,
 				896073541E36015800551545 /* CXDataService.swift in Sources */,
@@ -1056,11 +1063,12 @@
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
 				119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
+				2BF4B5CC1E5AFFF00067AAA5 /* LFFollowers.swift in Sources */,
+				2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */,
 				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,
-				187039B11E1D398D00D6668B /* LFSearchViewController.swift in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
+				2BF4B5CA1E5AD0640067AAA5 /* LFPlaces.swift in Sources */,
 				1248A9E71E5432F400AAA4E8 /* LFChangePasswordViewController.swift in Sources */,
-				187039B71E1D399F00D6668B /* LFFoodieViewController.swift in Sources */,
 				1248A9EB1E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift in Sources */,
 				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
 				120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */,
