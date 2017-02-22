@@ -23,6 +23,14 @@
 		120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */; };
 		120514E91E40BE5700D2345E /* LFEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */; };
 		120D72561E4C47D600F448CA /* LFForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120D72551E4C47D600F448CA /* LFForgotPasswordViewController.swift */; };
+		1225DA241E5D693C007951B8 /* LFFlagReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA231E5D693C007951B8 /* LFFlagReportViewController.swift */; };
+		1225DA271E5D6968007951B8 /* LFFlagReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */; };
+		1225DA281E5D6968007951B8 /* LFFlagReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */; };
+		1225DA2A1E5D8DF1007951B8 /* LFPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA291E5D8DF0007951B8 /* LFPostViewController.swift */; };
+		1225DA2C1E5D9A11007951B8 /* LFThanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA2B1E5D9A11007951B8 /* LFThanksViewController.swift */; };
+		1225DA2E1E5DB29A007951B8 /* LFHotItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA2D1E5DB29A007951B8 /* LFHotItemViewController.swift */; };
+		1225DA311E5DB2D1007951B8 /* LFHotItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA2F1E5DB2D1007951B8 /* LFHotItemTableViewCell.swift */; };
+		1225DA321E5DB2D1007951B8 /* LFHotItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1225DA301E5DB2D1007951B8 /* LFHotItemTableViewCell.xib */; };
 		1248A9E71E5432F400AAA4E8 /* LFChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248A9E51E5432F400AAA4E8 /* LFChangePasswordViewController.swift */; };
 		1248A9EB1E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1248A9E91E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift */; };
 		1248A9EC1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1248A9EA1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib */; };
@@ -163,6 +171,14 @@
 		120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFEditTableViewCell.swift; sourceTree = "<group>"; };
 		120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFEditTableViewCell.xib; sourceTree = "<group>"; };
 		120D72551E4C47D600F448CA /* LFForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		1225DA231E5D693C007951B8 /* LFFlagReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFlagReportViewController.swift; sourceTree = "<group>"; };
+		1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFlagReportTableViewCell.swift; sourceTree = "<group>"; };
+		1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFFlagReportTableViewCell.xib; sourceTree = "<group>"; };
+		1225DA291E5D8DF0007951B8 /* LFPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPostViewController.swift; sourceTree = "<group>"; };
+		1225DA2B1E5D9A11007951B8 /* LFThanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFThanksViewController.swift; sourceTree = "<group>"; };
+		1225DA2D1E5DB29A007951B8 /* LFHotItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHotItemViewController.swift; sourceTree = "<group>"; };
+		1225DA2F1E5DB2D1007951B8 /* LFHotItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHotItemTableViewCell.swift; sourceTree = "<group>"; };
+		1225DA301E5DB2D1007951B8 /* LFHotItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFHotItemTableViewCell.xib; sourceTree = "<group>"; };
 		1248A9E51E5432F400AAA4E8 /* LFChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFChangePasswordViewController.swift; sourceTree = "<group>"; };
 		1248A9E91E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFChangePasswordTableViewCell.swift; sourceTree = "<group>"; };
 		1248A9EA1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFChangePasswordTableViewCell.xib; sourceTree = "<group>"; };
@@ -359,6 +375,10 @@
 				2B8AEAF31E5BF69900487223 /* LFSearchViewController.swift */,
 				187039B41E1D399900D6668B /* LFNearByCollectionViewCell.swift */,
 				120514E21E40A3A400D2345E /* LFSearchItemsViewController.swift */,
+				1225DA231E5D693C007951B8 /* LFFlagReportViewController.swift */,
+				1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */,
+				1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */,
+				1225DA2B1E5D9A11007951B8 /* LFThanksViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -583,6 +603,10 @@
 				1248A9E51E5432F400AAA4E8 /* LFChangePasswordViewController.swift */,
 				1248A9E91E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift */,
 				1248A9EA1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib */,
+				1225DA291E5D8DF0007951B8 /* LFPostViewController.swift */,
+				1225DA2D1E5DB29A007951B8 /* LFHotItemViewController.swift */,
+				1225DA2F1E5DB2D1007951B8 /* LFHotItemTableViewCell.swift */,
+				1225DA301E5DB2D1007951B8 /* LFHotItemTableViewCell.xib */,
 				183FBCC21E1A378D00A0A8CC /* TabBar */,
 				127861D71E1A29D600D64F16 /* Login */,
 				127861CF1E1A299400D64F16 /* Search */,
@@ -815,6 +839,7 @@
 				1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */,
 				120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
+				1225DA321E5DB2D1007951B8 /* LFHotItemTableViewCell.xib in Resources */,
 				1248A9EC1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib in Resources */,
 				18AFA64E1E5424BA00D4D653 /* LFOptionalTableViewCell.xib in Resources */,
 				18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */,
@@ -833,6 +858,7 @@
 				18160CE51E14EB0F00C2E5AE /* Main.storyboard in Resources */,
 				1825CCB81E1B769D00CD3C3B /* CXCameraView.xib in Resources */,
 				120514E11E40928B00D2345E /* LFItemFooterTableViewCell.xib in Resources */,
+				1225DA281E5D6968007951B8 /* LFFlagReportTableViewCell.xib in Resources */,
 				18F1794A1E1CC305001EDF45 /* LFSharePostTableViewCell.xib in Resources */,
 				18F1794C1E1CC305001EDF45 /* LFSocialShareTableViewCell.xib in Resources */,
 				127861D51E1A29A900D64F16 /* LFFoodItemsListTableViewCell.xib in Resources */,
@@ -1008,13 +1034,16 @@
 				1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */,
 				12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */,
 				2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */,
+				1225DA271E5D6968007951B8 /* LFFlagReportTableViewCell.swift in Sources */,
 				2B8AEAF41E5BF69900487223 /* LFSearchViewController.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
+				1225DA2E1E5DB29A007951B8 /* LFHotItemViewController.swift in Sources */,
 				897E33941E405EC800937A50 /* LFShooseAnotherLocation.swift in Sources */,
 				1825CCBB1E1B76DF00CD3C3B /* LFTabCameraViewController.swift in Sources */,
 				127861CB1E1A298900D64F16 /* LFHomeCenterTableViewCell.swift in Sources */,
 				18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */,
+				1225DA2C1E5D9A11007951B8 /* LFThanksViewController.swift in Sources */,
 				1825CCE21E1BE97300CD3C3B /* LFPhotosViewController.swift in Sources */,
 				2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */,
 				1825CCB61E1B769D00CD3C3B /* CXCameraConstants.swift in Sources */,
@@ -1041,9 +1070,11 @@
 				8976AF5A1E49D2A500527555 /* LFsigninobject.swift in Sources */,
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
+				1225DA311E5DB2D1007951B8 /* LFHotItemTableViewCell.swift in Sources */,
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				185F3BEC1E5341F30068F900 /* LFMyProfile.swift in Sources */,
+				1225DA2A1E5D8DF1007951B8 /* LFPostViewController.swift in Sources */,
 				120514DC1E40927700D2345E /* LFItemCenterTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
@@ -1075,6 +1106,7 @@
 				1248A9EB1E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift in Sources */,
 				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
 				120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */,
+				1225DA241E5D693C007951B8 /* LFFlagReportViewController.swift in Sources */,
 				187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */,
 				18AFA64D1E5424BA00D4D653 /* LFOptionalTableViewCell.swift in Sources */,
 				120514E31E40A3A400D2345E /* LFSearchItemsViewController.swift in Sources */,
