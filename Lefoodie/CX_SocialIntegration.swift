@@ -169,7 +169,7 @@ class CX_SocialIntegration: NSObject {
     
     func saveUserDetailsFromMacIDInfo(userData:NSDictionary){
         LFDataManager.sharedInstance.getTheUserDetails(userEmail: (userData.value(forKey:"emailId") as? String)!) {
-            
+            LFDataManager.sharedInstance.sendTheDeviceTokenToServer()
         }
         
         MagicalRecord.save({ (localContext) in
@@ -194,7 +194,7 @@ class CX_SocialIntegration: NSObject {
     func saveUserDeatils(userData:NSDictionary,completion:@escaping () -> Void){
         
         LFDataManager.sharedInstance.getTheUserDetails(userEmail: (userData.value(forKey:"emailId") as? String)!) {
-            
+            LFDataManager.sharedInstance.sendTheDeviceTokenToServer()
         }
         
         MagicalRecord.save({ (localContext) in

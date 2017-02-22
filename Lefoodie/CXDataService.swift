@@ -86,7 +86,7 @@ class CXDataService: NSObject {
     open func synchDataToServerAndServerToMoblile(_ urlstring:String, parameters:[String: AnyObject]? = nil ,completion:@escaping (_ responseDict:NSDictionary) -> Void){
         
        // print(urlstring)
-       // print(parameters)
+        print(parameters)
         Alamofire.request(urlstring, method: .post, parameters: parameters!, encoding: URLEncoding.httpBody)
             .validate()
             .validate(contentType: ["application/json"])
@@ -159,4 +159,11 @@ class CXDataService: NSObject {
      Error Domain=NSURLErrorDomain Code=-1001 "The request timed out." UserInfo={NSUnderlyingError=0x608000e59d40 {Error Domain=kCFErrorDomainCFNetwork Code=-1001 "(null)" UserInfo={_kCFStreamErrorCodeKey=-2102, _kCFStreamErrorDomainKey=4}}, NSErrorFailingURLStringKey=http://35.160.251.153:8081/MobileAPIs/getUserPosts?, NSErrorFailingURLKey=http://35.160.251.153:8081/MobileAPIs/getUserPosts?, _kCFStreamErrorDomainKey=4, _kCFStreamErrorCodeKey=-2102, NSLocalizedDescription=The request timed out.}
      clicked<Lefoodie.LFSearchViewController: 0x7fb460f0dc20>
      clicked<UINavigationController: 0x7fb462*/
+    
+    
+ 
+    
 }
+
+
+

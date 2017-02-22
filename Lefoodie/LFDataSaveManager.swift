@@ -43,6 +43,7 @@ class LFDataSaveManager: NSObject {
             try! relamInstance.write({
                 let myProfileData = LFMyProfile()
                 myProfileData.userId = userDataDic["id"].stringValue
+                myProfileData.Mac_userId = userDataDic["UserId"].stringValue
                 myProfileData.userItemCode = userDataDic["ItemCode"].stringValue
                 
                 myProfileData.userEmail = userDataDic["Email"].stringValue

@@ -370,7 +370,7 @@ extension LFDataManager{
     //http://apps.storeongo.com:8081/Services/getMasters?mallId=6&type=MacIdInfo&keyWord=yash.yash@yash.com
     //"privateToUser": "yash.yash@yash.com",
     
-    func getTheUserDetails(userEmail:String,completion:()->Void){
+    func getTheUserDetails(userEmail:String,completion:@escaping ()->Void){
         
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"macidinfo" as AnyObject,"keyWord":userEmail as AnyObject]) { (responceData) in
             
@@ -382,6 +382,7 @@ extension LFDataManager{
                 if  email == userEmail {
                     //Save The User Data
                     LFDataSaveManager.sharedInstance.saveTheUserDetails(userDataDic: JSON(dic))
+                    completion()
                     return
                 }
             }
@@ -421,6 +422,45 @@ extension LFDataManager{
         }
     }
     
+    
+    //MARK: Send the Device token
+    func sendTheDeviceTokenToServer(){
+        
+        //http://35.160.251.153:8081/MobileAPIs/saveUserDeviceInfo?mallId=2
+        //        device_reg_id
+        //        deviceMacId
+        //        deviceUserId
+        //deviceType="IOS"
+        
+        let realm = try! Realm()
+        let profile = realm.objects(LFMyProfile.self).first
+        
+        let device_reg_id = CXAppConfig.sharedInstance.getDeviceToken()
+        let deviceMacId = UIDevice.current.identifierForVendor?.uuidString
+        let deviceUserId = profile?.Mac_userId
+
+        NSLog("output is : %@", deviceMacId! as String)
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"MobileAPIs/saveUserDeviceInfo?", parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"device_reg_id":device_reg_id as AnyObject,"deviceMacId":deviceMacId as AnyObject,"deviceUserId":deviceUserId as AnyObject,"deviceType":"IOS" as AnyObject]) { (responseDict) in
+            print(responseDict)
+        }
+    }
+    
+    func deleteTheDeviceTokenFromServer(){
+        
+      //: http://35.160.251.153:8081/MobileAPIs/deleteUserDeviceInfo?mallId=&deviceMacId=&deviceUserId=
+        let realm = try! Realm()
+        let profile = realm.objects(LFMyProfile.self).first
+        let device_reg_id = CXAppConfig.sharedInstance.getDeviceToken()
+        let deviceMacId = UIDevice.current.identifierForVendor?.uuidString
+        let deviceUserId = profile?.Mac_userId
+        
+        NSLog("output is : %@", deviceMacId! as String)
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"MobileAPIs/deleteUserDeviceInfo?", parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"deviceMacId":deviceMacId as AnyObject,"deviceUserId":deviceUserId as AnyObject]) { (responseDict) in
+            print(responseDict)
+        }
+    }
     
   
 }

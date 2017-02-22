@@ -13,6 +13,7 @@ import RealmSwift
 class LFMyProfile: Object {
     
     dynamic var userId = ""
+    dynamic var Mac_userId = ""
     dynamic var userItemCode = ""
     dynamic var macId = ""
 

@@ -524,4 +524,21 @@ class CXAppConfig {
 
     }
     
+    
+    
+    func setDeviceToken(deviceToken:String){
+        
+        UserDefaults.standard.set(deviceToken, forKey: "deviceToken")
+        
+    }
+    
+    func getDeviceToken() -> String{
+        if(UserDefaults.standard.object(forKey: "deviceToken") == nil){
+            print("NULL")
+            return ""
+        }else{
+            return UserDefaults.standard.value(forKey: "deviceToken") as! String
+        }
+    }
+    
 }
