@@ -18,15 +18,21 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var jobsArray = NSArray()
     var feedsArray = [LFFeedsData]()
     var refreshControl : UIRefreshControl!
+    var isPageRefreshing = Bool()
+    var page = String()
+    var lastIndexPath = IndexPath()
+    var isInitialLoad = Bool()
 
     override func viewDidLoad() {
-        
-        self.serviceAPICall(PageNumber: "1", PageSize: "10")
+
         super.viewDidLoad()
         self.registerCells()
         self.selectedTabBar()
         self.setSegmentProperties()
         self.addThePullTorefresh()
+        page = "1"
+        isInitialLoad = true
+        self.serviceAPICall(PageNumber: page, PageSize: "10")
       NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         
     }
@@ -56,7 +62,14 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
      func refresh(sender:UIRefreshControl) {
-        self.serviceAPICall(PageNumber: "1", PageSize: "10")
+        
+                    self.feedsArray = [LFFeedsData]()
+                    self.isInitialLoad = true
+                    self.page = "1"
+
+            self.serviceAPICall(PageNumber: self.page, PageSize: "5")
+
+        
 
     }
    
@@ -87,9 +100,34 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func serviceAPICall(PageNumber: String, PageSize: String)
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: "", pageSize: "", userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
-            self.feedsArray = resultFeeds
-            self.homeTableView.reloadData()
+        LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
+            self.isPageRefreshing = false
+            
+            let lastIndexOfArr = self.feedsArray.count - 1
+            if !resultFeeds.isEmpty {
+                self.feedsArray.append(contentsOf: resultFeeds)
+                
+                // if it is Initial Load
+                if self.isInitialLoad {
+                    self.homeTableView.reloadData()
+                } else {
+                    // if using page nation
+                    let indexArr = NSMutableArray()
+                    let indexSet = NSMutableIndexSet()
+                    
+                    for i in 1...resultFeeds.count {
+                        let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                        indexSet.add(lastIndexOfArr + i)
+                        indexArr.add(index)
+                    }
+                        self.homeTableView.beginUpdates()
+                        self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                        self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                        self.homeTableView.endUpdates()
+                }
+
+            }
+            
             self.refreshControl.endRefreshing()
         }
  
@@ -109,6 +147,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        if self.feedsArray.count == 0 {
+            let cell = UITableViewCell()
+            return cell
+        }
         
         let feeds = self.feedsArray[indexPath.section]
 
@@ -135,8 +177,12 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
             cell.selectionStyle = .none
             cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
+            
+            lastIndexPath = indexPath
             return cell
         }
+    
+        
     }
     
     
@@ -192,6 +238,30 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return 0
     }
     
+    //MARK: TableView Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        //Bottom Refresh
+        
+        if scrollView == homeTableView{
+            
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+            {
+                print("scroll did reached down")
+                if isPageRefreshing == false {
+                    isPageRefreshing=true
+                    var num = Int(page)
+                    num = num! + 1
+                    page = "\(num!)"
+                    isInitialLoad = false
+                    self.serviceAPICall(PageNumber: page, PageSize: "5")
+                    
+                }
+                
+            }
+        }
+    }
+    
     @IBAction func Segment_Clicked(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex
@@ -206,8 +276,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         case 1:
             
           //  print("near selected")
-            
-            
+    
            // (sender.subviews[0] as UIView).tintColor = UIColor.black
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
             
@@ -250,7 +319,38 @@ extension LFHomeViewController{
     }
 }
 
-//MARK: TableView Pagination
+extension LFHomeViewController{
+    func actionAlertSheet()
+    {
+        
+        let alert = UIAlertController()
+        alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFlagReportViewController")as? LFFlagReportViewController
+            self.present(storyboard!, animated: true, completion: nil)
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Add to Favorites List", style: .default, handler: { (action) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Share to Facebook", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Copy Share URL", style: .default, handler: { (action) in
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+
 
 
 

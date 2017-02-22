@@ -87,7 +87,6 @@ extension LFDataManager{
     func getTheAllRestarantsFromServer(completion:@escaping (_ responseDict:[Restaurants]) -> Void){
         //http://35.160.251.153:8081/services/getallmallshelper
         
-        
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"services/getallmallshelper", parameters: ["":"" as AnyObject]) { (responseDict) in
            // print(responseDict)
             //orgs
@@ -107,7 +106,7 @@ extension LFDataManager{
     //MARK: Get all home feeds from server
     func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,completion:@escaping ([LFFeedsData])->Void){
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject]) { (responceDic
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
             ) in
            // print("Get Data is \(responceDic)")
             
@@ -127,9 +126,9 @@ extension LFDataManager{
 
     //MARK: Get All Foodies from Server
 
-    func getSearchFoodie(keyword:String,completion:@escaping ([SearchFoodies])->Void){
+    func getSearchFoodie(keyword:String,pageNumber:String,pageSize:String,completion:@escaping ([SearchFoodies])->Void){
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "type":"MacIdInfo" as AnyObject,"keyWord":keyword as AnyObject]) { (responceDic
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "type":"MacIdInfo" as AnyObject,"keyWord":keyword as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
             ) in
             print("Search Data is \(responceDic)")
             let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!

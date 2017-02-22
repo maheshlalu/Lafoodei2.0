@@ -23,7 +23,22 @@ class LFSearchPlacesViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(LFSearchPlacesViewController.placesSearchNotification(_:)), name:NSNotification.Name(rawValue: "PlacesSearchNotification"), object: nil)
         
-        self.getPlaceDetailsFromDB()
+        
+        let relamInstance = try! Realm()
+        let places = relamInstance.objects(LFPlaces.self)
+            try! relamInstance.write({
+                relamInstance.delete(places)
+            })
+        
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
+        LFDataManager.sharedInstance.getTheAllRestarantsFromServer { (resultArray) in
+            
+            CXDataService.sharedInstance.hideLoader()
+            self.getPlaceDetailsFromDB()
+
+        }
+
+        
     }
     
     func getPlaceDetailsFromDB()
@@ -32,11 +47,22 @@ class LFSearchPlacesViewController: UIViewController {
         let realm = try! Realm()
        let  data = realm.objects(LFPlaces.self)
         let categoryArr = NSMutableArray()
-        for i in 0...data.count - 1 {
-            let obj = data[i]
+        
+        
+//        for (index,value) in data.enumerated() {
+//            
+//        }
+        
+        for obj in data {
             categoryArr.add(obj.category)
             placesData.add(obj)
         }
+        
+//        for i in 0...data.count - 1 {
+//            let obj = data[i]
+//            categoryArr.add(obj.category)
+//            placesData.add(obj)
+//        }
         let catOnlyDict = NSMutableDictionary()
         for i in 0...categoryArr.count - 1 {
             let type = categoryArr[i] as! String

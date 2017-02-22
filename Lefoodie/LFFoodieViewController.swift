@@ -10,13 +10,19 @@ import UIKit
 
 class LFFoodieViewController: UIViewController {
     var foodiesArr = [SearchFoodies]()
+    var isPageRefreshing = Bool()
+    var page = String()
+    var lastIndexPath = IndexPath()
+    var isInitialLoad = Bool()
     
     @IBOutlet weak var foodieViewTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
     
        // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
-        serviceAPICall(keyword:"")
+        page = "1"
+        isInitialLoad = true
+       serviceAPICall(keyword: "", pageNumber: page, pageSize: "5")
         
         NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
 
@@ -24,7 +30,8 @@ class LFFoodieViewController: UIViewController {
     
      func foodieSearchNotification(_ notification: Notification) {
         let searchText = notification.object as! String
-        self.serviceAPICall(keyword: searchText)
+        page = "1"
+        self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "5")
         self.foodieViewTableView.reloadData()
     }
     
@@ -35,13 +42,36 @@ class LFFoodieViewController: UIViewController {
     
     
     //MARK: calling foodie data from service
-    func serviceAPICall(keyword: String){
+    func serviceAPICall(keyword: String,pageNumber:String,pageSize:String){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        LFDataManager.sharedInstance.getSearchFoodie(keyword: keyword) { (resultFoodies) in
-            self.foodiesArr = resultFoodies
-            self.foodieViewTableView.reloadData()
+        LFDataManager.sharedInstance.getSearchFoodie(keyword: keyword,pageNumber:pageNumber,pageSize:pageSize) { (resultFoodies) in
+            
+            self.isPageRefreshing = false
+            
+            let lastIndexOfArr = self.foodiesArr.count - 1
+            if !resultFoodies.isEmpty {
+                self.foodiesArr.append(contentsOf: resultFoodies)
+                
+                // if it is Initial Load
+                if self.isInitialLoad {
+                    self.foodieViewTableView.reloadData()
+                } else {
+                    // if using page nation
+                    let indexArr = NSMutableArray()
+                    
+                    for i in 1...resultFoodies.count {
+                        let index = IndexPath.init(row: lastIndexOfArr + i, section: 0)
+                        indexArr.add(index)
+                    }
+                    self.foodieViewTableView.beginUpdates()
+                    self.foodieViewTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                    self.foodieViewTableView.endUpdates()
+                }
+                
+            }
         }
     }
+    
 }
 
 //MARK: UITableView Delagate Methods
@@ -84,4 +114,28 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         navController.navigationItem.hidesBackButton = false
         self.present(navController, animated:true, completion: nil)
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        //Bottom Refresh
+        
+        if scrollView == foodieViewTableView{
+            
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+            {
+                print("scroll did reached down")
+                if isPageRefreshing == false {
+                    isPageRefreshing=true
+                    var num = Int(page)
+                    num = num! + 1
+                    page = "\(num!)"
+                    isInitialLoad = false
+                    self.serviceAPICall(keyword: "", pageNumber: page, pageSize: "5")
+                    
+                }
+                
+            }
+        }
+    }
+
 }

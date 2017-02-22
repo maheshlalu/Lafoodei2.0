@@ -14,8 +14,11 @@ import Google
 import GoogleSignIn
 import MagicalRecord
 import RealmSwift
+import UserNotifications
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,FIRMessagingDelegate {
+    
+
     
     var window: UIWindow?
     var storyBoard : UIStoryboard!
@@ -31,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         checkUserId()
         self.registerNotification(application: application)
         print("Realm DB path \(Realm.Configuration.defaultConfiguration.fileURL)")
-        
 
         //42D06EEF-D597-4786-93E9-51182C8930C1
         return true
@@ -41,56 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
-    func registerNotification(application:UIApplication){
-    let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
- 
-        
-        // [END register_for_notifications]
-        FIRApp.configure()
-        
-        // [START add_token_refresh_observer]
-        // Add observer for InstanceID token refresh callback.
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.tokenRefreshNotification),
-                                               name: .firInstanceIDTokenRefresh,
-                                               object: nil)
-        // [END add_token_refresh_observer]
-    }
-    
-    func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-            CXAppConfig.sharedInstance.setDeviceToken(deviceToken: refreshedToken)
-        }
-        // Connect to FCM since connection may have failed when attempted before having a token.
-        connectToFcm()
-    }
-    
-    func connectToFcm() {
-        // Won't connect since there is no token
-        guard FIRInstanceID.instanceID().token() != nil else {
-            return;
-        }
-        
-        // Disconnect previous FCM connection if it exists.
-        FIRMessaging.messaging().disconnect()
-        
-        FIRMessaging.messaging().connect { (error) in
-            if error != nil {
-                print("Unable to connect with FCM. \(error)")
-            } else {
-                print("Connected to FCM.")
-            }
-        }
-    }
-    
-    func application(application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
-    }
     
     func checkUserId(){
         
@@ -224,6 +176,101 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+
+    
+}
+
+//MARK: App Logout
+extension AppDelegate{
+    
+    func logOutFromTheApp(){
+        for view in (self.window?.subviews)!{
+            view.removeFromSuperview()
+        }
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let  loginViewController: LoginViewController = (storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController)!
+        let lognNavCntl : UINavigationController = UINavigationController(rootViewController: loginViewController)
+        self.window?.rootViewController = lognNavCntl
+    }
+}
+
+//MARK: Push Notification
+extension AppDelegate{
+    // This method will be called when app received push notifications in foreground
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    }
+    
+    
+    func registerNotification(application:UIApplication){
+        
+        if #available(iOS 10.0, *) {
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            // For iOS 10 data message (sent via FCM)
+            FIRMessaging.messaging().remoteMessageDelegate = self
+            
+        }else{
+        
+        let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+
+        
+        // [END register_for_notifications]
+        FIRApp.configure()
+        
+        // [START add_token_refresh_observer]
+        // Add observer for InstanceID token refresh callback.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.tokenRefreshNotification),
+                                               name: .firInstanceIDTokenRefresh,
+                                               object: nil)
+        // [END add_token_refresh_observer]
+    }
+    
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            CXAppConfig.sharedInstance.setDeviceToken(deviceToken: refreshedToken)
+        }
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return;
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
+    func application(application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
+    }
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
@@ -255,19 +302,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-}
-
-extension AppDelegate{
-    
-    func logOutFromTheApp(){
-        for view in (self.window?.subviews)!{
-            view.removeFromSuperview()
-        }
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let  loginViewController: LoginViewController = (storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController)!
-        let lognNavCntl : UINavigationController = UINavigationController(rootViewController: loginViewController)
-        self.window?.rootViewController = lognNavCntl
+    /// The callback to handle data message received via FCM for devices running iOS 10 or above.
+    public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        
+        print(remoteMessage)
     }
+    
 }
 
 /*
