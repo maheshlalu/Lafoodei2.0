@@ -88,8 +88,15 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         }else{
             foodieImgView.image = UIImage(named: "placeHolder")
         }
-        let following = selectedFoodie.foodieFollowingCount
-        let follower = selectedFoodie.foodieFollowerCount
+        
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
+        
+        let userData = realm.objects(LFFoodies.self).filter(predicate)
+        let data = userData.first
+        
+        let following = (data?.foodieFollowingCount)!
+        let follower = (data?.foodieFollowerCount)!
         foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         
     }
@@ -119,20 +126,42 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     {
         let realm = try! Realm()
         self.myProfile = realm.objects(LFMyProfile.self).first
+        
+        let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
+        let userData = realm.objects(LFFoodies.self).filter(predicate)
+        let data = userData.first
         if type == "Increment" {
             
             try! realm.write {
+                //updating count in myprofile
                 var count =  Int(self.myProfile.userFollwing)
                 count = count! + 1
                 self.myProfile.userFollwing =  "\(count!)"
+                
+                //updating count in FeedsData
+                var cnt = Int((data?.foodieFollowingCount)!)
+                cnt = cnt! + 1
+                data?.foodieFollowingCount = "\(cnt!)"
+                
+                //updating local label
+                foodieFollowLbl.text = "\((data?.foodieFollowerCount)!) Followers . \(cnt!) Following"
             }
 
         }
         else {
             try! realm.write {
+                //updating count in myprofile
                 var count =  Int(self.myProfile.userFollwing)
                 count = count! - 1
                 self.myProfile.userFollwing =  "\(count!)"
+                
+                //updating count in FeedsData
+                var cnt = Int((data?.foodieFollowingCount)!)
+                cnt = cnt! - 1
+                data?.foodieFollowingCount = "\(cnt!)"
+                
+                //updating local label
+                foodieFollowLbl.text = "\((data?.foodieFollowerCount)!) Followers . \(cnt!) Following"
             }
         }
     }

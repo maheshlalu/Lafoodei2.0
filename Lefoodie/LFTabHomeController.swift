@@ -100,7 +100,7 @@ class LFTabHomeController: UITabBarController {
         homeContoller.tabBarItem.title = nil
         homeContoller.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
         /*Search Controller */
-        let searchContoller : LFSearchViewController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchViewController") as? LFSearchViewController)!
+        let searchContoller : UINavigationController = (storyBoard.instantiateViewController(withIdentifier: "LFSearchNavigationController") as? UINavigationController)!
         //searchContoller.title = "Search"
         searchContoller.tabBarItem.image = UIImage(named: "SearchIcon")
         searchContoller.tabBarItem.title = nil

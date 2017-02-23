@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LFFoodieViewController: UIViewController {
     var foodiesArr = [SearchFoodies]()
@@ -14,15 +15,17 @@ class LFFoodieViewController: UIViewController {
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
+    var refreshControl : UIRefreshControl!
     
     @IBOutlet weak var foodieViewTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        self.addThePullTorefresh()
        // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
         page = "1"
         isInitialLoad = true
-       serviceAPICall(keyword: "", pageNumber: page, pageSize: "5")
+       serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
         
         NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
 
@@ -31,9 +34,32 @@ class LFFoodieViewController: UIViewController {
      func foodieSearchNotification(_ notification: Notification) {
         let searchText = notification.object as! String
         page = "1"
-        self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "5")
+        self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "10")
         self.foodieViewTableView.reloadData()
     }
+    
+    //MARK: Add The PullToRefresh
+    
+    func addThePullTorefresh(){
+        self.refreshControl = UIRefreshControl()
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        self.foodieViewTableView.addSubview(self.refreshControl)
+        //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+    }
+    
+    func refresh(sender:UIRefreshControl) {
+        
+        self.foodiesArr = [SearchFoodies]()
+        self.isInitialLoad = true
+        self.page = "1"
+        
+        self.serviceAPICall(keyword:"",pageNumber: self.page, pageSize: "10")
+        
+        
+        
+    }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -51,6 +77,7 @@ class LFFoodieViewController: UIViewController {
             let lastIndexOfArr = self.foodiesArr.count - 1
             if !resultFoodies.isEmpty {
                 self.foodiesArr.append(contentsOf: resultFoodies)
+                LFDataSaveManager.sharedInstance.saveFoodieDetailsInDB(foodiesData: resultFoodies)
                 
                 // if it is Initial Load
                 if self.isInitialLoad {
@@ -69,9 +96,9 @@ class LFFoodieViewController: UIViewController {
                 }
                 
             }
+             self.refreshControl.endRefreshing()
         }
     }
-    
 }
 
 //MARK: UITableView Delagate Methods
@@ -83,6 +110,12 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if foodiesArr.count == 0 {
+            let cell = UITableViewCell()
+            return cell
+        }
+        
         let foodies = self.foodiesArr[indexPath.row]
         // Instantiate a cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoodieCell", for: indexPath) as! LFFoodiesTableViewCell
@@ -97,9 +130,15 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
             cell.foodieImageView.image = UIImage(named: "placeHolder")
         }
         
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "foodieId=%@", foodies.foodieId)
+        
+        let userData = realm.objects(LFFoodies.self).filter(predicate)
+        let data = userData.first
+        
         cell.foodieName.text = foodies.foodieName
-        let following = foodies.foodieFollowingCount
-        let follower = foodies.foodieFollowerCount
+        let following = (data?.foodieFollowingCount)!
+        let follower = (data?.foodieFollowerCount)!
         cell.foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         // Returning the cell
         return cell
@@ -130,7 +169,7 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
                     num = num! + 1
                     page = "\(num!)"
                     isInitialLoad = false
-                    self.serviceAPICall(keyword: "", pageNumber: page, pageSize: "5")
+                    self.serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
                     
                 }
                 

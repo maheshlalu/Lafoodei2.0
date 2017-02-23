@@ -11,6 +11,12 @@ import UIKit
 class LFHomeFooterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var alertBtn: UIButton!
+    
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
+    
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var favouritesLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

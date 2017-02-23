@@ -118,6 +118,10 @@
 		18F1794E1E1CC31B001EDF45 /* PhotoShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F1794D1E1CC31B001EDF45 /* PhotoShare.storyboard */; };
 		18F179521E1CD45F001EDF45 /* CXAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F179501E1CD45F001EDF45 /* CXAppConfig.swift */; };
 		18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */; };
+		2B0205381E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0205371E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift */; };
+		2B02053A1E5EB85700312AC9 /* LFFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0205391E5EB85700312AC9 /* LFFoodies.swift */; };
+		2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */; };
+		2B02053E1E5F189200312AC9 /* LFLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053D1E5F189200312AC9 /* LFLikes.swift */; };
 		2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */; };
 		2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */; };
 		2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */; };
@@ -276,6 +280,10 @@
 		18F179511E1CD45F001EDF45 /* CXProjectConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CXProjectConfiguration.plist; sourceTree = "<group>"; };
 		1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LefoodieUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2393DEFDC034ED998D5344DB /* Pods-LefoodieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LefoodieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LefoodieUITests/Pods-LefoodieUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2B0205371E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPlacesSearchViewController.swift; sourceTree = "<group>"; };
+		2B0205391E5EB85700312AC9 /* LFFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodies.swift; sourceTree = "<group>"; };
+		2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeFeeds.swift; sourceTree = "<group>"; };
+		2B02053D1E5F189200312AC9 /* LFLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFLikes.swift; sourceTree = "<group>"; };
 		2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
 		2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +387,7 @@
 				1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */,
 				1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */,
 				1225DA2B1E5D9A11007951B8 /* LFThanksViewController.swift */,
+				2B0205371E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -544,6 +553,9 @@
 				185F3BEB1E5341F30068F900 /* LFMyProfile.swift */,
 				1811778A1E55913B00AAF61C /* LFUserPhotos.swift */,
 				2BF4B5CB1E5AFFF00067AAA5 /* LFFollowers.swift */,
+				2B0205391E5EB85700312AC9 /* LFFoodies.swift */,
+				2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */,
+				2B02053D1E5F189200312AC9 /* LFLikes.swift */,
 			);
 			name = ReleamModel;
 			sourceTree = "<group>";
@@ -1090,17 +1102,20 @@
 				120D72561E4C47D600F448CA /* LFForgotPasswordViewController.swift in Sources */,
 				18160CE01E14EB0F00C2E5AE /* AppDelegate.swift in Sources */,
 				120514E01E40928B00D2345E /* LFItemFooterTableViewCell.swift in Sources */,
+				2B02053A1E5EB85700312AC9 /* LFFoodies.swift in Sources */,
 				1825CCB01E1B769D00CD3C3B /* CXAlbumView.swift in Sources */,
 				1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */,
 				18F179461E1CC305001EDF45 /* LFChooseLocationTableViewCell.swift in Sources */,
 				12E21C631E434070007E7450 /* LFFoodietoBusinessViewController.swift in Sources */,
 				183FBCC11E1A2F9500A0A8CC /* CXImageView.swift in Sources */,
+				2B0205381E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift in Sources */,
 				119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
 				2BF4B5CC1E5AFFF00067AAA5 /* LFFollowers.swift in Sources */,
 				2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */,
 				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
+				2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */,
 				2BF4B5CA1E5AD0640067AAA5 /* LFPlaces.swift in Sources */,
 				1248A9E71E5432F400AAA4E8 /* LFChangePasswordViewController.swift in Sources */,
 				1248A9EB1E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift in Sources */,
@@ -1113,6 +1128,7 @@
 				890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
 				2BB625F31E5336D600F5FD63 /* Followers+CoreDataClass.swift in Sources */,
+				2B02053E1E5F189200312AC9 /* LFLikes.swift in Sources */,
 				120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

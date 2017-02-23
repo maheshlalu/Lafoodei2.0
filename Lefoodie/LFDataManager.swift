@@ -116,12 +116,46 @@ extension LFDataManager{
                 let restaurants = LFFeedsData(json: JSON(resData))
                 feedsList.append(restaurants)
             }
-            
+           
+ //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
+            LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
+
            // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
             completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
         }
     }
+    
+    
+    //MARK: Get Like Update for Posts
+    
+    func getPostLike(orgID:String,jobID:String,isLike:Bool,completion:@escaping (Bool,NSDictionary)->Void){
+        
+        var noOfLikes = String()
+        if isLike {
+            noOfLikes = "1"
+        }
+        else {
+            noOfLikes = "-1"
+        }
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPostLikeApi(), parameters: ["orgId":orgID as AnyObject,"userId":CXAppConfig.sharedInstance.getUserID() as AnyObject,"jobId":jobID as AnyObject,"noOfLikes":noOfLikes as AnyObject,"type":"like" as AnyObject]) { (responceDic) in
+            
+            print(responceDic)
+            if responceDic.value(forKey: "status") as! String == "1" {
+                completion(true,responceDic)
+            }
+            else {
+                completion(false,responceDic)
+            }
+            
+            }
+        
+        CXDataService.sharedInstance.hideLoader()
+        }
+    
+    
+
     
 
     //MARK: Get All Foodies from Server

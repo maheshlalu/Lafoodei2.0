@@ -90,6 +90,74 @@ class LFDataSaveManager: NSObject {
 
     }
     
+    func saveHomeFeedsInDB(list:[LFFeedsData]){
+        let relamInstance = try! Realm()
+        for feedData in list {
+            let userData = relamInstance.objects(LFHomeFeeds.self).filter("feedID=='\(feedData.feedID)'")
+            if userData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let homeFeed = LFHomeFeeds()
+                    homeFeed.feedID = feedData.feedID
+                    homeFeed.feedItemCode = feedData.feedItemCode
+                    homeFeed.feedCreatedDate = feedData.feedCreatedDate
+                    homeFeed.feedModificationDate = feedData.feedModificationDate
+                    homeFeed.feedName = feedData.feedName
+                    homeFeed.feedImage = feedData.feedImage
+                    homeFeed.feedDescription = feedData.feedDescription
+                    homeFeed.feedFavaouritesCount = feedData.feedFavaouritesCount
+                    homeFeed.feedCommentsCount = feedData.feedCommentsCount
+                    homeFeed.feedLikesCount = feedData.feedLikesCount
+                    homeFeed.feedIDMallID = feedData.feedIDMallID
+                    homeFeed.feedIDMallName = feedData.feedIDMallName
+                    homeFeed.feedIDMallImage = feedData.feedIDMallImage
+                    homeFeed.feedUserName = feedData.feedUserName
+                    homeFeed.feedUserImage = feedData.feedUserImage
+                    homeFeed.feedUserEmail = feedData.feedUserEmail
+                    relamInstance.add(homeFeed)
+                })
+            }
+        }
+
+    }
+    
+    func saveFoodieDetailsInDB(foodiesData:[SearchFoodies]) {
+        let relamInstance = try! Realm()
+        for foodie in foodiesData {
+            let userData = relamInstance.objects(LFFoodies.self).filter("foodieId=='\(foodie.foodieId)'")
+            if userData.count == 0 {
+            try! relamInstance.write({
+                let foodieObj = LFFoodies()
+                foodieObj.foodieId = foodie.foodieId
+                foodieObj.foodieItemCode = foodie.foodieItemCode
+                foodieObj.foodieUserId = foodie.foodieUserId
+                foodieObj.foodieCreatedById = foodie.foodieCreatedById
+                foodieObj.foodieJobTypeId = foodie.foodieJobTypeId
+                foodieObj.foodieName = foodie.foodieName
+                foodieObj.foodieDescription = foodie.foodieDescription
+                foodieObj.foodieImage = foodie.foodieImage
+                foodieObj.foodieMobile = foodie.foodieMobile
+                foodieObj.foodieAddress = foodie.foodieAddress
+                foodieObj.foodieCity = foodie.foodieCity
+                foodieObj.foodieCountry = foodie.foodieCountry
+                foodieObj.foodieState = foodie.foodieState
+                foodieObj.foodieFirstName = foodie.foodieFirstName
+                foodieObj.foodieLastName = foodie.foodieLastName
+                foodieObj.foodieEmail = foodie.foodieEmail
+                foodieObj.foodieCurrentJobStatus = foodie.foodieCurrentJobStatus
+                foodieObj.foodieCurrentJobStatusId = foodie.foodieCurrentJobStatusId
+                foodieObj.foodieFollowingCount = foodie.foodieFollowingCount
+                foodieObj.foodieFollowerCount = foodie.foodieFollowerCount
+               // foodieObj.jSON = CXAppConfig.sharedInstance.convertDictionayToString(dictionary: foodie)
+
+                relamInstance.add(foodieObj)
+            })
+            }
+        }
+        
+    }
+
+    
     func savePlacesInDB(list:NSArray){
         let relamInstance = try! Realm()
 

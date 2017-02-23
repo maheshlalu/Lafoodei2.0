@@ -20,6 +20,8 @@ class  LFFeedsData{
     var feedImage : String
     var feedDescription : String
     var feedFavaouritesCount : String
+    var feedCommentsCount : String
+    var feedLikesCount : String
     var feedIDMallID : String
     var feedIDMallName : String
     var feedIDMallImage : String
@@ -37,7 +39,8 @@ class  LFFeedsData{
         feedImage = json["Image"].stringValue
         feedDescription = json["Description"].stringValue
         feedFavaouritesCount =  json["favouritesCount"].stringValue //(json["favouritesCount"].array?.count)!
-        
+        feedCommentsCount = "1"
+        feedLikesCount = "2"
         
         let mallIIDJson  = JSON(json["malldetails"].dictionary as Any)
         feedIDMallID = mallIIDJson["id"].stringValue
@@ -48,6 +51,7 @@ class  LFFeedsData{
         feedUserName = json["createdByFullName"].stringValue //userDataJson["name"].stringValue
         feedUserEmail = userDataJson["email"].stringValue
         feedUserImage = userDataJson["image"].stringValue
+        
         
         //createdByFullName
     }

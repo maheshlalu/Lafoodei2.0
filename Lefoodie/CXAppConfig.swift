@@ -184,6 +184,10 @@ class CXAppConfig {
     func getUserFollowings() -> String{
         return config!.value(forKey: "getUserFollowings") as! String
     }
+    
+    func getPostLikeApi() -> String{
+        return config!.value(forKey: "updatePostLike") as! String
+    }
   /*
     func getAppTheamColor() -> UIColor {
         

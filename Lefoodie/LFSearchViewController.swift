@@ -28,6 +28,11 @@ class LFSearchViewController: UIViewController {
         searchTypeLabel.text = "Places"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -48,18 +53,24 @@ class LFSearchViewController: UIViewController {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
             searchTypeLabel.text = "Places"
+            searchBar.resignFirstResponder()
+            searchBar.text = ""
     
         }
         else if count == 2 {
             
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
             searchTypeLabel.text = "Foodies"
+            searchBar.resignFirstResponder()
+            searchBar.text = ""
             
         }
         else if count == 3 {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
             searchTypeLabel.text = "Hashtags"
+             searchBar.resignFirstResponder()
+            searchBar.text = ""
 
         }
         
@@ -142,7 +153,8 @@ extension LFSearchViewController : UISearchBarDelegate {
     func loadDefaultList (){
         let searchText = ""
         if count == 1 {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlacesSearchNotification"), object: searchText)
+            
+//            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlacesSearchNotification"), object: searchText)
         }
         else if count == 2{
             NotificationCenter.default.post(name: Notification.Name(rawValue: "FoodieSearchNotification"), object: searchText)
@@ -165,9 +177,35 @@ extension LFSearchViewController : UISearchBarDelegate {
         self.loadDefaultList()
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-  
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool
+    {
+        
+        if count == 1 {
+            
+            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
+            self.navigationController?.pushViewController(destVC, animated: true)
+            
+            searchBar.resignFirstResponder()
+            return false
+        }
+        else {
+            return true
+        }
+
+        
+        
     }
+    
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        if count == 1 {
+//            
+//            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
+//           self.navigationController?.pushViewController(destVC, animated: true)
+//            
+//            searchBar.resignFirstResponder()
+//        }
+//
+//    }
     
     func removeSearch(){
         
