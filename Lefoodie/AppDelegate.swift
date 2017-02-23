@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         self.setUpMagicalDB()
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print("pathv\(urls[urls.count-1] as URL)")
-        //FIRApp.configure()
+        FIRApp.configure()
         self.storyBoard = self.window?.rootViewController?.storyboard
         print( getDocumentsDirectory())
         //MARK: Check UserID
@@ -228,7 +228,7 @@ extension AppDelegate{
 
         
         // [END register_for_notifications]
-        FIRApp.configure()
+        //FIRApp.configure()
         
         // [START add_token_refresh_observer]
         // Add observer for InstanceID token refresh callback.

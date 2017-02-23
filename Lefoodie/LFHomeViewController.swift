@@ -185,14 +185,23 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
 //            cell.selectionStyle = .none
 //            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
-//            cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
-//            lastIndexPath = indexPath
+            cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
+            lastIndexPath = indexPath
             
             let realm = try! Realm()
             let predicate = NSPredicate.init(format: "feedID=%@", feeds.feedID)
             
             let userData = realm.objects(LFHomeFeeds.self).filter(predicate)
             let data = userData.first
+            
+            let likeData = realm.objects(LFLikes.self).filter("jobId=='\(feeds.feedID)'")
+            
+            if likeData.count == 0 {
+                cell.likeBtn.isSelected = false
+            }
+            else {
+                cell.likeBtn.isSelected = true
+            }
             
             cell.likesLabel.text = (data?.feedLikesCount)! + " Likes"
             cell.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
@@ -359,13 +368,17 @@ extension LFHomeViewController{
     {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let feeds = self.feedsArray[sender.tag]
+        
+
+
         if sender.isSelected {
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
                 
                 if result {
-                    
+                    sender.isSelected = false
                     let relamInstance = try! Realm()
-                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
+                    print(resultDic.value(forKey: "jobId") as Any)
+                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId")!)'")
                     let like = userData.first
                     try! relamInstance.write({
                         
@@ -381,7 +394,7 @@ extension LFHomeViewController{
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: true, completion: {(result,resultDic) in
                 
                 if result {
-                    
+                    sender.isSelected = true
                     let relamInstance = try! Realm()
                     let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
                     if userData.count == 0 {

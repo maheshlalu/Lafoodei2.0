@@ -11,7 +11,8 @@ import UIKit
 class LFHomeFooterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var alertBtn: UIButton!
-    
+    @IBOutlet weak var commentsBtn: UIButton!
+
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
