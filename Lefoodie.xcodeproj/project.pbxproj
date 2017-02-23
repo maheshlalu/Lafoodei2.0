@@ -23,6 +23,11 @@
 		120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */; };
 		120514E91E40BE5700D2345E /* LFEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */; };
 		120D72561E4C47D600F448CA /* LFForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120D72551E4C47D600F448CA /* LFForgotPasswordViewController.swift */; };
+		121E10921E5F2229001546D0 /* LFCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E108F1E5F2229001546D0 /* LFCommentTableViewCell.swift */; };
+		121E10931E5F2229001546D0 /* LFCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 121E10901E5F2229001546D0 /* LFCommentTableViewCell.xib */; };
+		121E10941E5F2229001546D0 /* LFCommentViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E10911E5F2229001546D0 /* LFCommentViewViewController.swift */; };
+		121E10971E5F2271001546D0 /* RSKGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E10961E5F2271001546D0 /* RSKGrowingTextView.swift */; };
+		121E10991E5F2743001546D0 /* LFFireBaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121E10981E5F2743001546D0 /* LFFireBaseDataService.swift */; };
 		1225DA241E5D693C007951B8 /* LFFlagReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA231E5D693C007951B8 /* LFFlagReportViewController.swift */; };
 		1225DA271E5D6968007951B8 /* LFFlagReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */; };
 		1225DA281E5D6968007951B8 /* LFFlagReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */; };
@@ -171,6 +176,12 @@
 		120514E61E40BE5700D2345E /* LFEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFEditTableViewCell.swift; sourceTree = "<group>"; };
 		120514E71E40BE5700D2345E /* LFEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFEditTableViewCell.xib; sourceTree = "<group>"; };
 		120D72551E4C47D600F448CA /* LFForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		121E108F1E5F2229001546D0 /* LFCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFCommentTableViewCell.swift; sourceTree = "<group>"; };
+		121E10901E5F2229001546D0 /* LFCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFCommentTableViewCell.xib; sourceTree = "<group>"; };
+		121E10911E5F2229001546D0 /* LFCommentViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFCommentViewViewController.swift; sourceTree = "<group>"; };
+		121E10951E5F2271001546D0 /* RSKGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKGrowingTextView.h; sourceTree = "<group>"; };
+		121E10961E5F2271001546D0 /* RSKGrowingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSKGrowingTextView.swift; sourceTree = "<group>"; };
+		121E10981E5F2743001546D0 /* LFFireBaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFireBaseDataService.swift; sourceTree = "<group>"; };
 		1225DA231E5D693C007951B8 /* LFFlagReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFlagReportViewController.swift; sourceTree = "<group>"; };
 		1225DA251E5D6968007951B8 /* LFFlagReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFlagReportTableViewCell.swift; sourceTree = "<group>"; };
 		1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFFlagReportTableViewCell.xib; sourceTree = "<group>"; };
@@ -334,6 +345,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121E108E1E5F2214001546D0 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				121E10951E5F2271001546D0 /* RSKGrowingTextView.h */,
+				121E10961E5F2271001546D0 /* RSKGrowingTextView.swift */,
+				121E108F1E5F2229001546D0 /* LFCommentTableViewCell.swift */,
+				121E10901E5F2229001546D0 /* LFCommentTableViewCell.xib */,
+				121E10911E5F2229001546D0 /* LFCommentViewViewController.swift */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
 		125BD6951E3B1C70000FA4C7 /* AppDataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +593,7 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				121E108E1E5F2214001546D0 /* Comments */,
 				8976AF571E49C86200527555 /* LFSignInViewController.swift */,
 				114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */,
 				114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */,
@@ -686,6 +710,7 @@
 		896073521E36013800551545 /* Data service Classes */ = {
 			isa = PBXGroup;
 			children = (
+				121E10981E5F2743001546D0 /* LFFireBaseDataService.swift */,
 				896073531E36015800551545 /* CXDataService.swift */,
 				183A8CAC1E48777C0068DC34 /* LFDataManager.swift */,
 				2BB625F11E5336D600F5FD63 /* Followers+CoreDataClass.swift */,
@@ -839,6 +864,7 @@
 				1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */,
 				120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
+				121E10931E5F2229001546D0 /* LFCommentTableViewCell.xib in Resources */,
 				1225DA321E5DB2D1007951B8 /* LFHotItemTableViewCell.xib in Resources */,
 				1248A9EC1E54332100AAA4E8 /* LFChangePasswordTableViewCell.xib in Resources */,
 				18AFA64E1E5424BA00D4D653 /* LFOptionalTableViewCell.xib in Resources */,
@@ -1071,6 +1097,7 @@
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
 				1225DA311E5DB2D1007951B8 /* LFHotItemTableViewCell.swift in Sources */,
+				121E10941E5F2229001546D0 /* LFCommentViewViewController.swift in Sources */,
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
 				127861D41E1A29A900D64F16 /* LFFoodItemsListTableViewCell.swift in Sources */,
 				185F3BEC1E5341F30068F900 /* LFMyProfile.swift in Sources */,
@@ -1084,6 +1111,7 @@
 				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,
 				120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
+				121E10971E5F2271001546D0 /* RSKGrowingTextView.swift in Sources */,
 				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
 				127861CD1E1A298900D64F16 /* LFHomeFooterTableViewCell.swift in Sources */,
 				1825CCB21E1B769D00CD3C3B /* CXCameraSourceViewController.swift in Sources */,
@@ -1106,12 +1134,14 @@
 				1248A9EB1E54332100AAA4E8 /* LFChangePasswordTableViewCell.swift in Sources */,
 				1825CCDD1E1BE97300CD3C3B /* LFFavouritesCollectionViewCell.swift in Sources */,
 				120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */,
+				121E10921E5F2229001546D0 /* LFCommentTableViewCell.swift in Sources */,
 				1225DA241E5D693C007951B8 /* LFFlagReportViewController.swift in Sources */,
 				187039BB1E1D39A700D6668B /* LFMapInstance.swift in Sources */,
 				18AFA64D1E5424BA00D4D653 /* LFOptionalTableViewCell.swift in Sources */,
 				120514E31E40A3A400D2345E /* LFSearchItemsViewController.swift in Sources */,
 				890CA7891E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				127861C11E1A297300D64F16 /* LFHomeViewController.swift in Sources */,
+				121E10991E5F2743001546D0 /* LFFireBaseDataService.swift in Sources */,
 				2BB625F31E5336D600F5FD63 /* Followers+CoreDataClass.swift in Sources */,
 				120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */,
 			);

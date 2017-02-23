@@ -10,6 +10,11 @@
 import UIKit
 import SDWebImage
 import SwiftyJSON
+import RealmSwift
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
+
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
@@ -22,7 +27,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
-
+    let ref = FIRDatabase.database().reference(withPath: "POSTS")
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -177,10 +183,29 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return cell
         }else  {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
+//            cell.selectionStyle = .none
+//            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
+//            cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
+//            lastIndexPath = indexPath
+            
+            let realm = try! Realm()
+            let predicate = NSPredicate.init(format: "feedID=%@", feeds.feedID)
+            
+            let userData = realm.objects(LFHomeFeeds.self).filter(predicate)
+            let data = userData.first
+            
+            cell.likesLabel.text = (data?.feedLikesCount)! + " Likes"
+            cell.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
+            cell.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
+            
             cell.selectionStyle = .none
             cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
-            cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
+            
+            cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
+            cell.likeBtn.tag = indexPath.section
+            
             lastIndexPath = indexPath
+            
             return cell
         }
     
@@ -328,6 +353,53 @@ extension LFHomeViewController{
         storyboard?.navigationController?.isNavigationBarHidden = false
         UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
     }
+    
+    
+    func likeBtnAction(sender:UIButton)
+    {
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
+        let feeds = self.feedsArray[sender.tag]
+        if sender.isSelected {
+            LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
+                
+                if result {
+                    
+                    let relamInstance = try! Realm()
+                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
+                    let like = userData.first
+                    try! relamInstance.write({
+                        
+                        relamInstance.delete(like!)
+                        
+                    })
+                }
+                
+                
+            })
+        }
+        else {
+            LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: true, completion: {(result,resultDic) in
+                
+                if result {
+                    
+                    let relamInstance = try! Realm()
+                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
+                    if userData.count == 0 {
+                        
+                        try! relamInstance.write({
+                            let like = LFLikes()
+                            like.jobId = resultDic.value(forKey: "jobId") as! String
+                            relamInstance.add(like)
+                        })
+                        
+                    }
+                }
+                
+                
+            })
+        }
+    }
+    
 }
 
 
