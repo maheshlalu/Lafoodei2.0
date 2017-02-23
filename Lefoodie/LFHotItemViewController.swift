@@ -13,6 +13,9 @@ class LFHotItemViewController: UIViewController,UITableViewDataSource,UITableVie
     @IBOutlet weak var hotItemTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hotItemTableView.estimatedRowHeight = 471
+        self.hotItemTableView.rowHeight = UITableViewAutomaticDimension
         let nib = UINib(nibName: "LFHotItemTableViewCell", bundle: nil)
         self.hotItemTableView.register(nib, forCellReuseIdentifier: "LFHotItemTableViewCell")
         
@@ -29,6 +32,7 @@ class LFHotItemViewController: UIViewController,UITableViewDataSource,UITableVie
     {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LFHotItemTableViewCell", for: indexPath)as? LFHotItemTableViewCell
+        cell?.selectionStyle = .none
         return cell!
         
     }
