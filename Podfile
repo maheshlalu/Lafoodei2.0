@@ -23,6 +23,11 @@ pod 'Masonry'
 pod 'SwiftyJSON'
 pod "MXParallaxHeader"
 pod 'RealmSwift'
+pod 'RSKKeyboardAnimationObserver', '1.0.0'
+pod 'RSKPlaceholderTextView', '2.0.0'
+pod 'Firebase/Database'
+pod 'Firebase/Auth'
+
   target 'LefoodieTests' do
     inherit! :search_paths
     # Pods for testing

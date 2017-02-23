@@ -10,20 +10,23 @@ import UIKit
 
 class LFFlagReportViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var nameArray = ["","Negative/Offensive/Inappropriate Post","Poor Image Quality",]
+    var nameArray = ["","Negative / Offensive / Inappropriate Post","Poor Image Quality",]
 
     @IBOutlet weak var flagReportTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttoncreated()
         
         //self.tableView.tableFooterView = [UIView new];
         self.flagReportTableView.tableFooterView = UIView()
-
-        
         let nib = UINib(nibName: "LFFlagReportTableViewCell", bundle: nil)
         self.flagReportTableView.register(nib, forCellReuseIdentifier: "LFFlagReportTableViewCell")
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = "Flag / Report"
     }
 
     @IBAction func cancelBtnAction(_ sender: UIButton) {
@@ -68,13 +71,27 @@ class LFFlagReportViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1
+        {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPostViewController")as? LFPostViewController
-       self.present(storyboard!, animated: true, completion: nil)
+       self.navigationController?.pushViewController(storyboard!, animated: true)
+            self.title = ""
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
+    }
+    func buttoncreated(){
+        let button = UIButton()
+        button.frame = CGRect(x: 15, y: 8, width: 60, height: 60)
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        //button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem()
+        item1.customView = button
+        self.navigationItem.setRightBarButton(item1, animated: true)
     }
 
 }

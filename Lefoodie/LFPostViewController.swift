@@ -9,36 +9,43 @@
 import UIKit
 
 class LFPostViewController: UIViewController {
-
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        buttoncreated()
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = "Flag / Report"
+    }
+    
+    func buttoncreated(){
+        let button = UIButton()
+        button.frame = CGRect(x: 15, y: 8, width: 60, height: 60)
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        //button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem()
+        item1.customView = button
+        self.navigationItem.setRightBarButton(item1, animated: true)
+    }
+    
     @IBAction func cancelBtnAction(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func reportBtnAction(_ sender: UIButton) {
         
-       let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFThanksViewController")as? LFThanksViewController
-        self.present(storyboard!, animated: true, completion: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFThanksViewController")as? LFThanksViewController
+        self.navigationController?.pushViewController(storyboard!, animated: true)
+        self.title = ""
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

@@ -10,6 +10,11 @@
 import UIKit
 import SDWebImage
 import SwiftyJSON
+import RealmSwift
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
+
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
@@ -22,10 +27,13 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
-
+    let ref = FIRDatabase.database().reference(withPath: "POSTS")
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        
+        self.setNavigationProperties()
         self.registerCells()
         self.selectedTabBar()
         self.setSegmentProperties()
@@ -81,7 +89,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationProperties()
+        
      
     }
     
@@ -175,10 +183,29 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return cell
         }else  {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
+//            cell.selectionStyle = .none
+//            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
+//            cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
+//            lastIndexPath = indexPath
+            
+            let realm = try! Realm()
+            let predicate = NSPredicate.init(format: "feedID=%@", feeds.feedID)
+            
+            let userData = realm.objects(LFHomeFeeds.self).filter(predicate)
+            let data = userData.first
+            
+            cell.likesLabel.text = (data?.feedLikesCount)! + " Likes"
+            cell.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
+            cell.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
+            
             cell.selectionStyle = .none
             cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
             
+            cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
+            cell.likeBtn.tag = indexPath.section
+            
             lastIndexPath = indexPath
+            
             return cell
         }
     
@@ -299,37 +326,9 @@ extension LFHomeViewController{
         
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
-        }))
-        alert.addAction(UIAlertAction(title: "Add to Favorites List", style: .default, handler: { (action) in
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Share to Facebook", style: .default, handler: { (action) in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Copy Share URL", style: .default, handler: { (action) in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-        }))
-        alert.self.present(alert, animated: true, completion: nil)
-    }
-}
-
-extension LFHomeViewController{
-    func actionAlertSheet()
-    {
-        
-        let alert = UIAlertController()
-        alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFlagReportViewController")as? LFFlagReportViewController
-            self.present(storyboard!, animated: true, completion: nil)
-            
-            
+            self.navigationController?.pushViewController(storyboard!, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Add to Favorites List", style: .default, handler: { (action) in
             
@@ -348,6 +347,59 @@ extension LFHomeViewController{
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func commentsBtnAction(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFCommentViewViewController")as? LFCommentViewViewController
+        storyboard?.navigationController?.isNavigationBarHidden = false
+        UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
+    }
+    
+    
+    func likeBtnAction(sender:UIButton)
+    {
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
+        let feeds = self.feedsArray[sender.tag]
+        if sender.isSelected {
+            LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
+                
+                if result {
+                    
+                    let relamInstance = try! Realm()
+                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
+                    let like = userData.first
+                    try! relamInstance.write({
+                        
+                        relamInstance.delete(like!)
+                        
+                    })
+                }
+                
+                
+            })
+        }
+        else {
+            LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: true, completion: {(result,resultDic) in
+                
+                if result {
+                    
+                    let relamInstance = try! Realm()
+                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
+                    if userData.count == 0 {
+                        
+                        try! relamInstance.write({
+                            let like = LFLikes()
+                            like.jobId = resultDic.value(forKey: "jobId") as! String
+                            relamInstance.add(like)
+                        })
+                        
+                    }
+                }
+                
+                
+            })
+        }
+    }
+    
 }
 
 
