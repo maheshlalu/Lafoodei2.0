@@ -91,9 +91,16 @@ class LFDataSaveManager: NSObject {
     }
     
     func saveHomeFeedsInDB(list:[LFFeedsData]){
+       
+        //Get user ID
+        
         let relamInstance = try! Realm()
+        let myProfile = try! Realm().objects(LFMyProfile.self).first
+
         for feedData in list {
             let userData = relamInstance.objects(LFHomeFeeds.self).filter("feedID=='\(feedData.feedID)'")
+            self.saveTheUserLikedPosts(feedData: feedData, userId: (myProfile?.Mac_userId)!)
+
             if userData.count == 0 {
                 //Insert The Data
                 try! relamInstance.write({
@@ -120,6 +127,31 @@ class LFDataSaveManager: NSObject {
         }
 
     }
+    
+    func saveTheUserLikedPosts(feedData:LFFeedsData,userId:String){
+        
+        let likesArray = feedData.feedJson["likes"].array
+        for dic in likesArray! {
+            if dic["userId"].stringValue == userId {
+                let relamInstance = try! Realm()
+                let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(feedData.feedID))'")
+                if userData.count == 0 {
+                    try! relamInstance.write({
+                        let like = LFLikes()
+                        like.jobId = feedData.feedID
+                        relamInstance.add(like)
+                    })
+                    
+                }
+                return
+            }
+            
+        }
+        
+    }
+    
+    
+    
     
     func saveFoodieDetailsInDB(foodiesData:[SearchFoodies]) {
         let relamInstance = try! Realm()

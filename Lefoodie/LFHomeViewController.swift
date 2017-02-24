@@ -27,7 +27,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
-    let ref = FIRDatabase.database().reference(withPath: "POSTS")
+    var ref = FIRDatabase.database().reference(withPath: "POSTS")
     
     override func viewDidLoad() {
 
@@ -104,9 +104,29 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.serviceAPICall(PageNumber: "1", PageSize: "10")
     }
     
+    
+    func deleteTheFeedsInDatabase(){
+        
+        if page == "1" {
+            let relamInstance = try! Realm()
+            let feedData = relamInstance.objects(LFHomeFeeds.self)
+            try! relamInstance.write({
+                relamInstance.delete(feedData)
+            })
+            
+            let likesData = relamInstance.objects(LFLikes.self)
+            try! relamInstance.write({
+                relamInstance.delete(likesData)
+            })
+            
+        }
+   
+    }
+    
     //MARK: calling home data from service
     func serviceAPICall(PageNumber: String, PageSize: String)
     {
+        self.deleteTheFeedsInDatabase()
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
             self.isPageRefreshing = false
@@ -161,6 +181,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
         let feeds = self.feedsArray[indexPath.section]
+       // self.addPostObserver(postID: feeds.feedID)
 
         //tableView.sel
         //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
@@ -186,6 +207,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 //            cell.selectionStyle = .none
 //            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
             cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
+            cell.commentsBtn.tag = indexPath.section
             lastIndexPath = indexPath
             
             let realm = try! Realm()
@@ -328,6 +350,26 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
 }
 
+extension LFHomeViewController{
+    
+    func addPostObserver(postID:String){
+   
+      //  LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: postID)
+        
+        ref = FIRDatabase.database().reference()
+
+        ref.child(byAppendingPath: "POSTS")
+            .child(byAppendingPath: postID)
+            .observeSingleEvent(of: .childAdded, with: { snapshot in
+                
+             //   print("\(snapshot)")
+                
+                
+            })
+    }
+    
+}
+
 
 extension LFHomeViewController{
     func actionAlertSheet()
@@ -357,33 +399,37 @@ extension LFHomeViewController{
         self.present(alert, animated: true, completion: nil)
     }
     
-    func commentsBtnAction(){
+    func commentsBtnAction(sender:UIButton){
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFCommentViewViewController")as? LFCommentViewViewController
         storyboard?.navigationController?.isNavigationBarHidden = false
+        let feeds = self.feedsArray[sender.tag]
+        storyboard?.feedData = feeds
         UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
     }
     
     
     func likeBtnAction(sender:UIButton)
     {
+        
+        
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let feeds = self.feedsArray[sender.tag]
         
-
+     //   LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: false, isFavorites: false, postID: feeds.feedID)
 
         if sender.isSelected {
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
-                
                 if result {
+                    self.updateFeedsData(feedID: feeds.feedID, respoceDic: resultDic)
                     sender.isSelected = false
                     let relamInstance = try! Realm()
                     print(resultDic.value(forKey: "jobId") as Any)
                     let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId")!)'")
                     let like = userData.first
                     try! relamInstance.write({
-                        
                         relamInstance.delete(like!)
-                        
+                        self.homeTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
                     })
                 }
                 
@@ -392,17 +438,18 @@ extension LFHomeViewController{
         }
         else {
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: true, completion: {(result,resultDic) in
-                
                 if result {
+                    self.updateFeedsData(feedID: feeds.feedID, respoceDic: resultDic)
+                    LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feeds.feedID)
                     sender.isSelected = true
                     let relamInstance = try! Realm()
                     let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
                     if userData.count == 0 {
-                        
                         try! relamInstance.write({
                             let like = LFLikes()
                             like.jobId = resultDic.value(forKey: "jobId") as! String
                             relamInstance.add(like)
+                            self.homeTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
                         })
                         
                     }
@@ -413,7 +460,25 @@ extension LFHomeViewController{
         }
     }
     
+
+    
 }
+
+
+
+extension LFHomeViewController{
+    
+    func updateFeedsData(feedID:String,respoceDic:NSDictionary){
+        print(respoceDic)
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "feedID=%@", feedID)
+        let userData = realm.objects(LFHomeFeeds.self).filter(predicate).first
+            try! realm.write {
+            userData?.feedLikesCount = String(describing: respoceDic.value(forKey: "count")!)
+        }
+    }
+}
+
 
 
 

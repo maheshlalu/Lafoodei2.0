@@ -25,15 +25,30 @@ class LFFoodieViewController: UIViewController {
        // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
         page = "1"
         isInitialLoad = true
+        self.foodiesArr = [SearchFoodies]()
        serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
-        
         NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
 
     }
     
+    
+    func deleteTheFeedsInDatabase(){
+        
+        if page == "1" {
+            let relamInstance = try! Realm()
+            let feedData = relamInstance.objects(LFFoodies.self)
+            try! relamInstance.write({
+                relamInstance.delete(feedData)
+            })
+            
+        }
+        
+    }
      func foodieSearchNotification(_ notification: Notification) {
         let searchText = notification.object as! String
         page = "1"
+        self.isInitialLoad = true
+        self.foodiesArr = [SearchFoodies]()
         self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "10")
         self.foodieViewTableView.reloadData()
     }
@@ -69,16 +84,16 @@ class LFFoodieViewController: UIViewController {
     
     //MARK: calling foodie data from service
     func serviceAPICall(keyword: String,pageNumber:String,pageSize:String){
+        self.deleteTheFeedsInDatabase()
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         LFDataManager.sharedInstance.getSearchFoodie(keyword: keyword,pageNumber:pageNumber,pageSize:pageSize) { (resultFoodies) in
-            
+
             self.isPageRefreshing = false
             
             let lastIndexOfArr = self.foodiesArr.count - 1
             if !resultFoodies.isEmpty {
                 self.foodiesArr.append(contentsOf: resultFoodies)
                 LFDataSaveManager.sharedInstance.saveFoodieDetailsInDB(foodiesData: resultFoodies)
-                
                 // if it is Initial Load
                 if self.isInitialLoad {
                     self.foodieViewTableView.reloadData()
@@ -132,13 +147,10 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         
         let realm = try! Realm()
         let predicate = NSPredicate.init(format: "foodieId=%@", foodies.foodieId)
-        
-        let userData = realm.objects(LFFoodies.self).filter(predicate)
-        let data = userData.first
-        
+        let userData = realm.objects(LFFoodies.self).filter(predicate).first
         cell.foodieName.text = foodies.foodieName
-        let following = (data?.foodieFollowingCount)!
-        let follower = (data?.foodieFollowerCount)!
+        let following = (userData?.foodieFollowingCount)!
+        let follower = (userData?.foodieFollowerCount)!
         cell.foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         // Returning the cell
         return cell

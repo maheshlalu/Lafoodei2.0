@@ -49,36 +49,26 @@ class LFFireBaseDataService: NSObject {
     func addPostActivity(isUpdateComment:Bool,isLikeCount:Bool,isFavorites:Bool,postID:String){
         
         ref = FIRDatabase.database().reference()
-        
         let post = ["uid": postID,
                     "CommentCount": "10",
                     "LikeCount": "2",
-                     "FavouritesCount": "2"
-                    ]
+                    "FavouritesCount": "2"
+        ]
         self.ref.child("POSTS/\(postID)").setValue(post)
+
         
-        
-//        ref.child("POSTS")
-//            .child((FIRAuth.auth()?.currentUser?.uid)!)
-//            //.queryOrdered(byChild: "fromId")
-//            //.queryEqual(toValue: "theUidThatYou'reLookingFor")
-//            .observeSingleEvent(of: .childAdded, with: { (snapshot) in
-//                print("\(snapshot.key)")
+//        ref.child(byAppendingPath: "POSTS")
+//            .child(byAppendingPath: postID)
+//            .observeSingleEvent(of: .childAdded, with: { snapshot in
+//                
 //                print("\(snapshot)")
-//
+//                
+//           
+//                
+//                
+//                
 //            })
-        
-        
-        ref.child(byAppendingPath: "POSTS")
-            .child(byAppendingPath: postID)
-            .observeSingleEvent(of: .childAdded, with: { snapshot in
-                
-                print("\(snapshot)")
-                
-                
-                
-            })
-        
+//        
         
   
        // let key = ref.child("POSTS").queryOrdered(byChild: postID)

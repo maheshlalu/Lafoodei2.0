@@ -27,6 +27,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-Bp-ryq">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="V5c-GF-ScI"/>
+                                        </constraints>
                                         <state key="normal" image="LikeIcon"/>
                                         <state key="selected" image="SelectLike"/>
                                     </button>
@@ -37,6 +40,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ac0-Bp-ryq" secondAttribute="trailing" id="4oc-a9-9EK"/>
+                                    <constraint firstItem="Ac0-Bp-ryq" firstAttribute="top" secondItem="yZj-a5-dy0" secondAttribute="top" id="Vh6-lC-4lA"/>
+                                    <constraint firstItem="Ac0-Bp-ryq" firstAttribute="leading" secondItem="yZj-a5-dy0" secondAttribute="leading" id="vOS-4A-VPo"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Ag-WE-ZAq">
                                 <rect key="frame" x="37" y="0.0" width="38" height="40"/>
@@ -109,6 +117,6 @@
         <image name="FavouritesIcon" width="35" height="32"/>
         <image name="LikeIcon" width="35" height="32"/>
         <image name="MeniIcon" width="40" height="40"/>
-        <image name="SelectLike" width="16" height="16"/>
+        <image name="SelectLike" width="35" height="32"/>
     </resources>
 </document>

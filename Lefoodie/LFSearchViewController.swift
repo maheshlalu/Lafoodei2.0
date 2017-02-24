@@ -38,6 +38,8 @@ class LFSearchViewController: UIViewController {
     }
     
     @IBAction func nextBtnAction(_ sender: AnyObject) {
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
         if count == 3 {
             count = 1
         }
@@ -53,24 +55,21 @@ class LFSearchViewController: UIViewController {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
             searchTypeLabel.text = "Places"
-            searchBar.resignFirstResponder()
-            searchBar.text = ""
+           
     
         }
         else if count == 2 {
             
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFFoodieViewController") as! LFFoodieViewController
             searchTypeLabel.text = "Foodies"
-            searchBar.resignFirstResponder()
-            searchBar.text = ""
+          
             
         }
         else if count == 3 {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
             searchTypeLabel.text = "Hashtags"
-             searchBar.resignFirstResponder()
-            searchBar.text = ""
+           
 
         }
         
@@ -84,7 +83,8 @@ class LFSearchViewController: UIViewController {
     }
     
     @IBAction func prevBtnAction(_ sender: AnyObject) {
-    
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
         if count == 1 {
             count = 3
         }
@@ -181,10 +181,10 @@ extension LFSearchViewController : UISearchBarDelegate {
     {
         
         if count == 1 {
-            
-            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
-            self.navigationController?.pushViewController(destVC, animated: true)
-            
+//            
+//            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
+//            self.navigationController?.pushViewController(destVC, animated: true)
+//            
             searchBar.resignFirstResponder()
             return false
         }
