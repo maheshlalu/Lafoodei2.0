@@ -495,7 +495,21 @@ extension LFDataManager{
         }
     }
     
-  
+    // MARK: Post Comment
+    //http://35.160.251.153:8081/jobs/saveJobCommentJSON?jobId=1116&comment=Hi&&macId=4f3864a2-b8cc-41b7-922d-38a82d0d4258
+    func postComment(jobId:String,comment:String,macId:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.postCommentsApi(), parameters: ["jobId": jobId as AnyObject,"comment":comment as AnyObject,"macId":macId as AnyObject]) { (responseDict) in
+             completion(responseDict)
+        }
+    }
+    
+    // MARK: Get Commnets
+    //http://35.160.251.153:8081/services/getMasters?jobId=915
+    func getComments(feedId:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["jobId": feedId as AnyObject]) { (responseDict) in
+            completion(responseDict)
+        }
+    }
 }
 
 

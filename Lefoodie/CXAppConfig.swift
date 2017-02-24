@@ -188,6 +188,13 @@ class CXAppConfig {
     func getPostLikeApi() -> String{
         return config!.value(forKey: "updatePostLike") as! String
     }
+    
+    //postComments
+    func postCommentsApi() -> String{
+        return config!.value(forKey: "postComments") as! String
+    }
+    
+    
   /*
     func getAppTheamColor() -> UIColor {
         

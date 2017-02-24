@@ -85,6 +85,8 @@
 	<string>MobileAPIs/getFollowing?</string>
 	<key>updatePostLike</key>
 	<string>Services/saveOrUpdateSocialActivity?</string>
+	<key>postComments</key>
+	<string>jobs/saveJobCommentJSON?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>
