@@ -29,10 +29,6 @@ class LFFlagReportViewController: UIViewController,UITableViewDataSource,UITable
         self.navigationItem.title = "Flag / Report"
     }
 
-    @IBAction func cancelBtnAction(_ sender: UIButton) {
-        
-        self.dismiss(animated: true, completion: nil)
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -88,10 +84,16 @@ class LFFlagReportViewController: UIViewController,UITableViewDataSource,UITable
         button.frame = CGRect(x: 15, y: 8, width: 60, height: 60)
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        //button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
         let item1 = UIBarButtonItem()
         item1.customView = button
         self.navigationItem.setRightBarButton(item1, animated: true)
+    }
+    func cancelBtnAction()
+    {
+        
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
 
 }

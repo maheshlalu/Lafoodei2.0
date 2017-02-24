@@ -405,6 +405,9 @@ extension LFHomeViewController{
         storyboard?.navigationController?.isNavigationBarHidden = false
         let feeds = self.feedsArray[sender.tag]
         storyboard?.feedData = feeds
+        storyboard?.reloadSection = { _ in
+            self.homeTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
+        }
         UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
     }
     
@@ -469,7 +472,6 @@ extension LFHomeViewController{
 extension LFHomeViewController{
     
     func updateFeedsData(feedID:String,respoceDic:NSDictionary){
-        print(respoceDic)
         let realm = try! Realm()
         let predicate = NSPredicate.init(format: "feedID=%@", feedID)
         let userData = realm.objects(LFHomeFeeds.self).filter(predicate).first

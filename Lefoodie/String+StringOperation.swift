@@ -104,12 +104,12 @@ extension String{
             return "\(components.minute!) minutes ago"
         } else if (components.minute! >= 1){
             if (numericDates){
-                return "1 minute ago"
+                return "Few seconds ago"
             } else {
-                return "A minute ago"
+                return "Few seconds ago"
             }
         } else if (components.second! >= 3) {
-            return "\(components.second!) seconds ago"
+            return "Just now"
         } else {
             return "Just now"
         }

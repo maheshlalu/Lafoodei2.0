@@ -29,15 +29,17 @@ class LFPostViewController: UIViewController {
         button.frame = CGRect(x: 15, y: 8, width: 60, height: 60)
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        //button.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
         let item1 = UIBarButtonItem()
         item1.customView = button
         self.navigationItem.setRightBarButton(item1, animated: true)
     }
     
-    @IBAction func cancelBtnAction(_ sender: UIButton) {
+    func cancelBtnAction()
+    {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
     @IBAction func reportBtnAction(_ sender: UIButton) {
         

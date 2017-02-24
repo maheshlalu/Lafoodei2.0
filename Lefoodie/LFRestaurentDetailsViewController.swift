@@ -179,7 +179,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         controllerArray.append(photosCntl)
         
         let favoriteCntl : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
-        favoriteCntl.title = "FAVOURITES"
+        favoriteCntl.title = "FAVORITES"
         controllerArray.append(favoriteCntl)
         
         let parameters: [CAPSPageMenuOption] = [

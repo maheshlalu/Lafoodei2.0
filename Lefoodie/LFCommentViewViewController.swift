@@ -16,10 +16,15 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     @IBOutlet weak var growingTextView: RSKGrowingTextView!
     private var isVisibleKeyboard = true
     @IBOutlet weak var commentsTblView: UITableView!
+    
+    
+    
     var feedData:LFFeedsData!
     var userDetails:LFMyProfile!
     var commentsDict:NSDictionary!
     var commentsArr:NSArray = NSArray()
+    
+    var reloadSection : (_ isReload:Bool) -> Void = {responce in print()}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +38,24 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
         self.commentsTblView.rowHeight = UITableViewAutomaticDimension
     }
     
+    func updateTheCommentCountInFeed(count:Int){
+        
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "feedID=%@", feedData.feedID)
+        let userData = realm.objects(LFHomeFeeds.self).filter(predicate).first
+        try! realm.write {
+            userData?.feedCommentsCount = String(count)
+        }
+    }
+    
     func getComments(){
         LFDataManager.sharedInstance.getComments(feedId: feedData.feedID) { (responseDict) in
             let response:NSArray = responseDict.value(forKey: "jobs") as! NSArray
             self.commentsDict = response[0] as! NSDictionary
-            print(self.commentsDict)
             let commentsArr = self.commentsDict.value(forKey: "jobComments") as! NSArray
             self.commentsArr = commentsArr.reverseObjectEnumerator().allObjects as NSArray
             self.commentsTblView.reloadData()
-            
+            self.updateTheCommentCountInFeed(count: self.commentsArr.count)
             if self.commentsArr.count == 0{
                 self.commentsTblView.separatorStyle = .none
                 self.commentLbl.isHidden = false
@@ -58,6 +72,12 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.registerForKeyboardNotifications()
+
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.reloadSection(true)
     }
     
     
@@ -108,12 +128,12 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "LFCommentTableViewCell", for: indexPath) as? LFCommentTableViewCell
         if commentsArr.count != 0{
             let data = commentsArr[indexPath.row] as! NSDictionary
-            
+            print(data)
             let userNameTxt = data.value(forKey: "postedBy_Name") as? String
             let commentTxt = data.value(forKey: "comment") as? String
             
             let attributedString = NSMutableAttributedString()
-            let attributedString1 = NSMutableAttributedString(string:"\(commentTxt!)")
+            let attributedString1 = NSMutableAttributedString(string:" \(commentTxt!)")
             let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 12)]
             let boldString = NSMutableAttributedString(string:userNameTxt!, attributes:attrs)
             attributedString.append(boldString)
@@ -121,7 +141,7 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
             
             cell?.commentTxt.attributedText = attributedString
             
-            let date = dateFormateConvertion(date: data.value(forKey: "time") as! String)
+            let date = data.value(forKey: "time") as! String
             cell?.commentTime.text = date.timeAgoSinceDate(numericDates: true)
             let img = data.value(forKey: "logo") as! String
             cell?.commentImg.setImageWith(NSURL(string:img ) as URL!, usingActivityIndicatorStyle: .white)
@@ -148,6 +168,7 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
             LFDataManager.sharedInstance.postComment(jobId: feedData.feedID, comment: trimmedString, macId: userDetails.userItemCode) { (responseDict) in
                 let status = responseDict.value(forKey: "status") as! String
                 if status == "1"{
+                    self.commentLbl.isHidden = true
                     self.getComments()
                     self.commentsTblView.reloadData()
                     self.growingTextView.text = nil
