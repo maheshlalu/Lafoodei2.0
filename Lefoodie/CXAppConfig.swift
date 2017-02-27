@@ -194,7 +194,11 @@ class CXAppConfig {
         return config!.value(forKey: "postComments") as! String
     }
     
-    
+    //pushNotificationSendApi
+    //postComments
+    func pushNotificationSendApi() -> String{
+        return config!.value(forKey: "pushNotificationSendApi") as! String
+    }
   /*
     func getAppTheamColor() -> UIColor {
         

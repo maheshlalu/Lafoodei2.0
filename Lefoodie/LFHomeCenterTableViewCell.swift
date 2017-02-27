@@ -22,4 +22,13 @@ class LFHomeCenterTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func papulateImageData(feedData:LFFeedsData){
+        
+        let img_Url_Str = feedData.feedImage
+        let img_Url = NSURL(string: img_Url_Str )
+        
+        self.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
+        self.selectionStyle = .none
+    }
+
 }

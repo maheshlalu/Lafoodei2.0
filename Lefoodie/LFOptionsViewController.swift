@@ -136,6 +136,7 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
+            LFDataManager.sharedInstance.deleteTheDeviceTokenFromServer()
             let appDelVar:AppDelegate = (UIApplication.shared.delegate as? AppDelegate)!
             appDelVar.logOutFromTheApp()
             self.deleteUserDataFromRealm()
