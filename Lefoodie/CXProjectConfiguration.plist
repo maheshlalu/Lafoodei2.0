@@ -87,6 +87,8 @@
 	<string>Services/saveOrUpdateSocialActivity?</string>
 	<key>postComments</key>
 	<string>jobs/saveJobCommentJSON?</string>
+	<key>pushNotificationSendApi</key>
+	<string>MobileAPIs/sendNotificationToUser?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

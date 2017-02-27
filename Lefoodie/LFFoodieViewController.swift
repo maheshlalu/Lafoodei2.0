@@ -163,6 +163,9 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         restaurentView.selectedFoodie = dict
         let navController = UINavigationController(rootViewController: restaurentView)
         navController.navigationItem.hidesBackButton = false
+        
+        LFDataManager.sharedInstance.sendTheFollwAndUnFollowPushNotification(isFollow: true, foodieDetails:dict)
+
         self.present(navController, animated:true, completion: nil)
     }
     

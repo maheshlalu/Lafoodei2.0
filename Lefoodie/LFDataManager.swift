@@ -213,6 +213,18 @@ extension LFDataManager{
         }
     }
     
+    func sendTheFollwAndUnFollowPushNotification(isFollow:Bool,foodieDetails:SearchFoodies){
+        //http://localhost:8081/MobileAPIs/sendNotificationToUser?mallId=2&toUserId=&message=Successfully%20added%20your%20device&title=Test
+        
+         let notificationDic = ["toUserId":"33","mallId":CXAppConfig.sharedInstance.getAppMallID(),"message":"hi","title":"hello"];
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.pushNotificationSendApi(), parameters: notificationDic as [String : AnyObject]?) { (dataDic) in
+            
+        }
+        
+        
+    }
+    
     //MARK: UnFollow
     func unFollowTheUser(foodieDetails:SearchFoodies){
         //http://35.160.251.153:8081/Services/deleteJobInstanceOrActivity?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=false

@@ -43,6 +43,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.serviceAPICall(PageNumber: page, PageSize: "10")
       NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         
+        
     }
     
     //MARK: Segment
@@ -181,62 +182,24 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
         let feeds = self.feedsArray[indexPath.section]
-       // self.addPostObserver(postID: feeds.feedID)
-
-        //tableView.sel
-        //let Dict_Detail = self.Arr_Main.object(at: indexPath.section) as AnyObject
         if indexPath.row == 0 {
-            
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
-            cell.lbl_Title.text = feeds.feedUserName
-            cell.cafeNameLbl.text = feeds.feedIDMallName
-            cell.postedTime.text = feeds.feedCreatedDate.timeAgoSinceDate(numericDates: true)
-            cell.userPicImg.setImageWith(NSURL(string: feeds.feedUserImage) as URL!, usingActivityIndicatorStyle: .white)
-            cell.selectionStyle = .none
+            cell.papulateUserinformation(feedData: feeds)
             return cell
-            
         }else if indexPath.row == 1 {
             let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
-            let img_Url_Str = feeds.feedImage
-            let img_Url = NSURL(string: img_Url_Str )
-            cell.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
-            cell.selectionStyle = .none
+            cell.papulateImageData(feedData: feeds)
             return cell
         }else  {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
-//            cell.selectionStyle = .none
-//            cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
             cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
             cell.commentsBtn.tag = indexPath.section
             lastIndexPath = indexPath
-            
-            let realm = try! Realm()
-            let predicate = NSPredicate.init(format: "feedID=%@", feeds.feedID)
-            
-            let userData = realm.objects(LFHomeFeeds.self).filter(predicate)
-            let data = userData.first
-            
-            let likeData = realm.objects(LFLikes.self).filter("jobId=='\(feeds.feedID)'")
-            
-            if likeData.count == 0 {
-                cell.likeBtn.isSelected = false
-            }
-            else {
-                cell.likeBtn.isSelected = true
-            }
-            
-            cell.likesLabel.text = (data?.feedLikesCount)! + " Likes"
-            cell.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
-            cell.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
-            
-            cell.selectionStyle = .none
+            cell.papulatedData(feedData: feeds)
             cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
-            
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
-            
             lastIndexPath = indexPath
-            
             return cell
         }
     
@@ -484,7 +447,12 @@ extension LFHomeViewController{
 
 
 
-
+/*
+ 
+ issues
+ number of sections contained in the table view after the update (1) must be equal to the number of sections contained in the table view before the update (1), plus or minus the number of sections inserted or deleted (1 inserted, 0 deleted).'
+ *** First throw call stack:
+ */
 
 
 
