@@ -58,14 +58,15 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func initialize() {
         
-        //if UIScreen.main.bounds.size.width == 320
         
-        let frame1 = CGRect(x: 8, y:UIScreen.main.bounds.size.height - imageCropViewContainer.frame.size.height - 60, width: 35, height: 35)
+        let frame1 = CGRect(x: 8, y:UIScreen.main.bounds.size.height - imageCropViewContainer.frame.size.height - 60, width: 30, height: 30)
         btnRotations.frame = frame1
         let imgve = UIImage(named: "RotateImage")
         btnRotations.setBackgroundImage(imgve, for: UIControlState.normal)
         btnRotations.addTarget(self, action:#selector(pressButton(button:)), for: .touchUpInside)
-        self.addSubview(btnRotations)
+        btnRotations.isSelected = true
+        self.imageCropViewContainer.addSubview(btnRotations)
+        self.btnRotations.isHidden = false
         
         if images != nil {
             
@@ -76,7 +77,8 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
         
         // Set Image Crop Ratio
         if let heightRatio = delegate?.getCropHeightRatio() {
-            imageCropViewContainer.addConstraint(NSLayoutConstraint(item: imageCropViewContainer, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: imageCropViewContainer, attribute: NSLayoutAttribute.width, multiplier: heightRatio, constant: 0)
+            imageCropViewContainer.addConstraint(NSLayoutConstraint(item: imageCropViewContainer, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.greaterThanOrEqual
+                , toItem: imageCropViewContainer, attribute: NSLayoutAttribute.width, multiplier: heightRatio, constant: 0)
             )
             layoutSubviews()
         }
@@ -130,10 +132,10 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     func pressButton(button:UIButton){
         if button.isSelected {
-            imageCropView.zoomScale = 0.8
+            imageCropView.zoomScale = 0.7
             button.isSelected = false
         }else{
-            imageCropView.zoomScale = 1.5
+            imageCropView.zoomScale = 1.0
             button.isSelected = true
         }
         button.isHidden = false
@@ -153,7 +155,6 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             let subview = view?.hitTest(loc, with: nil)
             
             if subview == imageCropView && imageCropViewConstraintTop.constant == imageCropViewOriginalConstraintTop {
-                
                 return
             }
             
@@ -172,7 +173,6 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
                 (dragDirection == Direction.down && dragStartPos.y > cropBottomY) {
                 
                 dragDirection = Direction.stop
-                
                 imageCropView.changeScrollable(false)
                 
             } else {

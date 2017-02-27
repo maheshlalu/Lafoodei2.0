@@ -45,16 +45,16 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4H-aG-zHe" userLabel="Image Crop View Container">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="338"/>
                     <subviews>
                         <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2d4-7o-5oe" customClass="CXMainScreenScrollViewCustomization" customModule="Lefoodie" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="338"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="2d4-7o-5oe" secondAttribute="trailing" id="BJ3-D2-TDJ"/>
-                        <constraint firstAttribute="width" secondItem="X4H-aG-zHe" secondAttribute="height" multiplier="1:1" priority="750" constant="-50" id="PiH-Ps-LNz"/>
+                        <constraint firstAttribute="width" secondItem="X4H-aG-zHe" secondAttribute="height" multiplier="4:3" priority="750" constant="-50" id="PiH-Ps-LNz"/>
                         <constraint firstItem="2d4-7o-5oe" firstAttribute="leading" secondItem="X4H-aG-zHe" secondAttribute="leading" id="sYV-rT-Spd"/>
                         <constraint firstItem="2d4-7o-5oe" firstAttribute="top" secondItem="X4H-aG-zHe" secondAttribute="top" id="wGG-g8-GLY"/>
                         <constraint firstAttribute="bottom" secondItem="2d4-7o-5oe" secondAttribute="bottom" id="wSq-Be-CUO"/>
@@ -80,7 +80,7 @@
                 <outlet property="imageCropViewConstraintTop" destination="4Q3-yn-t5x" id="uGh-XA-n0C"/>
                 <outlet property="imageCropViewContainer" destination="X4H-aG-zHe" id="8ON-9r-xiB"/>
             </connections>
-            <point key="canvasLocation" x="-274" y="-226"/>
+            <point key="canvasLocation" x="-705" y="-296"/>
         </view>
     </objects>
 </document>

@@ -67,7 +67,7 @@ final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDeleg
             self.contentSize = CGSize(width: imageView.frame.width + 1, height: imageView.frame.height + 1)
             
             imageView.image = image
-            self.zoomScale = 0.8
+            self.zoomScale = 1.0
             
         }
         
@@ -84,7 +84,7 @@ final class CXMainScreenScrollViewCustomization: UIScrollView, UIScrollViewDeleg
         imageView.frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         
         self.maximumZoomScale = 2.0
-        self.minimumZoomScale = 0.8
+        self.minimumZoomScale = 0.7
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator   = false
         self.bouncesZoom = true
