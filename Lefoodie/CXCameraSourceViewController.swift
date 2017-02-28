@@ -232,6 +232,7 @@ extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegat
     // MARK: FSCameraViewDelegate
     func cameraShotFinished(_ image: UIImage) {
         DispatchQueue.main.async(execute: {
+            
             self.delegate?.CXImageSelected(image, source: self.mode)
             
         })
@@ -240,7 +241,6 @@ extension CXCameraSourceViewController: CXAlbumViewDelegate, CXCameraViewDelegat
     
     func doneImage(){
         let view = albumView.imageCropView
-        print(view)
         if CXCropImage {
             let normalizedX = (view?.contentOffset.x)! / (view?.contentSize.width)!
             let normalizedY = (view?.contentOffset.y)! / (view?.contentSize.height)!

@@ -224,21 +224,19 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                     
 
                     // Frame size
-                    
-                    
-                    
+
                     let sw = self.previewViewContainer.frame.width
                     print(sw)
                     // The center coordinate along Y axis
                     let rcy = ih * 0.5
                     
-                    let imageRef = image.cgImage?.cropping(to: CGRect(x: 0, y: 0 , width: iw, height: iw))
+                    let imageRef = image.cgImage?.cropping(to: CGRect(x: 0, y: 0 , width: iw, height: ih))
                     
                     //let imageViewImg = UIImage(cgImage: image as! CGImage, scale: 1.0, orientation: UIImageOrientation.right)
-
+//sw/iw
                     DispatchQueue.main.async(execute: { () -> Void in
                         if CXCropImage {
-                            let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
+                            let resizedImage = UIImage(cgImage: imageRef!, scale: UIScreen.main.scale, orientation: image.imageOrientation)
                             delegate.cameraShotFinished(resizedImage)
                            // UIImageWriteToSavedPhotosAlbum(resizedImage, nil, nil, nil)
 

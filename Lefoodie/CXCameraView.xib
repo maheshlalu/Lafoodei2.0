@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,17 +17,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuZ-zc-Fyc">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="333"/>
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="460"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="4:3" priority="750" constant="-44" id="2Mw-bT-QGY"/>
+                        <constraint firstAttribute="width" secondItem="EuZ-zc-Fyc" secondAttribute="height" multiplier="3:4" priority="750" constant="54.25" id="2Mw-bT-QGY"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QL-OK-lJG">
-                    <rect key="frame" x="0.0" y="332" width="400" height="268"/>
+                    <rect key="frame" x="0.0" y="460" width="400" height="140"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyE-pm-xxD">
-                            <rect key="frame" x="150" y="84" width="100" height="100"/>
+                            <rect key="frame" x="150" y="19.5" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="8xS-RI-cEa"/>
                                 <constraint firstAttribute="width" constant="100" id="U0F-1i-Wjw"/>
@@ -55,7 +55,7 @@
                 <constraint firstAttribute="bottom" secondItem="9QL-OK-lJG" secondAttribute="bottom" id="WvH-Dc-pqW"/>
                 <constraint firstItem="EuZ-zc-Fyc" firstAttribute="top" secondItem="cO0-wd-KYQ" secondAttribute="top" id="XlY-El-Dfe"/>
                 <constraint firstAttribute="trailing" secondItem="EuZ-zc-Fyc" secondAttribute="trailing" id="cel-Uu-VVM"/>
-                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" constant="-1" id="y3I-9C-Djn"/>
+                <constraint firstItem="9QL-OK-lJG" firstAttribute="top" secondItem="EuZ-zc-Fyc" secondAttribute="bottom" id="y3I-9C-Djn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
