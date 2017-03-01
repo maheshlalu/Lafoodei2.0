@@ -14,8 +14,10 @@ import RealmSwift
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
-
-class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FBSDKShareKit
+class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
     @IBOutlet weak var homeTableView: UITableView!
@@ -27,8 +29,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
-    var ref = FIRDatabase.database().reference(withPath: "POSTS")
     
+    var visiblePostID : String!
+    var visibleIndex : Int!
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -42,8 +46,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         isInitialLoad = true
         self.serviceAPICall(PageNumber: page, PageSize: "10")
       NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
-        
-        
+  
     }
     
     //MARK: Segment
@@ -90,7 +93,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
      
     }
     
@@ -156,7 +158,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 }
 
             }
-            
+            LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+            LFFireBaseDataService.sharedInstance.addPostObserver()
             self.refreshControl.endRefreshing()
         }
  
@@ -182,9 +185,17 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
         let feeds = self.feedsArray[indexPath.section]
+        self.visiblePostID = feeds.feedID
+        self.visibleIndex = indexPath.section
+
         if indexPath.row == 0 {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             cell.papulateUserinformation(feedData: feeds)
+            let userNameGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userLabelAction))
+            cell.lbl_Title.addGestureRecognizer(userNameGestureRecognizer)
+            
+            let userRestaurantGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userRestaurantAction))
+            cell.cafeNameLbl.addGestureRecognizer(userRestaurantGestureRecognizer)
             return cell
         }else if indexPath.row == 1 {
             let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeCenterTableViewCell", for: indexPath)as? LFHomeCenterTableViewCell)!
@@ -205,6 +216,28 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
         
     }
+    
+    
+    func userLabelAction(){
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+        self.navigationController?.pushViewController(profileContoller, animated: true)
+    }
+    
+    func userRestaurantAction(){
+        
+        
+    }
+    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let feeds = self.feedsArray[indexPath.section]
+//        self.visiblePostID = feeds.feedID
+//        self.visibleIndex = indexPath.row
+//
+//    }
+
+    
+    
     
     
    /*
@@ -313,25 +346,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
 }
 
-extension LFHomeViewController{
-    
-    func addPostObserver(postID:String){
-   
-      //  LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: postID)
-        
-        ref = FIRDatabase.database().reference()
-
-        ref.child(byAppendingPath: "POSTS")
-            .child(byAppendingPath: postID)
-            .observeSingleEvent(of: .childAdded, with: { snapshot in
-                
-             //   print("\(snapshot)")
-                
-                
-            })
-    }
-    
-}
 
 
 extension LFHomeViewController{
@@ -349,6 +363,28 @@ extension LFHomeViewController{
         }))
         
         alert.addAction(UIAlertAction(title: "Share to Facebook", style: .default, handler: { (action) in
+            
+          /*  let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
+            content.contentURL = NSURL(string: "") as URL!
+            content.contentTitle = ""
+            // ... etc.
+            
+            let button : FBSDKShareButton = FBSDKShareButton()
+            button.shareContent = content
+           // try shareDialog.show()*/
+            
+            let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
+            content.contentURL = NSURL(string: "https://www.google.co.in/search?q=image+download+link&rlz=1C5CHFA_enIN708IN708&espv=2&biw=1709&bih=911&tbm=isch&source=lnms&sa=X&ved=0ahUKEwiV-bzW9LTSAhUMbrwKHQnQCEoQ_AUICCgD&dpr=1#imgrc=RfcI6U87_LL_lM:") as URL!
+            content.contentTitle = "image"
+            
+            let shareDialog = FBSDKShareDialog()
+            shareDialog.mode = .feedWeb
+            //shareDialog.failsOnInvalidData = true
+            //shareDialog.completion = { result in
+                // Handle share results
+           // }
+             shareDialog.show()
+
             
         }))
         alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
@@ -384,6 +420,8 @@ extension LFHomeViewController{
         
      //   LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: false, isFavorites: false, postID: feeds.feedID)
 
+        LFFireBaseDataService.sharedInstance.updateThePostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: feeds.feedID)
+        
         if sender.isSelected {
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
                 if result {
@@ -445,6 +483,18 @@ extension LFHomeViewController{
 }
 
 
+//MARK: FIRBASE Listener
+
+
+extension LFHomeViewController{
+
+    func calledTheFirebaseListener(postID:String){
+        if postID == self.visiblePostID {
+            //Reload The Visible Section in  Tableview
+            self.homeTableView.reloadSections(NSIndexSet(index: self.visibleIndex) as IndexSet, with: .none);
+        }
+    }
+}
 
 
 /*
