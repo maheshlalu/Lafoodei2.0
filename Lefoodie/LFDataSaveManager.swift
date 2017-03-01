@@ -100,6 +100,7 @@ class LFDataSaveManager: NSObject {
         for feedData in list {
             let userData = relamInstance.objects(LFHomeFeeds.self).filter("feedID=='\(feedData.feedID)'")
             self.saveTheUserLikedPosts(feedData: feedData, userId: (myProfile?.Mac_userId)!)
+            LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feedData.feedID)
 
             if userData.count == 0 {
                 //Insert The Data
@@ -192,11 +193,8 @@ class LFDataSaveManager: NSObject {
     
     func savePlacesInDB(list:NSArray){
         let relamInstance = try! Realm()
-
         for i in 0...list.count - 1 {
-            
             let dict = list[i] as! NSDictionary
-            
             let placesData = relamInstance.objects(LFPlaces.self).filter("id=='\(dict.value(forKey: "id")!)'")
             if placesData.count == 0 {
             //Insert The Data
@@ -208,14 +206,11 @@ class LFDataSaveManager: NSObject {
                 relamInstance.add(place)
             })
             }
-
         }
     }
     
     func saveFollowerInfoInDB(userData:SearchFoodies,isFollower:Bool,completion:@escaping () -> Void){
-        
         let relamInstance = try! Realm()
-        
         let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: userData.foodieId as AnyObject))'")
         if foodieData.count == 0 {
             //Insert The Data

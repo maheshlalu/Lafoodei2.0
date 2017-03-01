@@ -81,6 +81,7 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
             //dict.setObject(mobile, forKey: "Phone Number" as NSCopying
             LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
               //  print(success)
+                
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
                 self.dismiss(animated: true, completion: nil)
             })
