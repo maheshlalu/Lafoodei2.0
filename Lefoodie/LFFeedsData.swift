@@ -46,20 +46,17 @@ class  LFFeedsData{
 //        print(feedLikesCount)
 //        print(feedFavaouritesCount)
         
-        let mallIIDJson  = JSON(json["malldetails"].dictionary as Any)
-        feedIDMallID = mallIIDJson["id"].stringValue
-        feedIDMallName = mallIIDJson["fullname"].stringValue
-        feedIDMallImage = mallIIDJson["logo"].stringValue
+        let mallIIDJson  = json["malldetails"].dictionary! as [String:JSON]
+        feedIDMallID = (mallIIDJson["id"]?.stringValue)!
+        feedIDMallName = (mallIIDJson["fullname"]?.stringValue)!
+        feedIDMallImage = (mallIIDJson["logo"]?.stringValue)!
         
-        let userDataJson  = JSON(json["macIdInfodetails"].dictionary as Any)
-        feedUserName = json["createdByFullName"].stringValue //userDataJson["name"].stringValue
-        feedUserEmail = userDataJson["email"].stringValue
-        feedUserImage = userDataJson["image"].stringValue
+        let userDataJson  = json["macIdInfodetails"].dictionary! as [String:JSON]
+        feedUserName = json["createdByFullName"].stringValue
+        feedUserEmail = (userDataJson["email"]?.stringValue)!
+        feedUserImage = (userDataJson["image"]?.stringValue)!
         feedJson = json
-
-        //createdByFullName
     }
-    
 }
 
 

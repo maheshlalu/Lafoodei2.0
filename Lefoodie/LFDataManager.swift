@@ -267,7 +267,7 @@ extension LFDataManager{
             let userData = responseDict.value(forKey: "jobs") as! NSArray
             if userData.count > 0 {
                 LFDataSaveManager.sharedInstance.saveFollowerInfoInDBFromService(userData: userData,isFollower:true, completion: { (dic) in
-                    // completion(responseDict)
+                     completion(true)
                 })
                 
             }
@@ -427,6 +427,8 @@ extension LFDataManager{
                 if  email == userEmail {
                     //Save The User Data
                     LFDataSaveManager.sharedInstance.saveTheUserDetails(userDataDic: JSON(dic))
+                    self.sendTheDeviceTokenToServer()
+                    self.getFollowersDetails()
                     completion()
                     return
                 }
@@ -445,10 +447,12 @@ extension LFDataManager{
     func getFollowersDetails()
     {
         self.getFollowings { (response) in
-            self.getFollowers(completion: { (resp) in
-                
-            })
+
         }
+        
+        self.getFollowers(completion: { (resp) in
+            
+        })
     }
     
     //MARK : CHANGE PASSWORD

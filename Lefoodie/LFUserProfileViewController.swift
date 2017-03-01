@@ -27,7 +27,6 @@ class LFUserProfileViewController: UIViewController {
     var myProfile : LFMyProfile!
     
     override func viewDidLoad() {
-     
         self.tabViews()
         self.notificationRegistration()
         self.setNavigationProperty()
@@ -37,7 +36,6 @@ class LFUserProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.populatedData()
   }
-    
     
     func setNavigationProperty(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
@@ -59,14 +57,36 @@ class LFUserProfileViewController: UIViewController {
         self.userFirstNameLbl.text = self.myProfile.userFirstName
         self.userLastNameLbl.text = self.myProfile.userLastName
         self.followingCountLbl.text = "\(self.myProfile.userFollwing) Following"
+        
+        self.followingCountLbl.isUserInteractionEnabled = true
+        let gestureRecognizerFollowing = UITapGestureRecognizer(target: self, action: #selector(followingList))
+        self.followingCountLbl.addGestureRecognizer(gestureRecognizerFollowing)
+        
         self.followersCountLbl.text = "\(self.myProfile.userFollowers) Follwers"
         
+        self.followersCountLbl.isUserInteractionEnabled = true
+        let gestureRecognizerFollowers = UITapGestureRecognizer(target: self, action: #selector(followerList))
+        self.followersCountLbl.addGestureRecognizer(gestureRecognizerFollowers)
+        
     }
-    
-    
+
     @IBAction func settingBtnAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFOptionsViewController")as! LFOptionsViewController
         self.navigationController?.pushViewController(storyboard, animated: true)
+    }
+    
+    func followingList(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserFollowerAndFollowingViewController")as? LFUserFollowerAndFollowingViewController
+        storyboard?.navigationController?.isNavigationBarHidden = false
+        storyboard?.isFollower = false
+        UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
+    }
+    
+    func followerList(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserFollowerAndFollowingViewController")as? LFUserFollowerAndFollowingViewController
+        storyboard?.navigationController?.isNavigationBarHidden = false
+        storyboard?.isFollower = true
+        UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
     }
     
     // Do any additional setup after loading the view.

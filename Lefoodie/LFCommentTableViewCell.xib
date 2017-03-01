@@ -87,7 +87,7 @@
                 <outlet property="commentTime" destination="Zaj-qr-bR9" id="2GZ-bC-4ON"/>
                 <outlet property="commentTxt" destination="Pwg-k3-KeI" id="KTi-Zi-ODW"/>
             </connections>
-            <point key="canvasLocation" x="-336" y="-95"/>
+            <point key="canvasLocation" x="-79" y="-58"/>
         </tableViewCell>
     </objects>
     <resources>

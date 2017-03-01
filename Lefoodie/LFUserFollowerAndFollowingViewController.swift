@@ -1,37 +1,50 @@
 //
-//  LFFoodieViewController.swift
-//  LeFoodie
+//  LFUserFollowerAndFollowingViewController.swift
+//  Lefoodie
 //
-//  Created by Rambabu Mannam on 04/01/17.
-//  Copyright © 2017 Rambabu Mannam. All rights reserved.
+//  Created by Manishi on 2/28/17.
+//  Copyright © 2017 ongo. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class LFFoodieViewController: UIViewController {
-    var foodiesArr = [SearchFoodies]()
+class LFUserFollowerAndFollowingViewController: UIViewController {
+    
+    @IBOutlet weak var navLbl: UILabel!
+    @IBOutlet weak var FFTableView: UITableView!
+    var foodiesArr : Results<LFFollowers>!
+    var selectedFoodie : LFMyProfile!
     var isPageRefreshing = Bool()
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
     var refreshControl : UIRefreshControl!
-    
-    @IBOutlet weak var foodieViewTableView: UITableView!
+    var isFollower:Bool = Bool()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        self.addThePullTorefresh()
-       // self.foodieViewTableView.register(UINib(nibName: "LFFoodiesTableViewCell", bundle: nil), forCellReuseIdentifier: "FoodieCell")
+        
+        if isFollower{
+            self.navLbl.text = "Followers"
+            let realm = try! Realm()
+            let predicate = NSPredicate.init(format:"isFollower==%@", NSNumber(value: true))
+            foodiesArr = realm.objects(LFFollowers.self).filter(predicate)
+        }else{
+            self.navLbl.text = "Following"
+            let realm = try! Realm()
+            let predicate = NSPredicate.init(format:"isFollowing==%@", NSNumber(value: true))
+            foodiesArr = realm.objects(LFFollowers.self).filter(predicate)
+        }
+        
+        self.FFTableView.tableFooterView = UIView()
+        //self.addThePullTorefresh()
         page = "1"
-        isInitialLoad = true
-        self.foodiesArr = [SearchFoodies]()
-       serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
-        NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
+        //isInitialLoad = true
 
+       // NotificationCenter.default.addObserver(self, selector: #selector(LFFoodieViewController.foodieSearchNotification(_:)), name:NSNotification.Name(rawValue: "FoodieSearchNotification"), object: nil)
     }
-    
-    
+
     func deleteTheFeedsInDatabase(){
         
         if page == "1" {
@@ -40,17 +53,18 @@ class LFFoodieViewController: UIViewController {
             try! relamInstance.write({
                 relamInstance.delete(feedData)
             })
+            
         }
+        
     }
-    
-     func foodieSearchNotification(_ notification: Notification) {
-        let searchText = notification.object as! String
-        page = "1"
-        self.isInitialLoad = true
-        self.foodiesArr = [SearchFoodies]()
-        self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "10")
-        self.foodieViewTableView.reloadData()
-    }
+//    func foodieSearchNotification(_ notification: Notification) {
+//        let searchText = notification.object as! String
+//        page = "1"
+//        self.isInitialLoad = true
+//        //self.foodiesArr : Results<LFFollowers>! =
+//       // self.serviceAPICall(keyword: searchText, pageNumber: page, pageSize: "10")
+//        self.FFTableView.reloadData()
+//    }
     
     //MARK: Add The PullToRefresh
     
@@ -58,37 +72,40 @@ class LFFoodieViewController: UIViewController {
         self.refreshControl = UIRefreshControl()
         //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
-        self.foodieViewTableView.addSubview(self.refreshControl)
+        self.FFTableView.addSubview(self.refreshControl)
         //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
     }
     
     func refresh(sender:UIRefreshControl) {
         
-        self.foodiesArr = [SearchFoodies]()
         self.isInitialLoad = true
         self.page = "1"
         
-        self.serviceAPICall(keyword:"",pageNumber: self.page, pageSize: "10")
-
+        //self.serviceAPICall(keyword:"",pageNumber: self.page, pageSize: "10")
+        
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
     
     
-    //MARK: calling foodie data from service
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+  
+   /* //MARK: calling foodie data from service
     func serviceAPICall(keyword: String,pageNumber:String,pageSize:String){
         self.deleteTheFeedsInDatabase()
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         LFDataManager.sharedInstance.getSearchFoodie(keyword: keyword,pageNumber:pageNumber,pageSize:pageSize) { (resultFoodies) in
-
+            
             self.isPageRefreshing = false
             
             let lastIndexOfArr = self.foodiesArr.count - 1
             if !resultFoodies.isEmpty {
-                self.foodiesArr.append(contentsOf: resultFoodies)
+                self.foodiesArr.append(resultFoodies)
                 LFDataSaveManager.sharedInstance.saveFoodieDetailsInDB(foodiesData: resultFoodies)
                 // if it is Initial Load
                 if self.isInitialLoad {
@@ -101,19 +118,21 @@ class LFFoodieViewController: UIViewController {
                         let index = IndexPath.init(row: lastIndexOfArr + i, section: 0)
                         indexArr.add(index)
                     }
-                    self.foodieViewTableView.beginUpdates()
-                    self.foodieViewTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
-                    self.foodieViewTableView.endUpdates()
+                    self.FFTableView.beginUpdates()
+                    self.FFTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                    self.FFTableView.endUpdates()
                 }
                 
             }
-             self.refreshControl.endRefreshing()
+            self.refreshControl.endRefreshing()
         }
     }
+ */
 }
 
+
 //MARK: UITableView Delagate Methods
-extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
+extension LFUserFollowerAndFollowingViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.foodiesArr.count
@@ -132,7 +151,7 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoodieCell", for: indexPath) as! LFFoodiesTableViewCell
         cell.foodieImageView.layer.cornerRadius = 30
         cell.foodieImageView.clipsToBounds = true
-        let imgUrl = URL(string: foodies.foodieImage) as URL!
+        let imgUrl = URL(string: foodies.followerImage) as URL!
         
         if imgUrl != nil{
             cell.foodieImageView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
@@ -141,18 +160,16 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
             cell.foodieImageView.image = UIImage(named: "placeHolder")
         }
         
-        let realm = try! Realm()
-        let predicate = NSPredicate.init(format: "foodieId=%@", foodies.foodieId)
-        let userData = realm.objects(LFFoodies.self).filter(predicate).first
-        cell.foodieName.text = foodies.foodieName
-        let following = (userData?.foodieFollowingCount)!
-        let follower = (userData?.foodieFollowerCount)!
+        cell.foodieName.text = foodies.followerName
+        let following = foodies.noOfFollowings
+        let follower = foodies.noOfFollowers
+        
         cell.foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         // Returning the cell
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   /* func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //LFRestaurentDetailsViewController
         let dict = self.foodiesArr[indexPath.row]
         let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
@@ -161,15 +178,24 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
         navController.navigationItem.hidesBackButton = false
         
         LFDataManager.sharedInstance.sendTheFollwAndUnFollowPushNotification(isFollow: true, foodieDetails:dict)
-
+        
         self.present(navController, animated:true, completion: nil)
+    }
+    */
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: .zero)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         //Bottom Refresh
         
-        if scrollView == foodieViewTableView{
+        if scrollView == FFTableView{
             
             if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
             {
@@ -180,12 +206,10 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
                     num = num! + 1
                     page = "\(num!)"
                     isInitialLoad = false
-                    self.serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
+                    //self.serviceAPICall(keyword: "", pageNumber: page, pageSize: "10")
                     
                 }
-                
             }
         }
     }
-
 }

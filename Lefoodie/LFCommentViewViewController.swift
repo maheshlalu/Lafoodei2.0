@@ -16,9 +16,7 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     @IBOutlet weak var growingTextView: RSKGrowingTextView!
     private var isVisibleKeyboard = true
     @IBOutlet weak var commentsTblView: UITableView!
-    
-    
-    
+
     var feedData:LFFeedsData!
     var userDetails:LFMyProfile!
     var commentsDict:NSDictionary!
