@@ -52,11 +52,7 @@ class LFFireBaseDataService: NSObject {
         
     }
     
-    func addPostToFirebase(userID:String){
-        
-        
-        
-    }
+   
     
     
     func updateThePostActivity(isUpdateComment:Bool,isLikeCount:Bool,isFavorites:Bool,postID:String){
@@ -83,16 +79,15 @@ class LFFireBaseDataService: NSObject {
     func addThePostToFirebase(postID:String){
      
         let post = ["uid": postID,
-                    "CommentCount": "",
-                    "LikeCount": "",
-                    "FavouritesCount": ""
+                    "CommentCount": "0",
+                    "LikeCount": "0",
+                    "FavouritesCount": "0"
         ] as [String : Any]
         self.postRef.child(postID).setValue(post)
     }
     
     //
     func addPostActivity(isUpdateComment:Bool,isLikeCount:Bool,isFavorites:Bool,postID:String){
-        print(postID)
         commentsRef = postRef.child(postID)
     }
  
