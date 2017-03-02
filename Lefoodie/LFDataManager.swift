@@ -31,14 +31,16 @@ extension LFDataManager{
     
     func sharePost(jsonDic:NSDictionary,imageData:Data,completion:@escaping (_ responseDict:Bool) -> Void){
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"6" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject]) { (responseDict) in
-            //print(responseDict)
+            let resultDic = JSON(responseDict)
+            let mallIIDJson  = resultDic["myHashMap"].dictionary! as [String:JSON]
+            LFFireBaseDataService.sharedInstance.addThePostToFirebase(postID:  (mallIIDJson["jobId"]?.stringValue)!)
             let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
             if status == 1{
                 CXDataService.sharedInstance.hideLoader()
             }else{
             }
             CXDataService.sharedInstance.hideLoader()
-      completion(true)
+            completion(true)
         }
         //  }
     }
