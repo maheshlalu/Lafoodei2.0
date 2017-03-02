@@ -17,6 +17,8 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FBSDKShareKit
+import FacebookShare
+
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
@@ -157,9 +159,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.homeTableView.endUpdates()
                 }
 
+                LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+                LFFireBaseDataService.sharedInstance.addPostObserver()
             }
-            LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
-            LFFireBaseDataService.sharedInstance.addPostObserver()
+     
             self.refreshControl.endRefreshing()
         }
  
@@ -206,8 +209,11 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
             cell.commentsBtn.tag = indexPath.section
             lastIndexPath = indexPath
+            
             cell.papulatedData(feedData: feeds)
             cell.alertBtn.addTarget(self, action: #selector(actionAlertSheet), for: .touchUpInside)
+            cell.alertBtn.tag = indexPath.section
+            
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
@@ -349,9 +355,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
 
 extension LFHomeViewController{
-    func actionAlertSheet()
+    func actionAlertSheet(sender:UIButton)
     {
-        
+        let feeds = self.feedsArray[sender.tag]
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
             
@@ -363,30 +369,24 @@ extension LFHomeViewController{
         }))
         
         alert.addAction(UIAlertAction(title: "Share to Facebook", style: .default, handler: { (action) in
+            //publicURL
+            let contentUrl = feeds.feedPublicUrl
+            let contentTitle = feeds.feedName
+            let contentDescription = feeds.feedDescription
+            let contentImageUrl = feeds.feedImage
             
-          /*  let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
-            content.contentURL = NSURL(string: "") as URL!
-            content.contentTitle = ""
-            // ... etc.
-            
-            let button : FBSDKShareButton = FBSDKShareButton()
-            button.shareContent = content
-           // try shareDialog.show()*/
-            
-            let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
-            content.contentURL = NSURL(string: "https://www.google.co.in/search?q=image+download+link&rlz=1C5CHFA_enIN708IN708&espv=2&biw=1709&bih=911&tbm=isch&source=lnms&sa=X&ved=0ahUKEwiV-bzW9LTSAhUMbrwKHQnQCEoQ_AUICCgD&dpr=1#imgrc=RfcI6U87_LL_lM:") as URL!
-            content.contentTitle = "image"
-            
-            let shareDialog = FBSDKShareDialog()
-            shareDialog.mode = .feedWeb
-            //shareDialog.failsOnInvalidData = true
-            //shareDialog.completion = { result in
-                // Handle share results
-           // }
-             shareDialog.show()
+            let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+            content.contentURL = NSURL(string: contentUrl) as URL!
+            content.contentTitle = contentTitle
+            content.contentDescription = contentDescription
+            content.imageURL = NSURL(string:contentImageUrl) as URL!
+            FBSDKShareDialog.show(from: self, with: content, delegate: nil)
 
             
         }))
+        
+        
+        
         alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
             
         }))

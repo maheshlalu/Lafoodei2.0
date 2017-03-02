@@ -28,6 +28,7 @@ class  LFFeedsData{
     var feedUserEmail : String
     var feedUserName : String
     var feedUserImage : String
+    var feedPublicUrl : String
     var feedJson : JSON
 
     
@@ -42,6 +43,8 @@ class  LFFeedsData{
         feedFavaouritesCount =  json["favouritesCount"].stringValue //(json["favouritesCount"].array?.count)!
         feedCommentsCount = json["jobCommentsCount"].stringValue
         feedLikesCount = json["likesCount"].stringValue
+        feedPublicUrl = json["publicURL"].stringValue
+        
 //        print(feedCommentsCount)
 //        print(feedLikesCount)
 //        print(feedFavaouritesCount)
@@ -70,7 +73,7 @@ class  LFFeedsData{
  jobTypeId: 251,
  jobTypeName: "User Posts",
  createdByFullName: "yernagulamahesh",
- publicURL: "http://35.160.251.153/app/6/Products;User Posts;395;_;SingleProduct",
+ publicURL: "http://35.160.251.153/app/6/Products;UserPosts;395;_;SingleProduct",
  PackageName: "",
  Name: "",
  Image: "http://35.160.251.153:8085/coin/files/null/android/uploads/5CD5C2A7-BCC5-4C05-BF91-2E5EB314DFFD.jpg",
