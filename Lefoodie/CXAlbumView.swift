@@ -107,7 +107,8 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
-        
+        PHPhotoLibrary.shared().register(self)
+
         images = PHAsset.fetchAssets(with: .image, options: options)
         
         if images.count > 0 {
@@ -117,8 +118,18 @@ final class CXAlbumView: UIView, UICollectionViewDataSource, UICollectionViewDel
             collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: UICollectionViewScrollPosition())
         }
         
+        
+    }
+    
+    
+    func getTheImagesFromAlbum(){
+        let options = PHFetchOptions()
+        options.sortDescriptors = [
+            NSSortDescriptor(key: "creationDate", ascending: false)
+        ]
         PHPhotoLibrary.shared().register(self)
         
+        images = PHAsset.fetchAssets(with: .image, options: options)
     }
     
     deinit {
@@ -432,6 +443,7 @@ private extension CXAlbumView {
             switch status {
             case .authorized:
                 self.imageManager = PHCachingImageManager()
+                self.getTheImagesFromAlbum()
                 if self.images != nil && self.images.count > 0 {
                     
                     self.changeImage(self.images[0])

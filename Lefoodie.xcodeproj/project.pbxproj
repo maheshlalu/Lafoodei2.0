@@ -74,6 +74,7 @@
 		18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18160CEB1E14EB0F00C2E5AE /* LaunchScreen.storyboard */; };
 		18160CF81E14EB1000C2E5AE /* LefoodieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160CF71E14EB1000C2E5AE /* LefoodieTests.swift */; };
 		18160D031E14EB1000C2E5AE /* LefoodieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */; };
+		18259FB91E6986A900DEE18D /* UIImage+ResizeMagick.m in Sources */ = {isa = PBXBuildFile; fileRef = 18259FB81E6986A800DEE18D /* UIImage+ResizeMagick.m */; };
 		1825CCB01E1B769D00CD3C3B /* CXAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCA61E1B769D00CD3C3B /* CXAlbumView.swift */; };
 		1825CCB11E1B769D00CD3C3B /* CXAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1825CCA71E1B769D00CD3C3B /* CXAlbumView.xib */; };
 		1825CCB21E1B769D00CD3C3B /* CXCameraSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825CCA81E1B769D00CD3C3B /* CXCameraSourceViewController.swift */; };
@@ -241,6 +242,8 @@
 		18160CFE1E14EB1000C2E5AE /* LefoodieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LefoodieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18160D021E14EB1000C2E5AE /* LefoodieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LefoodieUITests.swift; sourceTree = "<group>"; };
 		18160D041E14EB1000C2E5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18259FB71E6986A800DEE18D /* UIImage+ResizeMagick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeMagick.h"; sourceTree = "<group>"; };
+		18259FB81E6986A800DEE18D /* UIImage+ResizeMagick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeMagick.m"; sourceTree = "<group>"; };
 		1825CCA61E1B769D00CD3C3B /* CXAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXAlbumView.swift; sourceTree = "<group>"; };
 		1825CCA71E1B769D00CD3C3B /* CXAlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CXAlbumView.xib; sourceTree = "<group>"; };
 		1825CCA81E1B769D00CD3C3B /* CXCameraSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CXCameraSourceViewController.swift; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 		1896A5C71E154650008530A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				18259FB71E6986A800DEE18D /* UIImage+ResizeMagick.h */,
+				18259FB81E6986A800DEE18D /* UIImage+ResizeMagick.m */,
 				890CA7871E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.h */,
 				890CA7881E3765D4002A4CE8 /* UIImageView+UIActivityIndicatorForSDWebImage.m */,
 				1896A5CA1E154A1C008530A4 /* String+StringOperation.swift */,
@@ -839,7 +844,7 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 95Y7Y2H9V8;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1112,6 +1117,7 @@
 				114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */,
 				1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */,
 				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
+				18259FB91E6986A900DEE18D /* UIImage+ResizeMagick.m in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
 				8976AF581E49C86200527555 /* LFSignInViewController.swift in Sources */,
@@ -1336,8 +1342,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Lefoodie/Lefoodie.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: RAMAKRISHNA K (95Y7Y2H9V8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1348,8 +1354,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f3c655b1-0fa3-4998-a424-2c484ccc452e";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1364,8 +1370,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Lefoodie/Lefoodie.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 95Y7Y2H9V8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1376,8 +1382,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ongo.lefoodie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "f3c655b1-0fa3-4998-a424-2c484ccc452e";
+				PROVISIONING_PROFILE_SPECIFIER = AppStore_Lefoodie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Lefoodie/Lefoodie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

@@ -26,7 +26,14 @@ class LFHomeCenterTableViewCell: UITableViewCell {
         let img_Url_Str = feedData.feedImage
         let img_Url = NSURL(string: img_Url_Str )
         self.imageView?.contentMode = .scaleAspectFit
+        //self.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
         self.ImgView_Logo.setImageWith(img_Url as URL!, usingActivityIndicatorStyle: .white)
+        
+        print(self.ImgView_Logo.image?.size.width)
+        print(self.ImgView_Logo.image?.size.width)
+
+
+        //http://www.artifexterra.com/media/screenshots/artifex_terra_10012012_141437090.png
         self.selectionStyle = .none
     }
 

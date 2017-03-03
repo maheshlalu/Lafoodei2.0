@@ -507,7 +507,7 @@ extension LFDataManager{
         let deviceUserId = profile?.Mac_userId
 
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"MobileAPIs/saveUserDeviceInfo?", parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"device_reg_id":device_reg_id as AnyObject,"deviceMacId":deviceMacId as AnyObject,"deviceUserId":deviceUserId as AnyObject,"deviceType":"IOS" as AnyObject]) { (responseDict) in
-            print(responseDict)
+          //  print(responseDict)
         }
     }
     

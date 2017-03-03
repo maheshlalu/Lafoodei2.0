@@ -87,7 +87,7 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let signInUrl = CXAppConfig.sharedInstance.getBaseUrl() + "MobileAPIs/loginConsumerForOrg?orgId="+CXAppConfig.sharedInstance.getAppMallID()+"&email="+self.tfEmailtextfield.text!+"&dt=DEVICES&password="+self.tfPasswordtextfield.text!
         let urlStr = NSString.init(string: signInUrl)
-        print(urlStr)
+       // print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
            // print("Get Data is \(responceDic)")

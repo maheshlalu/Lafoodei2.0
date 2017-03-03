@@ -108,6 +108,7 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                 session.addOutput(imageOutput)
                 
                 let videoLayer = AVCaptureVideoPreviewLayer(session: session)
+                //videoLayer?.backgroundColor = UIColor.red.cgColor
                 videoLayer?.frame = self.previewViewContainer.bounds
                 videoLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
                 
@@ -230,14 +231,15 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
                     // The center coordinate along Y axis
                     let rcy = ih * 0.5
                     
-                    let imageRef = image.cgImage?.cropping(to: CGRect(x: 0, y: 0 , width: iw, height: ih))
+                    let imageRef = image.cgImage?.cropping(to: CGRect(x: rcy-iw*0.5, y: 0 , width: iw, height: iw))
                     
-                    //let imageViewImg = UIImage(cgImage: image as! CGImage, scale: 1.0, orientation: UIImageOrientation.right)
-//sw/iw
+                    //let imageViewImg = UIImage(cgImage: image as! CGImage, scale: 1.0, orientation: UIImageOrientation.right)//sw/iw
                     DispatchQueue.main.async(execute: { () -> Void in
                         if CXCropImage {
-                            let resizedImage = UIImage(cgImage: imageRef!, scale: UIScreen.main.scale, orientation: image.imageOrientation)
+                           let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
                             delegate.cameraShotFinished(resizedImage)
+                          //  delegate.cameraShotFinished(image.resizedImage(withMaximumSize: CGSize(width: UIScreen.main.bounds.width*2, height: UIScreen.main.bounds.width*2)))
+
                            // UIImageWriteToSavedPhotosAlbum(resizedImage, nil, nil, nil)
 
                         } else {
@@ -254,6 +256,53 @@ class CXCameraView: UIView, UIGestureRecognizerDelegate {
             })
             
         })
+    }
+    
+    
+    
+    func resizeImage(image:UIImage) -> UIImage
+    {
+        var actualHeight:Float = Float(image.size.height)
+        var actualWidth:Float = Float(image.size.width)
+        
+        let maxHeight:Float = Float(UIScreen.main.bounds.height*0.75) //your choose height
+        let maxWidth:Float = Float(UIScreen.main.bounds.width)  //your choose width
+        
+        var imgRatio:Float = actualWidth/actualHeight
+        let maxRatio:Float = maxWidth/maxHeight
+        
+        if (actualHeight > maxHeight) || (actualWidth > maxWidth)
+        {
+            if(imgRatio < maxRatio)
+            {
+                imgRatio = maxHeight / actualHeight;
+                actualWidth = imgRatio * actualWidth;
+                actualHeight = maxHeight;
+            }
+            else if(imgRatio > maxRatio)
+            {
+                imgRatio = maxWidth / actualWidth;
+                actualHeight = imgRatio * actualHeight;
+                actualWidth = maxWidth;
+            }
+            else
+            {
+                actualHeight = maxHeight;
+                actualWidth = maxWidth;
+            }
+        }
+        
+        
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: CGFloat(actualWidth), height: CGFloat(actualHeight))
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        
+        let img:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let imageData:NSData = UIImageJPEGRepresentation(img, 1.0)! as NSData
+        UIGraphicsEndImageContext()
+        
+        return UIImage(data: imageData as Data)!
     }
     
      func flipButtonPressed(sender: UIButton) {

@@ -18,8 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="326"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="OZc-Eg-twx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="325.5"/>
+                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="OZc-Eg-twx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="326"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                     </imageView>
                 </subviews>
                 <constraints>

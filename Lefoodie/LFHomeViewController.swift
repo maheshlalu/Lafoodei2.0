@@ -295,7 +295,16 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return 50
 
         }else if indexPath.row == 1 {
-            return 220
+            
+//            let indexPath : NSIndexPath = NSIndexPath(row: 1, section: indexPath.section)
+//
+//            let cell: LFHomeCenterTableViewCell = tableView.cellForRow(at: indexPath as IndexPath) as! LFHomeCenterTableViewCell
+//            
+//            print( cell.ImgView_Logo.image?.size.width)
+//            print( cell.ImgView_Logo.image?.size.height)
+
+            
+            return 320
 
         }else if indexPath.row == 2 {
             return 45

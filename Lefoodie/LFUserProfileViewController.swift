@@ -31,6 +31,7 @@ class LFUserProfileViewController: UIViewController {
         self.tabViews()
         self.notificationRegistration()
         self.setNavigationProperty()
+        screenVal = "screenVal"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -4,3 +4,4 @@
 
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "RSKGrowingTextView.h"
+#import "UIImage+ResizeMagick.h"
