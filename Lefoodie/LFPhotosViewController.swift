@@ -36,7 +36,13 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         let nib = UINib(nibName: "LFPhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(nib, forCellWithReuseIdentifier: "LFPhotoCollectionViewCell")
         self.view.backgroundColor = UIColor.white
-        self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts)
+        if self.title == "PHOTOS" {
+            self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts)
+        }
+        else {
+            
+        }
+        
 
     }
 

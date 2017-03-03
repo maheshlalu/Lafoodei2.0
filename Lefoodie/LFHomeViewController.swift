@@ -17,8 +17,7 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FBSDKShareKit
-import FacebookShare
-
+import Social
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
 
@@ -106,7 +105,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func updatedFeed(){
         //print("Feed Updated")
-        self.serviceAPICall(PageNumber: "1", PageSize: "10")
+        self.feedsArray = [LFFeedsData]()
+        self.isInitialLoad = true
+        self.page = "1"
+        self.serviceAPICall(PageNumber: page, PageSize: "10")
     }
     
     
@@ -132,6 +134,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func serviceAPICall(PageNumber: String, PageSize: String)
     {
         self.deleteTheFeedsInDatabase()
+        LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+        LFFireBaseDataService.sharedInstance.addPostObserver()
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
             self.isPageRefreshing = false
@@ -158,11 +162,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
                         self.homeTableView.endUpdates()
                 }
-
-                LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
-                LFFireBaseDataService.sharedInstance.addPostObserver()
+               
             }
-     
+          
             self.refreshControl.endRefreshing()
         }
  
@@ -190,7 +192,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let feeds = self.feedsArray[indexPath.section]
         self.visiblePostID = feeds.feedID
         self.visibleIndex = indexPath.section
-
+       // LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: feeds.feedID)
         if indexPath.row == 0 {
           let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             cell.papulateUserinformation(feedData: feeds)
@@ -227,12 +229,16 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func userLabelAction(){
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+        profileContoller.screenVal = "User"
         self.navigationController?.pushViewController(profileContoller, animated: true)
     }
     
     func userRestaurantAction(){
         
-        
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+        profileContoller.screenVal = "Restaurant"
+        self.navigationController?.pushViewController(profileContoller, animated: true)
     }
     
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -387,9 +393,18 @@ extension LFHomeViewController{
         
         
         
-        alert.addAction(UIAlertAction(title: "Share to Twitter", style: .default, handler: { (action) in
-            
+        alert.addAction(UIAlertAction(title: "Tweet", style: .default, handler: { (action) in
+            if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+                let twitterSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+                twitterSheet.setInitialText(feeds.feedPublicUrl)
+                self.present(twitterSheet, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }))
+        
         alert.addAction(UIAlertAction(title: "Copy Share URL", style: .default, handler: { (action) in
             
         }))
@@ -417,34 +432,10 @@ extension LFHomeViewController{
         
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let feeds = self.feedsArray[sender.tag]
-        
-     //   LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: false, isFavorites: false, postID: feeds.feedID)
-
-        LFFireBaseDataService.sharedInstance.updateThePostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: feeds.feedID)
-        
-        if sender.isSelected {
-            LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: false, completion: {(result,resultDic) in
-                if result {
-                    self.updateFeedsData(feedID: feeds.feedID, respoceDic: resultDic)
-                    sender.isSelected = false
-                    let relamInstance = try! Realm()
-                    print(resultDic.value(forKey: "jobId") as Any)
-                    let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId")!)'")
-                    let like = userData.first
-                    try! relamInstance.write({
-                        relamInstance.delete(like!)
-                        self.homeTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
-                    })
-                }
-                
-                
-            })
-        }
-        else {
+        if !sender.isSelected{
             LFDataManager.sharedInstance.getPostLike(orgID: feeds.feedIDMallID, jobID:feeds.feedID, isLike: true, completion: {(result,resultDic) in
                 if result {
                     self.updateFeedsData(feedID: feeds.feedID, respoceDic: resultDic)
-                    LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feeds.feedID)
                     sender.isSelected = true
                     let relamInstance = try! Realm()
                     let userData = relamInstance.objects(LFLikes.self).filter("jobId=='\(resultDic.value(forKey: "jobId"))'")
@@ -461,11 +452,11 @@ extension LFHomeViewController{
                 
                 
             })
-        }
+        
     }
     
 
-    
+    }
 }
 
 
@@ -473,11 +464,17 @@ extension LFHomeViewController{
 extension LFHomeViewController{
     
     func updateFeedsData(feedID:String,respoceDic:NSDictionary){
+        //Update The like count in firebase
+        
+        
+        LFFireBaseDataService.sharedInstance.updateThepostDetails(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feedID,likeCount:String(describing: respoceDic.value(forKey: "count")!) )
+
         let realm = try! Realm()
         let predicate = NSPredicate.init(format: "feedID=%@", feedID)
         let userData = realm.objects(LFHomeFeeds.self).filter(predicate).first
             try! realm.write {
             userData?.feedLikesCount = String(describing: respoceDic.value(forKey: "count")!)
+ 
         }
     }
 }
@@ -494,6 +491,7 @@ extension LFHomeViewController{
             self.homeTableView.reloadSections(NSIndexSet(index: self.visibleIndex) as IndexSet, with: .none);
         }
     }
+    
 }
 
 
