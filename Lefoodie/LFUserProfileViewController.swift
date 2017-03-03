@@ -25,6 +25,7 @@ class LFUserProfileViewController: UIViewController {
     @IBOutlet weak var userBannerImbView: UIImageView!
     var pageMenu : CAPSPageMenu?
     var myProfile : LFMyProfile!
+    var screenVal = String()
     
     override func viewDidLoad() {
         self.tabViews()
@@ -95,15 +96,14 @@ class LFUserProfileViewController: UIViewController {
         
         // Initialize view controllers to display and place in array
         var controllerArray : [UIViewController] = []
+        
         let photosControl:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
-        photosControl.title = "PHOTOS"
+        
         photosControl.isMyPosts = true
         photosControl.userEmail = CXAppConfig.sharedInstance.getEmailID()
-        controllerArray.append(photosControl)
+        
         
         let favoriteContl : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
-        favoriteContl.title = "FAVORITES"
-        controllerArray.append(favoriteContl)
         
         let parameters: [CAPSPageMenuOption] = [
             .selectionIndicatorColor(UIColor.appTheamColor()),
@@ -113,10 +113,20 @@ class LFUserProfileViewController: UIViewController {
             .menuItemWidth(self.view.frame.size.width/2-16)
         ]
         
+        if screenVal == "User" {
+            photosControl.title = "PHOTOS"
+            favoriteContl.title = "FAVORITES"
+        }
+        else {
+            photosControl.title = "FOODIE PHOTOS"
+            favoriteContl.title = "ACCOUNT PHOTOS"
+        }
+        controllerArray.append(photosControl)
+        controllerArray.append(favoriteContl)
         self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 0, width: self.uiView.frame.width, height: self.uiView.frame.height), pageMenuOptions: parameters)
         
         self.uiView.addSubview((self.pageMenu?.view)!)
-        
+
         //self.view.addSubview(View_DetailsView)
         
     }

@@ -20,6 +20,14 @@ class LFFavouriteViewController: UIViewController,UICollectionViewDataSource,UIC
         self.favouritesCollectionView.register(nib, forCellWithReuseIdentifier: "LFFavouritesCollectionViewCell")
         self.view.backgroundColor = UIColor.white
         
+        if self.title == "FAVORITES" {
+            
+        }
+        else {
+            
+        }
+
+        
         // Do any additional setup after loading the view.
     }
     
