@@ -9,18 +9,18 @@
 import UIKit
 
 
-class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
+
+class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var sharePhotoTableView: UITableView!
     var navController: UINavigationController!
     var postImage:UIImage!
-    
     var resturantsList = [Restaurants]()
+    var restaurantsLocationsList = [RestaurantsLocation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         postBtn.setTitleColor(UIColor.appTheamColor(), for: .normal)
         
         let nibSharePost = UINib(nibName: "LFSharePostTableViewCell", bundle: nil)
@@ -36,65 +36,25 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate {
         
         self.sharePhotoTableView.delegate = self
         self.getTheDefaultRestarent()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.sharePhotoTableView.reloadData()
+        self.sharePhotoTableView.reloadRows(at: [ NSIndexPath(row: 0, section: 1) as IndexPath], with: .fade)
     }
     
-    func chooseLocation(){
-        let storyboard = UIStoryboard(name: "PhotoShare", bundle: nil).instantiateViewController(withIdentifier: "LFShooseAnotherLocation")as! LFShooseAnotherLocation
-        storyboard.resturantsList = self.resturantsList
-        self.navigationController?.pushViewController(storyboard, animated: true)
+//    func restaurantDetails(resturantsList: [Restaurants]) {
+//        self.resturantsList = resturantsList
+//        let restarurnat : Restaurants = resturantsList[0]
+//        self.getTheRLocation(locationId: restarurnat.restaurantID)
+//        self.sharePhotoTableView.reloadRows(at: [ NSIndexPath(row: 0, section: 1) as IndexPath], with: .fade)
+//    }
 
-    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.sharePhotoTableView.endEditing(true)
     }
-    @IBAction func postBtnAction(_ sender: Any) {
-        
-        let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0)
-        
-        let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
-        //print(cell.postDescTxtView)
-        //print(cell.sharedPic)
-        
 
-        CXDataService.sharedInstance.showLoader(view: self.view, message: "")
-
-        LFDataManager.sharedInstance.imageUpload(imageData: UIImageJPEGRepresentation(postImage, 0.2)!) { (Response) in
-            
-            if Response.allKeys.count == 0 {
-                //CXDataService.sharedInstance.hideLoader()
-               return
-            }
-        
-            
-            let restarurnat : Restaurants = self.resturantsList[0]
-            let imgStr = Response.value(forKey: "filePath") as! String
-           // print(imgStr)
-            let dict:NSMutableDictionary = NSMutableDictionary()
-            dict.setObject(cell.postDescTxtView.text!, forKey: "Name" as NSCopying)
-            dict.setObject(imgStr, forKey: "Image" as NSCopying)
-            dict.setObject(restarurnat.restaurantID, forKey: "storeId" as NSCopying)
-            //dict.setObject(mobile, forKey: "Phone Number" as NSCopying
-            LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
-              //  print(success)
-                
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
-                self.dismiss(animated: true, completion: nil)
-            })
-            
-        }
-        
-
-     
-    }
-    
-    
-    
-    
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         //self.navController?.popToRootViewController(animated: true)
@@ -123,10 +83,19 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             
         }else if indexPath.section == 1{
             let cellChooseLocation = tableView.dequeueReusableCell(withIdentifier: "LFChooseLocationTableViewCell", for: indexPath)as? LFChooseLocationTableViewCell
-            if self.resturantsList.count != 0 {
-                //print(self.resturantsList[0])
+            if self.resturantsList.count != 0 && self.restaurantsLocationsList.count != 0 {
+                
                 let restarurnat : Restaurants = self.resturantsList[0]
+                let reataurantLocation = self.restaurantsLocationsList[0]
                 cellChooseLocation?.locationLbl.text = restarurnat.restaurantName
+                cellChooseLocation?.RLocationLbl.text = reataurantLocation.RLocationAddress
+                
+                let userRestaurantGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseLocation))
+                cellChooseLocation?.locationLbl.addGestureRecognizer(userRestaurantGestureRecognizer)
+                cellChooseLocation?.RLocationLbl.addGestureRecognizer(userRestaurantGestureRecognizer)
+                cellChooseLocation?.RLocationLbl.tag = indexPath.section
+                cellChooseLocation?.locationLbl.tag = indexPath.section
+                
             }
             return cellChooseLocation!
             
@@ -173,22 +142,51 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         return 0
     }
     
+    func chooseLocation(){
+        let storyboard = UIStoryboard(name: "PhotoShare", bundle: nil).instantiateViewController(withIdentifier: "LFShooseAnotherLocation")as! LFShooseAnotherLocation
+        storyboard.resturantsList = self.resturantsList
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
     
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func chooseRLocation(){
+        let restarurnat : Restaurants = self.resturantsList[0]
+        self.getTheRLocation(locationId: restarurnat.restaurantID)
         
-        switch indexPath.row {
-        case 1:
-            let storyBoard = UIStoryboard(name: "PhotoShare", bundle: Bundle.main)
-            let chooseLocation : LFShooseAnotherLocation = (storyBoard.instantiateViewController(withIdentifier: "LFShooseAnotherLocation") as? LFShooseAnotherLocation)!
-            chooseLocation.resturantsList = self.resturantsList
+    }
+    
+    @IBAction func postBtnAction(_ sender: Any) {
+        
+        let indexPath : NSIndexPath = NSIndexPath(row: 0, section: 0)
+        
+        let cell: LFSharePostTableViewCell = self.sharePhotoTableView.cellForRow(at: indexPath as IndexPath) as! LFSharePostTableViewCell
+        //print(cell.postDescTxtView)
+        //print(cell.sharedPic)
+        
+        
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "")
+        
+        LFDataManager.sharedInstance.imageUpload(imageData: UIImageJPEGRepresentation(postImage, 0.2)!) { (Response) in
             
-            self.navController.pushViewController(chooseLocation, animated: true)
-          break
-        default:
+            if Response.allKeys.count == 0 {
+                //CXDataService.sharedInstance.hideLoader()
+                return
+            }
             
-            break
+            
+            let restarurnat : Restaurants = self.resturantsList[0]
+            let imgStr = Response.value(forKey: "filePath") as! String
+            // print(imgStr)
+            let dict:NSMutableDictionary = NSMutableDictionary()
+            dict.setObject(cell.postDescTxtView.text!, forKey: "Name" as NSCopying)
+            dict.setObject(imgStr, forKey: "Image" as NSCopying)
+            dict.setObject(restarurnat.restaurantID, forKey: "storeId" as NSCopying)
+            //dict.setObject(mobile, forKey: "Phone Number" as NSCopying
+            LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
+                //  print(success)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
+                self.dismiss(animated: true, completion: nil)
+            })
         }
     }
 }
@@ -200,9 +198,20 @@ extension LFShareFoodiePicViewController{
         CXDataService.sharedInstance.showLoader(view: self.view, message: "")
         LFDataManager.sharedInstance.getTheAllRestarantsFromServer { (resultArray) in
             self.resturantsList = resultArray;
+            
+            let restarurnat : Restaurants = self.resturantsList[0]
+            self.getTheRLocation(locationId: restarurnat.restaurantID)
+            
             CXDataService.sharedInstance.hideLoader()
             self.sharePhotoTableView.reloadRows(at: [ NSIndexPath(row: 0, section: 1) as IndexPath], with: .fade)
            
+        }
+    }
+    
+    func getTheRLocation(locationId:String){
+        LFDataManager.sharedInstance.getTheRestaurantLocationsFromServer(restaurantId:locationId) { (resultArray) in
+            self.restaurantsLocationsList = resultArray
+            self.sharePhotoTableView.reloadRows(at: [ NSIndexPath(row: 0, section: 1) as IndexPath], with: .fade)
         }
     }
 }

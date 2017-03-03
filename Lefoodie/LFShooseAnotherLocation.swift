@@ -12,12 +12,7 @@ class LFShooseAnotherLocation: UIViewController {
     
     @IBOutlet weak var chooseLocationTblView: UITableView!
     var resturantsList = [Restaurants]()
-    typealias typeCompletionHandler = () -> ()
-    var completion : typeCompletionHandler = {}
-    typealias restaurantCompletionBlock = (_ restaurant:Restaurants) -> Void
-    typealias selectStoreCompletionHandler = (_ restaurant:Restaurants) -> ()
-    var selectCompletion : selectStoreCompletionHandler = {_ in }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         chooseLocationTblView.delegate = self
@@ -30,23 +25,9 @@ class LFShooseAnotherLocation: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func dismissVCCompletion(completionHandler: @escaping typeCompletionHandler) {
-        self.completion = completionHandler
-    }
     
     @IBAction func Btn_LocationBtnTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-            self.completion()
-        })
-    }
-    
-    
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Back_Location" {
-            let controller = segue.destination as! LFShareFoodiePicViewController
-        }
+
     }
 }
 
@@ -68,15 +49,7 @@ extension LFShooseAnotherLocation: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let resturantData : Restaurants = self.resturantsList[indexPath.row]
-        self.selectCompletion(resturantData)
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension LFShooseAnotherLocation{
-    func getTheAllRestaurants(){
-        LFDataManager.sharedInstance.getTheAllRestarantsFromServer { (resultArray) in
-            self.resturantsList = resultArray
-        }
-    }
-}

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,27 +26,41 @@
                             <constraint firstAttribute="height" constant="20" id="o21-ws-TOL"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eog-Wc-g8n">
-                        <rect key="frame" x="37" y="11" width="261" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="icY-iX-Vdi">
+                        <rect key="frame" x="34" y="11" width="273" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdw-wm-lHu">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="WMb-Dr-Yfm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQz-AZ-RWz">
+                                <rect key="frame" x="160" y="0.0" width="113" height="20.5"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LEN-gB-AEM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="6tp-4p-pCe"/>
-                    <constraint firstAttribute="bottom" secondItem="eog-Wc-g8n" secondAttribute="bottom" constant="12" id="9K1-xE-fhw"/>
-                    <constraint firstAttribute="trailing" secondItem="eog-Wc-g8n" secondAttribute="trailing" constant="22" id="VxV-pT-aPs"/>
-                    <constraint firstItem="eog-Wc-g8n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="jvo-52-zot"/>
-                    <constraint firstAttribute="bottom" secondItem="LEN-gB-AEM" secondAttribute="bottom" constant="12" id="q7S-Mw-TjD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="icY-iX-Vdi" secondAttribute="bottom" constant="3.5" id="b0I-I6-9Lg"/>
+                    <constraint firstItem="icY-iX-Vdi" firstAttribute="leading" secondItem="LEN-gB-AEM" secondAttribute="trailing" constant="5" id="mvd-B9-cIl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="icY-iX-Vdi" secondAttribute="trailing" constant="5" id="ofX-yl-z7F"/>
+                    <constraint firstItem="icY-iX-Vdi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="u3A-bK-EJL"/>
                     <constraint firstItem="LEN-gB-AEM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="wZX-DF-Fr5"/>
-                    <constraint firstItem="eog-Wc-g8n" firstAttribute="leading" secondItem="LEN-gB-AEM" secondAttribute="trailing" constant="8" id="yrj-TC-bsJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="locationLbl" destination="eog-Wc-g8n" id="0jQ-1J-VcB"/>
+                <outlet property="RLocationLbl" destination="CQz-AZ-RWz" id="4zy-PH-gHe"/>
+                <outlet property="locationLbl" destination="qdw-wm-lHu" id="qUF-e9-wWL"/>
             </connections>
-            <point key="canvasLocation" x="-30" y="29"/>
+            <point key="canvasLocation" x="300" y="76"/>
         </tableViewCell>
     </objects>
     <resources>

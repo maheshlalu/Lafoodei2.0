@@ -11,6 +11,7 @@
 		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
 		119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119329AE1E519AC600FEC328 /* SearchFoodies.swift */; };
+		11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E270051E681FF300A1739E /* RestaurantsLocations.swift */; };
 		120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */; };
 		120514D11E40921300D2345E /* LFItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D01E40921200D2345E /* LFItemDetailViewController.swift */; };
 		120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */; };
@@ -169,6 +170,7 @@
 		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		119329AE1E519AC600FEC328 /* SearchFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFoodies.swift; sourceTree = "<group>"; };
+		11E270051E681FF300A1739E /* RestaurantsLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocations.swift; sourceTree = "<group>"; };
 		120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFRestaurentDetailsViewController.swift; sourceTree = "<group>"; };
 		120514D01E40921200D2345E /* LFItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemDetailViewController.swift; sourceTree = "<group>"; };
 		120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				189EB0EE1E49AF76006D78BB /* Restaurants.swift */,
+				11E270051E681FF300A1739E /* RestaurantsLocations.swift */,
 				180A20B21E4C485200E6B2C9 /* LFFeedsData.swift */,
 				119329AE1E519AC600FEC328 /* SearchFoodies.swift */,
 			);
@@ -1132,6 +1135,7 @@
 				896073541E36015800551545 /* CXDataService.swift in Sources */,
 				1825CCB41E1B769D00CD3C3B /* CXAlbumCollectionViewCell.swift in Sources */,
 				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,
+				11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */,
 				120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
 				121E10971E5F2271001546D0 /* RSKGrowingTextView.swift in Sources */,
