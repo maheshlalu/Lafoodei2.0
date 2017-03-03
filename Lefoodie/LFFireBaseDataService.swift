@@ -84,11 +84,101 @@ class LFFireBaseDataService: NSObject {
                     "FavouritesCount": "0"
         ] as [String : Any]
         self.postRef.child(postID).setValue(post)
+        commentsRef = postRef.child(postID)
+
     }
     
+    func updateThepostDetails(isUpdateComment:Bool,isLikeCount:Bool,isFavorites:Bool,postID:String,likeCount:String){
+        var post = [String : Any]()
+        post = ["uid": postID]
+        if isLikeCount {
+            post = ["LikeCount": likeCount]
+        }
+        else if isFavorites {
+            //            var count = Int((feedData?.feedFavaouritesCount)!)
+            //            count = count! + 1
+            //            post = ["FavouritesCount":  "\(count!)"]
+        }
+        else if isUpdateComment {
+            //            var count = Int((feedData?.feedCommentsCount)!)
+            //            count = count! + 1
+            //            post = ["CommentCount":  "\(count!)"]
+        }
+        
+        self.postRef.child(postID).updateChildValues(post)
+    }
+    
+    func addPostObserver(){
+        return
+        if (commentsRef != nil) {
+            
+            self.commentsRef.observe(.value, with: { (snapshot) -> Void in
+                let postDic =  JSON(snapshot.value as? NSDictionary as Any)
+                let uid = postDic["uid"].stringValue
+                let realm = try! Realm()
+                let predicate = NSPredicate.init(format: "feedID=%@", uid)
+                let feedData = realm.objects(LFHomeFeeds.self).filter(predicate).first
+                try! realm.write {
+                    feedData?.feedLikesCount = postDic["LikeCount"].stringValue
+                    feedData?.feedFavaouritesCount = postDic["FavouritesCount"].stringValue
+                    feedData?.feedCommentsCount = postDic["CommentCount"].stringValue
+                    self.firebaseDataDelegate.calledTheFirebaseListener(postID: uid)
+                }
+            })
+            self.commentsRef.observe(.childChanged, with: { (snapshot) -> Void in
+                print("childRemoved")
+                
+            })
+            
+            commentsRef.observe(.childChanged, with: { (snapshot) -> Void in
+                print(snapshot)
+                
+            })
+            commentsRef.observe(.childRemoved, with: { (snapshot) -> Void in
+                
+                print("childRemoved")
+            })
+            
+            
+            //            FIRDatabase.database().reference().child("POSTS").child("1425").observe(.value, with: { (snap) in
+            //                if let snapDict = snap.value as? [String:AnyObject]{
+            //
+            //                    for each in snapDict{
+            //
+            //                        print(each.value)
+            //
+            //                    }
+            //                }
+            //            }, withCancel: {(err) in
+            //                
+            //                
+            //            })
+            
+            
+            
+        }
+        
+    }
+
+
     //
     func addPostActivity(isUpdateComment:Bool,isLikeCount:Bool,isFavorites:Bool,postID:String){
-        commentsRef = postRef.child(postID)
+        print(postID)
+       postRef.child(postID).observe(.value, with: { (snapshot) -> Void in
+        let postDic =  JSON(snapshot.value as? NSDictionary as Any)
+        let uid = postDic["uid"].stringValue
+        let realm = try! Realm()
+        let predicate = NSPredicate.init(format: "feedID=%@", uid)
+        let feedData = realm.objects(LFHomeFeeds.self).filter(predicate).first
+        try! realm.write {
+            feedData?.feedLikesCount = postDic["LikeCount"].stringValue
+            feedData?.feedFavaouritesCount = postDic["FavouritesCount"].stringValue
+            feedData?.feedCommentsCount = postDic["CommentCount"].stringValue
+            self.firebaseDataDelegate.calledTheFirebaseListener(postID: uid)
+        }
+       })
+        //print(commentsRef)
+        //.child(postID)
     }
  
 }
@@ -96,26 +186,10 @@ class LFFireBaseDataService: NSObject {
 
 
 extension LFFireBaseDataService{
+    
+    
+    
 
-    func addPostObserver(){
-        commentsRef.observe(.value, with: { (snapshot) -> Void in
-            let postDic =  JSON(snapshot.value as? NSDictionary as Any)
-            let uid = postDic["uid"].stringValue
-            let realm = try! Realm()
-            let predicate = NSPredicate.init(format: "feedID=%@", uid)
-            let feedData = realm.objects(LFHomeFeeds.self).filter(predicate).first
-            try! realm.write {
-                feedData?.feedLikesCount = postDic["LikeCount"].stringValue
-                feedData?.feedFavaouritesCount = postDic["FavouritesCount"].stringValue
-                feedData?.feedCommentsCount = postDic["CommentCount"].stringValue
-                self.firebaseDataDelegate.calledTheFirebaseListener(postID: uid)
-            }
-        })
-        commentsRef.observe(.value, with: { (snapshot) -> Void in
-            
-        })
-        
-    }
     
     func removeAllCommentsObservers(){
         commentsRef.removeAllObservers()
