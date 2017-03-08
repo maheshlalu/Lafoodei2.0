@@ -18,9 +18,9 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FBSDKShareKit
 import Social
+
 class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
-
     @IBOutlet weak var homeTableView: UITableView!
     var Arr_Main = NSMutableArray()
     var jobsArray = NSArray()
@@ -30,14 +30,15 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var page = String()
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
-    
+    var myProfile : LFMyProfile!
+    var foodiesArr : Results<LFFoodies>!
     var visiblePostID : String!
     var visibleIndex : Int!
-
+    var LFTabHomeController:LFTabHomeController!
+    
     override func viewDidLoad() {
-
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         self.setNavigationProperties()
         self.registerCells()
         self.selectedTabBar()
@@ -46,22 +47,22 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         page = "1"
         isInitialLoad = true
         self.serviceAPICall(PageNumber: page, PageSize: "10")
-      NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
-  
+        NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
+        
     }
     
     //MARK: Segment
     func setSegmentProperties(){
         
-    
-       
+        
+        
         
     }
-   
+    
     func setNavigationProperties(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-
+        
     }
     
     //MARK: Add The PullToRefresh
@@ -74,18 +75,14 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
     }
     
-     func refresh(sender:UIRefreshControl) {
+    func refresh(sender:UIRefreshControl) {
+        self.feedsArray = [LFFeedsData]()
+        self.isInitialLoad = true
+        self.page = "1"
         
-                    self.feedsArray = [LFFeedsData]()
-                    self.isInitialLoad = true
-                    self.page = "1"
-
-            self.serviceAPICall(PageNumber: self.page, PageSize: "5")
-
-        
-
+        self.serviceAPICall(PageNumber: self.page, PageSize: "5")
     }
-   
+    
     func registerCells(){
         self.homeTableView.register(UINib(nibName: "LFHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHeaderTableViewCell")
         self.homeTableView.register(UINib(nibName: "LFHomeCenterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeCenterTableViewCell")
@@ -94,7 +91,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-     
+        
     }
     
     func selectedTabBar(){
@@ -127,7 +124,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             })
             
         }
-   
+        
     }
     
     //MARK: calling home data from service
@@ -157,17 +154,17 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         indexSet.add(lastIndexOfArr + i)
                         indexArr.add(index)
                     }
-                        self.homeTableView.beginUpdates()
-                        self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
-                        self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
-                        self.homeTableView.endUpdates()
+                    self.homeTableView.beginUpdates()
+                    self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                    self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                    self.homeTableView.endUpdates()
                 }
-               
+                
             }
-          
+            
             self.refreshControl.endRefreshing()
         }
- 
+        
     }
     
     //MARK: TableView DataSource Methods
@@ -178,10 +175,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
-       return 3
+        return 3
         
     }
-   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if self.feedsArray.count == 0 {
@@ -192,14 +189,18 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let feeds = self.feedsArray[indexPath.section]
         self.visiblePostID = feeds.feedID
         self.visibleIndex = indexPath.section
-       // LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: feeds.feedID)
+        // LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: true, isLikeCount: true, isFavorites: true, postID: feeds.feedID)
         if indexPath.row == 0 {
-          let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
+            let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHeaderTableViewCell", for: indexPath)as? LFHeaderTableViewCell)!
             cell.papulateUserinformation(feedData: feeds)
             let userNameGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userLabelAction))
+            cell.lbl_Title.tag = indexPath.section
+            lastIndexPath = indexPath
             cell.lbl_Title.addGestureRecognizer(userNameGestureRecognizer)
             
             let userRestaurantGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userRestaurantAction))
+            cell.cafeNameLbl.tag = indexPath.section
+            lastIndexPath = indexPath
             cell.cafeNameLbl.addGestureRecognizer(userRestaurantGestureRecognizer)
             return cell
         }else if indexPath.row == 1 {
@@ -207,7 +208,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.papulateImageData(feedData: feeds)
             return cell
         }else  {
-          let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
+            let  cell  = (tableView.dequeueReusableCell(withIdentifier: "LFHomeFooterTableViewCell", for: indexPath)as? LFHomeFooterTableViewCell)!
             cell.commentsBtn.addTarget(self, action: #selector(commentsBtnAction), for: .touchUpInside)
             cell.commentsBtn.tag = indexPath.section
             lastIndexPath = indexPath
@@ -219,71 +220,98 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
+            cell.photoDescriptionLbl.text = "wanderireland@travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
             return cell
         }
+    }
     
+    
+    func userLabelAction(sender: UITapGestureRecognizer){
         
-    }
-    
-    
-    func userLabelAction(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
-        profileContoller.screenVal = "User"
-        self.navigationController?.pushViewController(profileContoller, animated: true)
-    }
-    
-    func userRestaurantAction(){
-        
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
-        profileContoller.screenVal = "Restaurant"
-        self.navigationController?.pushViewController(profileContoller, animated: true)
-    }
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let feeds = self.feedsArray[indexPath.section]
-//        self.visiblePostID = feeds.feedID
-//        self.visibleIndex = indexPath.row
-//
-//    }
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
+        let feeds = self.feedsArray[(sender.view?.tag)!]
 
-    
-    
-    
-    
-   /*
-    func didTapAddButton(sender: AnyObject) {
-        let count = self.Arr_Main.count
-        var indexPaths = [NSIndexPath]()
+        let predicate = NSPredicate.init(format:"foodieEmail==%@", feeds.feedUserEmail)
+        self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
         
-        // add two rows to my model that `UITableViewDataSource` methods reference;
-        // also build array of new `NSIndexPath` references
-        
-        for row in count ..< count + 2 {
-            self.Arr_Main.append("New row \(row)")
-            self.Arr_Main.add(<#T##anObject: Any##Any#>)
-            indexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+        if myProfile.userEmail == feeds.feedUserEmail{
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+            profileContoller.profileDetails = ProfileDetailsType.userType
+            LFDataManager.sharedInstance.dataManager().selectedIndex = 4
+            
+        }else{
+            
+            let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
+            restaurentView.foodiesArr = self.foodiesArr
+            restaurentView.isFromHome = true
+            
+            let navController = UINavigationController(rootViewController: restaurentView)
+            navController.navigationItem.hidesBackButton = false
+            
+//            LFDataManager.sharedInstance.sendTheFollwAndUnFollowPushNotification(isFollow: true, foodieDetails:dict!)
+            
+            self.present(navController, animated:true, completion: nil)
         }
         
-        // now insert and scroll
-        
-        self.homeTableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
-        self.homeTableView.scrollToRowAtIndexPath(indexPaths.last!, atScrollPosition: .Bottom, animated: true)
     }
-    */
+    
+    func userRestaurantAction(sender: UITapGestureRecognizer){
+        let feeds = self.feedsArray[(sender.view?.tag)!]
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+        profileContoller.profileDetails = ProfileDetailsType.restaurantsType
+        profileContoller.subAminId = feeds.feedIDMallID
+        profileContoller.rEmail = feeds.feedIDMallEmail
+        profileContoller.isFromHome = true
+        self.navigationController?.pushViewController(profileContoller, animated: true)
+    }
+    
+    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //        let feeds = self.feedsArray[indexPath.section]
+    //        self.visiblePostID = feeds.feedID
+    //        self.visibleIndex = indexPath.row
+    //
+    //    }
+    
+    
+    
+    
+    
+    /*
+     func didTapAddButton(sender: AnyObject) {
+     let count = self.Arr_Main.count
+     var indexPaths = [NSIndexPath]()
+     
+     // add two rows to my model that `UITableViewDataSource` methods reference;
+     // also build array of new `NSIndexPath` references
+     
+     for row in count ..< count + 2 {
+     self.Arr_Main.append("New row \(row)")
+     self.Arr_Main.add(<#T##anObject: Any##Any#>)
+     indexPaths.append(NSIndexPath(forRow: row, inSection: 0))
+     }
+     
+     // now insert and scroll
+     
+     self.homeTableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+     self.homeTableView.scrollToRowAtIndexPath(indexPaths.last!, atScrollPosition: .Bottom, animated: true)
+     }
+     */
     //MARK: TableView Delegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-      //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
+        //  let viewcontroller:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFoodDetailViewController")as UIViewController
         //self.present(viewcontroller, animated: true, completion: nil)
         
         if indexPath.row == 0
         {
             
             //let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as! LFRestaurentDetailsViewController
-          //  self.navigationController?.pushViewController(storyboard, animated: true)
+            //  self.navigationController?.pushViewController(storyboard, animated: true)
             
         }
         
@@ -293,22 +321,22 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         if indexPath.row == 0 {
             return 50
-
+            
         }else if indexPath.row == 1 {
             
-//            let indexPath : NSIndexPath = NSIndexPath(row: 1, section: indexPath.section)
-//
-//            let cell: LFHomeCenterTableViewCell = tableView.cellForRow(at: indexPath as IndexPath) as! LFHomeCenterTableViewCell
-//            
-//            print( cell.ImgView_Logo.image?.size.width)
-//            print( cell.ImgView_Logo.image?.size.height)
-
+            //            let indexPath : NSIndexPath = NSIndexPath(row: 1, section: indexPath.section)
+            //
+            //            let cell: LFHomeCenterTableViewCell = tableView.cellForRow(at: indexPath as IndexPath) as! LFHomeCenterTableViewCell
+            //
+            //            print( cell.ImgView_Logo.image?.size.width)
+            //            print( cell.ImgView_Logo.image?.size.height)
+            
             
             return 320
-
+            
         }else if indexPath.row == 2 {
-            return 45
-
+            return 100
+            
         }
         return 0
     }
@@ -343,31 +371,24 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         {
         case 0:
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: nil, completion: nil)
-           // (sender.subviews[0] as UIView).tintColor = UIColor.black
+            // (sender.subviews[0] as UIView).tintColor = UIColor.black
             
-
-           // print("Home selected")
+            
+            // print("Home selected")
         //show popular view
         case 1:
             
-          //  print("near selected")
-    
-           // (sender.subviews[0] as UIView).tintColor = UIColor.black
+            //  print("near selected")
+            
+            // (sender.subviews[0] as UIView).tintColor = UIColor.black
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
             
         //show history view
         default:
             break;
         }
-        
     }
-    
-
-   
-
 }
-
-
 
 extension LFHomeViewController{
     func actionAlertSheet(sender:UIButton)
@@ -396,11 +417,9 @@ extension LFHomeViewController{
             content.contentDescription = contentDescription
             content.imageURL = NSURL(string:contentImageUrl) as URL!
             FBSDKShareDialog.show(from: self, with: content, delegate: nil)
-
+            
             
         }))
-        
-        
         
         alert.addAction(UIAlertAction(title: "Tweet", style: .default, handler: { (action) in
             if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
@@ -437,8 +456,6 @@ extension LFHomeViewController{
     
     func likeBtnAction(sender:UIButton)
     {
-        
-        
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let feeds = self.feedsArray[sender.tag]
         if !sender.isSelected{
@@ -455,16 +472,10 @@ extension LFHomeViewController{
                             relamInstance.add(like)
                             self.homeTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
                         })
-                        
                     }
                 }
-                
-                
             })
-        
-    }
-    
-
+        }
     }
 }
 
@@ -477,13 +488,13 @@ extension LFHomeViewController{
         
         
         LFFireBaseDataService.sharedInstance.updateThepostDetails(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feedID,likeCount:String(describing: respoceDic.value(forKey: "count")!) )
-
+        
         let realm = try! Realm()
         let predicate = NSPredicate.init(format: "feedID=%@", feedID)
         let userData = realm.objects(LFHomeFeeds.self).filter(predicate).first
-            try! realm.write {
+        try! realm.write {
             userData?.feedLikesCount = String(describing: respoceDic.value(forKey: "count")!)
- 
+            
         }
     }
 }
@@ -493,7 +504,7 @@ extension LFHomeViewController{
 
 
 extension LFHomeViewController{
-
+    
     func calledTheFirebaseListener(postID:String){
         if postID == self.visiblePostID {
             //Reload The Visible Section in  Tableview

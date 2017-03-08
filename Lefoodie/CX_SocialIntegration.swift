@@ -100,12 +100,15 @@ class CX_SocialIntegration: NSObject {
                 completion(false)
                 // get the details from server using below url
                 CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getSignInUrl(), parameters: ["orgId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"email":email as AnyObject,"dt":"DEVICES" as AnyObject,"isLoginWithFB":"false" as AnyObject]) { (responseDict) in
-                    //"password":""
+                    print(responseDict)
                     
-                    self.saveUserDeatils(userData: responseDict, completion: { (dic) in
-                        completion(false)
-                    })
+                    let status = responseDict.value(forKey: "status") as! String
                     
+                    if status == "1"{
+                        self.saveUserDeatils(userData: responseDict, completion: { (dic) in
+                            completion(false)
+                        })
+                    }
                 }
                 //http://localhost:8081/MobileAPIs/loginConsumerForOrg?email=cxsample@gmail.com&orgId=530&dt=DEVICES&isLoginWithFB=true
             }

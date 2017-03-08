@@ -36,11 +36,15 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     var bannaerPath = ""
     var userPic = ""
     let jsonDic : NSMutableDictionary = NSMutableDictionary()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.editTableView.tableFooterView = UIView()
+        
+        self.dpLayer.isHidden = true
+        self.BannerLayer.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserDetailEditViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -48,6 +52,20 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         self.view.addGestureRecognizer(tap)
+        
+        
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
+        
+        if self.myProfile.userPic == "" && self.myProfile.userBannerPic == ""{
+            self.BannerLayer.isHidden = false
+            self.dpLayer.isHidden = false
+            
+        }else{
+            self.BannerLayer.isHidden = true
+            self.dpLayer.isHidden = true
+        }
+        
         
         let bannerLayerTap = UITapGestureRecognizer(target: self, action: #selector(handleTapForBanner(sender:)))
         self.BannerLayer.addGestureRecognizer(bannerLayerTap)
@@ -443,7 +461,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     
     // Custom Alert View
     func showAlert(message:String, status:Int){
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
             self.navigationController?.popViewController(animated: true)
         }
@@ -452,7 +470,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
 
         }
         alert.addAction(defaultAction)
-        alert.addAction(cancelAction)
+       // alert.addAction(cancelAction)
         present(alert, animated: true, completion:nil)
     }
     

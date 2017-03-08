@@ -23,6 +23,7 @@ class LFTabHomeController: UITabBarController {
         self.tabBar.barTintColor = UIColor.init(red: 253/250, green: 205/250, blue: 0/250, alpha: 5)
         self.tabBar.tintColor = UIColor.white
         self.tabBar.unselectedItemTintColor = UIColor.white
+        LFDataManager.sharedInstance.tabManager = self
         
     }
     

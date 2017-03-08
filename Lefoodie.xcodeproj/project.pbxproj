@@ -12,6 +12,7 @@
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
 		119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119329AE1E519AC600FEC328 /* SearchFoodies.swift */; };
 		11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E270051E681FF300A1739E /* RestaurantsLocations.swift */; };
+		11FF068C1E703E0D00BED142 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FF068B1E703E0D00BED142 /* KILabel.m */; };
 		120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */; };
 		120514D11E40921300D2345E /* LFItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D01E40921200D2345E /* LFItemDetailViewController.swift */; };
 		120514D81E40926300D2345E /* LFItemHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */; };
@@ -172,6 +173,8 @@
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		119329AE1E519AC600FEC328 /* SearchFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFoodies.swift; sourceTree = "<group>"; };
 		11E270051E681FF300A1739E /* RestaurantsLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocations.swift; sourceTree = "<group>"; };
+		11FF068A1E703E0D00BED142 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
+		11FF068B1E703E0D00BED142 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
 		120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFRestaurentDetailsViewController.swift; sourceTree = "<group>"; };
 		120514D01E40921200D2345E /* LFItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemDetailViewController.swift; sourceTree = "<group>"; };
 		120514D61E40926300D2345E /* LFItemHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFItemHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -399,6 +402,8 @@
 		127861C21E1A297A00D64F16 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				11FF068A1E703E0D00BED142 /* KILabel.h */,
+				11FF068B1E703E0D00BED142 /* KILabel.m */,
 				127861C31E1A298900D64F16 /* LFHeaderTableViewCell.swift */,
 				127861C41E1A298900D64F16 /* LFHeaderTableViewCell.xib */,
 				127861C51E1A298900D64F16 /* LFHomeCenterTableViewCell.swift */,
@@ -1165,6 +1170,7 @@
 				2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */,
 				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
+				11FF068C1E703E0D00BED142 /* KILabel.m in Sources */,
 				2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */,
 				2BF4B5CA1E5AD0640067AAA5 /* LFPlaces.swift in Sources */,
 				1248A9E71E5432F400AAA4E8 /* LFChangePasswordViewController.swift in Sources */,

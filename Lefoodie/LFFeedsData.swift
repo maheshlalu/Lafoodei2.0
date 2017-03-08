@@ -29,6 +29,7 @@ class  LFFeedsData{
     var feedUserName : String
     var feedUserImage : String
     var feedPublicUrl : String
+    var feedIDMallEmail : String
     var feedJson : JSON
 
     
@@ -53,6 +54,7 @@ class  LFFeedsData{
         feedIDMallID = (mallIIDJson["id"]?.stringValue)!
         feedIDMallName = (mallIIDJson["fullname"]?.stringValue)!
         feedIDMallImage = (mallIIDJson["logo"]?.stringValue)!
+        feedIDMallEmail = (mallIIDJson["email"]?.stringValue)!
         
         let userDataJson  = json["macIdInfodetails"].dictionary! as [String:JSON]
         feedUserName = json["createdByFullName"].stringValue
@@ -64,7 +66,6 @@ class  LFFeedsData{
 
 
 /*
-
  id: 395,
  ItemCode: "b56c0aec-9edf-408a-acc5-3a5e16614af4",
  createdOn: "15:32 Feb 8, 2017",

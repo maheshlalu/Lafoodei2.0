@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import SwiftyJSON
+
 class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UITabBarControllerDelegate {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
@@ -17,7 +19,7 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     var parantNavigationController = UINavigationController()
     var isMyPosts : Bool = true
     var userEmail :String!
-    
+    var subAdminId: String!
     var photosList = [LFFeedsData]()
     var userPhotosList : Results<LFUserPhotos>!
 
@@ -38,9 +40,8 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         self.view.backgroundColor = UIColor.white
         if self.title == "PHOTOS" {
             self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts)
-        }
-        else {
-            
+        }else {
+            getTheRestaurantFoodiePhotos(id: subAdminId)
         }
         
 
@@ -67,13 +68,13 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell:LFPhotoCollectionViewCell = (collectionView.dequeueReusableCell(withReuseIdentifier: "LFPhotoCollectionViewCell", for: indexPath)as? LFPhotoCollectionViewCell)!
+        
         if isMyPosts {
             let myPhotos : LFUserPhotos = self.userPhotosList[indexPath.item]
             cell.photoiImg.setImageWith(NSURL(string: myPhotos.feedImage) as URL!, usingActivityIndicatorStyle: .white)
         }else{
             let feed : LFFeedsData = self.photosList[indexPath.item]
             cell.photoiImg.setImageWith(NSURL(string: feed.feedImage) as URL!, usingActivityIndicatorStyle: .white)
-            
         }
         return cell
     }
@@ -135,6 +136,45 @@ extension LFPhotosViewController{
             }
             self.photoCollectionView.reloadData()
         }
+    }
+    
+   //http://35.160.251.153:8081/Services/getMasters?type=User%20Posts&mallId=2&consumerId=6&myJobs=true
+    func getTheRestaurantFoodiePhotos(id:String){
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "consumerId":id as AnyObject, "myJobs":"true" as AnyObject]) { (responseDict) in
+            CXDataService.sharedInstance.hideLoader()
+            let orgs : NSArray = (responseDict.value(forKey: "jobs") as?NSArray)!
+            var feedsList = [LFFeedsData]()
+            for resData in orgs{
+                let restaurants = LFFeedsData(json:JSON(resData))
+                feedsList.append(restaurants)
+            }
+            print(feedsList, feedsList.count)
+            self.photosList = feedsList
+            self.photoCollectionView.reloadData()
+            
+            //macIdInfodetails
+            
+//            var restarurantsLists = [Restaurants]()
+//            for resData in orgs{d
+//                let restaurants = Restaurants(json: JSON(resData))
+//                restarurantsLists.append(restaurants)
+//            }
+            
+        }
+        
+        
+        //LFDataManager.sharedInstance.getUserPosts(userEmail: id, myPosts: true, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
+            //            CXDataService.sharedInstance.hideLoader()
+            //            if isMyposts {
+            //                let realm = try! Realm()
+            //                self.userPhotosList = realm.objects(LFUserPhotos.self)
+            //            }else{
+            //                self.photosList = feedsResults;
+            //            }
+            //            self.photoCollectionView.reloadData()
+        //}
+        
     }
 }
 

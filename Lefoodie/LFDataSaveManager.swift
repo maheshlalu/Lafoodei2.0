@@ -209,33 +209,64 @@ class LFDataSaveManager: NSObject {
         }
     }
     
-    func saveFollowerInfoInDB(userData:SearchFoodies,isFollower:Bool,completion:@escaping () -> Void){
+    func saveFollowerInfoInDB(userData:AnyObject,isFollower:Bool,isFromHome:Bool,completion:@escaping () -> Void){
+        
         let relamInstance = try! Realm()
-        let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: userData.foodieId as AnyObject))'")
-        if foodieData.count == 0 {
-            //Insert The Data
-            try! relamInstance.write({
-                let enFollower = LFFollowers()
-                enFollower.followerId = CXAppConfig.resultString(input: userData.foodieId as AnyObject)
-                enFollower.followerEmail = userData.foodieEmail
-                enFollower.followerName = userData.foodieName
-                enFollower.followerImage = userData.foodieImage
-                enFollower.followerItemCode =  userData.foodieItemCode
-                enFollower.followerUserId = CXAppConfig.resultString(input: userData.foodieUserId as AnyObject)
-                enFollower.noOfFollowers = CXAppConfig.resultString(input: userData.foodieFollowerCount as AnyObject)
-                enFollower.noOfFollowings = CXAppConfig.resultString(input: userData.foodieFollowingCount as AnyObject)
-                
-                if isFollower {
-                    enFollower.isFollower = true
-                    enFollower.isFollowing = false
-                }
-                else {
-                    enFollower.isFollower = false
-                    enFollower.isFollowing = true
-                }
-
-                relamInstance.add(enFollower)
-            })
+        if isFromHome{
+            let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: (userData as! LFFoodies).foodieId as AnyObject))'")
+            if foodieData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let enFollower = LFFollowers()
+                    enFollower.followerId = CXAppConfig.resultString(input: (userData as! LFFoodies).foodieId as AnyObject)
+                    enFollower.followerEmail = (userData as! LFFoodies).foodieEmail
+                    enFollower.followerName = (userData as! LFFoodies).foodieName
+                    enFollower.followerImage = (userData as! LFFoodies).foodieImage
+                    enFollower.followerItemCode =  (userData as! LFFoodies).foodieItemCode
+                    enFollower.followerUserId = CXAppConfig.resultString(input: (userData as! LFFoodies).foodieUserId as AnyObject)
+                    enFollower.noOfFollowers = CXAppConfig.resultString(input: (userData as! LFFoodies).foodieFollowerCount as AnyObject)
+                    enFollower.noOfFollowings = CXAppConfig.resultString(input: (userData as! LFFoodies).foodieFollowingCount as AnyObject)
+                    
+                    if isFollower {
+                        enFollower.isFollower = true
+                        enFollower.isFollowing = false
+                    }
+                    else {
+                        enFollower.isFollower = false
+                        enFollower.isFollowing = true
+                    }
+                    
+                    relamInstance.add(enFollower)
+                })
+            }
+        }else{
+            let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieId as AnyObject))'")
+            
+            if foodieData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let enFollower = LFFollowers()
+                    enFollower.followerId = CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieId as AnyObject)
+                    enFollower.followerEmail = (userData as! SearchFoodies).foodieEmail
+                    enFollower.followerName = (userData as! SearchFoodies).foodieName
+                    enFollower.followerImage = (userData as! SearchFoodies).foodieImage
+                    enFollower.followerItemCode =  (userData as! SearchFoodies).foodieItemCode
+                    enFollower.followerUserId = CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieUserId as AnyObject)
+                    enFollower.noOfFollowers = CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieFollowerCount as AnyObject)
+                    enFollower.noOfFollowings = CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieFollowingCount as AnyObject)
+                    
+                    if isFollower {
+                        enFollower.isFollower = true
+                        enFollower.isFollowing = false
+                    }
+                    else {
+                        enFollower.isFollower = false
+                        enFollower.isFollowing = true
+                    }
+                    
+                    relamInstance.add(enFollower)
+                })
+            }
         }
     }
     

@@ -18,6 +18,7 @@ class LFHomeFooterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var favouritesLabel: UILabel!
+    @IBOutlet weak var photoDescriptionLbl: KILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,6 +29,7 @@ class LFHomeFooterTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     
     
     func papulatedData(feedData:LFFeedsData){

@@ -17,8 +17,14 @@ private var sharedManager:LFDataManager! = LFDataManager()
 
 class LFDataManager: NSObject {
 
+    var tabManager : LFTabHomeController!
     class var sharedInstance : LFDataManager {
         return sharedManager
+    }
+    
+    func dataManager()->LFTabHomeController{
+        
+        return tabManager
     }
     
 }
@@ -207,27 +213,44 @@ extension LFDataManager{
     
     //MARK: Follow
     
-    func followTheUser(foodieDetails:SearchFoodies){
+    func followTheUser(foodieDetails:AnyObject,isFromHome:Bool){
         // http://35.160.251.153:8081/Services/createORGetJobInstance?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=true
         
-        
-        let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":foodieDetails.foodieItemCode,"trackOnlyOnce":"true"];
-        //print(userFollowDic)
-        
-        CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (response) in
+        if isFromHome{
+            let itemCode = (foodieDetails as! LFFoodies).foodieItemCode
+            let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":itemCode,"trackOnlyOnce":"true"];
             
-           // print(response)
-            if response {
-                LFDataSaveManager.sharedInstance.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false, completion: { (dic) in
-                    // completion(responseDict)
-                    
-                })
-            }
-            else {
+            CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (response) in
                 
+                // print(response)
+                if response {
+                    LFDataSaveManager.sharedInstance.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false,isFromHome: true, completion: { (dic) in
+                        // completion(responseDict)
+                        
+                    })
+                }
+                else {
+                    
+                }
+                
+                // print(response)
             }
-            
-           // print(response)
+        }else{
+            let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":(foodieDetails as! SearchFoodies).foodieItemCode,"trackOnlyOnce":"true"];
+            CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (response) in
+                
+                // print(response)
+                if response {
+                    LFDataSaveManager.sharedInstance.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false,isFromHome:false, completion: { (dic) in
+                        // completion(responseDict)
+                        
+                    })
+                }
+                else {
+                    
+                }
+                // print(response)
+            }
         }
     }
     
@@ -244,30 +267,48 @@ extension LFDataManager{
     }
     
     //MARK: UnFollow
-    func unFollowTheUser(foodieDetails:SearchFoodies){
+    func unFollowTheUser(foodieDetails:AnyObject,isFromHome:Bool){
         //http://35.160.251.153:8081/Services/deleteJobInstanceOrActivity?email=yasaswy.gunturi@gmail.com&orgId=2&activityName=User_Follow&loyalty=true&ItemCodes=1b14164f-4216-4aa0-bc6a-07c16ab506c6&trackOnlyOnce=false
         
-        let userUnFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":foodieDetails.foodieItemCode,"trackOnlyOnce":"true"];
-       // print(userUnFollowDic)
-        
-        CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserUnFollowApi(), parameters: userUnFollowDic as [String : AnyObject]?) { (response) in
+        if isFromHome{
+            let userUnFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":(foodieDetails as! LFFoodies).foodieItemCode,"trackOnlyOnce":"true"];
             
-           // print(response)
-            if response {
-                let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", foodieDetails.foodieUserId)
-
-                let realm = try! Realm()
-                let data = realm.objects(LFFollowers.self).filter(predicate)
-                let obj = data.first
+            CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserUnFollowApi(), parameters: userUnFollowDic as [String : AnyObject]?) { (response) in
+                
+                // print(response)
+                if response {
+                    let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", (foodieDetails as! LFFoodies).foodieUserId)
+                    let realm = try! Realm()
+                    let data = realm.objects(LFFollowers.self).filter(predicate)
+                    let obj = data.first
                     try! realm.write {
                         realm.delete(obj!)
+                    }
+                }
+                else {
+                    
                 }
             }
-            else {
-                
-            }
+        }else{
+            let userUnFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":(foodieDetails as! SearchFoodies).foodieItemCode,"trackOnlyOnce":"true"];
             
-           // print(response)
+            CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserUnFollowApi(), parameters: userUnFollowDic as [String : AnyObject]?) { (response) in
+                
+                // print(response)
+                if response {
+                    let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", (foodieDetails as! SearchFoodies).foodieUserId)
+                    
+                    let realm = try! Realm()
+                    let data = realm.objects(LFFollowers.self).filter(predicate)
+                    let obj = data.first
+                    try! realm.write {
+                        realm.delete(obj!)
+                    }
+                }
+                else {
+                    
+                }
+            }
         }
     }
     
@@ -383,7 +424,6 @@ extension LFDataManager{
             } else {
             }
         }
-        
     }
     
     //MARK: Get User Posts

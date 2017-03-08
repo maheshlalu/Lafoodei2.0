@@ -18,6 +18,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     @IBOutlet weak var foodieFollowLbl: UILabel!
     @IBOutlet weak var foodieImgView: UIImageView!
     var selectedFoodie : SearchFoodies!
+    var foodiesArr : Results<LFFoodies>!
     var pageMenu : CAPSPageMenu?
     var tap: UITapGestureRecognizer?
     var trayOriginalCenter: CGPoint!
@@ -25,7 +26,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     var myProfile : LFMyProfile!
-    
+    var isFromHome:Bool = Bool()
     
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -49,7 +50,13 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     func setUpFollowBtnStatus()
     {
         let realm = try! Realm()
-        let predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", selectedFoodie.foodieUserId)
+        var predicate : NSPredicate = NSPredicate()
+        if isFromHome{
+         predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", foodiesArr[0].foodieUserId)
+        }else{
+         predicate = NSPredicate.init(format: "followerUserId = %@ AND isFollowing=true", selectedFoodie.foodieUserId)
+        }
+        
         let  dataArray = realm.objects(LFFollowers.self).filter(predicate)
         if dataArray.count > 0 {
             followBtn.setTitle("UnFollow", for: .normal)
@@ -79,25 +86,43 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     func foodieDetails(){
         
-        self.foodieName.text = selectedFoodie.foodieName
-        
-        let imgUrl = URL(string: selectedFoodie.foodieImage) as URL!
-        if imgUrl != nil{
-           foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
+        if isFromHome{
+            self.foodieName.text = foodiesArr[0].foodieName
             
+            let imgUrl = URL(string: foodiesArr[0].foodieImage) as URL!
+            if imgUrl != nil{
+                foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
+                
+            }else{
+                foodieImgView.image = UIImage(named: "placeHolder")
+            }
+
+            let following = foodiesArr[0].foodieFollowingCount
+            let follower = foodiesArr[0].foodieFollowerCount
+            foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         }else{
-            foodieImgView.image = UIImage(named: "placeHolder")
+            
+            self.foodieName.text = selectedFoodie.foodieName
+            
+            let imgUrl = URL(string: selectedFoodie.foodieImage) as URL!
+            if imgUrl != nil{
+                foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
+                
+            }else{
+                foodieImgView.image = UIImage(named: "placeHolder")
+            }
+            
+            let realm = try! Realm()
+            let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
+            
+            let userData = realm.objects(LFFoodies.self).filter(predicate)
+            let data = userData.first
+            
+            let following = (data?.foodieFollowingCount)!
+            let follower = (data?.foodieFollowerCount)!
+            foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         }
-        
-        let realm = try! Realm()
-        let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
-        
-        let userData = realm.objects(LFFoodies.self).filter(predicate)
-        let data = userData.first
-        
-        let following = (data?.foodieFollowingCount)!
-        let follower = (data?.foodieFollowerCount)!
-        foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
+
         
     }
     
@@ -111,14 +136,27 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     @IBAction func followBtnAction(_ sender: AnyObject) {
         
         if followBtn.titleLabel?.text == "Follow" {
-            followBtn.setTitle("UnFollow", for: .normal)
-            LFDataManager.sharedInstance.followTheUser(foodieDetails: selectedFoodie)
-            self.updateFollwingCountInDB(type: "Increment")
+            if isFromHome{
+                followBtn.setTitle("UnFollow", for: .normal)
+                LFDataManager.sharedInstance.followTheUser(foodieDetails: foodiesArr[0], isFromHome: true)
+                self.updateFollwingCountInDB(type: "Increment")
+            }else{
+                followBtn.setTitle("UnFollow", for: .normal)
+                LFDataManager.sharedInstance.followTheUser(foodieDetails: selectedFoodie, isFromHome: false)
+                self.updateFollwingCountInDB(type: "Increment")
+            }
+            
         }
         else {
-            followBtn.setTitle("Follow", for: .normal)
-            LFDataManager.sharedInstance.unFollowTheUser(foodieDetails: selectedFoodie)
-            self.updateFollwingCountInDB(type: "Decrement")
+            if isFromHome{
+                followBtn.setTitle("Follow", for: .normal)
+                LFDataManager.sharedInstance.unFollowTheUser(foodieDetails: foodiesArr[0],isFromHome: true)
+                self.updateFollwingCountInDB(type: "Decrement")
+            }else{
+                followBtn.setTitle("Follow", for: .normal)
+                LFDataManager.sharedInstance.unFollowTheUser(foodieDetails: selectedFoodie,isFromHome: false)
+                self.updateFollwingCountInDB(type: "Decrement")
+            }
         }
     }
     
@@ -126,10 +164,16 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     {
         let realm = try! Realm()
         self.myProfile = realm.objects(LFMyProfile.self).first
+        var data:LFFoodies = LFFoodies()
+        if isFromHome{
+            data = foodiesArr[0]
+        }else{
+            let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
+            let userData = realm.objects(LFFoodies.self).filter(predicate)
+            data = userData.first!
+        }
         
-        let predicate = NSPredicate.init(format: "foodieId=%@", selectedFoodie.foodieId)
-        let userData = realm.objects(LFFoodies.self).filter(predicate)
-        let data = userData.first
+        
         if type == "Increment" {
             
             try! realm.write {
@@ -139,12 +183,12 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
                 self.myProfile.userFollwing =  "\(count!)"
                 
                 //updating count in FeedsData
-                var cnt = Int((data?.foodieFollowingCount)!)
+                var cnt = Int((data.foodieFollowingCount))
                 cnt = cnt! + 1
-                data?.foodieFollowingCount = "\(cnt!)"
+                data.foodieFollowingCount = "\(cnt!)"
                 
                 //updating local label
-                foodieFollowLbl.text = "\((data?.foodieFollowerCount)!) Followers . \(cnt!) Following"
+                foodieFollowLbl.text = "\((data.foodieFollowerCount)) Followers . \(cnt!) Following"
             }
 
         }
@@ -156,12 +200,12 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
                 self.myProfile.userFollwing =  "\(count!)"
                 
                 //updating count in FeedsData
-                var cnt = Int((data?.foodieFollowingCount)!)
+                var cnt = Int((data.foodieFollowingCount))
                 cnt = cnt! - 1
-                data?.foodieFollowingCount = "\(cnt!)"
+                data.foodieFollowingCount = "\(cnt!)"
                 
                 //updating local label
-                foodieFollowLbl.text = "\((data?.foodieFollowerCount)!) Followers . \(cnt!) Following"
+                foodieFollowLbl.text = "\((data.foodieFollowerCount)) Followers . \(cnt!) Following"
             }
         }
     }
@@ -174,8 +218,13 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         let photosCntl:LFPhotosViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFPhotosViewController") as! LFPhotosViewController
         photosCntl.title = "PHOTOS"
         photosCntl.isMyPosts = false
-        photosCntl.userEmail = self.selectedFoodie.foodieEmail
         
+        if isFromHome{
+            photosCntl.userEmail = foodiesArr[0].foodieEmail
+        }else{
+            photosCntl.userEmail = self.selectedFoodie.foodieEmail
+        }
+
         controllerArray.append(photosCntl)
         
         let favoriteCntl : LFFavouriteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFFavouriteViewController") as! LFFavouriteViewController
