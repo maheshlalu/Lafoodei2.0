@@ -55,12 +55,12 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         locManager.requestWhenInUseAuthorization()
         
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            currentLocation = locManager.location
-//            print(currentLocation.coordinate.latitude)
-//            print(currentLocation.coordinate.longitude)
-        }
+//        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+//            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+//            currentLocation = locManager.location
+////            print(currentLocation.coordinate.latitude)
+////            print(currentLocation.coordinate.longitude)
+//        }
         
     }
     
@@ -118,7 +118,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.feedsArray = [LFFeedsData]()
         self.isInitialLoad = true
         self.page = "1"
-        self.serviceAPICall(PageNumber: page, PageSize: "10")
+        self.serviceAPICall(PageNumber: page, PageSize: "5")
     }
     
     
@@ -135,9 +135,19 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             try! relamInstance.write({
                 relamInstance.delete(likesData)
             })
+        }
+    }
+    
+  //MARK: Checking location authentication
+    func checklocationAuthentication(){
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            currentLocation = locManager.location
+            print(currentLocation.coordinate.latitude)
+            print(currentLocation.coordinate.longitude)
             
         }
-        
+    
     }
     
     //MARK: calling home data from service
@@ -145,46 +155,71 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     {
         
         if isNearByFeed{
-            self.deleteTheFeedsInDatabase()
-            LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
-            LFFireBaseDataService.sharedInstance.addPostObserver()
-            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-            LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
-                self.isPageRefreshing = false
+        //self.checklocationAuthentication()
+            
+            // checking location authentication
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+                currentLocation = locManager.location
+                let lat: Double = currentLocation.coordinate.latitude
+                let latstr: String = String(format:"%f", lat)
                 
-                let lastIndexOfArr = self.feedsArray.count - 1
-                if !resultFeeds.isEmpty {
-                    self.feedsArray.append(contentsOf: resultFeeds)
-                    
-                    // if it is Initial Load
-                    if self.isInitialLoad {
-                        self.homeTableView.reloadData()
-                    } else {
-                        // if using page nation
-                        let indexArr = NSMutableArray()
-                        let indexSet = NSMutableIndexSet()
+                let long: Double = currentLocation.coordinate.longitude
+                let longstr: String = String(format:"%f", long)
+                let neardbystr: String = latstr + "|" + longstr + "|" + "200"
+                print("location \(neardbystr)")
+                LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+                LFFireBaseDataService.sharedInstance.addPostObserver()
+                CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+                
+                //LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
+                // sample test lat and long "36.976042| -121.582814|5"
+                LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
+                    self.isPageRefreshing = false
+                    let lastIndexOfArr = self.feedsArray.count - 1
+                    if !resultFeeds.isEmpty {
+                        self.feedsArray.append(contentsOf: resultFeeds)
                         
-                        for i in 1...resultFeeds.count {
-                            let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
-                            indexSet.add(lastIndexOfArr + i)
-                            indexArr.add(index)
+                        print("nearByFeed Count\(self.feedsArray.count)")
+                        
+                        // if it is Initial Load
+                        if self.isInitialLoad {
+                            self.homeTableView.reloadData()
+                        } else {
+                            // if using page nation
+                            let indexArr = NSMutableArray()
+                            let indexSet = NSMutableIndexSet()
+                            
+                            for i in 1...resultFeeds.count {
+                                let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                                indexSet.add(lastIndexOfArr + i)
+                                indexArr.add(index)
+                            }
+                            self.homeTableView.beginUpdates()
+                            self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                            self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                            self.homeTableView.endUpdates()
                         }
-                        self.homeTableView.beginUpdates()
-                        self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
-                        self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
-                        self.homeTableView.endUpdates()
+                        
                     }
                     
+                    self.refreshControl.endRefreshing()
+                    self.homeTableView.reloadData()
                 }
+
                 
-                self.refreshControl.endRefreshing()
+            }else{
+                self.showAlertView(status: 1)
+                self.homeTableView.reloadData()
+            print("Not get lat and long data")
             }
-        }else{
+    }else{
             self.deleteTheFeedsInDatabase()
             LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
             LFFireBaseDataService.sharedInstance.addPostObserver()
             CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-            LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:false) { (resultFeeds) in
+           // LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:false) { (resultFeeds) in
+            LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: false, nearByMallsLatLong: ""){ (resultFeeds) in
                 self.isPageRefreshing = false
                 
                 let lastIndexOfArr = self.feedsArray.count - 1
@@ -215,6 +250,44 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 self.refreshControl.endRefreshing()
             }
         }
+    }
+    
+    //MARK: AlertView for Locations
+    func showAlertView(status:Int) {
+        let alert = UIAlertController(title:"Turn On Location Services to Allow \"LeFoodies\" to Determine Your Location", message:"", preferredStyle: UIAlertControllerStyle.alert)
+        let ok = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil)
+        let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            if status == 1 {
+                guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                    return
+                }
+                
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+                
+            }else{
+                
+            }
+        }
+       
+        alert.addAction(okAction)
+         alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        
+        let currentLocation : CLLocation = newLocation
+        
+        
+        print(" latitude \(currentLocation.coordinate.latitude)")
+        print("longitude \(currentLocation.coordinate.longitude)")
+       
+        
     }
     
     //MARK: TableView DataSource Methods
@@ -267,7 +340,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
-            cell.photoDescriptionLbl.text = "wanderireland@travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
+            //cell.photoDescriptionLbl.text = "wanderireland@travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
             return cell
         }
     }
@@ -382,7 +455,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return 320
             
         }else if indexPath.row == 2 {
-            return 100
+            return 50
             
         }
         return 0
@@ -414,24 +487,20 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     @IBAction func Segment_Clicked(_ sender: UISegmentedControl) {
         
-        switch sender.selectedSegmentIndex
-        {
+        switch sender.selectedSegmentIndex{
         case 0:
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: nil, completion: nil)
-            // (sender.subviews[0] as UIView).tintColor = UIColor.black
+            isNearByFeed = false
+            self.isInitialLoad = true
+            self.updatedFeed()
+            //self.homeTableView.reloadData()
             
-            
-            // print("Home selected")
-        //show popular view
         case 1:
-            
-            //  print("near selected")
-            
             // (sender.subviews[0] as UIView).tintColor = UIColor.black
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
             isNearByFeed = true
-            homeTableView.reloadData()
-        //show history view
+            self.updatedFeed()
+            
         default:
             break;
         }
@@ -443,7 +512,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 extension LFHomeViewController{
     func actionAlertSheet(sender:UIButton)
     {
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
         let feeds = self.feedsArray[sender.tag]
+        
         let alert = UIAlertController()
         alert.addAction(UIAlertAction(title: "Flag/Report", style: .destructive, handler: { (action) in
             
@@ -488,6 +560,35 @@ extension LFHomeViewController{
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         }))
+        
+        if myProfile.userEmail == feeds.feedUserEmail
+            //
+            alert.addAction(UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) in
+                //http://35.160.251.153:8081/jobs/jobToDelete? jobId =1748
+                //{"myHashMap":{"status":"1","success":"Successfully deleted"}}
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.deletePostOfUser(), parameters: ["jobId":feeds.feedID as AnyObject]) { (responseDict) in
+                    print(responseDict)
+                    let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                    if status == 1{
+                        self.showAlert("", status: status)
+                        //self.homeTableView.deleteSections([sender.tag] as IndexSet, with: .none)
+                        self.homeTableView.reloadData()
+                        
+                    }else{
+                        print("something went wrong")
+                    }
+                }
+            }))
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(_ message:String, status:Int) {
+        let alert = UIAlertController(title: "Success!!!", message:"Post successfully deleted!!!" , preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+        }
+        alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
     

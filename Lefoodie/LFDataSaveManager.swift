@@ -89,7 +89,7 @@ class LFDataSaveManager: NSObject {
    
 
     }
-    
+    //MARK: Save HomeFeed Data
     func saveHomeFeedsInDB(list:[LFFeedsData]){
        
         //Get user ID
@@ -128,6 +128,47 @@ class LFDataSaveManager: NSObject {
         }
 
     }
+    
+    //MARK: SaveNearFeedData
+    func saveNearFeedsInDB(list:[LFFeedsData]){
+        
+        //Get user ID
+        
+        let relamInstance = try! Realm()
+        let myProfile = try! Realm().objects(LFMyProfile.self).first
+        
+        for feedData in list {
+            let userData = relamInstance.objects(LFHomeFeeds.self).filter("feedID=='\(feedData.feedID)'")
+            self.saveTheUserLikedPosts(feedData: feedData, userId: (myProfile?.Mac_userId)!)
+            LFFireBaseDataService.sharedInstance.addPostActivity(isUpdateComment: false, isLikeCount: true, isFavorites: false, postID: feedData.feedID)
+            
+            if userData.count == 0 {
+                //Insert The Data
+                try! relamInstance.write({
+                    let homeFeed = LFHomeFeeds()
+                    homeFeed.feedID = feedData.feedID
+                    homeFeed.feedItemCode = feedData.feedItemCode
+                    homeFeed.feedCreatedDate = feedData.feedCreatedDate
+                    homeFeed.feedModificationDate = feedData.feedModificationDate
+                    homeFeed.feedName = feedData.feedName
+                    homeFeed.feedImage = feedData.feedImage
+                    homeFeed.feedDescription = feedData.feedDescription
+                    homeFeed.feedFavaouritesCount = feedData.feedFavaouritesCount
+                    homeFeed.feedCommentsCount = feedData.feedCommentsCount
+                    homeFeed.feedLikesCount = feedData.feedLikesCount
+                    homeFeed.feedIDMallID = feedData.feedIDMallID
+                    homeFeed.feedIDMallName = feedData.feedIDMallName
+                    homeFeed.feedIDMallImage = feedData.feedIDMallImage
+                    homeFeed.feedUserName = feedData.feedUserName
+                    homeFeed.feedUserImage = feedData.feedUserImage
+                    homeFeed.feedUserEmail = feedData.feedUserEmail
+                    relamInstance.add(homeFeed)
+                })
+            }
+        }
+        
+    }
+
     
     func saveTheUserLikedPosts(feedData:LFFeedsData,userId:String){
         

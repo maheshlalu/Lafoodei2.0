@@ -1,3 +1,4 @@
+
 //
 //  LFDataManager.swift
 //  Lefoodie
@@ -128,14 +129,12 @@ extension LFDataManager{
     //    func serviceAPICall(PageNumber: NSString, PageSize: NSString)
 
     //MARK: Get all home feeds from server
-    func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,isNearByFeed:Bool,completion:@escaping ([LFFeedsData])->Void){
+    func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,isNearByFeed:Bool,nearByMallsLatLong:String, completion:@escaping ([LFFeedsData])->Void){
         
         if isNearByFeed{
             
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getNearByFeed(),parameters:["type":"User Posts" as AnyObject,"NearByMalls":"36.976042| -121.582814|5" as AnyObject]) { (responceDic
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getNearByFeed(),parameters:["type":"User Posts" as AnyObject,"NearByMalls":nearByMallsLatLong as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
                 ) in
-                // print("Get Data is \(responceDic)")
-                
                 let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
                 var feedsList = [LFFeedsData]()
                 for resData in orgs{
@@ -143,17 +142,15 @@ extension LFDataManager{
                     feedsList.append(restaurants)
                 }
                 
-                //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
-                LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
-                
-                // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+                LFDataSaveManager.sharedInstance.saveNearFeedsInDB(list: feedsList)
+                self.getAllFoodies()
                 completion(feedsList)
+                
                 CXDataService.sharedInstance.hideLoader()
             }
         }else{
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
                 ) in
-                // print("Get Data is \(responceDic)")
                 
                 let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
                 var feedsList = [LFFeedsData]()
@@ -161,11 +158,8 @@ extension LFDataManager{
                     let restaurants = LFFeedsData(json: JSON(resData))
                     feedsList.append(restaurants)
                 }
-                
-                //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
                 LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
-                
-                // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+                self.getAllFoodies()
                 completion(feedsList)
                 CXDataService.sharedInstance.hideLoader()
             }
@@ -240,6 +234,21 @@ extension LFDataManager{
             }
             completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
+        }
+    }
+    //MARK: getAllFoodies
+    
+    func getAllFoodies(){
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "type":"MacIdInfo" as AnyObject,"keyWord":"" as AnyObject]) { (responceDic
+            ) in
+            print("Search Data is \(responceDic)")
+            let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+            var feedsList = [SearchFoodies]()
+            for resData in orgs{
+                let restaurants = SearchFoodies(json: JSON(resData))
+                feedsList.append(restaurants)
+            }
+            LFDataSaveManager.sharedInstance.saveFoodieDetailsInDB(foodiesData: feedsList)
         }
     }
     

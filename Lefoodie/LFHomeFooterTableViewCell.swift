@@ -44,9 +44,20 @@ class LFHomeFooterTableViewCell: UITableViewCell {
         else {
             self.likeBtn.isSelected = true
         }
-        self.likesLabel.text = (data?.feedLikesCount)! + " Likes"
-        self.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
-        self.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
+        print("Likes Data \(data?.feedLikesCount)")
+        print("Comment Data \(data?.feedCommentsCount)")
+        print("Favorate Data \(data?.feedFavaouritesCount)")
+        if data?.feedLikesCount == nil || data?.feedCommentsCount == nil || data?.feedFavaouritesCount == nil {
+            self.likesLabel.text = "0" + " Likes"
+            self.commentsLabel.text = "0" + " Comments"
+            self.favouritesLabel.text = "0" + " Favorites"
+            
+        }else{
+            self.likesLabel.text = (data?.feedLikesCount)! + " Likes"
+            self.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
+            self.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
+        }
+        
         self.selectionStyle = .none
     }
 }
