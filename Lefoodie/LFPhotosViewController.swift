@@ -22,6 +22,11 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     var subAdminId: String!
     var photosList = [LFFeedsData]()
     var userPhotosList : Results<LFUserPhotos>!
+    var refreshControl : UIRefreshControl!
+    var isPageRefreshing = Bool()
+    var page = String()
+    var lastIndexPath = IndexPath()
+    var isInitialLoad = Bool()
 
     
     var intrinsicContentSize: CGSize {
@@ -34,26 +39,28 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         self.photoCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 180, right: 0)
         self.automaticallyAdjustsScrollViewInsets = false
         photoCollectionView.setContentOffset(CGPoint.zero, animated: true)
+        photoCollectionView.isPagingEnabled = true
         
         let nib = UINib(nibName: "LFPhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(nib, forCellWithReuseIdentifier: "LFPhotoCollectionViewCell")
         self.view.backgroundColor = UIColor.white
+        
         if self.title == "PHOTOS" {
             self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts)
         }else {
-            getTheRestaurantFoodiePhotos(id: subAdminId)
+            addThePullTorefresh()
+            isMyPosts = false
+            page = "1"
+            isInitialLoad = true
+            self.serviceAPICall(id:subAdminId ,PageNumber: page, PageSize: "10")
         }
-        
-
     }
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int
-    {
+    func numberOfSections(in collectionView: UICollectionView) -> Int{
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         if isMyPosts {
             if (self.userPhotosList != nil) {
                 return self.userPhotosList.count
@@ -61,12 +68,10 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
             return 0
         }else{
             return self.photosList.count
- 
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell:LFPhotoCollectionViewCell = (collectionView.dequeueReusableCell(withReuseIdentifier: "LFPhotoCollectionViewCell", for: indexPath)as? LFPhotoCollectionViewCell)!
         
         if isMyPosts {
@@ -107,6 +112,30 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         canScrollToTop = false
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        //Bottom Refresh
+        if self.title == "PHOTOS" {
+        }else {
+            if scrollView == photoCollectionView{
+                
+                if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+                {
+                    print("scroll did reached down")
+                    if isPageRefreshing == false {
+                        isPageRefreshing=true
+                        var num = Int(page)
+                        num = num! + 1
+                        page = "\(num!)"
+                        isInitialLoad = false
+                        self.serviceAPICall(id:subAdminId,PageNumber: page, PageSize: "10")
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset: CGPoint = scrollView.contentOffset
         if currentOffset.y >= 0 {
@@ -124,6 +153,7 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
 
 
 extension LFPhotosViewController{
+    
     func getTheUserPostedPhots(email:String,isMyposts:Bool){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: true, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
@@ -138,43 +168,61 @@ extension LFPhotosViewController{
         }
     }
     
-   //http://35.160.251.153:8081/Services/getMasters?type=User%20Posts&mallId=2&consumerId=6&myJobs=true
-    func getTheRestaurantFoodiePhotos(id:String){
-        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"mallId":CXAppConfig.sharedInstance.getAppMallID() as AnyObject, "consumerId":id as AnyObject, "myJobs":"true" as AnyObject]) { (responseDict) in
-            CXDataService.sharedInstance.hideLoader()
-            let orgs : NSArray = (responseDict.value(forKey: "jobs") as?NSArray)!
-            var feedsList = [LFFeedsData]()
-            for resData in orgs{
-                let restaurants = LFFeedsData(json:JSON(resData))
-                feedsList.append(restaurants)
-            }
-            print(feedsList, feedsList.count)
-            self.photosList = feedsList
-            self.photoCollectionView.reloadData()
-            
-            //macIdInfodetails
-            
-//            var restarurantsLists = [Restaurants]()
-//            for resData in orgs{d
-//                let restaurants = Restaurants(json: JSON(resData))
-//                restarurantsLists.append(restaurants)
-//            }
-            
+    func deleteTheFeedsInDatabase(){
+        if page == "1" {
+            let relamInstance = try! Realm()
+            let feedData = relamInstance.objects(LFHomeFeeds.self)
+            try! relamInstance.write({
+                relamInstance.delete(feedData)
+            })
         }
+    }
+    
+    func addThePullTorefresh(){
+        self.refreshControl = UIRefreshControl()
+        //self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        //self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        self.photoCollectionView.addSubview(self.refreshControl)
+        //self.homeTableView.tintColor = CXAppConfig.sharedInstance.getAppTheamColor()
+    }
+    
+    func refresh(sender:UIRefreshControl) {
+        self.photosList = [LFFeedsData]()
+        self.isInitialLoad = true
+        self.page = "1"
+        self.serviceAPICall(id:subAdminId,PageNumber: page, PageSize: "10")
+    }
+    
+    func serviceAPICall(id:String,PageNumber: String, PageSize: String){
+        self.deleteTheFeedsInDatabase()
         
-        
-        //LFDataManager.sharedInstance.getUserPosts(userEmail: id, myPosts: true, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
-            //            CXDataService.sharedInstance.hideLoader()
-            //            if isMyposts {
-            //                let realm = try! Realm()
-            //                self.userPhotosList = realm.objects(LFUserPhotos.self)
-            //            }else{
-            //                self.photosList = feedsResults;
-            //            }
-            //            self.photoCollectionView.reloadData()
-        //}
-        
+        LFDataManager.sharedInstance.getTheRFoodiePhotoFeed(id: subAdminId, pageNumber: PageNumber, pageSize: PageSize) { (resultFeeds) in
+            self.isPageRefreshing = false
+            let lastIndexOfArr = self.photosList.count - 1
+            if !resultFeeds.isEmpty {
+                self.photosList.append(contentsOf: resultFeeds)
+                
+                // if it is Initial Load
+                if self.isInitialLoad {
+                    self.photoCollectionView.reloadData()
+                } else {
+                    // if using page nation
+                    let indexArr = NSMutableArray()
+                    let indexSet = NSMutableIndexSet()
+                    
+                    for i in 1...resultFeeds.count {
+                        let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                        indexSet.add(lastIndexOfArr + i)
+                        indexArr.add(index)
+                    }
+                    print(indexArr.description)
+                    print(indexSet)
+                    self.photoCollectionView.reloadData()
+                    //self.photoCollectionView.insertItems(at:indexArr as [IndexPath])
+                }
+            }
+            CXDataService.sharedInstance.hideLoader()
+        }
     }
 }
 

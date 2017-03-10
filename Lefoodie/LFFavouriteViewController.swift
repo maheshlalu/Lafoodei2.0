@@ -37,18 +37,13 @@ class LFFavouriteViewController: UIViewController,UICollectionViewDataSource,UIC
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return 5
-        
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LFFavouritesCollectionViewCell", for: indexPath)as? LFFavouritesCollectionViewCell
         return cell!
-        
     }
     
     
