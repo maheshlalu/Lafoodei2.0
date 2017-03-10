@@ -275,13 +275,6 @@ extension LFUserProfileViewController {
     
     func getRestaurantDetails(email:String,id:String){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-//        print(email,id)
-//        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"MacIdInfo" as AnyObject,"mallId":id as AnyObject,"keyWord":email as AnyObject]) { (responseDict) in
-//            print(responseDict)
-//
-//        }
-//        
-    
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"singleMall" as AnyObject,"mallId":id as AnyObject]) { (responseDict) in
             print(responseDict)
             //responseDict.value(forKeyPath: "orgs.logo")
@@ -290,6 +283,7 @@ extension LFUserProfileViewController {
             let dict = imgArr[0] as! NSDictionary
             
             self.userPic.setImageWith(NSURL(string:dict.value(forKey: "logo") as! String) as URL!, usingActivityIndicatorStyle: .white)
+            self.userFirstNameLbl.text = dict.value(forKey: "name") as? String
         }
     }
 }
