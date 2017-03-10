@@ -57,21 +57,24 @@ class  LFFeedsData{
         feedIDMallEmail = (mallIIDJson["email"]?.stringValue)!
         
        // let userDataJsonStr: String = json["macIdInfodetails"].stringValue
-        if json["macIdInfodetails"].stringValue.characters.count == 0 {
-            print(">>> Empty data")
+        
+        let macIdDetails = json["macIdInfodetails"]
+        print(macIdDetails.dictionary?.keys.count as Any)
+        if macIdDetails.dictionary?.keys.count == nil  {
             
+            print(">>> Empty data")
             feedUserName = ""
             feedUserEmail = ""
             feedUserImage = ""
             feedJson = json
+            
         }else{
-        
+            
         let userDataJson  = json["macIdInfodetails"].dictionary! as [String:JSON]
         feedUserName = json["createdByFullName"].stringValue
         feedUserEmail = (userDataJson["email"]?.stringValue)!
         feedUserImage = (userDataJson["image"]?.stringValue)!
         feedJson = json
-            
         }
     }
 }

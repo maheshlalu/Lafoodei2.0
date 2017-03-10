@@ -561,7 +561,7 @@ extension LFHomeViewController{
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         }))
         
-        if myProfile.userEmail == feeds.feedUserEmail
+        if myProfile.userEmail == feeds.feedUserEmail{
             //
             alert.addAction(UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) in
                 //http://35.160.251.153:8081/jobs/jobToDelete? jobId =1748

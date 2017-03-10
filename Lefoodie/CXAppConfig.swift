@@ -173,8 +173,11 @@ class CXAppConfig {
         return config!.value(forKey: "userFollow") as! String
 
     }
-    
-    
+    //deleteFeed
+    func deletePostOfUser()-> String{
+        return config!.value(forKey: "deleteFeed") as! String
+        
+    }
     //userUnFollow
     
     func getUserUnFollowApi()-> String{

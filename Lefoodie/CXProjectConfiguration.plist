@@ -83,6 +83,8 @@
 	<string>Services/deleteJobInstanceOrActivity?</string>
 	<key>getUserFollowers</key>
 	<string>MobileAPIs/getFollowers?</string>
+	<key>deleteFeed</key>
+	<string>jobs/jobToDelete?</string>
 	<key>getUserFollowings</key>
 	<string>MobileAPIs/getFollowing?</string>
 	<key>updatePostLike</key>
