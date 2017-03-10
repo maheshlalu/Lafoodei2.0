@@ -18,8 +18,9 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import FBSDKShareKit
 import Social
+import MapKit
 
-class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
+class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate,CLLocationManagerDelegate {
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var homeTableView: UITableView!
     var Arr_Main = NSMutableArray()
@@ -35,6 +36,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var visiblePostID : String!
     var visibleIndex : Int!
     var LFTabHomeController:LFTabHomeController!
+    var locManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    var isNearByFeed: Bool = false
+
     
     override func viewDidLoad() {
         
@@ -48,6 +53,14 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         isInitialLoad = true
         self.serviceAPICall(PageNumber: page, PageSize: "10")
         NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
+        locManager.requestWhenInUseAuthorization()
+        
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            currentLocation = locManager.location
+//            print(currentLocation.coordinate.latitude)
+//            print(currentLocation.coordinate.longitude)
+        }
         
     }
     
@@ -130,41 +143,78 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //MARK: calling home data from service
     func serviceAPICall(PageNumber: String, PageSize: String)
     {
-        self.deleteTheFeedsInDatabase()
-        LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
-        LFFireBaseDataService.sharedInstance.addPostObserver()
-        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID()) { (resultFeeds) in
-            self.isPageRefreshing = false
-            
-            let lastIndexOfArr = self.feedsArray.count - 1
-            if !resultFeeds.isEmpty {
-                self.feedsArray.append(contentsOf: resultFeeds)
+        
+        if isNearByFeed{
+            self.deleteTheFeedsInDatabase()
+            LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+            LFFireBaseDataService.sharedInstance.addPostObserver()
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+            LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
+                self.isPageRefreshing = false
                 
-                // if it is Initial Load
-                if self.isInitialLoad {
-                    self.homeTableView.reloadData()
-                } else {
-                    // if using page nation
-                    let indexArr = NSMutableArray()
-                    let indexSet = NSMutableIndexSet()
+                let lastIndexOfArr = self.feedsArray.count - 1
+                if !resultFeeds.isEmpty {
+                    self.feedsArray.append(contentsOf: resultFeeds)
                     
-                    for i in 1...resultFeeds.count {
-                        let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
-                        indexSet.add(lastIndexOfArr + i)
-                        indexArr.add(index)
+                    // if it is Initial Load
+                    if self.isInitialLoad {
+                        self.homeTableView.reloadData()
+                    } else {
+                        // if using page nation
+                        let indexArr = NSMutableArray()
+                        let indexSet = NSMutableIndexSet()
+                        
+                        for i in 1...resultFeeds.count {
+                            let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                            indexSet.add(lastIndexOfArr + i)
+                            indexArr.add(index)
+                        }
+                        self.homeTableView.beginUpdates()
+                        self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                        self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                        self.homeTableView.endUpdates()
                     }
-                    self.homeTableView.beginUpdates()
-                    self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
-                    self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
-                    self.homeTableView.endUpdates()
+                    
                 }
                 
+                self.refreshControl.endRefreshing()
             }
-            
-            self.refreshControl.endRefreshing()
+        }else{
+            self.deleteTheFeedsInDatabase()
+            LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+            LFFireBaseDataService.sharedInstance.addPostObserver()
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+            LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:false) { (resultFeeds) in
+                self.isPageRefreshing = false
+                
+                let lastIndexOfArr = self.feedsArray.count - 1
+                if !resultFeeds.isEmpty {
+                    self.feedsArray.append(contentsOf: resultFeeds)
+                    
+                    // if it is Initial Load
+                    if self.isInitialLoad {
+                        self.homeTableView.reloadData()
+                    } else {
+                        // if using page nation
+                        let indexArr = NSMutableArray()
+                        let indexSet = NSMutableIndexSet()
+                        
+                        for i in 1...resultFeeds.count {
+                            let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                            indexSet.add(lastIndexOfArr + i)
+                            indexArr.add(index)
+                        }
+                        self.homeTableView.beginUpdates()
+                        self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                        self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                        self.homeTableView.endUpdates()
+                    }
+                    
+                }
+                
+                self.refreshControl.endRefreshing()
+            }
         }
-        
     }
     
     //MARK: TableView DataSource Methods
@@ -172,11 +222,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return self.feedsArray.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 3
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -382,13 +429,16 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             // (sender.subviews[0] as UIView).tintColor = UIColor.black
             UIView.transition(with: self.homeTableView, duration: 1.0, options: UIViewAnimationOptions.transitionFlipFromRight, animations: nil, completion: nil)
-            
+            isNearByFeed = true
+            homeTableView.reloadData()
         //show history view
         default:
             break;
         }
     }
 }
+
+//MARK: NearbyFeed Calling
 
 extension LFHomeViewController{
     func actionAlertSheet(sender:UIButton)

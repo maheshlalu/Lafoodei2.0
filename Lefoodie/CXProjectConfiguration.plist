@@ -75,6 +75,8 @@
 	<string>MobileAPIs/getPostedAnswers?</string>
 	<key>getHomeFeeds</key>
 	<string>MobileAPIs/getUserPosts?</string>
+	<key>getNearByFeeds</key>
+	<string>Services/getNearestMallFeeds?</string>
 	<key>userFollow</key>
 	<string>Services/createORGetJobInstance?</string>
 	<key>userUnFollow</key>

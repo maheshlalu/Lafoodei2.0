@@ -161,6 +161,11 @@ class CXAppConfig {
         return config!.value(forKey: "getHomeFeeds") as! String
     }
     
+    // get NearByFeed
+    func getNearByFeed() -> String {
+        return config!.value(forKey: "getNearByFeeds") as! String
+    }
+    
     
     //userFollow
     

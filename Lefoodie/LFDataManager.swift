@@ -128,25 +128,68 @@ extension LFDataManager{
     //    func serviceAPICall(PageNumber: NSString, PageSize: NSString)
 
     //MARK: Get all home feeds from server
-    func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,completion:@escaping ([LFFeedsData])->Void){
+    func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,isNearByFeed:Bool,completion:@escaping ([LFFeedsData])->Void){
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
-            ) in
-           // print("Get Data is \(responceDic)")
+        if isNearByFeed{
             
-            let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getNearByFeed(),parameters:["type":"User Posts" as AnyObject,"NearByMalls":"36.976042| -121.582814|5" as AnyObject]) { (responceDic
+                ) in
+                // print("Get Data is \(responceDic)")
+                
+                let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+                var feedsList = [LFFeedsData]()
+                for resData in orgs{
+                    let restaurants = LFFeedsData(json: JSON(resData))
+                    feedsList.append(restaurants)
+                }
+                
+                //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
+                LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
+                
+                // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+                completion(feedsList)
+                CXDataService.sharedInstance.hideLoader()
+            }
+        }else{
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: ["email":userEmail as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
+                ) in
+                // print("Get Data is \(responceDic)")
+                
+                let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+                var feedsList = [LFFeedsData]()
+                for resData in orgs{
+                    let restaurants = LFFeedsData(json: JSON(resData))
+                    feedsList.append(restaurants)
+                }
+                
+                //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
+                LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
+                
+                // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
+                completion(feedsList)
+                CXDataService.sharedInstance.hideLoader()
+            }
+        }
+    }
+ 
+    //MARK: Get all Restaurant Foodie Photos feeds from server
+    func getTheRFoodiePhotoFeed(id:String, pageNumber:String,pageSize:String,completion:@escaping ([LFFeedsData])->Void){
+        print(id,pageNumber,pageSize)
+        let num = Int(id)
+        let subAdminId = String(num! + 1)
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"mallId":id as AnyObject, "subAdminId":subAdminId as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responseDict) in
+            let orgs : NSArray = (responseDict.value(forKey: "jobs") as?NSArray)!
             var feedsList = [LFFeedsData]()
             for resData in orgs{
-                let restaurants = LFFeedsData(json: JSON(resData))
+                let restaurants = LFFeedsData(json:JSON(resData))
                 feedsList.append(restaurants)
             }
-           
- //           LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
+            
             LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
-
-           // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
             completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
+            
         }
     }
     

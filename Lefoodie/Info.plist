@@ -59,6 +59,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires access to the camera.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Get Latitude and longtude </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires access to the photo library.</string>
 	<key>UIAppFonts</key>
