@@ -661,8 +661,7 @@ extension LFDataManager{
                 let restaurants = LFFeedsData(json: JSON(resData))
                 feedsList.append(restaurants)
             }
-            LFDataSaveManager.sharedInstance.saveHashTagInDB(list: feedsList)
-            self.getAllFoodies()
+            LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
             completion(feedsList)
             // print("response Data >>>>> \(responceDic)")
             CXDataService.sharedInstance.hideLoader()
