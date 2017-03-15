@@ -7,7 +7,12 @@
 //
 
 import UIKit
-
+import RealmSwift
+import TMTumblrSDK
+import FBSDKCoreKit
+import FBSDKShareKit
+import TwitterKit
+import OAuthSwift
 class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     
  
@@ -20,10 +25,19 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     var popUpTableView : UITableView! = nil
     var topLabel : UILabel! = nil
     var topOkBtn : UIButton! = nil
-    var tempArray = NSArray()
+    var hashTagsList : Results<LFHashTags>!
     var descTextView = UITextView()
+    var tempArray = NSArray()
+    
+    var atTheRateArray = NSMutableArray()
+    var hashArray = NSMutableArray()
 
     var isHashGenerated = Bool()
+    
+    var isFb:Bool = false
+    var isTwitter:Bool = false
+    var isTumbler:Bool = false
+    var isFlickr:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +95,10 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             return 1
         }
         else {
-            return tempArray.count
+            if hashTagsList == nil {
+                return 0
+            }
+            return hashTagsList.count
         }
         
     }
@@ -126,6 +143,12 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
                 
             }else if indexPath.section == 3{
                 let cellSocialShare = tableView.dequeueReusableCell(withIdentifier: "LFSocialShareTableViewCell", for: indexPath)as? LFSocialShareTableViewCell
+                
+                cellSocialShare?.fbBtn.addTarget(self, action: #selector(fbBtnAction), for: .touchUpInside)
+                cellSocialShare?.TwittrBtn.addTarget(self, action: #selector(twitterBtnAction), for: .touchUpInside)
+                cellSocialShare?.tumblrBtn.addTarget(self, action: #selector(tumblrBtnAction), for: .touchUpInside)
+                cellSocialShare?.flickrBtn.addTarget(self, action: #selector(flickrBtnAction), for: .touchUpInside)
+                
                 return cellSocialShare!
                 
             }else if indexPath.section == 2 {
@@ -146,7 +169,8 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         }
         else {
             let cell = UITableViewCell()
-            cell.textLabel?.text = tempArray[indexPath.row] as! String
+            let hashTag = hashTagsList[indexPath.row]
+            cell.textLabel?.text = "#\(hashTag.name)"
             return cell
 
         }
@@ -190,7 +214,8 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             arr.removeLast()
             let arr2 = arr as NSArray
             let obj = arr2.componentsJoined(by: " ")
-            descTextView.text = "\(obj) \(char!)\(tempArray[indexPath.row])"
+            let hashTag = hashTagsList[indexPath.row]
+            descTextView.text = "\(obj) \(char!)\(hashTag.name)"
         }
     }
     
@@ -232,23 +257,23 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             dict.setObject(cell.postDescTxtView.text!, forKey: "Name" as NSCopying)
             dict.setObject(imgStr, forKey: "Image" as NSCopying)
             dict.setObject(restarurnat.restaurantID, forKey: "storeId" as NSCopying)
-            //dict.setObject(mobile, forKey: "Phone Number" as NSCopying
-            LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
+            dict.setObject(String.construcThetagString(array: self.hashArray,isAddTag:true), forKey: "Hashtags" as NSCopying)
+            
+            LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, hastTagString:String.construcThetagString(array: self.hashArray,isAddTag:false),completion: { (success) in
                 //  print(success)
-                
+                self.ShareOnSocialMedia()
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
                 self.dismiss(animated: true, completion: nil)
             })
         }
     }
-    
 }
 
 extension LFShareFoodiePicViewController : UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print(text)
-        print(textView.text)
+        //print(text)
+        //print(textView.text)
         
         //while entering text
         if text != ""
@@ -259,17 +284,25 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 if text == "@" || text == "#" || text == " "
                 {
                     isHashGenerated = false
-                    tempArray = NSArray()
+                    self.hashTagsList = nil
                     popUpTableView.reloadData()
                     popUpTableView.backgroundColor = UIColor.black
                     popUpTableView.alpha = 0.5
                 }
                 else
                 {
-                    tempArray = ["Hi","Hello","H r u"]
+                    var str = textView.text.components(separatedBy: " ").last?.appending(text)
+                    if str?[(str?.startIndex)!] == "#" {
+                    str = str?.replace(target: "#", withString: "")
+                    let predicate = NSPredicate.init(format: "name CONTAINS[c] %@",str!)
+                    CXDataService.sharedInstance.showSmallLoader(view: popUpTableView)
+                    let relamInstance = try! Realm()
+                    self.hashTagsList = relamInstance.objects(LFHashTags.self).filter(predicate)
                     popUpTableView.reloadData()
                     popUpTableView.backgroundColor = UIColor.white
                     popUpTableView.alpha = 1
+                    CXDataService.sharedInstance.hideSmallLoader()
+                    }
                 }
 
             }
@@ -297,21 +330,43 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 isHashGenerated = false
             }
             let str = textView.text as String
-            let arr = str.components(separatedBy: " ")
-            let str1 = arr.last! as String
-            let arr1 = str1.components(separatedBy: "@")
-            let arr2 = str1.components(separatedBy: "#")
-            if arr1[0] == "" && arr1.count == 2 && !arr1[1].contains("#") {
+            let str1 = str.components(separatedBy: " ").last
+//            let str1 = arr.last! as String
+            let arr1 = str1?.components(separatedBy: "@")
+            let arr2 = str1?.components(separatedBy: "#")
+            if arr1?[0] == "" && arr1?.count == 2 && !(arr1?[1].contains("#"))! {
+                
                 tempArray = ["Hi","Hello","H r u"]
                 popUpTableView.reloadData()
                 popUpTableView.backgroundColor = UIColor.white
                 popUpTableView.alpha = 1
             }
-            else if arr2[0] == "" && arr2.count == 2 && !arr2[1].contains("@"){
-                tempArray = ["Hi","Hello","H r u"]
-                popUpTableView.reloadData()
-                popUpTableView.backgroundColor = UIColor.white
-                popUpTableView.alpha = 1
+            else if arr2?[0] == "" && arr2?.count == 2 && !(arr2?[1].contains("@"))!{
+               
+                var str = textView.text.components(separatedBy: " ").last
+                if (str?.characters.count)! > 2 {
+                    if str?[(str?.startIndex)!] == "#" {
+                        str = str?.replace(target: "#", withString: "")
+                        let endIndex = str?.index((str?.endIndex)!, offsetBy: -1)
+                        let truncated = str?.substring(to: endIndex!)
+                        let predicate = NSPredicate.init(format: "name CONTAINS[c] %@",truncated!)
+                        let relamInstance = try! Realm()
+                        self.hashTagsList = relamInstance.objects(LFHashTags.self).filter(predicate)
+                        popUpTableView.reloadData()
+                        popUpTableView.backgroundColor = UIColor.white
+                        popUpTableView.alpha = 1
+                    }
+                }
+                else {
+                    //while removing text if user removes last #
+                    if textView.text == "#" {
+                        isHashGenerated = false
+                    }
+                    self.hashTagsList = nil
+                    popUpTableView.reloadData()
+                    popUpTableView.backgroundColor = UIColor.black
+                    popUpTableView.alpha = 0.5
+                }
             }
             else {
                 tempArray = NSArray()
@@ -349,8 +404,6 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
         topOkBtn.removeFromSuperview()
         popUpTableView.removeFromSuperview()
         descTextView.resignFirstResponder()
-        let atTheRateArray = NSMutableArray()
-        let hashArray = NSMutableArray()
         let str = descTextView.text
         let arr = str?.components(separatedBy: " ")
         for obj in arr! {
@@ -392,3 +445,188 @@ extension LFShareFoodiePicViewController{
         }
     }
 }
+
+//MARK: Sahre post on Social Media
+extension LFShareFoodiePicViewController{
+    func fbBtnAction(sender:UIButton){
+        if sender.isSelected{
+            sender.isSelected = false
+            isFb = false
+            print("not selected")
+        }else{
+            isFb = true
+            sender.isSelected = true
+            print("selected")
+        }
+        
+    }
+    
+    func twitterBtnAction(sender:UIButton){
+        if sender.isSelected{
+            sender.isSelected = false
+            isTwitter = false
+            print("not selected")
+        }else{
+            isTwitter = true
+            sender.isSelected = true
+            print("selected")
+        }
+    }
+    
+    func tumblrBtnAction(sender:UIButton){
+        if sender.isSelected{
+            sender.isSelected = false
+            isTumbler = false
+            print("not selected")
+        }else{
+            isTumbler = true
+            sender.isSelected = true
+            print("selected")
+        }
+    }
+    
+    func flickrBtnAction(sender:UIButton){
+        if sender.isSelected{
+            sender.isSelected = false
+            isFlickr = false
+            print("not selected")
+        }else{
+            isFlickr = true
+            sender.isSelected = true
+            print("selected")
+        }
+        
+    }
+    
+    
+    func ShareOnSocialMedia(){
+        
+        if self.isFb{
+            print("fb alive")
+            
+            var params : NSDictionary = NSDictionary()
+            params = ["message" : dict.value(forKey: "Name")!,
+                      "image": Response.value(forKey: "filePath") as! String]
+            let request : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/feed", parameters: params as [NSObject : AnyObject], httpMethod: "POST")
+            request.start(completionHandler: { (connection, result, error) -> Void in
+                
+            })
+            
+            /*        let oauthswift = OAuth2Swift(
+             consumerKey:    serviceParameters["consumerKey"]!,
+             consumerSecret: serviceParameters["consumerSecret"]!,
+             authorizeUrl:   "https://www.facebook.com/dialog/oauth",
+             accessTokenUrl: "https://graph.facebook.com/oauth/access_token",
+             responseType:   "code"
+             )
+             
+             self.oauthswift = oauthswift
+             oauthswift.authorizeURLHandler = getURLHandler()
+             let state = generateState(withLength: 20)
+             let _ = oauthswift.authorize(
+             withCallbackURL: URL(string: "https://oauthswift.herokuapp.com/callback/facebook")!, scope: "public_profile", state: state,
+             success: { credential, response, parameters in
+             self.showTokenAlert(name: serviceParameters["name"], credential: credential)
+             self.testFacebook(oauthswift)
+             }, failure: { error in
+             print(error.localizedDescription, terminator: "")
+             }
+             )*/
+            
+            //let contentTitle = dict.value(forKey: "Name")
+            //let contentImageUrl = Response.value(forKey: "filePath") as! String
+            
+            //let content: FBSDKSharingContent!
+            //content.contentURL = NSURL(string: contentUrl) as URL!
+            //content.contentURL
+            //content.contentTitle = contentTitle as! String!
+            // content.contentDescription = contentDescription
+            //content.imageURL = NSURL(string:contentImageUrl) as URL!
+            //FBSDKShareDialog.show(from: self, with: content, delegate: nil)
+            
+            //                let content:FBSDKShareLinkContent = FBSDKShareLinkContent()
+            //                content.contentTitle = contentTitle as! String!
+            //                content.imageURL = NSURL(string:contentImageUrl) as URL!
+            //                let dialog = FBSDKShareDialog()
+            //                dialog.fromViewController = self
+            //                dialog.shareContent = content
+            //                dialog.mode = FBSDKShareDialogMode.shareSheet
+            //                dialog.show()
+            
+            //                LFDataManager.sharedInstance.sharePost(jsonDic: dict, imageData: NSData() as Data, completion: { (success) in
+            //                    //  print(success)
+            //                    .
+            //                    NotificationCenter.default.post(name: Notification.Name(rawValue: "POST_TO_FEED"), object: nil)
+            //                    self.dismiss(animated: true, completion: nil)
+            //                })
+        }
+        
+        if self.isTwitter{
+            print("twitter alive")
+            
+            let oauthswift = OAuth1Swift(
+                consumerKey:    "WLjk9lBRRsRpAhxIODwqX1XX8",
+                consumerSecret: "ZpTYeWo3gSf0nJACkYILA8hvyLtND8T1QmQJGwibjjERd67uqc",
+                requestTokenUrl: "https://api.twitter.com/oauth/request_token",
+                authorizeUrl:    "https://api.twitter.com/oauth/authorize",
+                accessTokenUrl:  "https://api.twitter.com/oauth/access_token"
+            )
+            let handle = oauthswift.authorize(
+                withCallbackURL: URL(string: "oauth-swift://oauth-callback/twitter")!,
+                success: { credential, response, parameters in
+                    print(credential.oauthToken)
+                    print(credential.oauthTokenSecret)
+                    print(parameters["user_id"]!)
+                    
+                    let composer = TWTRComposer()
+                    
+                    composer.setText("just setting up my Fabric")
+                    composer.setImage(UIImage(named: "fabric"))
+                    
+                    // Called from a UIViewController
+                    composer.show(from: self) { result in
+                        if (result == TWTRComposerResult.cancelled) {
+                            print("Tweet composition cancelled")
+                        }
+                        else {
+                            print("Sending tweet!")
+                        }
+                    }
+            },
+                failure: { error in
+                    print(error.localizedDescription)
+            }
+            )
+            
+        }
+        
+        if self.isTumbler{
+            print("tumbler alive")
+            //
+            //                TMAPIClient.sharedInstance().oAuthConsumerKey = ""
+            //                TMAPIClient.sharedInstance().oAuthConsumerSecret = ""
+            //                TMAPIClient.sharedInstance().oAuthToken = ""
+            //                TMAPIClient.sharedInstance().oAuthTokenSecret = ""
+            //
+            //
+            //                // TODO: Fill in your blog name
+            //                TMAPIClient.sharedInstance().post("", type:imgStr, parameters: ["caption": "Caption"], callback: {( response: Any,  error: Error?) -> Void in
+            //                    if error != nil {
+            //                        print("Error posting to Tumblr")
+            //                    }
+            //                    else {
+            //                        print("Posted to Tumblr")
+            //                    }
+            //                })
+        }
+        
+        if self.isFlickr{
+            print("flickr alive")
+            
+        }
+    }
+    
+}
+
+
+

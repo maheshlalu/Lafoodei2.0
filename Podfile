@@ -27,6 +27,13 @@ pod 'RSKKeyboardAnimationObserver', '1.0.0'
 pod 'RSKPlaceholderTextView', '2.0.0'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
+pod 'FlickrKit'
+pod 'TMTumblrSDK'
+pod 'Flurry-iOS-SDK/FlurrySDK'
+pod 'Flurry-iOS-SDK/FlurryAds'
+pod 'Fabric'
+pod 'TwitterKit'
+pod 'OAuthSwift', '~> 1.1.0'
 
   target 'LefoodieTests' do
     inherit! :search_paths

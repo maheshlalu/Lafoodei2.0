@@ -115,6 +115,40 @@ extension String{
         }
         
     }
+    
+    public static func construcThetagString(array:NSMutableArray,isAddTag:Bool) ->String{
+        //# tagString
+        var hasTagString = ""
+        for tagName in array {
+            if let str = tagName as? String {
+                if  isAddTag {
+                    hasTagString.append(str)
+                    hasTagString.append("|")
+                }else {
+                    hasTagString.append((str.replacingOccurrences(of: "#", with: "")))
+                    hasTagString.append("|")
+                }
+            }
+        }
+        hasTagString.remove(at: hasTagString.index(before: hasTagString.endIndex))
+        return hasTagString
+    }
+    
+    public static func construcTheAtString(array:NSMutableArray) ->String{
+        //# tagString
+        var atString = ""
+        for (index,tagName) in array.enumerated() {
+            if let str = tagName as? String {
+                atString.append((str.replacingOccurrences(of: "@", with: "")))
+                if index != array.count {
+                    atString.append("|")
+                }
+            }
+        }
+        print(atString)
+        return atString
+    }
+    
 // TypeName+NewFunctionality.swift.
 }
 
@@ -130,5 +164,11 @@ extension NSString{
         }
         return jsonDict
     }
+    
+    
+ 
 }
+
+//as! as? is
+
 
