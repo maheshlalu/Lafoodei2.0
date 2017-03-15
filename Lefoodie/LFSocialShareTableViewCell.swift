@@ -9,6 +9,10 @@
 import UIKit
 
 class LFSocialShareTableViewCell: UITableViewCell {
+    @IBOutlet weak var fbBtn: UIButton!
+    @IBOutlet weak var TwittrBtn: UIButton!
+    @IBOutlet weak var tumblrBtn: UIButton!
+    @IBOutlet weak var flickrBtn: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()

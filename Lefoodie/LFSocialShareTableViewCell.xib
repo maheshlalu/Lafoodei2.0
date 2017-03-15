@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,11 +24,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Znf-fJ-7sl">
                                 <rect key="frame" x="0.0" y="0.0" width="295" height="38.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-r8-HRo">
+                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbc-r8-HRo">
                                         <rect key="frame" x="0.0" y="0.0" width="147.5" height="38.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="  Facebook" image="fb">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected" image="fb-1">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSZ-4M-BbT">
@@ -36,6 +39,9 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="  Twitter" image="twitter">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected" image="twitter-1">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
@@ -49,12 +55,18 @@
                                         <state key="normal" title="  Tumblr" image="tmblr">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="selected" image="tmblr-1">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hig-WK-yyc">
                                         <rect key="frame" x="147.5" y="0.0" width="147.5" height="38.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="  Flickr" image="flkr">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected" image="flkr-1">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
@@ -75,13 +87,23 @@
                     <constraint firstAttribute="bottom" secondItem="Hwk-Y5-rWg" secondAttribute="bottom" constant="6.5" id="wnt-35-rX7"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-19" y="-10"/>
+            <connections>
+                <outlet property="TwittrBtn" destination="XSZ-4M-BbT" id="dUF-G3-Fp7"/>
+                <outlet property="fbBtn" destination="dbc-r8-HRo" id="kN2-KH-MhO"/>
+                <outlet property="flickrBtn" destination="hig-WK-yyc" id="og2-Xf-4Ty"/>
+                <outlet property="tumblrBtn" destination="qAN-3z-32x" id="RVr-1f-Ilz"/>
+            </connections>
+            <point key="canvasLocation" x="-639" y="-36"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="fb" width="30" height="30"/>
-        <image name="flkr" width="30" height="30"/>
-        <image name="tmblr" width="30" height="30"/>
-        <image name="twitter" width="30" height="30"/>
+        <image name="fb" width="20" height="20"/>
+        <image name="fb-1" width="20" height="20"/>
+        <image name="flkr" width="20" height="20"/>
+        <image name="flkr-1" width="20" height="20"/>
+        <image name="tmblr" width="20" height="20"/>
+        <image name="tmblr-1" width="20" height="20"/>
+        <image name="twitter" width="20" height="20"/>
+        <image name="twitter-1" width="20" height="20"/>
     </resources>
 </document>

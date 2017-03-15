@@ -131,6 +131,7 @@
 		2B02053A1E5EB85700312AC9 /* LFFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0205391E5EB85700312AC9 /* LFFoodies.swift */; };
 		2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */; };
 		2B02053E1E5F189200312AC9 /* LFLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053D1E5F189200312AC9 /* LFLikes.swift */; };
+		2B0668951E77CCFA009F0E44 /* LFHashTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0668941E77CCFA009F0E44 /* LFHashTags.swift */; };
 		2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */; };
 		2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */; };
 		2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */; };
@@ -305,6 +306,7 @@
 		2B0205391E5EB85700312AC9 /* LFFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodies.swift; sourceTree = "<group>"; };
 		2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeFeeds.swift; sourceTree = "<group>"; };
 		2B02053D1E5F189200312AC9 /* LFLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFLikes.swift; sourceTree = "<group>"; };
+		2B0668941E77CCFA009F0E44 /* LFHashTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTags.swift; sourceTree = "<group>"; };
 		2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
 		2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				2B0205391E5EB85700312AC9 /* LFFoodies.swift */,
 				2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */,
 				2B02053D1E5F189200312AC9 /* LFLikes.swift */,
+				2B0668941E77CCFA009F0E44 /* LFHashTags.swift */,
 			);
 			name = ReleamModel;
 			sourceTree = "<group>";
@@ -1133,6 +1136,7 @@
 				8976AF5A1E49D2A500527555 /* LFsigninobject.swift in Sources */,
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
+				2B0668951E77CCFA009F0E44 /* LFHashTags.swift in Sources */,
 				1225DA311E5DB2D1007951B8 /* LFHotItemTableViewCell.swift in Sources */,
 				121E10941E5F2229001546D0 /* LFCommentViewViewController.swift in Sources */,
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,

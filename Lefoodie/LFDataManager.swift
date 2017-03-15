@@ -96,7 +96,7 @@ extension LFDataManager{
     func getTheAllRestarantsFromServer(completion:@escaping (_ responseDict:[Restaurants]) -> Void){
         //http://35.160.251.153:8081/services/getallmallshelper
         
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"services/getallmallshelper", parameters: ["":"" as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"services/getMasters?type=allMalls", parameters: ["":"" as AnyObject]) { (responseDict) in
            // print(responseDict)
             //orgs
             let orgs : NSArray = (responseDict.value(forKey: "orgs") as?NSArray)!
@@ -108,6 +108,22 @@ extension LFDataManager{
             }
             completion(restarurantsLists)
         }
+    }
+    
+    func sharePost(jsonDic:NSDictionary,imageData:Data,hastTagString:String,completion:@escaping (_ responseDict:Bool) -> Void){
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"6" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject,"hashTags":hastTagString as AnyObject]) { (responseDict) in
+            let resultDic = JSON(responseDict)
+            let mallIIDJson  = resultDic["myHashMap"].dictionary! as [String:JSON]
+            LFFireBaseDataService.sharedInstance.addThePostToFirebase(postID:  (mallIIDJson["jobId"]?.stringValue)!)
+            let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+            if status == 1{
+                CXDataService.sharedInstance.hideLoader()
+            }else{
+            }
+            CXDataService.sharedInstance.hideLoader()
+            completion(true)
+        }
+        //  }
     }
     
     
@@ -632,6 +648,42 @@ extension LFDataManager{
             completion(responseDict)
         }
     }
+    
+    //MARK: Get all hashtag Data from server
+    func getTheHAshTagDataFromServer(PageNumber: String,PageSize:String,HashTag:String,completion:@escaping ([LFFeedsData])->Void){
+        
+        //http://35.160.251.153:8081/Services/getMasters?type=User%20Posts&keyWord=iOSTeam
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"keyWord":HashTag as AnyObject]) { (responceDic) in
+            
+            let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
+            var feedsList = [LFFeedsData]()
+            for resData in orgs{
+                let restaurants = LFFeedsData(json: JSON(resData))
+                feedsList.append(restaurants)
+            }
+            LFDataSaveManager.sharedInstance.saveHashTagInDB(list: feedsList)
+            self.getAllFoodies()
+            completion(feedsList)
+            // print("response Data >>>>> \(responceDic)")
+            CXDataService.sharedInstance.hideLoader()
+        }
+        
+        
+    }
+    
+    //MARK: Getting HashTags Data from Server
+
+    func getHashTagDataFromServer()
+    {
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApi()
+        CXDataService.sharedInstance.getAppDataFromServerUsingURL(urlStr) { (responseDic) in
+            print(responseDic)
+            let hashArray = responseDic.value(forKey: "hashTags") as! NSArray
+            LFDataSaveManager.sharedInstance.saveHashTagInfoInDB(hashTagsArr: hashArray)
+            
+        }
+    }
+
 }
 
 

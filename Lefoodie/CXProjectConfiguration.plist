@@ -93,6 +93,8 @@
 	<string>jobs/saveJobCommentJSON?</string>
 	<key>pushNotificationSendApi</key>
 	<string>MobileAPIs/sendNotificationToUser?</string>
+	<key>getHashTags</key>
+	<string>MobileAPIs/getHashTags</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>
