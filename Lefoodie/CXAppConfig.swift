@@ -202,6 +202,10 @@ class CXAppConfig {
         return config!.value(forKey: "postComments") as! String
     }
     
+    func getHashTagsApi() -> String{
+        return config!.value(forKey: "getHashTags") as! String
+    }
+    
     //pushNotificationSendApi
     //postComments
     func pushNotificationSendApi() -> String{

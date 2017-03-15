@@ -348,15 +348,38 @@ class LFDataSaveManager: NSObject {
 
         }
         
+
 }
 
 
-
-    
-
+    func saveHashTagInfoInDB(hashTagsArr:NSArray)
+    {
+        let relamInstance = try! Realm()
+        for obj in hashTagsArr {
+            let hashTag = obj as! NSDictionary
+            let userData = relamInstance.objects(LFHashTags.self).filter("name=='\(hashTag.value(forKey: "Name")!)'")
+            if userData.count == 0 {
+                try! relamInstance.write({
+                    let hashTagObj = LFHashTags()
+                    
+                    hashTagObj.name = hashTag.value(forKey: "Name") as! String
+                    hashTagObj.count = hashTag.value(forKey: "Count") as! String
+                    
+                    relamInstance.add(hashTagObj)
+                })
+            }
+            else {
+                try! relamInstance.write({
+                    let hashTagObj = userData.first!
+                    hashTagObj.count = hashTag.value(forKey: "Count") as! String
+                })
+                
+            }
+        }
+    }
     
 /*
-    Delete the Data in Realm 
+    Delete the Data in Realm
      
      let realm = try! Realm()
      

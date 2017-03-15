@@ -15,6 +15,12 @@ import GoogleSignIn
 import MagicalRecord
 import RealmSwift
 import UserNotifications
+import Fabric
+import TwitterKit
+import OAuthSwift
+import GTMOAuth2
+import Flurry_iOS_SDK
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate,FIRMessagingDelegate {
     
@@ -32,8 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         print( getDocumentsDirectory())
         //MARK: Check UserID
         checkUserId()
+        Fabric.with([Twitter.self])
         self.registerNotification(application: application)
         print("Realm DB path \(Realm.Configuration.defaultConfiguration.fileURL)")
+
+        Flurry.setDebugLogEnabled(true)
+        Flurry.startSession("55C7JS47JTNC2M4NBR2H")
 
         //42D06EEF-D597-4786-93E9-51182C8930C1
         return true
@@ -43,7 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if (url.host == "oauth-callback") {
+            OAuthSwift.handle(url: url)
+        }
+        return true
+    }
     
+
     func checkUserId(){
         
         var userID_SignUP = NSString()

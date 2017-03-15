@@ -14,6 +14,7 @@ private var _SingletonSharedInstance:CXDataService! = CXDataService()
 class CXDataService: NSObject {
     let timeOutInterval : Int = 60
     var progress : MBProgressHUD!
+    var progressSmall : MBProgressHUD!
     class var sharedInstance : CXDataService {
         return _SingletonSharedInstance
     }
@@ -28,8 +29,48 @@ class CXDataService: NSObject {
         
     }
     
+    func showSmallLoader(view:UIView)
+    {
+        self.progressSmall = MBProgressHUD.showAdded(to: view, animated: true)
+        self.progressSmall.mode = MBProgressHUDMode.indeterminate
+        self.progressSmall.backgroundColor = UIColor.clear
+        self.progressSmall.show(animated: true)
+    }
+    
+    func  hideSmallLoader()
+    {
+        self.progressSmall.hide(animated: true)
+    }
+    
     func hideLoader(){
         self.progress.hide(animated: true)
+    }
+    
+    open func getAppDataFromServerUsingURL(_ urlStr:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        Alamofire.request(urlStr).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                if let result = response.result.value {
+                    let JSON = result as! NSDictionary
+                    completion(JSON)
+                    
+                }
+                break
+            case .failure(let error):
+                if error._code == NSURLErrorTimedOut || error._code == NSURLErrorCancelled{
+                    //timeout here
+                    self.showAlertView(status: 0)
+                }
+                if error._code == NSURLErrorNetworkConnectionLost{
+                    self.showAlertView(status: 0)
+                    
+                }
+                print("\n\nAuth request failed with error:\n \(error)")
+                break
+
+            }
+        }
     }
     
     
