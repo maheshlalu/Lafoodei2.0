@@ -2,7 +2,7 @@
 //
 //  LFHomeViewController.swift
 //  Lefoodie
-//
+//1003573  7382142492
 //  Created by Rama kuppa on 30/12/16.
 //  Copyright © 2016 NOVO. All rights reserved.
 //
@@ -54,6 +54,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.serviceAPICall(PageNumber: page, PageSize: "10")
         NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         locManager.requestWhenInUseAuthorization()
+        
         
 //        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
 //            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
@@ -211,7 +212,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }else{
                 self.showAlertView(status: 1)
                 self.homeTableView.reloadData()
-            print("Not get lat and long data")
+           // print("Not get lat and long data")
             }
     }else{
             self.deleteTheFeedsInDatabase()
@@ -340,9 +341,42 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
-            //cell.photoDescriptionLbl.text = "wanderireland@travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
+            cell.photoDescriptionLbl.text = "wanderireland @travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
+            cell.photoDescriptionLbl.hashtagLinkTapHandler = { label, hashtag, range in
+                self.hashTagTapped(hashTagName: hashtag)
+            }
+            
+            cell.photoDescriptionLbl.userHandleLinkTapHandler = { label, handle, range in
+                NSLog("User handle \(handle) tapped")
+                self.userHandle(userhandleName: handle)
+            }
+            
             return cell
         }
+    }
+    //MARK: HashTag Button Tapped
+    func hashTagTapped(hashTagName:String){
+     print("usertapeed \(hashTagName)")
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let hashtagcontroller : LFHashTagDetailController = (storyBoard.instantiateViewController(withIdentifier: "LFHashTagDetailController") as? LFHashTagDetailController)!
+        let navController = UINavigationController(rootViewController: hashtagcontroller)
+        navController.navigationItem.hidesBackButton = false
+        
+        hashtagcontroller.hashTagNamestr = hashTagName as NSString
+        //self.navigationController?.pushViewController(hashtagcontroller, animated: true)
+        self.present(navController, animated: true, completion: nil)
+        
+    }
+    //MARK: User Handle (@username)
+    
+    func userHandle(userhandleName:String)
+    {
+        
+        print("user handle \(userhandleName) tapped")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserProfileViewController")as? LFUserProfileViewController
+        storyboard?.userData = [userhandleName]
+        self.navigationController?.pushViewController(storyboard!, animated: true)
     }
     
     
@@ -455,7 +489,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return 320
             
         }else if indexPath.row == 2 {
-            return 50
+            return 100
             
         }
         return 0

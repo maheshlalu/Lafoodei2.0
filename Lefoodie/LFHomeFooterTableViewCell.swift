@@ -57,6 +57,8 @@ class LFHomeFooterTableViewCell: UITableViewCell {
             self.commentsLabel.text = (data?.feedCommentsCount)! + " Comments"
             self.favouritesLabel.text = (data?.feedFavaouritesCount)! + " Favorites"
         }
+        self.photoDescriptionLbl.text = data?.feedName
+        
         
         self.selectionStyle = .none
     }

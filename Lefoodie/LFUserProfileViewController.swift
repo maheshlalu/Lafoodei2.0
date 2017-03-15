@@ -39,6 +39,7 @@ class LFUserProfileViewController: UIViewController {
     var subAminId:String!
     var rEmail:String!
     var isFromHome:Bool = Bool()
+    var userData = [String]()
     
     override func viewDidLoad() {
         if isFromHome{
