@@ -10,6 +10,10 @@
 		112FDA2C1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FDA2B1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift */; };
 		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
+		115257911E7817D7002EEF47 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257901E7817D7002EEF47 /* Flurry_iOS_SDK.framework */; };
+		115257931E7817E0002EEF47 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257921E7817E0002EEF47 /* OAuthSwift.framework */; };
+		115257951E7819DE002EEF47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257941E7819DE002EEF47 /* SystemConfiguration.framework */; };
+		115257971E7819E4002EEF47 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257961E7819E4002EEF47 /* Security.framework */; };
 		119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119329AE1E519AC600FEC328 /* SearchFoodies.swift */; };
 		11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E270051E681FF300A1739E /* RestaurantsLocations.swift */; };
 		11FF068C1E703E0D00BED142 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FF068B1E703E0D00BED142 /* KILabel.m */; };
@@ -62,8 +66,6 @@
 		12FCB7D11E1E540700433645 /* LFFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB7D01E1E540700433645 /* LFFoodDetailViewController.swift */; };
 		1809BE481E16364E00888D34 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE471E16364E00888D34 /* UIColor+colors.swift */; };
 		1809BE4A1E163E6F00888D34 /* NSMutableArray+array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809BE491E163E6F00888D34 /* NSMutableArray+array.swift */; };
-		1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4C1E1641DA00888D34 /* FBSDKCoreKit.framework */; };
-		1809BE501E1641DA00888D34 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4D1E1641DA00888D34 /* FBSDKLoginKit.framework */; };
 		1809BE511E1641DA00888D34 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1809BE4E1E1641DA00888D34 /* FBSDKShareKit.framework */; };
 		180A20B31E4C485200E6B2C9 /* LFFeedsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180A20B21E4C485200E6B2C9 /* LFFeedsData.swift */; };
 		1811778B1E55913B00AAF61C /* LFUserPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811778A1E55913B00AAF61C /* LFUserPhotos.swift */; };
@@ -103,7 +105,6 @@
 		183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 183FBCD01E1A843B00A0A8CC /* GoogleService-Info.plist */; };
 		183FBCD51E1A88A100A0A8CC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD21E1A88A100A0A8CC /* FBSDKCoreKit.framework */; };
 		183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD31E1A88A100A0A8CC /* FBSDKLoginKit.framework */; };
-		183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 183FBCD41E1A88A100A0A8CC /* FBSDKShareKit.framework */; };
 		1842A7701E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */; };
 		1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1842A7721E1F7F87004C85C0 /* Pacifico.ttf */; };
 		185F3BEC1E5341F30068F900 /* LFMyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F3BEB1E5341F30068F900 /* LFMyProfile.swift */; };
@@ -171,6 +172,10 @@
 		112FDA2B1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserFollowerAndFollowingViewController.swift; sourceTree = "<group>"; };
 		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
+		115257901E7817D7002EEF47 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flurry_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"; sourceTree = "<group>"; };
+		115257921E7817E0002EEF47 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Lefoodie-gkxrhlxhetpbfnayggpftxnkxvsm/Build/Products/Debug-iphonesimulator/OAuthSwift/OAuthSwift.framework"; sourceTree = "<group>"; };
+		115257941E7819DE002EEF47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		115257961E7819E4002EEF47 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		119329AE1E519AC600FEC328 /* SearchFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFoodies.swift; sourceTree = "<group>"; };
 		11E270051E681FF300A1739E /* RestaurantsLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocations.swift; sourceTree = "<group>"; };
 		11FF068A1E703E0D00BED142 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
@@ -334,13 +339,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115257971E7819E4002EEF47 /* Security.framework in Frameworks */,
+				115257951E7819DE002EEF47 /* SystemConfiguration.framework in Frameworks */,
+				115257931E7817E0002EEF47 /* OAuthSwift.framework in Frameworks */,
+				115257911E7817D7002EEF47 /* Flurry_iOS_SDK.framework in Frameworks */,
 				183FBCD51E1A88A100A0A8CC /* FBSDKCoreKit.framework in Frameworks */,
 				1809BE511E1641DA00888D34 /* FBSDKShareKit.framework in Frameworks */,
 				183FBCD61E1A88A100A0A8CC /* FBSDKLoginKit.framework in Frameworks */,
-				183FBCD71E1A88A100A0A8CC /* FBSDKShareKit.framework in Frameworks */,
 				8963159F15E90B2F6A1AD755 /* Pods_Lefoodie.framework in Frameworks */,
-				1809BE4F1E1641DA00888D34 /* FBSDKCoreKit.framework in Frameworks */,
-				1809BE501E1641DA00888D34 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,6 +742,10 @@
 		1AF90FF33FE1F0D20ED29765 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				115257961E7819E4002EEF47 /* Security.framework */,
+				115257941E7819DE002EEF47 /* SystemConfiguration.framework */,
+				115257921E7817E0002EEF47 /* OAuthSwift.framework */,
+				115257901E7817D7002EEF47 /* Flurry_iOS_SDK.framework */,
 				14A665E483A1285F4F8B2C0E /* Pods_Lefoodie.framework */,
 				5BBF967781F69DF74A4D7ABD /* Pods_LefoodieTests.framework */,
 				1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */,
@@ -782,6 +792,7 @@
 				18160CDA1E14EB0F00C2E5AE /* Resources */,
 				6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */,
 				926C0A05005DFBCA5F053ABD /* [CP] Copy Pods Resources */,
+				11B683291E76AE2600E8A6EB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -947,6 +958,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11B683291E76AE2600E8A6EB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 2e7c156e37ba0c4174ff5d41d9965ffae5ecd735 775aa1b4ed862492cc866b7d1006437ce8ae0542ae9654444a295f8ef18a767e";
+		};
 		29FA60AFEACA9F7A6123B427 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1354,6 +1378,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Flurry-iOS-SDK",
 				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1382,6 +1407,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lefoodie",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Flurry-iOS-SDK",
 				);
 				INFOPLIST_FILE = Lefoodie/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
