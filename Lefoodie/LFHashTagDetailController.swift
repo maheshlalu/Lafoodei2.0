@@ -20,7 +20,7 @@ import Social
 import MapKit
 
 class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableViewDelegate,FirebaseDelegate {
-    var hashTagNamestr: NSString = String() as NSString
+    var hashTagNamestr: String?
      @IBOutlet weak var hashTagTableView: UITableView!
     var hashTagArray = [LFFeedsData]()
     var lastIndexPath = IndexPath()
@@ -36,21 +36,26 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
     
     @IBOutlet weak var noDataLabel: UILabel!
     override func viewDidLoad() {
-        self.navigationItem.title = hashTagNamestr as String
-        hashTagNamestr = hashTagNamestr.replacingOccurrences(of: "#", with: "") as NSString
-        print("Hashtag \(hashTagNamestr)")
         
         super.viewDidLoad()
         //self.setNavigationProperties()
         self.registerCells()
         self.addThePullTorefresh()
-        self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: hashTagNamestr as String)
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-        //self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        //        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
 
-        // Do any additional setup after loading the view.
+        
+        //MARK:
+        self.hashTagTableView.separatorStyle = .none
+        page = "1"
+        self.hashTagTableView.backgroundColor = UIColor.clear
+        self.noDataLabel.isHidden = true
+        
+        if let hasString =  hashTagNamestr {
+            self.navigationItem.title = hasString
+            self.getHashTagDataFromService(PageNumber: self.page, PageSize: "5", HashTag: hasString)
+            hashTagNamestr = hasString.replacingOccurrences(of: "#", with: "")
+        }
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +105,7 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
         self.isInitialLoad = true
         self.page = "1"
         
-      self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: "")
+      self.getHashTagDataFromService(PageNumber: page, PageSize: "5", HashTag: hashTagNamestr!)
     }
 
     
@@ -166,11 +171,9 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
     }
     
     func hashTagTapped(hashTagName:String){
-        self.navigationItem.title = hashTagName as String
-        var removeHashTag: NSString = hashTagName as NSString
-        removeHashTag = removeHashTag.replacingOccurrences(of: "#", with: "") as NSString
+        self.navigationItem.title = hashTagName
         self.hashTagArray = [LFFeedsData]()
-         self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: removeHashTag as String)
+         self.getHashTagDataFromService(PageNumber: page, PageSize: "5", HashTag:  hashTagName.replacingOccurrences(of: "#", with: ""))
         self.hashTagTableView.reloadData()
     
     }
@@ -209,12 +212,10 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
         LFDataManager.sharedInstance.getTheHAshTagDataFromServer(PageNumber: PageNumber, PageSize: PageSize, HashTag: HashTag){ (resultFeeds) in
             self.isPageRefreshing = false
             let lastIndexOfArr = self.hashTagArray.count - 1
+            self.noDataLabel.isHidden = true
             if !resultFeeds.isEmpty {
                 self.hashTagArray.append(contentsOf: resultFeeds)
-                
-                print("nearByFeed Count\(self.hashTagArray.count)")
-                
-                
+     
                 // if it is Initial Load
                 if self.isInitialLoad {
                     self.hashTagTableView.reloadData()
@@ -235,12 +236,10 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
                 }
                 
             }else{
-            self.hashTagTableView.isHidden = true
                 self.noDataLabel.isHidden = false
             }
             
             self.refreshControl.endRefreshing()
-            self.hashTagTableView.reloadData()
         }
     }
     
@@ -427,6 +426,32 @@ extension LFHashTagDetailController{
             
         }
     }
+    
+    //MARK: TableView Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        //Bottom Refresh
+        
+        if scrollView == hashTagTableView{
+            
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+            {
+                print("scroll did reached down")
+                if isPageRefreshing == false {
+                    isPageRefreshing=true
+                    var num = Int(page)
+                    num = num! + 1
+                    page = "\(num!)"
+                    isInitialLoad = false
+                    self.getHashTagDataFromService(PageNumber: page, PageSize: "5", HashTag: hashTagNamestr!)
+                }
+                
+            }
+        }
+    }
+    
+    
+
 }
 
 extension LFHashTagDetailController{
