@@ -38,9 +38,8 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     override func viewWillAppear(_ animated: Bool) {
         
     }
-    func navigationProperty()
-    {
-        
+    
+    func navigationProperty(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
     }
@@ -128,10 +127,10 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     }
     
     func showAlert(_ message:String, status:Int) {
-        let alert = UIAlertController(title: "Alert", message:message , preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Are you sure!!!", message:message , preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
-            NSLog("OK Pressed")
+            print("OK Pressed")
             
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
@@ -145,7 +144,7 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
                 UserProfile.mr_truncateAll(in: localContext)
             })
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {
             UIAlertAction in
             NSLog("Cancel Pressed")
         }

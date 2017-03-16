@@ -59,17 +59,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         buttoncreated()
         
-        if self.myProfile.userPic == "" && self.myProfile.userBannerPic == ""{
-            button.setTitle("Save", for: .normal)
-            self.BannerLayer.isHidden = false
-            self.dpLayer.isHidden = false
-            
-        }else{
-            self.BannerLayer.isHidden = true
-            self.dpLayer.isHidden = true
-        }
-        
-        
         let bannerLayerTap = UITapGestureRecognizer(target: self, action: #selector(handleTapForBanner(sender:)))
         self.BannerLayer.addGestureRecognizer(bannerLayerTap)
         
@@ -87,11 +76,15 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     }
     
     func setImages(){
-        self.myProfile = realm.objects(LFMyProfile.self).first
-        self.userDpImaView.setImageWith(NSURL(string: self.myProfile.userPic) as URL!, usingActivityIndicatorStyle: .white)
-        self.bannerImgView.setImageWith(NSURL(string: self.myProfile.userBannerPic) as URL!, usingActivityIndicatorStyle: .white)
-        self.userPic = self.myProfile.userPic
-        self.bannaerPath = self.myProfile.userBannerPic
+        if self.myProfile.userPic == "" && self.myProfile.userBannerPic == ""{
+            
+        }else{
+            self.myProfile = realm.objects(LFMyProfile.self).first
+            self.userDpImaView.setImageWith(NSURL(string: self.myProfile.userPic) as URL!, usingActivityIndicatorStyle: .white)
+            self.bannerImgView.setImageWith(NSURL(string: self.myProfile.userBannerPic) as URL!, usingActivityIndicatorStyle: .white)
+            self.userPic = self.myProfile.userPic
+            self.bannaerPath = self.myProfile.userBannerPic
+        }
     }
     //Button Created
     func buttoncreated(){
@@ -108,64 +101,49 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     //MARK: Button Action
     func buttonAction(_ sender:UIButton){
         if(sender.titleLabel?.text == "Save"){
-        let alert = UIAlertController(title: "Are you sure want to save changes!!!", message:"" , preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
-            UIAlertAction in
             
-            sender.setTitle("Edit", for: .normal)
-            sender.isSelected = !sender.isSelected
-            
-            var cell = LFEditTableViewCell()
-            for i in 0...4{
-                let indexPath : NSIndexPath = NSIndexPath(row:i, section: 0)
-                cell = self.editTableView.cellForRow(at: indexPath as IndexPath) as! LFEditTableViewCell
-                cell.infoTextfield.isUserInteractionEnabled = true
-                if cell.infoTextfield.tag == 500{
-                    cell.infoTextfield.isUserInteractionEnabled = false
-                }
-            }
-            
-            // self.imageUpload(key:"IMG_DATA_DP")
-            CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
-            
-            if self.isPicUpdated {
-                self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
-                    self.jsonDic.setObject(responceStr, forKey: "Image" as NSCopying)
-                    self.userPic = responceStr
-                    if self.isBannerUpdated{
-                        self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
-                            self.bannaerPath = responceStr
-                            self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
+            let alert = UIAlertController(title: "Are you sure want to save changes!!!", message:"", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
+                
+                sender.setTitle("Edit", for: .normal)
+                sender.isSelected = !sender.isSelected
+                // self.imageUpload(key:"IMG_DATA_DP")
+                CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
+                
+                if self.isPicUpdated {
+                    self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
+                        self.jsonDic.setObject(responceStr, forKey: "Image" as NSCopying)
+                        self.userPic = responceStr
+                        if self.isBannerUpdated{
+                            self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
+                                self.bannaerPath = responceStr
+                                self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
+                                self.sumbitDetails(imageStr: responceStr)
+                            })
+                        }else{
                             self.sumbitDetails(imageStr: responceStr)
-                        })
-                    }else{
+                        }
+                    })
+                }else if self.isBannerUpdated{
+                    self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
+                        self.bannaerPath = responceStr
+                        self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
                         self.sumbitDetails(imageStr: responceStr)
-                    }
-                })
-            }else if self.isBannerUpdated{
-                self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
-                    self.bannaerPath = responceStr
-                    self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
-                    self.sumbitDetails(imageStr: responceStr)
-                })
-            }else{
-                self.sumbitDetails(imageStr: "")
+                    })
+                }else{
+                    self.sumbitDetails(imageStr: "")
+                }
+                
             }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (alert: UIAlertAction!) -> Void in
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+            alert.addAction(defaultAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion:nil)
             
-            // self.imageUpload(key: "IMG_DATA_BI")
-            //sumbitDetails
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {
-            UIAlertAction in
-            sender.setTitle("Edit", for: .normal)
-            self.BannerLayer.isHidden = true
-            self.dpLayer.isHidden = true
-        }
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-            
+    
         }else if(sender.titleLabel?.text == "Edit"){
             sender.setTitle("Save", for: .normal)
             sender.isSelected = !sender.isSelected
@@ -185,9 +163,11 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                     cell.infoTextfield.isUserInteractionEnabled = false
                 }
             }
-            
         }
     }
+    
+    
+    
     
     // Pls edit the stuff
     func sumbitDetails(imageStr: String){
