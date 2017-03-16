@@ -124,7 +124,6 @@ let signIn = GIDSignIn.sharedInstance()
                 do {
                     let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
                     //print(userData)
-                    
                     firstName = userData!["given_name"] as! String
                     lastName = userData!["family_name"] as! String
                     profilePic = userData!["picture"] as! String
@@ -136,12 +135,20 @@ let signIn = GIDSignIn.sharedInstance()
                         
                         UserProfile.mr_truncateAll(in: localContext)
                     })
-                    CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred) in
-                        CXDataService.sharedInstance.hideLoader()
-                        
-                      //  self.showAlert()
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.navigateToTabBar()
+                
+                    
+                    CX_SocialIntegration.sharedInstance.applicationRegisterWithGooglePlus(userDataDic: self.googleResponseDict, completion: { (isRegistred, isKeyGenarated, email) in
+                        if isKeyGenarated {
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.navigateToTabBar()
+                        }else{
+                            //Navigate to user name genarated page
+                            print("not signup")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
+                            storyboard?.userEmail =  email;
+
+                            self.navigationController?.pushViewController(storyboard!, animated: true)
+                        }
                     })
 
                 } catch {
@@ -203,16 +210,20 @@ let signIn = GIDSignIn.sharedInstance()
                         
                         UserProfile.mr_truncateAll(in: localContext)
                     })
-                    
-                    CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred) in
-                        CXDataService.sharedInstance.hideLoader()
-                       // self.showAlert()
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.navigateToTabBar()
+                
+                    CX_SocialIntegration.sharedInstance.applicationRegisterWithFaceBook(userDataDic: self.facebookResponseDict, completion: { (isRegistred, isKeyGenarated, email) in
+                        if isKeyGenarated {
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.navigateToTabBar()
+                        }else{
+                            //Navigate to user name genarated page
+                            print("user not signin")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
+                            storyboard?.userEmail = email;
+                            self.navigationController?.pushViewController(storyboard!, animated: true)
+
+                        }
                     })
-                    
-                    
-                    
                 }
                 else {
                     CXDataService.sharedInstance.hideLoader()

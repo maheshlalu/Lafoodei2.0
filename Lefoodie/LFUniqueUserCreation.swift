@@ -11,6 +11,7 @@ import UIKit
 class LFUniqueUserCreation: UIViewController {
 
     @IBOutlet weak var userNameTextField: UITextField!
+    var userEmail:String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +19,25 @@ class LFUniqueUserCreation: UIViewController {
     }
 
     @IBAction func nameRegistrationBtnAction(_ sender: UIButton) {
+        
+        //http://35.160.251.153:8081/Users/createUniqueUserName?email=yernagulamahesh@gmail.com&uniqueUserName=mahi
+        
+        if let userEmail = userEmail  {
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":"" as AnyObject]) { (responeDic) in
+                if let status = responeDic.value(forKey: "status") as? String {
+                    if status == "-1" {
+                        //User name not available.
+                    }else{
+                       //Directly navigate to home screen
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.navigateToTabBar()
+                    }
+                }
+            }
+        }
+        
+       
+        
     }
    
     override func viewWillAppear(_ animated: Bool) {

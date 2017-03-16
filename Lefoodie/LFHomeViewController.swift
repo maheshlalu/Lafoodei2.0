@@ -50,6 +50,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.setSegmentProperties()
         self.addThePullTorefresh()
         page = "1"
+        LFDataManager.sharedInstance.getHashTagDataFromServer()
+        LFDataManager.sharedInstance.getUserNamesDataFromServer()
         isInitialLoad = true
         self.serviceAPICall(PageNumber: page, PageSize: "10")
         NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
@@ -341,7 +343,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
-            cell.photoDescriptionLbl.text = "wanderireland @travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
+          //  cell.photoDescriptionLbl.text = "wanderireland @travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
             cell.photoDescriptionLbl.hashtagLinkTapHandler = { label, hashtag, range in
                 self.hashTagTapped(hashTagName: hashtag)
             }
@@ -369,13 +371,11 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     //MARK: User Handle (@username)
     
-    func userHandle(userhandleName:String)
-    {
-        
+    func userHandle(userhandleName:String){
         print("user handle \(userhandleName) tapped")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUserProfileViewController")as? LFUserProfileViewController
-        storyboard?.userData = [userhandleName]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as? LFRestaurentDetailsViewController
+        storyboard?.isAtTypeBool = true
+        storyboard?.atUser = userhandleName
         self.navigationController?.pushViewController(storyboard!, animated: true)
     }
     
@@ -403,12 +403,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             let navController = UINavigationController(rootViewController: restaurentView)
             navController.navigationItem.hidesBackButton = false
-            
-//            LFDataManager.sharedInstance.sendTheFollwAndUnFollowPushNotification(isFollow: true, foodieDetails:dict!)
-            
+
             self.present(navController, animated:true, completion: nil)
         }
-        
     }
     
     func userRestaurantAction(sender: UITapGestureRecognizer){
