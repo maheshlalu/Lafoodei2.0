@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kNT-b2-5Iv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kNT-b2-5Iv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -707,7 +707,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8iG-5T-tgG">
-                                        <rect key="frame" x="33" y="5" width="310" height="150"/>
+                                        <rect key="frame" x="32.5" y="5" width="310" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="150"/>
@@ -1963,7 +1963,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ihd-9u-WnK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1fp-Vb-zvy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1fp-Vb-zvy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2150,7 +2150,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tcd-Ih-UhO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JfW-Zt-tDI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JfW-Zt-tDI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2321,7 +2321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGO-l7-PBu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11805.6" y="-532.53373313343332"/>
+            <point key="canvasLocation" x="11657" y="-671"/>
         </scene>
         <!--Restaurent Details View Controller-->
         <scene sceneID="Aoa-Q7-e2c">
@@ -2525,6 +2525,7 @@
                     <connections>
                         <outlet property="editBtn" destination="IZC-Eu-ICo" id="o4S-eo-NEI"/>
                         <outlet property="followBtn" destination="THU-dB-2Gc" id="xht-V0-RLs"/>
+                        <outlet property="foodieBannerImgView" destination="F37-VH-Cin" id="pRb-Uy-2In"/>
                         <outlet property="foodieFollowLbl" destination="d0a-yE-pr6" id="yXM-Ie-408"/>
                         <outlet property="foodieImgView" destination="Z8U-dv-6b4" id="SCJ-Ig-Osz"/>
                         <outlet property="foodieName" destination="72G-ai-gqZ" id="F1F-u6-f0v"/>
@@ -2903,7 +2904,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="soO-05-P78" id="byC-22-fTQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lefoodieapp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVx-E0-FIW">
