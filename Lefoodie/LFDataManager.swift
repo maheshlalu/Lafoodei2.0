@@ -541,7 +541,7 @@ extension LFDataManager{
     //http://apps.storeongo.com:8081/Services/getMasters?mallId=6&type=MacIdInfo&keyWord=yash.yash@yash.com
     //"privateToUser": "yash.yash@yash.com",
     
-    func getTheUserDetails(userEmail:String,completion:@escaping ()->Void){
+    func getTheUserDetails(userEmail:String,completion:@escaping (_ isUniqueKeyGenarated:Bool)->Void){
         
         CXDataService.sharedInstance.getTheAppDataFromServer(["type":"macidinfo" as AnyObject,"keyWord":userEmail as AnyObject]) { (responceData) in
             
@@ -554,20 +554,11 @@ extension LFDataManager{
                     //Save The User Data
                     LFDataSaveManager.sharedInstance.saveTheUserDetails(userDataDic: JSON(dic))
                     self.sendTheDeviceTokenToServer()
-                    self.getFollowersDetails()
-                    completion()
+                    completion(true)
                     return
                 }
             }
         }
-        
-       // CXDataService.sharedInstance.getTheAppDataFromServer([
-        
-        
-      //  "type" : "macidinfo" as AnyObject,"mallId" : CXAppConfig.sharedInstance.getAppMallID() as AnyObject,"keyWord" : userDataDic.object(forKey: "userEmailId")! as AnyObject])
-            
-            
-       // }
     }
     
     func getFollowersDetails()
@@ -670,7 +661,7 @@ extension LFDataManager{
         
     }
     
-    //MARK: Getting HashTags Data from Server
+    //MARK: Getting All HashTags Data from Server
 
     func getHashTagDataFromServer()
     {
@@ -682,6 +673,45 @@ extension LFDataManager{
             
         }
     }
+    
+    //MARK: Getting All UserNames Data from Server
+    
+    func getUserNamesDataFromServer()
+    {
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getUserNamesApi()
+        CXDataService.sharedInstance.getAppDataFromServerUsingURL(urlStr) { (responseDic) in
+            print(responseDic)
+            let userNamesArray = responseDic.value(forKey: "tags") as! NSArray
+            LFDataSaveManager.sharedInstance.saveUserNamesInfoInDB(userNamesArr: userNamesArray)
+            
+        }
+    }
+
+    
+    //MARK: Getting HashTags data from server using search Keyword
+    
+    func getHashTagDataFromServerUsingKeyword(keyword:String,completion:@escaping (Bool)->Void)
+    {
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApiUsingKeyword()
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["keyWord":keyword as AnyObject]) { (responseDic) in
+            let hashArray = responseDic.value(forKey: "hashTags") as! NSArray
+            LFDataSaveManager.sharedInstance.saveHashTagInfoInDB(hashTagsArr: hashArray)
+            completion(true)
+        }
+    }
+    
+    //MARK: Getting UserNames data from server using search Keyword
+    
+    func getUserNameDataFromServerUsingKeyword(keyword:String,completion:@escaping (Bool)->Void)
+    {
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getUserNamesApiUsingKeyword()
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["keyWord":keyword as AnyObject]) { (responseDic) in
+            let userNamesArray = responseDic.value(forKey: "tags") as! NSArray
+            LFDataSaveManager.sharedInstance.saveUserNamesInfoInDB(userNamesArr: userNamesArray)
+            completion(true)
+        }
+    }
+
 
 }
 

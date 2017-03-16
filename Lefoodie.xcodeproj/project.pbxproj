@@ -133,6 +133,7 @@
 		2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */; };
 		2B02053E1E5F189200312AC9 /* LFLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053D1E5F189200312AC9 /* LFLikes.swift */; };
 		2B0668951E77CCFA009F0E44 /* LFHashTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0668941E77CCFA009F0E44 /* LFHashTags.swift */; };
+		2B0AAF791E7953C000B2A61D /* LFUserNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0AAF781E7953C000B2A61D /* LFUserNames.swift */; };
 		2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */; };
 		2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */; };
 		2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */; };
@@ -314,6 +315,7 @@
 		2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHomeFeeds.swift; sourceTree = "<group>"; };
 		2B02053D1E5F189200312AC9 /* LFLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFLikes.swift; sourceTree = "<group>"; };
 		2B0668941E77CCFA009F0E44 /* LFHashTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTags.swift; sourceTree = "<group>"; };
+		2B0AAF781E7953C000B2A61D /* LFUserNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserNames.swift; sourceTree = "<group>"; };
 		2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
 		2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 				2B02053B1E5EDFC900312AC9 /* LFHomeFeeds.swift */,
 				2B02053D1E5F189200312AC9 /* LFLikes.swift */,
 				2B0668941E77CCFA009F0E44 /* LFHashTags.swift */,
+				2B0AAF781E7953C000B2A61D /* LFUserNames.swift */,
 			);
 			name = ReleamModel;
 			sourceTree = "<group>";
@@ -994,7 +997,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		665B1A3549794ED982BAF38E /* [CP] Check Pods Manifest.lock */ = {
@@ -1009,7 +1012,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6DF165E46FE78D0712FFED7B /* [CP] Embed Pods Frameworks */ = {
@@ -1084,7 +1087,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE4C5AD05BBD5A582BE6D688 /* [CP] Embed Pods Frameworks */ = {
@@ -1204,6 +1207,7 @@
 				2B0205381E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift in Sources */,
 				119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */,
 				18160CE81E14EB0F00C2E5AE /* Lefoodie.xcdatamodeld in Sources */,
+				2B0AAF791E7953C000B2A61D /* LFUserNames.swift in Sources */,
 				2BF4B5CC1E5AFFF00067AAA5 /* LFFollowers.swift in Sources */,
 				2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */,
 				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,

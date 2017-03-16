@@ -206,6 +206,23 @@ class CXAppConfig {
         return config!.value(forKey: "getHashTags") as! String
     }
     
+    func getAtUserDetails() -> String{
+        return config!.value(forKey: "getAtUser") as! String
+    }
+    
+    func getUserNamesApi() -> String{
+        return config!.value(forKey: "getUserNames") as! String
+    }
+    
+    func getHashTagsApiUsingKeyword() -> String{
+        return config!.value(forKey: "getHashTagsUsingKeyword") as! String
+    }
+    
+    func getUserNamesApiUsingKeyword() -> String{
+        return config!.value(forKey: "getUserNamesUsingKeyword") as! String
+    }
+    
+    
     //pushNotificationSendApi
     //postComments
     func pushNotificationSendApi() -> String{

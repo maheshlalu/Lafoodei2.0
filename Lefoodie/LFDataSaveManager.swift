@@ -351,7 +351,7 @@ class LFDataSaveManager: NSObject {
 
 }
 
-
+    //MARK: Saving HashTags into DB
     func saveHashTagInfoInDB(hashTagsArr:NSArray)
     {
         let relamInstance = try! Realm()
@@ -364,7 +364,6 @@ class LFDataSaveManager: NSObject {
                     
                     hashTagObj.name = hashTag.value(forKey: "Name") as! String
                     hashTagObj.count = hashTag.value(forKey: "Count") as! String
-                    
                     relamInstance.add(hashTagObj)
                 })
             }
@@ -377,6 +376,30 @@ class LFDataSaveManager: NSObject {
             }
         }
     }
+    
+    //MARK: Saving UserNames into DB
+    func saveUserNamesInfoInDB(userNamesArr:NSArray)
+    {
+        let relamInstance = try! Realm()
+        for obj in userNamesArr {
+            let userName = obj as! NSDictionary
+            let userData = relamInstance.objects(LFUserNames.self).filter("uniqueUsername=='\(userName.value(forKey: "uniqueUsername")!)'")
+            if userData.count == 0 {
+                try! relamInstance.write({
+                    let userNameObj = LFUserNames()
+                    
+                    userNameObj.emailId = userName.value(forKey: "emailId") as! String
+                    userNameObj.isAdmin = userName.value(forKey: "isAdmin") as! String
+                    userNameObj.fullName = userName.value(forKey: "fullName") as! String
+                    userNameObj.UserId = userName.value(forKey: "UserId") as! String
+                    userNameObj.userImagePath = userName.value(forKey: "userImagePath") as! String
+                    userNameObj.uniqueUsername = userName.value(forKey: "uniqueUsername") as! String
+                    relamInstance.add(userNameObj)
+                })
+            }
+        }
+    }
+
     
 /*
     Delete the Data in Realm

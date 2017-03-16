@@ -29,18 +29,6 @@ class CXDataService: NSObject {
         
     }
     
-    func showSmallLoader(view:UIView)
-    {
-        self.progressSmall = MBProgressHUD.showAdded(to: view, animated: true)
-        self.progressSmall.mode = MBProgressHUDMode.indeterminate
-        self.progressSmall.backgroundColor = UIColor.clear
-        self.progressSmall.show(animated: true)
-    }
-    
-    func  hideSmallLoader()
-    {
-        self.progressSmall.hide(animated: true)
-    }
     
     func hideLoader(){
         self.progress.hide(animated: true)

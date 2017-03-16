@@ -34,15 +34,17 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
     var page = String()
     var LFTabHomeController:LFTabHomeController!
     
+    @IBOutlet weak var noDataLabel: UILabel!
     override func viewDidLoad() {
+        self.navigationItem.title = hashTagNamestr as String
         hashTagNamestr = hashTagNamestr.replacingOccurrences(of: "#", with: "") as NSString
         print("Hashtag \(hashTagNamestr)")
-        self.navigationItem.title = hashTagNamestr as String
+        
         super.viewDidLoad()
-        self.setNavigationProperties()
+        //self.setNavigationProperties()
         self.registerCells()
         self.addThePullTorefresh()
-        self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: "")
+        self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: hashTagNamestr as String)
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         //self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
@@ -60,11 +62,13 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
         self.hashTagTableView.register(UINib(nibName: "LFHomeCenterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeCenterTableViewCell")
         self.hashTagTableView.register(UINib(nibName: "LFHomeFooterTableViewCell", bundle: nil), forCellReuseIdentifier: "LFHomeFooterTableViewCell")
     }
-    func setNavigationProperties(){
-        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
-        //self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-        
-    }
+    
+    
+//    func setNavigationProperties(){
+//        self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
+//        self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
+//        
+//    }
     
     func deleteTheFeedsInDatabase(){
         
@@ -162,33 +166,22 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
     }
     
     func hashTagTapped(hashTagName:String){
+        self.navigationItem.title = hashTagName as String
         var removeHashTag: NSString = hashTagName as NSString
         removeHashTag = removeHashTag.replacingOccurrences(of: "#", with: "") as NSString
+        self.hashTagArray = [LFFeedsData]()
          self.getHashTagDataFromService(PageNumber: "", PageSize: "", HashTag: removeHashTag as String)
         self.hashTagTableView.reloadData()
     
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.row == 0 {
             return 50
-            
         }else if indexPath.row == 1 {
-            
-            //            let indexPath : NSIndexPath = NSIndexPath(row: 1, section: indexPath.section)
-            //
-            //            let cell: LFHomeCenterTableViewCell = tableView.cellForRow(at: indexPath as IndexPath) as! LFHomeCenterTableViewCell
-            //
-            //            print( cell.ImgView_Logo.image?.size.width)
-            //            print( cell.ImgView_Logo.image?.size.height)
-            
-            
             return 320
-            
         }else if indexPath.row == 2 {
             return 100
-            
         }
         return 0
     }
@@ -197,9 +190,11 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         //self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-        let menuItem = UIBarButtonItem(image: UIImage(named: "Back-48"), style: .plain, target: self, action: #selector(LFHashTagDetailController.backBtnClicked))
+        let menuItem = UIBarButtonItem(image: UIImage(named: "leftArrow"), style: .plain, target: self, action: #selector(LFHashTagDetailController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
+        
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        
     }
     func backBtnClicked()
     {
@@ -218,6 +213,7 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
                 self.hashTagArray.append(contentsOf: resultFeeds)
                 
                 print("nearByFeed Count\(self.hashTagArray.count)")
+                
                 
                 // if it is Initial Load
                 if self.isInitialLoad {
@@ -238,6 +234,9 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
                     self.hashTagTableView.endUpdates()
                 }
                 
+            }else{
+            self.hashTagTableView.isHidden = true
+                self.noDataLabel.isHidden = false
             }
             
             self.refreshControl.endRefreshing()
@@ -380,7 +379,7 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
             storyboard?.reloadSection = { _ in
                 self.hashTagTableView.reloadSections(NSIndexSet(index: sender.tag) as IndexSet, with: .none);
             }
-            UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
+            self.present(storyboard!, animated: true, completion: nil)
         }
         
         
@@ -407,6 +406,7 @@ class LFHashTagDetailController: UIViewController,UITableViewDataSource,UITableV
                 })
             }
         }
+        
     }
     
     

@@ -18,30 +18,11 @@ class LFHashTagsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getHashTagDataFromServer()
+        LFDataManager.sharedInstance.getHashTagDataFromServer()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(LFHashTagsViewController.hashTagsSearchNotification(_:)), name:NSNotification.Name(rawValue: "HashTagsSearchNotification"), object: nil)
         
     }
-    
-    //MARK: Getting HashTags Data from Server
-    func getHashTagDataFromServer()
-    {
-        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
-        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApi()
-        CXDataService.sharedInstance.getAppDataFromServerUsingURL(urlStr) { (responseDic) in
-            print(responseDic)
-            let hashArray = responseDic.value(forKey: "hashTags") as! NSArray
-            LFDataSaveManager.sharedInstance.saveHashTagInfoInDB(hashTagsArr: hashArray)
-            
-            let relamInstance = try! Realm()
-            self.hashTagsList = relamInstance.objects(LFHashTags.self)
-            self.hashTagsTableView.reloadData()
-            CXDataService.sharedInstance.hideLoader()
-        }
-    }
-
-    
     
     func hashTagsSearchNotification(_ notification: Notification) {
         let searchText = notification.object as! String

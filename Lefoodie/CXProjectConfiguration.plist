@@ -95,6 +95,14 @@
 	<string>MobileAPIs/sendNotificationToUser?</string>
 	<key>getHashTags</key>
 	<string>MobileAPIs/getHashTags</string>
+	<key>getUserNames</key>
+	<string>MobileAPIs/getUserNames</string>
+	<key>getHashTagsUsingKeyword</key>
+	<string>MobileAPIs/getHashTags?</string>
+	<key>getUserNamesUsingKeyword</key>
+	<string>MobileAPIs/getUserNames?</string>
+    <key>getAtUser</key>
+    <string>MobileAPIs/getUserByUserName?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

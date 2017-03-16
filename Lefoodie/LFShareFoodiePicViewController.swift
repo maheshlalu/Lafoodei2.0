@@ -26,6 +26,7 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     var topLabel : UILabel! = nil
     var topOkBtn : UIButton! = nil
     var hashTagsList : Results<LFHashTags>!
+    var userNamesList : Results<LFUserNames>!
     var descTextView = UITextView()
     var tempArray = NSArray()
     
@@ -38,6 +39,8 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     var isTwitter:Bool = false
     var isTumbler:Bool = false
     var isFlickr:Bool = false
+    
+    var isHash = Bool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,12 +98,19 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             return 1
         }
         else {
-            if hashTagsList == nil {
-                return 0
+            if isHash {
+                if hashTagsList == nil {
+                    return 0
+                }
+                return hashTagsList.count
             }
-            return hashTagsList.count
+            else {
+                if userNamesList == nil {
+                    return 0
+                }
+                return userNamesList.count
+            }
         }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -169,10 +179,29 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
         }
         else {
             let cell = UITableViewCell()
+            if isHash {
             let hashTag = hashTagsList[indexPath.row]
             cell.textLabel?.text = "#\(hashTag.name)"
+            }
+            else {
+                let user = userNamesList[indexPath.row]
+                
+                let userImageView = UIImageView.init(frame: CGRect(x: 10, y: 7, width: 30, height: 30))
+                userImageView.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
+                userImageView.layer.cornerRadius = 15
+                userImageView.clipsToBounds = true
+                cell.contentView.addSubview(userImageView)
+                
+                let userNameLabel = UILabel.init(frame: CGRect(x: 50, y: 11, width: 150, height: 20))
+                userNameLabel.font = UIFont.systemFont(ofSize: 14)
+                userNameLabel.text = "@\(user.uniqueUsername)"
+                cell.contentView.addSubview(userNameLabel)
+//                cell.imageView?.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
+//                cell.imageView?.layer.cornerRadius = 20
+//                cell.imageView?.clipsToBounds = true
+//                cell.textLabel?.text = "@\(user.uniqueUsername)"
+            }
             return cell
-
         }
         
 }
@@ -214,8 +243,15 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             arr.removeLast()
             let arr2 = arr as NSArray
             let obj = arr2.componentsJoined(by: " ")
-            let hashTag = hashTagsList[indexPath.row]
-            descTextView.text = "\(obj) \(char!)\(hashTag.name)"
+            
+            if isHash {
+                let hashTag = hashTagsList[indexPath.row]
+                descTextView.text = "\(obj) \(char!)\(hashTag.name)"
+            }
+            else {
+                let userName = userNamesList[indexPath.row]
+                descTextView.text = "\(obj) \(char!)\(userName.uniqueUsername)"
+            }
         }
     }
     
@@ -272,8 +308,8 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
 extension LFShareFoodiePicViewController : UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        //print(text)
-        //print(textView.text)
+        print(text)
+        print(textView.text)
         
         //while entering text
         if text != ""
@@ -284,7 +320,15 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 if text == "@" || text == "#" || text == " "
                 {
                     isHashGenerated = false
-                    self.hashTagsList = nil
+                    if text == "#" {
+                        isHash = true
+                        self.hashTagsList = nil
+                    }
+                    else
+                    {
+                        isHash = false
+                        self.userNamesList = nil
+                    }
                     popUpTableView.reloadData()
                     popUpTableView.backgroundColor = UIColor.black
                     popUpTableView.alpha = 0.5
@@ -292,16 +336,56 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 else
                 {
                     var str = textView.text.components(separatedBy: " ").last?.appending(text)
+                    // # search
                     if str?[(str?.startIndex)!] == "#" {
+                        isHash = true
                     str = str?.replace(target: "#", withString: "")
                     let predicate = NSPredicate.init(format: "name CONTAINS[c] %@",str!)
-                    CXDataService.sharedInstance.showSmallLoader(view: popUpTableView)
+                    CXDataService.sharedInstance.showLoader(view: self.view, message: "")
                     let relamInstance = try! Realm()
                     self.hashTagsList = relamInstance.objects(LFHashTags.self).filter(predicate)
-                    popUpTableView.reloadData()
-                    popUpTableView.backgroundColor = UIColor.white
-                    popUpTableView.alpha = 1
-                    CXDataService.sharedInstance.hideSmallLoader()
+                        if self.hashTagsList.count == 0 {
+                            LFDataManager.sharedInstance.getHashTagDataFromServerUsingKeyword(keyword: str!, completion: { (response) in
+                                DispatchQueue.main.async {
+                                    self.popUpTableView.reloadData()
+                                    self.popUpTableView.backgroundColor = UIColor.white
+                                    self.popUpTableView.alpha = 1
+                                    CXDataService.sharedInstance.hideLoader()
+                                }
+                            })
+                        }
+                        else {
+                            popUpTableView.reloadData()
+                            popUpTableView.backgroundColor = UIColor.white
+                            popUpTableView.alpha = 1
+                            CXDataService.sharedInstance.hideLoader()
+                        }
+                    
+                    }
+                    // @ search
+                    else {
+                        isHash = false
+                        str = str?.replace(target: "@", withString: "")
+                        let predicate = NSPredicate.init(format: "uniqueUsername CONTAINS[c] %@",str!)
+                        CXDataService.sharedInstance.showLoader(view: self.view, message: "")
+                        let relamInstance = try! Realm()
+                        self.userNamesList = relamInstance.objects(LFUserNames.self).filter(predicate)
+                        if self.userNamesList.count == 0 {
+                            LFDataManager.sharedInstance.getUserNameDataFromServerUsingKeyword(keyword: str!, completion: { (response) in
+                                DispatchQueue.main.async {
+                                    self.popUpTableView.reloadData()
+                                    self.popUpTableView.backgroundColor = UIColor.white
+                                    self.popUpTableView.alpha = 1
+                                    CXDataService.sharedInstance.hideLoader()
+                                }
+                            })
+                        }
+                        else {
+                            popUpTableView.reloadData()
+                            popUpTableView.backgroundColor = UIColor.white
+                            popUpTableView.alpha = 1
+                            CXDataService.sharedInstance.hideLoader()
+                        }
                     }
                 }
 
@@ -310,6 +394,14 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
             else {
                 if (text == "@" || text == "#") && textView.text.characters.count == 0
                 {
+                    if text == "@"
+                {
+                        isHash = false
+                    }
+                    else if text == "#"
+                    {
+                        isHash = true
+                    }
                     isHashGenerated = true
                 }
                 else if (text == "@" || text == "#") && textView.text.characters.last == " "
@@ -322,6 +414,7 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 popUpTableView.backgroundColor = UIColor.black
                 popUpTableView.alpha = 0.5
             }
+            
         }
         //while removing text
         else {
@@ -335,14 +428,36 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
             let arr1 = str1?.components(separatedBy: "@")
             let arr2 = str1?.components(separatedBy: "#")
             if arr1?[0] == "" && arr1?.count == 2 && !(arr1?[1].contains("#"))! {
-                
-                tempArray = ["Hi","Hello","H r u"]
-                popUpTableView.reloadData()
-                popUpTableView.backgroundColor = UIColor.white
-                popUpTableView.alpha = 1
+                isHash = false
+                isHashGenerated = true
+                var str = textView.text.components(separatedBy: " ").last
+                if (str?.characters.count)! > 2 {
+                    if str?[(str?.startIndex)!] == "@" {
+                        str = str?.replace(target: "@", withString: "")
+                        let endIndex = str?.index((str?.endIndex)!, offsetBy: -1)
+                        let truncated = str?.substring(to: endIndex!)
+                        let predicate = NSPredicate.init(format: "uniqueUsername CONTAINS[c] %@",truncated!)
+                        let relamInstance = try! Realm()
+                        self.userNamesList = relamInstance.objects(LFUserNames.self).filter(predicate)
+                        popUpTableView.reloadData()
+                        popUpTableView.backgroundColor = UIColor.white
+                        popUpTableView.alpha = 1
+                    }
+                }
+                else {
+                    //while removing text if user removes last #
+                    if str1 == "@"{
+                        isHashGenerated = false
+                    }
+                    self.userNamesList = nil
+                    popUpTableView.reloadData()
+                    popUpTableView.backgroundColor = UIColor.black
+                    popUpTableView.alpha = 0.5
+                }
             }
             else if arr2?[0] == "" && arr2?.count == 2 && !(arr2?[1].contains("@"))!{
-               
+               isHash = true
+                isHashGenerated = true
                 var str = textView.text.components(separatedBy: " ").last
                 if (str?.characters.count)! > 2 {
                     if str?[(str?.startIndex)!] == "#" {
@@ -359,8 +474,8 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 }
                 else {
                     //while removing text if user removes last #
-                    if textView.text == "#" {
-                        isHashGenerated = false
+                    if str1 == "#"{
+                       isHashGenerated = false
                     }
                     self.hashTagsList = nil
                     popUpTableView.reloadData()
@@ -369,17 +484,22 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                 }
             }
             else {
+                self.hashTagsList = nil
+                self.userNamesList = nil
                 tempArray = NSArray()
                 popUpTableView.reloadData()
                 popUpTableView.backgroundColor = UIColor.black
                 popUpTableView.alpha = 0.5
             }
         }
+        CXDataService.sharedInstance.hideLoader()
             return true
     }
     
     func textViewDidBeginEditing(_ textView: UITextView)
     {
+        atTheRateArray = NSMutableArray()
+        hashArray = NSMutableArray()
         popUpTableView = UITableView.init(frame: CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180))
         popUpTableView.delegate = self
         popUpTableView.dataSource = self
@@ -505,8 +625,8 @@ extension LFShareFoodiePicViewController{
             print("fb alive")
             
             var params : NSDictionary = NSDictionary()
-            params = ["message" : dict.value(forKey: "Name")!,
-                      "image": Response.value(forKey: "filePath") as! String]
+//            params = ["message" : dict.value(forKey: "Name")!,
+//                      "image": Response.value(forKey: "filePath") as! String]
             let request : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me/feed", parameters: params as [NSObject : AnyObject], httpMethod: "POST")
             request.start(completionHandler: { (connection, result, error) -> Void in
                 
