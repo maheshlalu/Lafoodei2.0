@@ -343,7 +343,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.likeBtn.addTarget(self, action: #selector(likeBtnAction), for: .touchUpInside)
             cell.likeBtn.tag = indexPath.section
             lastIndexPath = indexPath
-          //  cell.photoDescriptionLbl.text = "wanderireland @travelingspud got a front row seat to one of #Ireland 's most famous views #TheCliffsofMoher - #irlande #Ireland #irland #irlanda #discoverireland #Wanderireland - Watch "
             cell.photoDescriptionLbl.hashtagLinkTapHandler = { label, hashtag, range in
                 self.hashTagTapped(hashTagName: hashtag)
             }
@@ -358,14 +357,11 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     //MARK: HashTag Button Tapped
     func hashTagTapped(hashTagName:String){
-     print("usertapeed \(hashTagName)")
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let hashtagcontroller : LFHashTagDetailController = (storyBoard.instantiateViewController(withIdentifier: "LFHashTagDetailController") as? LFHashTagDetailController)!
         let navController = UINavigationController(rootViewController: hashtagcontroller)
         navController.navigationItem.hidesBackButton = false
-        
-        hashtagcontroller.hashTagNamestr = hashTagName as NSString
-        //self.navigationController?.pushViewController(hashtagcontroller, animated: true)
+        hashtagcontroller.hashTagNamestr = hashTagName
         self.present(navController, animated: true, completion: nil)
         
     }
@@ -373,10 +369,33 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func userHandle(userhandleName:String){
         print("user handle \(userhandleName) tapped")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController")as? LFRestaurentDetailsViewController
-        storyboard?.isAtTypeBool = true
-        storyboard?.atUser = userhandleName
-        self.navigationController?.pushViewController(storyboard!, animated: true)
+        getAtUserDetails()
+    }
+    
+    //http://35.160.251.153:8081/MobileAPIs/getUserByUserName?username=babu
+    func getAtUserDetails(){
+        // CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getAtUserDetails(), parameters: ["username":"babu" as AnyObject]) { (responseDict) in
+            print(responseDict)
+            //CXDataService.sharedInstance.hideLoader()
+            let imgArr = responseDict.value(forKey:"jobs") as! NSArray
+            let dict = imgArr[0] as? NSDictionary
+            
+            let userEmail = dict?.value(forKey: "Email") as! String
+            
+            let realm = try! Realm()
+            self.myProfile = realm.objects(LFMyProfile.self).first
+            
+            let predicate = NSPredicate.init(format:"foodieEmail==%@",userEmail)
+            self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
+            
+            let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
+            restaurentView.foodiesArr = self.foodiesArr
+            restaurentView.isFromHome = true
+            let navController = UINavigationController(rootViewController: restaurentView)
+            navController.navigationItem.hidesBackButton = false
+            self.present(navController, animated:true, completion: nil)
+        }
     }
     
     
@@ -587,7 +606,14 @@ extension LFHomeViewController{
         }))
         
         alert.addAction(UIAlertAction(title: "Copy Share URL", style: .default, handler: { (action) in
-            
+            let alert = UIAlertController.init(title: "", message: "Link Copied", preferredStyle: .alert)
+            let okAction = UIAlertAction.init(title: "OK", style: .cancel, handler: { (action) in
+                
+            })
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            let pasteBoard = UIPasteboard.general
+            pasteBoard.string = feeds.feedPublicUrl
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         }))

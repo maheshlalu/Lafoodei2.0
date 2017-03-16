@@ -130,7 +130,9 @@ extension String{
                 }
             }
         }
-        hasTagString.remove(at: hasTagString.index(before: hasTagString.endIndex))
+        if hasTagString.characters.count != 0 {
+            hasTagString.remove(at: hasTagString.index(before: hasTagString.endIndex))
+        }
         return hasTagString
     }
     
