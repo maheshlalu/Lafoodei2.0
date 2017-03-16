@@ -156,7 +156,7 @@ extension LFPhotosViewController{
     
     func getTheUserPostedPhots(email:String,isMyposts:Bool){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: true, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
+        LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: isMyposts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
             CXDataService.sharedInstance.hideLoader()
             if isMyposts {
                 let realm = try! Realm()

@@ -27,8 +27,8 @@ class LFForgotPasswordViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func sendAction(_ sender: Any) {//"Please enter valid email address."
         self.view.endEditing(true)
-        print("Send button")
         if self.isValidEmail(self.emailTextField.text!) {
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
             LFDataManager.sharedInstance.forgotPassword(self.emailTextField.text!, completion: { (responseDict) in
                // print(responseDict)
                 let message = responseDict.value(forKey: "result") as? String

@@ -186,8 +186,16 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             else {
                 let user = userNamesList[indexPath.row]
                 
+                let imgUrl = URL(string: user.userImagePath) as URL!
                 let userImageView = UIImageView.init(frame: CGRect(x: 10, y: 7, width: 30, height: 30))
-                userImageView.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
+                if imgUrl != nil{
+                    userImageView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
+                    
+                }else{
+                    userImageView.image = UIImage(named: "placeHolder")
+                }
+                
+//                userImageView.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
                 userImageView.layer.cornerRadius = 15
                 userImageView.clipsToBounds = true
                 cell.contentView.addSubview(userImageView)

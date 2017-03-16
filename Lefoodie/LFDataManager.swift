@@ -501,7 +501,7 @@ extension LFDataManager{
         if myPosts == true {
             //if myPosts is "true" get the login user Photos
             //myPosts=true&pageNumber=1&pageSize=2
-            parameterDic = ["email":userEmail,"myPosts":"true"]
+            parameterDic = ["email":userEmail,"myPosts":"false"]
         }else{
             //Get The Other User Posts
             parameterDic = ["email":userEmail]
@@ -688,8 +688,7 @@ extension LFDataManager{
     }
 
     
-    //MARK: Getting HashTags data from server using search Keyword
-    
+    //MARK: Getting HashTags data from server using search keyword and saving in DB
     func getHashTagDataFromServerUsingKeyword(keyword:String,completion:@escaping (Bool)->Void)
     {
         let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApiUsingKeyword()
@@ -711,8 +710,6 @@ extension LFDataManager{
             completion(true)
         }
     }
-
-
 }
 
 

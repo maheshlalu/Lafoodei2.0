@@ -14,25 +14,44 @@ class LFHashTagsViewController: UIViewController {
     var hashTagsArray = NSArray()
     var hashTagsList : Results<LFHashTags>!
     
+    var isSearch = Bool()
+    
     @IBOutlet weak var hashTagsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isSearch = false
         LFDataManager.sharedInstance.getHashTagDataFromServer()
+        getHashTagsFromDB()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(LFHashTagsViewController.hashTagsSearchNotification(_:)), name:NSNotification.Name(rawValue: "HashTagsSearchNotification"), object: nil)
         
     }
     
+    func getHashTagsFromDB()
+    {
+        let realm = try! Realm()
+        hashTagsList = realm.objects(LFHashTags.self)
+    }
+    
     func hashTagsSearchNotification(_ notification: Notification) {
+        isSearch = true
         let searchText = notification.object as! String
+        CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
+        let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApiUsingKeyword()
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["keyWord":searchText as AnyObject]) { (responseDic) in
+            self.hashTagsArray = responseDic.value(forKey: "hashTags") as! NSArray
+            self.hashTagsTableView.reloadData()
+            CXDataService.sharedInstance.hideLoader()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,13 +63,19 @@ class LFHashTagsViewController: UIViewController {
 extension LFHashTagsViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if hashTagsList == nil {
-            return 0
+        // while user searching for HashTags
+        if isSearch {
+            return hashTagsArray.count
         }
+        //while user doesn't searching for HashTags
         else {
-            return hashTagsList.count
+            if hashTagsList == nil {
+                return 0
+            }
+            else {
+                return hashTagsList.count
+            }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,13 +83,42 @@ extension LFHashTagsViewController:UITableViewDataSource,UITableViewDelegate {
         // Instantiate a cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "HashTagCell", for: indexPath) as! LFHashTagsTableViewCell
         
-        let obj = hashTagsList[indexPath.row] as! LFHashTags
-        
-        cell.nameLabel.text = "#\(obj.name)"
-        cell.countLabel.text = "\(obj.count) posts"
-        
+        // while user searching for HashTags
+        if isSearch {
+            let obj = hashTagsArray[indexPath.row] as! NSDictionary
+            cell.nameLabel.text = "#\(obj.value(forKey: "Name")!)"
+            cell.countLabel.text = "\(obj.value(forKey: "Count")!) posts"
+        }
+        //while user doesn't searching for HashTags
+        else {
+            let obj = hashTagsList[indexPath.row]
+            cell.nameLabel.text = "#\(obj.name)"
+            cell.countLabel.text = "\(obj.count) posts"
+        }
+
         // Returning the cell
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let hashtagcontroller : LFHashTagDetailController = (storyBoard.instantiateViewController(withIdentifier: "LFHashTagDetailController") as? LFHashTagDetailController)!
+        let navController = UINavigationController(rootViewController: hashtagcontroller)
+        navController.navigationItem.hidesBackButton = false
+        
+        if isSearch {
+            let obj = hashTagsArray[indexPath.row] as! NSDictionary
+            hashtagcontroller.hashTagNamestr = obj.value(forKey: "Name") as! NSString
+        }
+        else {
+            let obj = hashTagsList[indexPath.row]
+            hashtagcontroller.hashTagNamestr = obj.name as NSString
+        }
+        
+        //self.navigationController?.pushViewController(hashtagcontroller, animated: true)
+        self.present(navController, animated: true, completion: nil)
     }
     
     

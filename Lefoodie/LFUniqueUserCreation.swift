@@ -21,20 +21,27 @@ class LFUniqueUserCreation: UIViewController {
     @IBAction func nameRegistrationBtnAction(_ sender: UIButton) {
         
         //http://35.160.251.153:8081/Users/createUniqueUserName?email=yernagulamahesh@gmail.com&uniqueUserName=mahi
-        
-        
+    
         if self.userNameTextField.text?.characters.count != 0 {
+            let userName = self.userNameTextField.text!
             if let userEmail = userEmail  {
-                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":self.userNameTextField.text as AnyObject]) { (responeDic) in
+                CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":userName.trimmingCharacters(in: .whitespaces) as AnyObject]) { (responeDic) in
                     if let status = responeDic.value(forKey: "status") as? String {
                         if status == "-1" {
                             //User name not available.
                             self.showAlert(message: "User name not available")
+                            CXDataService.sharedInstance.hideLoader()
 
                         }else{
                             //Directly navigate to home screen
-                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                            appDelegate.navigateToTabBar()
+                            
+                            LFDataManager.sharedInstance.getTheUserDetails(userEmail: userEmail, completion: { (isGenaratedKey) in
+                                CXDataService.sharedInstance.hideLoader()
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.navigateToTabBar()
+                            })
+                           
                         }
                     }
                 }
