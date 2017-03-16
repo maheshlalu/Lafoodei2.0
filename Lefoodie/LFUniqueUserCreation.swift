@@ -27,6 +27,7 @@ class LFUniqueUserCreation: UIViewController {
             if let userEmail = userEmail  {
                 CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading...")
                 CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":userName.trimmingCharacters(in: .whitespaces) as AnyObject]) { (responeDic) in
+            
                     if let status = responeDic.value(forKey: "status") as? String {
                         if status == "-1" {
                             //User name not available.

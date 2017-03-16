@@ -90,30 +90,29 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
        // print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
-            print("Get Data is \(responceDic)")
             let Status = responceDic.value(forKey: "status") as! String
             if (Status == "-1"){
                 self.showAlert(message: "Invalid Username or Password")
                 CXDataService.sharedInstance.hideLoader()
                 
             }else {
-                
+                CXAppConfig.sharedInstance.saveUserMailId(emailID: (responceDic.value(forKey:"emailId") as? String)!)
+                CXAppConfig.sharedInstance.saveUserMacID(macID: (responceDic.value(forKey:"macId") as? String)!)
+                CXAppConfig.sharedInstance.saveUserID(userID:  CXAppConfig.resultString(input: responceDic.value(forKey:"UserId")! as AnyObject))
+                CXAppConfig.sharedInstance.saveMacJobID(macJobId: CXAppConfig.resultString(input: responceDic.value(forKey:"macIdJobId")! as AnyObject))
+   
                 let uniqueUserName =  responceDic.value(forKey: "UpdatedUniqueUserName") as? String
-                
                 if let uniqeName = uniqueUserName{
-                    
                     if uniqeName == "0" {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
                         storyboard?.userEmail =  (responceDic.value(forKey:"emailId") as? String)!;
                         UserDefaults.standard.set(true, forKey: "isLoggedUser")
                         self.navigationController?.pushViewController(storyboard!, animated: true)
-
                     }else{
                         let statusSucce = responceDic.value(forKey: "status")
                         CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
                         print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
                         if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
-                            
                             LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!, completion: { (isGenaratedKey) in
                                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                 appDelegate.navigateToTabBar()

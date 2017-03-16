@@ -113,7 +113,9 @@ extension LFDataManager{
     func sharePost(jsonDic:NSDictionary,imageData:Data,hastTagString:String,completion:@escaping (_ responseDict:Bool) -> Void){
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"6" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject,"hashTags":hastTagString as AnyObject]) { (responseDict) in
             let resultDic = JSON(responseDict)
+            
             let mallIIDJson  = resultDic["myHashMap"].dictionary! as [String:JSON]
+            print(mallIIDJson)
             LFFireBaseDataService.sharedInstance.addThePostToFirebase(postID:  (mallIIDJson["jobId"]?.stringValue)!)
             let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
             if status == 1{

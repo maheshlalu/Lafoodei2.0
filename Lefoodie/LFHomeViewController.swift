@@ -683,6 +683,8 @@ extension LFHomeViewController{
                     }
                 }
             })
+        }else{
+            CXDataService.sharedInstance.hideLoader()
         }
     }
 }
