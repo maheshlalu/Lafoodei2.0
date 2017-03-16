@@ -12,6 +12,7 @@ import RealmSwift
 
 class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate{
     
+    @IBOutlet weak var foodieBannerImgView: UIImageView!
     @IBOutlet weak var restaurantView: UIView!
     @IBOutlet weak var restaurantScrollView: UIScrollView!
     @IBOutlet weak var animationView: UIView!
@@ -29,7 +30,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var myProfile : LFMyProfile!
     var isFromHome:Bool = Bool()
     var isAtTypeBool:Bool = Bool()
-    var atUser:String!
     
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -40,9 +40,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
-        if isAtTypeBool{
-            getAtUserDetails()
-        }
         tabViews()
         foodieDetails()
         settingsBtn.isHidden = true
@@ -95,13 +92,15 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             self.foodieName.text = foodiesArr[0].foodieName
             
             let imgUrl = URL(string: foodiesArr[0].foodieImage) as URL!
+            let bannerImgUrl = URL(string: foodiesArr[0].foodieBannerImage) as URL!
             if imgUrl != nil{
                 foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
-                
+                foodieBannerImgView.setImageWith(bannerImgUrl, usingActivityIndicatorStyle:.gray)
             }else{
                 foodieImgView.image = UIImage(named: "placeHolder")
+                foodieBannerImgView.image = UIImage(named: "placeHolder")
             }
-
+            
             let following = foodiesArr[0].foodieFollowingCount
             let follower = foodiesArr[0].foodieFollowerCount
             foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
@@ -110,11 +109,13 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             self.foodieName.text = selectedFoodie.foodieName
             
             let imgUrl = URL(string: selectedFoodie.foodieImage) as URL!
+            let bannerImgUrl = URL(string: selectedFoodie.foodieBannerImage) as URL!
             if imgUrl != nil{
                 foodieImgView.setImageWith(imgUrl, usingActivityIndicatorStyle: .gray)
-                
+                foodieBannerImgView.setImageWith(bannerImgUrl, usingActivityIndicatorStyle:.gray)
             }else{
                 foodieImgView.image = UIImage(named: "placeHolder")
+                foodieBannerImgView.image = UIImage(named: "placeHolder")
             }
             
             let realm = try! Realm()
@@ -127,32 +128,8 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
             let follower = (data?.foodieFollowerCount)!
             foodieFollowLbl.text = "\(follower) Followers . \(following) Following"
         }
-
         
-    }
-    
-    
-    //http://35.160.251.153:8081/MobileAPIs/getUserByUserName?username=babu
-    
-    
-    func getAtUserDetails(){
-        // CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getAtUserDetails(), parameters: ["username":"babu" as AnyObject]) { (responseDict) in
-            print(responseDict)
-            //CXDataService.sharedInstance.hideLoader()
-            let imgArr = responseDict.value(forKey:"jobs") as! NSArray
-            let dict = imgArr[0] as? NSDictionary
-            
-            print(dict?.value(forKey: "Email") as! String)
-            
-//            let realm = try! Realm()
-//            self.myProfile = realm.objects(LFMyProfile.self).first
-//            
-//            let predicate = NSPredicate.init(format:"foodieEmail==%@", )
-//            self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
-            
-            
-        }
+        
     }
     
     

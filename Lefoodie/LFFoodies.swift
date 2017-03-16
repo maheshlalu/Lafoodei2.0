@@ -31,6 +31,7 @@ class LFFoodies: Object {
    dynamic var foodieCurrentJobStatusId = ""
    dynamic var foodieFollowingCount = ""
    dynamic var foodieFollowerCount = ""
+   dynamic var foodieBannerImage = ""
    dynamic var jSON = ""
     
 // Specify properties to ignore (Realm won't persist these)

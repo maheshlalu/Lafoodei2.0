@@ -29,7 +29,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     var lastNameTxtFld = UITextField()
     var birthDayTxtFld = UITextField()
     var phoneNumberTxtFld = UITextField()
-    
+    let button = UIButton()
     var isPicUpdated = false
     var isBannerUpdated = false
 
@@ -57,7 +57,10 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         let realm = try! Realm()
         self.myProfile = realm.objects(LFMyProfile.self).first
         
+        buttoncreated()
+        
         if self.myProfile.userPic == "" && self.myProfile.userBannerPic == ""{
+            button.setTitle("Save", for: .normal)
             self.BannerLayer.isHidden = false
             self.dpLayer.isHidden = false
             
@@ -75,7 +78,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         
         let nib = UINib(nibName: "LFEditTableViewCell", bundle: nil)
         self.editTableView.register(nib, forCellReuseIdentifier: "LFEditTableViewCell")
-        buttoncreated()
         self.setImages()
     }
     
@@ -93,7 +95,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     }
     //Button Created
     func buttoncreated(){
-        let button = UIButton()
         button.frame = CGRect(x: 15, y: 8, width: 40, height: 40)
         button.setTitle("Edit", for: .normal)
         button.setTitle("Save", for: .selected)
@@ -106,18 +107,14 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     
     //MARK: Button Action
     func buttonAction(_ sender:UIButton){
-        
-        if(sender.titleLabel?.text == "Edit")
-        {
-            sender.setTitle("Save", for: .normal)
+        if(sender.titleLabel?.text == "Save"){
+        let alert = UIAlertController(title: "Are you sure want to save changes!!!", message:"" , preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            sender.setTitle("Edit", for: .normal)
             sender.isSelected = !sender.isSelected
-            sender.setImage(UIImage(named:"item1"), for: UIControlState.normal)
             
-            //enabling layers
-            self.dpLayer.isHidden = false
-            self.BannerLayer.isHidden = false
-            
-            //enabling textfields
             var cell = LFEditTableViewCell()
             for i in 0...4{
                 let indexPath : NSIndexPath = NSIndexPath(row:i, section: 0)
@@ -127,13 +124,9 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                     cell.infoTextfield.isUserInteractionEnabled = false
                 }
             }
- 
-        }else if sender.titleLabel?.text == "Save" {
             
-            sender.setTitle("Edit", for: .normal)
-            sender.isSelected = !sender.isSelected
-           // self.imageUpload(key:"IMG_DATA_DP")
-             CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
+            // self.imageUpload(key:"IMG_DATA_DP")
+            CXDataService.sharedInstance.showLoader(view: self.view, message: "Uploading...")
             
             if self.isPicUpdated {
                 self.imageUpload(key: "IMG_DATA_DP", uploadCompletion: { (responceStr) in
@@ -153,18 +146,46 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
                 self.imageUpload(key: "IMG_DATA_BI", uploadCompletion: { (responceStr) in
                     self.bannaerPath = responceStr
                     self.jsonDic.setObject(responceStr, forKey: "userBannerPath" as NSCopying)
-                        self.sumbitDetails(imageStr: responceStr)
+                    self.sumbitDetails(imageStr: responceStr)
                 })
             }else{
                 self.sumbitDetails(imageStr: "")
             }
             
-
-            
-           
-            
-           // self.imageUpload(key: "IMG_DATA_BI")
+            // self.imageUpload(key: "IMG_DATA_BI")
             //sumbitDetails
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) {
+            UIAlertAction in
+            sender.setTitle("Edit", for: .normal)
+            self.BannerLayer.isHidden = true
+            self.dpLayer.isHidden = true
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+            
+        }else if(sender.titleLabel?.text == "Edit"){
+            sender.setTitle("Save", for: .normal)
+            sender.isSelected = !sender.isSelected
+            sender.setImage(UIImage(named:"item1"), for: UIControlState.normal)
+            
+            //enabling layers
+            self.dpLayer.isHidden = false
+            self.BannerLayer.isHidden = false
+            
+            //enabling textfields
+            var cell = LFEditTableViewCell()
+            for i in 0...4{
+                let indexPath : NSIndexPath = NSIndexPath(row:i, section: 0)
+                cell = self.editTableView.cellForRow(at: indexPath as IndexPath) as! LFEditTableViewCell
+                cell.infoTextfield.isUserInteractionEnabled = true
+                if cell.infoTextfield.tag == 500{
+                    cell.infoTextfield.isUserInteractionEnabled = false
+                }
+            }
+            
         }
     }
     

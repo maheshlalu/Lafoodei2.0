@@ -31,7 +31,7 @@ class  SearchFoodies{
     var foodieCurrentJobStatusId : String
     var foodieFollowingCount : String
     var foodieFollowerCount : String
-    
+    var foodieBannerImage : String
     
     init(json: JSON) {
         
@@ -55,7 +55,7 @@ class  SearchFoodies{
         foodieCurrentJobStatusId =  json["Current_Job_StatusId"].stringValue
         foodieFollowerCount = json["followers"].stringValue
         foodieFollowingCount = json["following"].stringValue
-
+        foodieBannerImage = json["userBannerPath"].stringValue
     }
 }
 

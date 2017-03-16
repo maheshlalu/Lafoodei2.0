@@ -210,6 +210,7 @@ class LFDataSaveManager: NSObject {
                 foodieObj.foodieName = foodie.foodieName
                 foodieObj.foodieDescription = foodie.foodieDescription
                 foodieObj.foodieImage = foodie.foodieImage
+                foodieObj.foodieBannerImage = foodie.foodieBannerImage
                 foodieObj.foodieMobile = foodie.foodieMobile
                 foodieObj.foodieAddress = foodie.foodieAddress
                 foodieObj.foodieCity = foodie.foodieCity

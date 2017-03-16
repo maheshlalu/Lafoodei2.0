@@ -106,7 +106,7 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
             else if indexPath.section == 2 && indexPath.row == 2
             {
                 
-                self.showAlert("Are You Sure", status: 0)
+                self.showAlert("Are You Sure???", status: 0)
             }
             else if indexPath.section == 2 && indexPath.row == 1
             {
@@ -159,16 +159,20 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     func deleteUserDataFromRealm(){
         
         let realm = try! Realm()
-        
-        let userData = realm.objects(LFMyProfile.self)
+//        
+//        let userData = realm.objects(LFMyProfile.self)
+//        
+//        try! realm.write {
+//            realm.delete(userData)
+//        }
+//        
+//        let userPhotos = realm.objects(LFUserPhotos.self)
+//        try! realm.write {
+//            realm.delete(userPhotos)
+//        }
         
         try! realm.write {
-            realm.delete(userData)
-        }
-        
-        let userPhotos = realm.objects(LFUserPhotos.self)
-        try! realm.write {
-            realm.delete(userPhotos)
+            realm.deleteAll()
         }
     }
     
