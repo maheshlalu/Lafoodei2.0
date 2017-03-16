@@ -53,13 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         if (url.host == "oauth-callback") {
             OAuthSwift.handle(url: url)
         }
         return true
     }
-    
+    */
 
     func checkUserId(){
         
