@@ -39,11 +39,10 @@ class LFUserProfileViewController: UIViewController {
     var subAminId:String!
     var rEmail:String!
     var isFromHome:Bool = Bool()
-    var userData = [String]()
-    
+
     override func viewDidLoad() {
         if isFromHome{
-        getRestaurantDetails(email: rEmail, id: subAminId)
+            getRestaurantDetails(email: rEmail, id: subAminId)
         }
         self.tabViews()
         self.notificationRegistration()
@@ -55,9 +54,9 @@ class LFUserProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         if isFromHome{
         }else{
-        self.populatedData()
+            self.populatedData()
         }
-  }
+    }
     
     func setNavigationProperty(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)

@@ -11,6 +11,7 @@ import MagicalRecord
 import RealmSwift
 
 class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDelegate{
+    
     @IBOutlet weak var restaurantView: UIView!
     @IBOutlet weak var restaurantScrollView: UIScrollView!
     @IBOutlet weak var animationView: UIView!
@@ -27,6 +28,8 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     var trayDown: CGPoint!
     var myProfile : LFMyProfile!
     var isFromHome:Bool = Bool()
+    var isAtTypeBool:Bool = Bool()
+    var atUser:String!
     
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -37,7 +40,9 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.restaurantScrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 700)
-        
+        if isAtTypeBool{
+            getAtUserDetails()
+        }
         tabViews()
         foodieDetails()
         settingsBtn.isHidden = true
@@ -73,7 +78,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-        let menuItem = UIBarButtonItem(image: UIImage(named: "Back-48"), style: .plain, target: self, action: #selector(LFRestaurentDetailsViewController.backBtnClicked))
+        let menuItem = UIBarButtonItem(image: UIImage(named: "leftArrow"), style: .plain, target: self, action: #selector(LFRestaurentDetailsViewController.backBtnClicked))
         self.navigationItem.leftBarButtonItem = menuItem
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
@@ -125,6 +130,31 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
 
         
     }
+    
+    
+    //http://35.160.251.153:8081/MobileAPIs/getUserByUserName?username=babu
+    
+    
+    func getAtUserDetails(){
+        // CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getAtUserDetails(), parameters: ["username":"babu" as AnyObject]) { (responseDict) in
+            print(responseDict)
+            //CXDataService.sharedInstance.hideLoader()
+            let imgArr = responseDict.value(forKey:"jobs") as! NSArray
+            let dict = imgArr[0] as? NSDictionary
+            
+            print(dict?.value(forKey: "Email") as! String)
+            
+//            let realm = try! Realm()
+//            self.myProfile = realm.objects(LFMyProfile.self).first
+//            
+//            let predicate = NSPredicate.init(format:"foodieEmail==%@", )
+//            self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
+            
+            
+        }
+    }
+    
     
     @IBAction func settingBtnAction(_ sender: UIButton) {
         
@@ -252,8 +282,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
 
 
 extension LFRestaurentDetailsViewController : UIScrollViewDelegate{
-    
-    
     func scrollUp(){
         print(self.restaurantScrollView.contentOffset)
         let offset : CGFloat = restaurantScrollView.contentOffset.y
@@ -264,8 +292,6 @@ extension LFRestaurentDetailsViewController : UIScrollViewDelegate{
             }, completion: { finished in
             })
         }
-        
-        
     }
     
     func scrollDown(){
@@ -277,13 +303,13 @@ extension LFRestaurentDetailsViewController : UIScrollViewDelegate{
             }, completion: { finished in
             })
         }
-        
     }
     
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         //self.Scroller_ScrollerView.contentOffset.x = 300
         return true
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         //self.Scroller_ScrollerView.contentOffset = CGPoint(x: 0.0, y: 300)
@@ -322,6 +348,7 @@ extension LFRestaurentDetailsViewController : UIScrollViewDelegate{
         print(">>>> scrollViewWillEndDragging ")
         //
     }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.restaurantScrollView.contentOffset.y = 20
         print(self.restaurantScrollView.contentInset)
