@@ -22,22 +22,40 @@ class LFUniqueUserCreation: UIViewController {
         
         //http://35.160.251.153:8081/Users/createUniqueUserName?email=yernagulamahesh@gmail.com&uniqueUserName=mahi
         
-        if let userEmail = userEmail  {
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":"" as AnyObject]) { (responeDic) in
-                if let status = responeDic.value(forKey: "status") as? String {
-                    if status == "-1" {
-                        //User name not available.
-                    }else{
-                       //Directly navigate to home screen
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.navigateToTabBar()
+        
+        if self.userNameTextField.text?.characters.count != 0 {
+            if let userEmail = userEmail  {
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+"Users/createUniqueUserName?", parameters: ["email":userEmail as AnyObject,"uniqueUserName":self.userNameTextField.text as AnyObject]) { (responeDic) in
+                    if let status = responeDic.value(forKey: "status") as? String {
+                        if status == "-1" {
+                            //User name not available.
+                            self.showAlert(message: "User name not available")
+
+                        }else{
+                            //Directly navigate to home screen
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.navigateToTabBar()
+                        }
                     }
                 }
             }
+        }else{
+            self.showAlert(message: "Please Enter Name")
         }
+        
+        
+        
         
        
         
+    }
+    
+    //MARK: Show textfield alert
+    func showAlert(message:String)
+    {
+        let alert = UIAlertController.init(title: "LeFoodie", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
    
     override func viewWillAppear(_ animated: Bool) {
