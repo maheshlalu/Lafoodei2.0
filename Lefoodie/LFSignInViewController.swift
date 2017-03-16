@@ -101,17 +101,10 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
                 CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
                 print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
                 if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
-                    LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!) {
+                    
+                    LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!, completion: { (isGenaratedKey) in
                         
-                    }
-                    UserDefaults.standard.set(true, forKey: "isLoggedUser")
-                    CXAppConfig.sharedInstance.saveUserDataInUserDefaults(responceDic: responceDic)
-                    CXDataService.sharedInstance.hideLoader()
-                    
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.navigateToTabBar()
-                    
-                    
+                    })
                 }
             }
         }

@@ -66,21 +66,23 @@ class LFSignUpViewController: UIViewController {
             
             UserProfile.mr_truncateAll(in: localContext)
         })
-        CX_SocialIntegration.sharedInstance.applicationRegisterWithSignUp(userDataDic: userRegisterDic, completion: { (isRegistred) in
-            
-            if isRegistred {
-                
+        
+        CX_SocialIntegration.sharedInstance.applicationRegisterWithSignUp(userDataDic: userRegisterDic) { (isRegistred, isGenaratedKey, email) in
+            if isRegistred && !isGenaratedKey{
                 //print(isRegistred)
-                self.showAlert(message: "You are Successfully Registered", status: 1)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LFUniqueUserCreation")as? LFUniqueUserCreation
+                self.navigationController?.pushViewController(storyboard!, animated: true)
                 UserDefaults.standard.set(true, forKey: "isLoggedUser")
+                storyboard?.userEmail =  email;
+                CXDataService.sharedInstance.hideLoader()
+
             }
             else {
                 CXDataService.sharedInstance.hideLoader()
                 self.showAlert(message: "This Email already exists", status: 0)
             }
-            
-            
-        })
+        }
+    
     }
     
     
