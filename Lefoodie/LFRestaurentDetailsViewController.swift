@@ -73,6 +73,8 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        scrollUp()
+        scrollDown()
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
         let menuItem = UIBarButtonItem(image: UIImage(named: "leftArrow"), style: .plain, target: self, action: #selector(LFRestaurentDetailsViewController.backBtnClicked))

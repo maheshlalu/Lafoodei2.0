@@ -14,7 +14,7 @@ class LFUniqueUserCreation: UIViewController {
     var userEmail:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
 

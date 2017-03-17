@@ -110,7 +110,8 @@ extension LFHashTagsViewController:UITableViewDataSource,UITableViewDelegate {
         
         if isSearch {
             let obj = hashTagsArray[indexPath.row] as! NSDictionary
-            hashtagcontroller.hashTagNamestr = obj.value(forKey: "Name") as! String?
+            let hastTag = obj.value(forKey: "Name") as! String?
+            hashtagcontroller.hashTagNamestr = "#" + hastTag!
         }
         else {
             let obj = hashTagsList[indexPath.row]

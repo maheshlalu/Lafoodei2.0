@@ -646,7 +646,7 @@ extension LFDataManager{
     func getTheHAshTagDataFromServer(PageNumber: String,PageSize:String,HashTag:String,completion:@escaping ([LFFeedsData])->Void){
         
         //http://35.160.251.153:8081/Services/getMasters?type=User%20Posts&keyWord=iOSTeam
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"keyWord":HashTag as AnyObject]) { (responceDic) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"User Posts" as AnyObject,"keyWord":HashTag as AnyObject,"pageNumber":PageNumber as AnyObject,"pageSize":PageSize as AnyObject]) { (responceDic) in
             
             let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
             var feedsList = [LFFeedsData]()

@@ -47,7 +47,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.setNavigationProperties()
         self.registerCells()
         self.selectedTabBar()
-        self.setSegmentProperties()
         self.addThePullTorefresh()
         page = "1"
         LFDataManager.sharedInstance.getHashTagDataFromServer()
@@ -57,6 +56,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(LFHomeViewController.updatedFeed), name:NSNotification.Name(rawValue: "POST_TO_FEED"), object: nil)
         locManager.requestWhenInUseAuthorization()
         
+       self.homeTableView.rowHeight = UITableViewAutomaticDimension
+        self.homeTableView.estimatedRowHeight = 100
+        //
+        
         
 //        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
 //            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
@@ -64,14 +67,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
 ////            print(currentLocation.coordinate.latitude)
 ////            print(currentLocation.coordinate.longitude)
 //        }
-        
-    }
-    
-    //MARK: Segment
-    func setSegmentProperties(){
-        
-        
-        
         
     }
     
@@ -95,7 +90,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         self.feedsArray = [LFFeedsData]()
         self.isInitialLoad = true
         self.page = "1"
-        
         self.serviceAPICall(PageNumber: self.page, PageSize: "5")
     }
     
@@ -126,7 +120,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     func deleteTheFeedsInDatabase(){
-        
         if page == "1" {
             let relamInstance = try! Realm()
             let feedData = relamInstance.objects(LFHomeFeeds.self)
@@ -170,11 +163,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let long: Double = currentLocation.coordinate.longitude
                 let longstr: String = String(format:"%f", long)
                 let neardbystr: String = latstr + "|" + longstr + "|" + "200"
-                print("location \(neardbystr)")
                 LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
                 LFFireBaseDataService.sharedInstance.addPostObserver()
                 CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-                
                 //LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
                 // sample test lat and long "36.976042| -121.582814|5"
                 LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
@@ -182,9 +173,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     let lastIndexOfArr = self.feedsArray.count - 1
                     if !resultFeeds.isEmpty {
                         self.feedsArray.append(contentsOf: resultFeeds)
-                        
-                        print("nearByFeed Count\(self.feedsArray.count)")
-                        
+                                
                         // if it is Initial Load
                         if self.isInitialLoad {
                             self.homeTableView.reloadData()
@@ -248,9 +237,13 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.homeTableView.endUpdates()
                     }
                     
+                }else{
+//                    self.segmentController.selectedSegmentIndex = 1
+//                    self.isNearByFeed = true
+//                    self.updatedFeed()
                 }
-                
                 self.refreshControl.endRefreshing()
+                self.homeTableView.reloadData()
             }
         }
     }
@@ -305,6 +298,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if self.feedsArray.count == 0 {
+            
             let cell = UITableViewCell()
             return cell
         }
@@ -505,7 +499,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             return 320
             
         }else if indexPath.row == 2 {
-            return 100
+            return UITableViewAutomaticDimension
             
         }
         return 0
@@ -623,21 +617,39 @@ extension LFHomeViewController{
             alert.addAction(UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) in
                 //http://35.160.251.153:8081/jobs/jobToDelete? jobId =1748
                 //{"myHashMap":{"status":"1","success":"Successfully deleted"}}
-                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.deletePostOfUser(), parameters: ["jobId":feeds.feedID as AnyObject]) { (responseDict) in
-                    print(responseDict)
-                    let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
-                    if status == 1{
-                        self.showAlert("", status: status)
-                        //self.homeTableView.deleteSections([sender.tag] as IndexSet, with: .none)
-                        self.homeTableView.reloadData()
-                        
-                    }else{
-                        print("something went wrong")
-                    }
-                }
+               self.deletePost(feedId: feeds.feedID,sender: sender)
+
             }))
         }
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deletePost(feedId:String,sender:UIButton){
+        let alert = UIAlertController(title: "Are you sure?", message:"", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Ok", style: .default) { (alert: UIAlertAction!) -> Void in
+            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.deletePostOfUser(), parameters: ["jobId":feedId as AnyObject]) { (responseDict) in
+                print(responseDict)
+                let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
+                if status == 1{
+                    self.homeTableView.beginUpdates()
+                    self.feedsArray.remove(at: sender.tag)
+                    let indexsset:IndexSet = [sender.tag]
+                    self.homeTableView.deleteSections(indexsset, with: .automatic)
+                    self.homeTableView.endUpdates()
+
+                    self.showAlert("", status: status)
+                }else{
+                    print("something went wrong")
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (alert: UIAlertAction!) -> Void in
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion:nil)
     }
     
     func showAlert(_ message:String, status:Int) {
@@ -723,15 +735,5 @@ extension LFHomeViewController{
     }
     
 }
-
-
-/*
- 
- issues
- number of sections contained in the table view after the update (1) must be equal to the number of sections contained in the table view before the update (1), plus or minus the number of sections inserted or deleted (1 inserted, 0 deleted).'
- *** First throw call stack:
- */
-
-
 
 

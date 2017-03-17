@@ -56,6 +56,8 @@ class LFUserProfileViewController: UIViewController {
         }else{
             self.populatedData()
         }
+        scrollUp()
+        scrollDown()
     }
     
     func setNavigationProperty(){

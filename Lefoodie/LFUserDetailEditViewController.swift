@@ -462,17 +462,17 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
     
     // Custom Alert View
     func showAlert(message:String, status:Int){
-        let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
+        if isPicUpdated && isBannerUpdated{
+            let alert = UIAlertController(title: "Alert!!!", message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Okay", style: .default) { (alert: UIAlertAction!) -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion:nil)
+        }else{
             self.navigationController?.popViewController(animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) -> Void in
-            self.navigationController?.popViewController(animated: true)
-
-        }
-        alert.addAction(defaultAction)
-       // alert.addAction(cancelAction)
-        present(alert, animated: true, completion:nil)
+        
     }
     
     //Update multiple properties

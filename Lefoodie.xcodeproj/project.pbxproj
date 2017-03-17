@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		112FDA2C1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FDA2B1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift */; };
+		1142F5891E7C2B100084CB16 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1142F5881E7C2B0F0084CB16 /* AnnotationView.swift */; };
 		114E3C461E1FB96400142130 /* LFNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */; };
 		114E3C471E1FB96400142130 /* LFNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */; };
 		115257911E7817D7002EEF47 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257901E7817D7002EEF47 /* Flurry_iOS_SDK.framework */; };
@@ -174,6 +175,7 @@
 
 /* Begin PBXFileReference section */
 		112FDA2B1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserFollowerAndFollowingViewController.swift; sourceTree = "<group>"; };
+		1142F5881E7C2B0F0084CB16 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		115257901E7817D7002EEF47 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flurry_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		127861CF1E1A299400D64F16 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1142F5881E7C2B0F0084CB16 /* AnnotationView.swift */,
 				1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */,
 				187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */,
 				2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */,
@@ -1172,6 +1175,7 @@
 				183FBCC41E1A48A300A0A8CC /* LFTabHomeController.swift in Sources */,
 				1825CCB91E1B769D00CD3C3B /* CXMainScreenScrollViewCustomization.swift in Sources */,
 				2B0668951E77CCFA009F0E44 /* LFHashTags.swift in Sources */,
+				1142F5891E7C2B100084CB16 /* AnnotationView.swift in Sources */,
 				1225DA311E5DB2D1007951B8 /* LFHotItemTableViewCell.swift in Sources */,
 				121E10941E5F2229001546D0 /* LFCommentViewViewController.swift in Sources */,
 				1825CCE41E1BE98B00CD3C3B /* CAPSPageMenu.swift in Sources */,
