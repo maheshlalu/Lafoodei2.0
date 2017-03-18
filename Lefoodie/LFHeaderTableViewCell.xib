@@ -15,9 +15,31 @@
             <rect key="frame" x="0.0" y="0.0" width="326" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZL-di-o1g" id="ugc-So-ych">
-                <rect key="frame" x="0.0" y="0.0" width="326" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="326" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=";alkdjsf;alkdsjf;aksdjf;kalsdjf;klajsdf;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
+                        <rect key="frame" x="49" y="8" width="139" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="139" id="cIl-hs-w4W"/>
+                            <constraint firstAttribute="height" constant="20" id="leq-06-1e0"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="t4u-ey-7lo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
+                        <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
+                        <rect key="frame" x="195" y="9" width="102" height="19"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="onQ-4g-Mnj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="dtw-0V-Pbf" customClass="CXImageView" customModule="Lefoodie" customModuleProvider="target">
                         <rect key="frame" x="5" y="5" width="40" height="40"/>
                         <constraints>
@@ -36,57 +58,36 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jJE-77-7S7">
-                        <rect key="frame" x="53" y="5" width="268" height="39.5"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="9h8-eL-qmK">
-                                <rect key="frame" x="0.0" y="0.0" width="268" height="20"/>
-                                <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=";alkdjsf;alkdsjf;aksdjf;kalsdjf;klajsdf;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siG-xa-jLV">
-                                        <rect key="frame" x="0.0" y="0.0" width="225" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
-                                        <color key="textColor" red="1" green="0.80392156859999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Min Ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIc-aD-MbQ">
-                                        <rect key="frame" x="225" y="0.0" width="43" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H29 Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jea-WK-jDw">
-                                <rect key="frame" x="0.0" y="20" width="268" height="19.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="11"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MapIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7u6-gZ-iRn">
+                        <rect key="frame" x="298" y="8" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="LFi-DP-XiQ"/>
+                            <constraint firstAttribute="height" constant="20" id="ZTb-l0-3Jb"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="siG-xa-jLV" firstAttribute="leading" secondItem="dtw-0V-Pbf" secondAttribute="trailing" constant="4" id="3h0-F7-ehP"/>
+                    <constraint firstItem="siG-xa-jLV" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="8" id="8oI-C9-E6Y"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="leading" secondItem="ugc-So-ych" secondAttribute="leading" constant="5" id="CUc-Fi-P8K"/>
-                    <constraint firstItem="jJE-77-7S7" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="SJ8-9M-eKW"/>
-                    <constraint firstAttribute="bottom" secondItem="jJE-77-7S7" secondAttribute="bottom" constant="5" id="aTo-CF-Hz5"/>
+                    <constraint firstItem="7u6-gZ-iRn" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="8" id="GN2-gL-ikf"/>
+                    <constraint firstItem="jea-WK-jDw" firstAttribute="leading" secondItem="siG-xa-jLV" secondAttribute="trailing" constant="7" id="UFF-2R-uTk"/>
+                    <constraint firstAttribute="trailing" secondItem="7u6-gZ-iRn" secondAttribute="trailing" constant="8" id="V8S-It-VSa"/>
+                    <constraint firstItem="7u6-gZ-iRn" firstAttribute="leading" secondItem="jea-WK-jDw" secondAttribute="trailing" constant="1" id="Z9n-1h-dcc"/>
                     <constraint firstItem="dtw-0V-Pbf" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="5" id="mb4-mm-7J6"/>
-                    <constraint firstItem="jJE-77-7S7" firstAttribute="leading" secondItem="dtw-0V-Pbf" secondAttribute="trailing" constant="8" id="sp2-s1-vWD"/>
-                    <constraint firstAttribute="trailing" secondItem="jJE-77-7S7" secondAttribute="trailing" constant="5" id="uLs-OO-R2X"/>
+                    <constraint firstItem="jea-WK-jDw" firstAttribute="top" secondItem="ugc-So-ych" secondAttribute="top" constant="9" id="r2h-Ai-a3R"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cafeNameLbl" destination="jea-WK-jDw" id="olr-HY-VOn"/>
                 <outlet property="lbl_Title" destination="siG-xa-jLV" id="hBY-0b-L6O"/>
-                <outlet property="postedTime" destination="vIc-aD-MbQ" id="wkO-6V-dJH"/>
                 <outlet property="userPicImg" destination="dtw-0V-Pbf" id="Xg9-k7-5kT"/>
             </connections>
             <point key="canvasLocation" x="-222" y="-144"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="MapIcon" width="30" height="30"/>
         <image name="user" width="120" height="126"/>
     </resources>
 </document>

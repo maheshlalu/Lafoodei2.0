@@ -52,14 +52,16 @@ class LFDataSaveManager: NSObject {
                 myProfileData.userLastName = userDataDic["lastName"].stringValue
                 myProfileData.userFirstName = userDataDic["firstName"].stringValue
                 myProfileData.userMobileNumber = userDataDic["mobileNo"].stringValue
-
+                
+                if userDataDic["UpdatedUniqueUserName"].stringValue != "0" || userDataDic["UpdatedUniqueUserName"].stringValue != ""{
+                myProfileData.uniqueUserName = userDataDic["UniqueUserName"].stringValue
+                }
                 myProfileData.userPic = userDataDic["Image"].stringValue
-
                 myProfileData.userFollowers = userDataDic["followers"].stringValue
                 myProfileData.userFollwing = userDataDic["following"].stringValue
                 myProfileData.userDOB = userDataDic["DOB"].stringValue
                 myProfileData.userBannerPic = userDataDic["userBannerPath"].stringValue
-
+ 
                 relamInstance.add(myProfileData)
             })
         }
@@ -358,7 +360,8 @@ class LFDataSaveManager: NSObject {
         let relamInstance = try! Realm()
         for obj in hashTagsArr {
             let hashTag = obj as! NSDictionary
-            let userData = relamInstance.objects(LFHashTags.self).filter("name=='\(hashTag.value(forKey: "Name")!)'")
+            let nameStr = hashTag.value(forKey: "Name")! as! String
+            let userData = relamInstance.objects(LFHashTags.self).filter("name=='\(nameStr.trimmingCharacters(in: .whitespacesAndNewlines))'")
             if userData.count == 0 {
                 try! relamInstance.write({
                     let hashTagObj = LFHashTags()

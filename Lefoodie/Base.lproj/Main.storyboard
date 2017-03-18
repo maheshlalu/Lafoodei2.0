@@ -2419,71 +2419,6 @@
                                             <constraint firstAttribute="height" constant="38" id="coT-of-PfO"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="eON-G8-FRM">
-                                        <rect key="frame" x="8" y="220" width="304" height="30"/>
-                                        <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KhF-pv-xwW" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Reservation">
-                                                    <color key="titleColor" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THU-dB-2Gc" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Follow">
-                                                    <color key="titleColor" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="followBtnAction:" destination="6mX-Az-4Xf" eventType="touchUpInside" id="Jrn-RX-sem"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVI-Qv-aTe" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
-                                                <rect key="frame" x="304" y="0.0" width="0.0" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" title="Directions">
-                                                    <color key="titleColor" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
-                                                        <real key="value" value="14"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="K16-JW-Pe9"/>
-                                        </constraints>
-                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rct-wI-44r">
                                         <rect key="frame" x="0.0" y="258" width="320" height="662"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2491,6 +2426,31 @@
                                             <constraint firstAttribute="height" constant="662" id="0MV-YI-IvH"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THU-dB-2Gc" customClass="CXButton" customModule="Lefoodie" customModuleProvider="target">
+                                        <rect key="frame" x="96" y="220" width="128" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="jDb-Nw-86Y"/>
+                                            <constraint firstAttribute="width" constant="128" id="oxe-xU-wha"/>
+                                        </constraints>
+                                        <state key="normal" title="Follow">
+                                            <color key="titleColor" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornurRadius">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="followBtnAction:" destination="6mX-Az-4Xf" eventType="touchUpInside" id="Jrn-RX-sem"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="F37-VH-Cin" firstAttribute="top" secondItem="ltk-y8-r8Y" secondAttribute="top" id="0wh-oe-ESb"/>
@@ -2500,22 +2460,21 @@
                                     <constraint firstItem="vPf-Bb-CSf" firstAttribute="top" secondItem="F37-VH-Cin" secondAttribute="bottom" constant="8" id="5OO-27-j9t"/>
                                     <constraint firstAttribute="trailing" secondItem="rct-wI-44r" secondAttribute="trailing" id="BAc-le-FHu"/>
                                     <constraint firstItem="vPf-Bb-CSf" firstAttribute="leading" secondItem="IZC-Eu-ICo" secondAttribute="trailing" constant="15" id="Dk1-Wk-tLf"/>
-                                    <constraint firstItem="rct-wI-44r" firstAttribute="top" secondItem="eON-G8-FRM" secondAttribute="bottom" constant="8" id="F4L-3J-tXk"/>
                                     <constraint firstItem="j5H-Za-tP7" firstAttribute="leading" secondItem="ltk-y8-r8Y" secondAttribute="leading" constant="8" id="Fb5-nb-uxr"/>
                                     <constraint firstItem="IZC-Eu-ICo" firstAttribute="top" secondItem="F37-VH-Cin" secondAttribute="bottom" constant="8" id="FgL-1h-Bx1"/>
                                     <constraint firstItem="j5H-Za-tP7" firstAttribute="top" secondItem="UzV-de-Hfm" secondAttribute="bottom" constant="8" id="Ib1-kq-hjG"/>
                                     <constraint firstItem="UzV-de-Hfm" firstAttribute="top" secondItem="F37-VH-Cin" secondAttribute="bottom" constant="8" id="JAx-0B-a7v"/>
                                     <constraint firstItem="rct-wI-44r" firstAttribute="leading" secondItem="ltk-y8-r8Y" secondAttribute="leading" id="JKe-e8-QL7"/>
                                     <constraint firstAttribute="trailing" secondItem="vPf-Bb-CSf" secondAttribute="trailing" constant="8" id="Kta-4e-1WV"/>
-                                    <constraint firstAttribute="trailing" secondItem="eON-G8-FRM" secondAttribute="trailing" constant="8" id="Lkb-Sn-gWG"/>
-                                    <constraint firstItem="eON-G8-FRM" firstAttribute="top" secondItem="j5H-Za-tP7" secondAttribute="bottom" constant="8" id="PLu-QT-Dko"/>
+                                    <constraint firstItem="THU-dB-2Gc" firstAttribute="centerX" secondItem="j5H-Za-tP7" secondAttribute="centerX" constant="4" id="RGV-qN-V2n"/>
                                     <constraint firstItem="F37-VH-Cin" firstAttribute="leading" secondItem="ltk-y8-r8Y" secondAttribute="leading" id="Ruq-AP-xqL"/>
                                     <constraint firstAttribute="trailing" secondItem="j5H-Za-tP7" secondAttribute="trailing" constant="16" id="RvN-75-1h3"/>
                                     <constraint firstItem="F37-VH-Cin" firstAttribute="centerX" secondItem="ltk-y8-r8Y" secondAttribute="centerX" id="SVh-iz-z5N"/>
                                     <constraint firstAttribute="bottom" secondItem="rct-wI-44r" secondAttribute="bottom" constant="-220" id="Z5a-uy-xcM"/>
                                     <constraint firstAttribute="trailing" secondItem="F37-VH-Cin" secondAttribute="trailing" id="dpw-v8-tsg"/>
                                     <constraint firstAttribute="height" constant="700" id="hCD-4c-4Se"/>
-                                    <constraint firstItem="eON-G8-FRM" firstAttribute="leading" secondItem="ltk-y8-r8Y" secondAttribute="leading" constant="8" id="zCK-5Q-BtF"/>
+                                    <constraint firstItem="rct-wI-44r" firstAttribute="top" secondItem="THU-dB-2Gc" secondAttribute="bottom" constant="8" symbolic="YES" id="ita-am-gPT"/>
+                                    <constraint firstItem="THU-dB-2Gc" firstAttribute="top" secondItem="j5H-Za-tP7" secondAttribute="bottom" constant="8" id="mr7-pi-biK"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="6mX-Az-4Xf" id="Ag6-UZ-2d2"/>
@@ -2548,7 +2507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVt-vC-zFh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20005" y="-368"/>
+            <point key="canvasLocation" x="20004.799999999999" y="-368.81559220389806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kB6-wN-hZ6">

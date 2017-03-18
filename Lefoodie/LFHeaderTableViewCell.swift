@@ -28,7 +28,7 @@ class LFHeaderTableViewCell: UITableViewCell {
     func papulateUserinformation(feedData:LFFeedsData){
         self.lbl_Title.text = feedData.feedUserName
         self.cafeNameLbl.text = feedData.feedIDMallName
-        self.postedTime.text = feedData.feedCreatedDate.timeAgoSinceDate(numericDates: true)
+        //self.postedTime.text = feedData.feedCreatedDate.timeAgoSinceDate(numericDates: true)
         self.userPicImg.setImageWith(NSURL(string: feedData.feedUserImage) as URL!, usingActivityIndicatorStyle: .white)
         self.selectionStyle = .none
     }

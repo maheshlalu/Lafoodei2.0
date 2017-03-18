@@ -21,28 +21,27 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
     @IBOutlet weak var placesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let mapView = LFMapInstance.MapView.init(frame: CGRect(x:0, y:292, width:self.view.frame.size.width, height:300))
-//        //LFMapInstance.sharedInstance.coordinate
-//        self.view.addSubview(mapView)
+        
+        //        let mapView = LFMapInstance.MapView.init(frame: CGRect(x:0, y:292, width:self.view.frame.size.width, height:300))
+        //        //LFMapInstance.sharedInstance.coordinate
+        //        self.view.addSubview(mapView)
         //getTheCurrentLocationlatLong()
         NotificationCenter.default.addObserver(self, selector: #selector(LFSearchPlacesViewController.placesSearchNotification(_:)), name:NSNotification.Name(rawValue: "PlacesSearchNotification"), object: nil)
         
-        
         let relamInstance = try! Realm()
         let places = relamInstance.objects(LFPlaces.self)
-            try! relamInstance.write({
-                relamInstance.delete(places)
-            })
+        try! relamInstance.write({
+            relamInstance.delete(places)
+        })
         
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         LFDataManager.sharedInstance.getTheAllRestarantsFromServer { (resultArray) in
             
             CXDataService.sharedInstance.hideLoader()
             self.getPlaceDetailsFromDB()
-
+            
         }
-  
+        
     }
     
     func getTheCurrentLocationlatLong(){
@@ -50,40 +49,39 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             currentLocation = locManager.location
-            let lat: Double = currentLocation.coordinate.latitude
-            let latstr: String = String(format:"%f", lat)
-            
-            let long: Double = currentLocation.coordinate.longitude
-            let longstr: String = String(format:"%f", long)
-            let neardbystr: String = latstr + "|" + longstr + "|" + "200"
-            // print("location \(neardbystr)")
-            CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"allMalls" as AnyObject,"NearByMalls":neardbystr as AnyObject]) { (responceDic) in
-                //  print("All data mapp \(responceDic)")
-                self.latAndLongData = NSMutableArray()
-                let orgsData : NSArray = (responceDic.value(forKey: "orgs") as?NSArray)!
-                for Data in orgsData{
-                    self.latAndLongData.addObjects(from: [Data])
-                }
-                for i in 0...self.latAndLongData.count - 1
-                {
-                    let dict = self.latAndLongData[i] as! NSDictionary
-                    
-                    let center = CLLocationCoordinate2D(latitude: (dict.value(forKey: "latitude")! as AnyObject).doubleValue!, longitude: (dict.value(forKey: "longitude")! as AnyObject).doubleValue!)
-                    let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-                    
-                    self.mapviewPlaces.setRegion(region, animated: true)
-                    
-                    let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-                    myAnnotation.coordinate = CLLocationCoordinate2DMake((dict.value(forKey: "latitude")! as AnyObject).doubleValue!, (dict.value(forKey: "longitude")! as AnyObject).doubleValue!)
-                    myAnnotation.title = dict.value(forKey: "name") as? String
-                    //myAnnotation.subtitle = "subtitle"
-                    self.mapviewPlaces.addAnnotation(myAnnotation)
-                    
-                }
+            if currentLocation != nil{
+                let lat: Double = currentLocation.coordinate.latitude
+                let latstr: String = String(format:"%f", lat)
                 
+                let long: Double = currentLocation.coordinate.longitude
+                let longstr: String = String(format:"%f", long)
+                let neardbystr: String = latstr + "|" + longstr + "|" + "200"
+                // print("location \(neardbystr)")
+                CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"allMalls" as AnyObject,"NearByMalls":neardbystr as AnyObject]) { (responceDic) in
+                    //  print("All data mapp \(responceDic)")
+                    self.latAndLongData = NSMutableArray()
+                    let orgsData : NSArray = (responceDic.value(forKey: "orgs") as?NSArray)!
+                    for Data in orgsData{
+                        self.latAndLongData.addObjects(from: [Data])
+                    }
+                    for i in 0...self.latAndLongData.count - 1
+                    {
+                        let dict = self.latAndLongData[i] as! NSDictionary
+                        
+                        let center = CLLocationCoordinate2D(latitude: (dict.value(forKey: "latitude")! as AnyObject).doubleValue!, longitude: (dict.value(forKey: "longitude")! as AnyObject).doubleValue!)
+                        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                        
+                        self.mapviewPlaces.setRegion(region, animated: true)
+                        
+                        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+                        myAnnotation.coordinate = CLLocationCoordinate2DMake((dict.value(forKey: "latitude")! as AnyObject).doubleValue!, (dict.value(forKey: "longitude")! as AnyObject).doubleValue!)
+                        myAnnotation.title = dict.value(forKey: "name") as? String
+                        //myAnnotation.subtitle = "subtitle"
+                        self.mapviewPlaces.addAnnotation(myAnnotation)
+                        
+                    }
+                }
             }
-            
-            
         }
     }
     
@@ -107,7 +105,7 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
         //annotationView?.t
         return annotationView
     }
-
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
         // print("location tapp")
@@ -138,25 +136,24 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
     
     //MARK: Disclouse Button action
     func disclosuseBtnClicked(){
+        print("Disclouse tapped")
         
-    print("Disclouse tapped")
-    
     }
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
-//    {
-//        guard let annotation = view.annotation else
-//        {
-//            return
-//        }
-//        
-//        let urlString = "http://maps.apple.com/?sll=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
-//        guard let url = URL(string: urlString) else
-//        {
-//            return
-//        }
-//        
-//        UIApplication.shared.openURL(url)
-//    }
+    //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
+    //    {
+    //        guard let annotation = view.annotation else
+    //        {
+    //            return
+    //        }
+    //
+    //        let urlString = "http://maps.apple.com/?sll=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
+    //        guard let url = URL(string: urlString) else
+    //        {
+    //            return
+    //        }
+    //
+    //        UIApplication.shared.openURL(url)
+    //    }
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if view.isKind(of: AnnotationView.self)
         {
@@ -174,26 +171,26 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
     
     func getPlaceDetailsFromDB()
     {
-       
+        
         let realm = try! Realm()
-       let  data = realm.objects(LFPlaces.self)
+        let  data = realm.objects(LFPlaces.self)
         let categoryArr = NSMutableArray()
         
         
-//        for (index,value) in data.enumerated() {
-//            
-//        }
+        //        for (index,value) in data.enumerated() {
+        //
+        //        }
         
         for obj in data {
             categoryArr.add(obj.category)
             placesData.add(obj)
         }
         
-//        for i in 0...data.count - 1 {
-//            let obj = data[i]
-//            categoryArr.add(obj.category)
-//            placesData.add(obj)
-//        }
+        //        for i in 0...data.count - 1 {
+        //            let obj = data[i]
+        //            categoryArr.add(obj.category)
+        //            placesData.add(obj)
+        //        }
         let catOnlyDict = NSMutableDictionary()
         for i in 0...categoryArr.count - 1 {
             let type = categoryArr[i] as! String
@@ -204,18 +201,16 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
     }
     
     
-    
-    
     func placesSearchNotification(_ notification: Notification) {
         let searchText = notification.object as! String
     }
-
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

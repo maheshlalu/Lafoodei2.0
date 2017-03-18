@@ -16,6 +16,9 @@
 		115257951E7819DE002EEF47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257941E7819DE002EEF47 /* SystemConfiguration.framework */; };
 		115257971E7819E4002EEF47 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257961E7819E4002EEF47 /* Security.framework */; };
 		119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119329AE1E519AC600FEC328 /* SearchFoodies.swift */; };
+		11AA4E4C1E7D5AD7006C4E37 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA4E491E7D5AD7006C4E37 /* CustomCalloutView.swift */; };
+		11AA4E4D1E7D5AD7006C4E37 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11AA4E4A1E7D5AD7006C4E37 /* CustomCalloutView.xib */; };
+		11AA4E4E1E7D5AD7006C4E37 /* StarbucksAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA4E4B1E7D5AD7006C4E37 /* StarbucksAnnotation.swift */; };
 		11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E270051E681FF300A1739E /* RestaurantsLocations.swift */; };
 		11FF068C1E703E0D00BED142 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FF068B1E703E0D00BED142 /* KILabel.m */; };
 		120514CF1E40693400D2345E /* LFRestaurentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120514CE1E40693400D2345E /* LFRestaurentDetailsViewController.swift */; };
@@ -183,6 +186,9 @@
 		115257941E7819DE002EEF47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		115257961E7819E4002EEF47 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		119329AE1E519AC600FEC328 /* SearchFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFoodies.swift; sourceTree = "<group>"; };
+		11AA4E491E7D5AD7006C4E37 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		11AA4E4A1E7D5AD7006C4E37 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		11AA4E4B1E7D5AD7006C4E37 /* StarbucksAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarbucksAnnotation.swift; sourceTree = "<group>"; };
 		11E270051E681FF300A1739E /* RestaurantsLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocations.swift; sourceTree = "<group>"; };
 		11FF068A1E703E0D00BED142 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
 		11FF068B1E703E0D00BED142 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
@@ -434,6 +440,9 @@
 		127861CF1E1A299400D64F16 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				11AA4E491E7D5AD7006C4E37 /* CustomCalloutView.swift */,
+				11AA4E4A1E7D5AD7006C4E37 /* CustomCalloutView.xib */,
+				11AA4E4B1E7D5AD7006C4E37 /* StarbucksAnnotation.swift */,
 				1142F5881E7C2B0F0084CB16 /* AnnotationView.swift */,
 				1842A76E1E1F6E6C004C85C0 /* LFHashTagsTableViewCell.swift */,
 				187039B81E1D39A300D6668B /* LFFoodiesTableViewCell.swift */,
@@ -940,6 +949,7 @@
 				183FBCD11E1A843C00A0A8CC /* GoogleService-Info.plist in Resources */,
 				18160CED1E14EB0F00C2E5AE /* LaunchScreen.storyboard in Resources */,
 				18160CEA1E14EB0F00C2E5AE /* Assets.xcassets in Resources */,
+				11AA4E4D1E7D5AD7006C4E37 /* CustomCalloutView.xib in Resources */,
 				18F179471E1CC305001EDF45 /* LFChooseLocationTableViewCell.xib in Resources */,
 				18F179531E1CD45F001EDF45 /* CXProjectConfiguration.plist in Resources */,
 				120514D91E40926300D2345E /* LFItemHeaderTableViewCell.xib in Resources */,
@@ -1139,6 +1149,7 @@
 				2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */,
 				1225DA271E5D6968007951B8 /* LFFlagReportTableViewCell.swift in Sources */,
 				2B8AEAF41E5BF69900487223 /* LFSearchViewController.swift in Sources */,
+				11AA4E4C1E7D5AD7006C4E37 /* CustomCalloutView.swift in Sources */,
 				127861D91E1A29E400D64F16 /* LoginViewController.swift in Sources */,
 				127861C91E1A298900D64F16 /* LFHeaderTableViewCell.swift in Sources */,
 				1225DA2E1E5DB29A007951B8 /* LFHotItemViewController.swift in Sources */,
@@ -1156,6 +1167,7 @@
 				189EB0EF1E49AF76006D78BB /* Restaurants.swift in Sources */,
 				2BB625F41E5336D600F5FD63 /* Followers+CoreDataProperties.swift in Sources */,
 				12FCB7CF1E1E4A3700433645 /* LFSignUpViewController.swift in Sources */,
+				11AA4E4E1E7D5AD7006C4E37 /* StarbucksAnnotation.swift in Sources */,
 				18160CE21E14EB0F00C2E5AE /* ViewController.swift in Sources */,
 				185FAF641E1E4D43009479A3 /* NavBarExtension.swift in Sources */,
 				127861DE1E1A2A0200D64F16 /* CXButton.swift in Sources */,

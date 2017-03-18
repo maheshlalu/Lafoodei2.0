@@ -48,14 +48,8 @@ class LFUniqueUserCreation: UIViewController {
                 }
             }
         }else{
-            self.showAlert(message: "Please Enter Name")
+            self.showAlert(message: "Field can't be empty!!")
         }
-        
-        
-        
-        
-       
-        
     }
     
     //MARK: Show textfield alert

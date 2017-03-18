@@ -23,7 +23,7 @@ class LFMyProfile: Object {
     dynamic var userLastName = ""
     dynamic var userPassword = ""
     dynamic var userMobileNumber = ""
-
+    dynamic var uniqueUserName = ""
     dynamic var userPic = ""
     dynamic var json = ""
     dynamic var userBannerPic = ""
