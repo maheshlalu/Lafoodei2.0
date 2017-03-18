@@ -141,9 +141,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             currentLocation = locManager.location
             print(currentLocation.coordinate.latitude)
             print(currentLocation.coordinate.longitude)
-            
         }
-    
     }
     
     //MARK: calling home data from service
@@ -157,6 +155,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
                 CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
                 currentLocation = locManager.location
+                if currentLocation == nil{
                 let lat: Double = currentLocation.coordinate.latitude
                 let latstr: String = String(format:"%f", lat)
                 
@@ -199,7 +198,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     self.homeTableView.reloadData()
                 }
 
-                
+                }
             }else{
                 self.showAlertView(status: 1)
                 self.homeTableView.reloadData()
@@ -497,7 +496,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             //            print( cell.ImgView_Logo.image?.size.height)
             
             
-            return 320
+            return 250
             
         }else if indexPath.row == 2 {
             return UITableViewAutomaticDimension

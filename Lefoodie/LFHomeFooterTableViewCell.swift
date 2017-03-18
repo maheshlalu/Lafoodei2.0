@@ -59,17 +59,22 @@ class LFHomeFooterTableViewCell: UITableViewCell {
         let userNameTxt = data?.feedUserName
         let commentTxt = data?.feedName
         
-        print(commentTxt!)
         
-        if commentTxt != nil || commentTxt != ""{
-            let attributedString = NSMutableAttributedString()
-            let attributedString1 = NSMutableAttributedString(string:" \(commentTxt!)")
-            let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 12), NSForegroundColorAttributeName: UIColor.appTheamColor()]
-            let boldString = NSMutableAttributedString(string:userNameTxt!, attributes:attrs)
-            attributedString.append(boldString)
-            attributedString.append(attributedString1)
-            self.photoDescriptionLbl.attributedText = attributedString
+        if let text = commentTxt {
+            if !text.isEmpty {
+                let attributedString = NSMutableAttributedString()
+                let attributedString1 = NSMutableAttributedString(string:" \(commentTxt!)")
+                let attrs = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 12), NSForegroundColorAttributeName: UIColor.appTheamColor()]
+                let boldString = NSMutableAttributedString(string:userNameTxt!, attributes:attrs)
+                attributedString.append(boldString)
+                attributedString.append(attributedString1)
+                self.photoDescriptionLbl.attributedText = attributedString
+                
+            }else{
+                self.photoDescriptionLbl.text = ""
+            }
         }
+        
         self.selectionStyle = .none
     }
 }
