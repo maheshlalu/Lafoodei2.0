@@ -15,6 +15,7 @@ import TwitterKit
 import OAuthSwift
 class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     
+    static let TXV_Height = 80
  
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var sharePhotoTableView: UITableView!
@@ -316,8 +317,7 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
 extension LFShareFoodiePicViewController : UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print(text)
-        print(textView.text)
+        
         
         //while entering text
         if text != ""
@@ -526,7 +526,14 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
         topOkBtn.addTarget(self, action: #selector(okBtnAction), for: .touchUpInside)
        self.view.addSubview(topOkBtn)
     }
-    func okBtnAction()
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        topLabel.removeFromSuperview()
+        topOkBtn.removeFromSuperview()
+        popUpTableView.removeFromSuperview()
+    }
+    
+       func okBtnAction()
     {
         topLabel.removeFromSuperview()
         topOkBtn.removeFromSuperview()

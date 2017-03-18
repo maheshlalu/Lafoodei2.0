@@ -15,7 +15,8 @@ class LFSharePostTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        let scrollableSize = CGSize.init(width: 320, height: 480)
+//        postDescTxtView.contentSize = scrollableSize
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
