@@ -14,13 +14,17 @@ class LFOptionsViewController: UIViewController,UITableViewDataSource,UITableVie
     @IBOutlet weak var optionsTableView: UITableView!
     let sections = ["INVITE","Follow People","Accounts"]
     var items = [NSArray]()
-    var isLoggedUser:Bool!
+    var isLoggedUser = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //isLoggedUser
-        isLoggedUser = UserDefaults.standard.value(forKey: "isLoggedUser") as! Bool
+        
+        if let item = UserDefaults.standard.value(forKey: "isLoggedUser") {
+            isLoggedUser = item as! Bool
+
+        }
       
         if isLoggedUser == true{
             items = [["Facebook Friends"],["Facebook Friends","Contacts"],["Edit Profile","Change Password","Logout"]]

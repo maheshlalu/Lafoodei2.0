@@ -53,13 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
-    /*func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if (url.host == "oauth-callback") {
-            OAuthSwift.handle(url: url)
-        }
-        return true
-    }
-    */
+ 
 
     func checkUserId(){
         
@@ -78,17 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     }
     
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let callBack:Bool
-        // print("***************************url Schemaaa:", url.scheme);
-        
-        if url.scheme == "fb1846765795547218" {
-            callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
-        } else {
-            callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
-        }
-        return callBack
-    }
+
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
@@ -325,6 +309,70 @@ extension AppDelegate{
         print(remoteMessage)
     }
     
+}
+
+//MARK: Handle ur scheme for DeepLinking,Facebook and
+extension AppDelegate{
+    
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let callBack:Bool
+        // print("***************************url Schemaaa:", url.scheme);
+        
+        if url.scheme == "fb1846765795547218" {
+            callBack = FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        } else if url.scheme == "com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m"{
+            callBack =  GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
+            return callBack
+        }else if url.scheme == "apps.storeongo.com" {
+            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
+            print(url.host!)
+        }
+        return true
+    }
+    
+   /* func application(_ application: UIApplication, handleOpen url: URL) -> Bool{
+        
+        if url.scheme == "35.160.251.153" {
+            //com.googleusercontent.apps.803211070847-552fk8b896jocpef952a6gg8abgk2q8m
+            print(url.host!)
+        }
+        return true
+    }*/
+    //http://35.160.251.153/app/6/Products;User Posts;2089;_;SingleProduct
+    
+    
+    
+   /* func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+//     if (url.host == "oauth-callback") {
+//     OAuthSwift.handle(url: url)
+//     }
+        
+     return true
+     }
+ */
+    
+  /*  -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    if([[url host] isEqualToString:@"page"]){
+    if([[url path] isEqualToString:@"/main"]){
+    [self.mainController setViewControllers:@[[[DLViewController alloc] init]] animated:YES];
+    }
+    else if([[url path] isEqualToString:@"/page1"]){
+    [self.mainController pushViewController:[[Page1ViewController alloc] init] animated:YES];
+    }
+    else if([[url path] isEqualToString:@"/page2"]){
+    [self.mainController pushViewController:[[Page2ViewController alloc] init] animated:YES];
+    }
+    else if([[url path] isEqualToString:@"/page3"]){
+    [self.mainController pushViewController:[[Page3ViewController alloc] init] animated:YES];
+    }
+    return YES;
+    }
+    else{
+    return NO;
+    }
+    }*/
 }
 
 /*
