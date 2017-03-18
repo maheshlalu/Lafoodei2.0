@@ -36,7 +36,10 @@ class LFHashTagsViewController: UIViewController {
     
     func hashTagsSearchNotification(_ notification: Notification) {
         isSearch = true
-        let searchText = notification.object as! String
+        var searchText = notification.object as! String
+        if searchText[searchText.startIndex] == "#" {
+           searchText.remove(at: searchText.startIndex)
+        }
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let urlStr = CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getHashTagsApiUsingKeyword()
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr, parameters: ["keyWord":searchText as AnyObject]) { (responseDic) in

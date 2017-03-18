@@ -170,6 +170,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 // sample test lat and long "36.976042| -121.582814|5"
                 LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
                     self.isPageRefreshing = false
+                    CXDataService.sharedInstance.hideLoader()
                     let lastIndexOfArr = self.feedsArray.count - 1
                     if !resultFeeds.isEmpty {
                         self.feedsArray.append(contentsOf: resultFeeds)
@@ -194,7 +195,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         }
                         
                     }
-                    
                     self.refreshControl.endRefreshing()
                     self.homeTableView.reloadData()
                 }
@@ -238,9 +238,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     }
                     
                 }else{
-//                    self.segmentController.selectedSegmentIndex = 1
-//                    self.isNearByFeed = true
-//                    self.updatedFeed()
+                    CXDataService.sharedInstance.hideLoader()
+                    self.segmentController.selectedSegmentIndex = 1
+                    self.isNearByFeed = true
+                    self.updatedFeed()
                 }
                 self.refreshControl.endRefreshing()
                 self.homeTableView.reloadData()
@@ -360,16 +361,17 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
     }
     //MARK: User Handle (@username)
-    
+
     func userHandle(userhandleName:String){
         print("user handle \(userhandleName) tapped")
-        getAtUserDetails()
+        getAtUserDetails(userName: userhandleName)
     }
     
     //http://35.160.251.153:8081/MobileAPIs/getUserByUserName?username=babu
-    func getAtUserDetails(){
+    func getAtUserDetails(userName:String){
+        let userName = userName.replacingOccurrences(of: "@", with: "", options: NSString.CompareOptions.literal, range:nil)
         // CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getAtUserDetails(), parameters: ["username":"babu" as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getAtUserDetails(), parameters: ["username":userName as AnyObject]) { (responseDict) in
             print(responseDict)
             //CXDataService.sharedInstance.hideLoader()
             let imgArr = responseDict.value(forKey:"jobs") as! NSArray
@@ -391,7 +393,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             self.present(navController, animated:true, completion: nil)
         }
     }
-    
     
     func userLabelAction(sender: UITapGestureRecognizer){
         
@@ -728,10 +729,15 @@ extension LFHomeViewController{
 extension LFHomeViewController{
     
     func calledTheFirebaseListener(postID:String){
-        if postID == self.visiblePostID {
-            //Reload The Visible Section in  Tableview
-            self.homeTableView.reloadSections(NSIndexSet(index: self.visibleIndex) as IndexSet, with: .none);
+        
+        if (self.visiblePostID) != nil {
+            if postID == self.visiblePostID {
+                //Reload The Visible Section in  Tableview
+                self.homeTableView.reloadSections(NSIndexSet(index: self.visibleIndex) as IndexSet, with: .none);
+            }
         }
+        
+       
     }
     
 }
