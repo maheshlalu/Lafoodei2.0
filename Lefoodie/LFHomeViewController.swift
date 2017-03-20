@@ -155,49 +155,48 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
                 CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
                 currentLocation = locManager.location
-                if currentLocation == nil{
-                let lat: Double = currentLocation.coordinate.latitude
-                let latstr: String = String(format:"%f", lat)
-                
-                let long: Double = currentLocation.coordinate.longitude
-                let longstr: String = String(format:"%f", long)
-                let neardbystr: String = latstr + "|" + longstr + "|" + "200"
-                LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
-                LFFireBaseDataService.sharedInstance.addPostObserver()
-                CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-                //LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
-                // sample test lat and long "36.976042| -121.582814|5"
-                LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
-                    self.isPageRefreshing = false
-                    CXDataService.sharedInstance.hideLoader()
-                    let lastIndexOfArr = self.feedsArray.count - 1
-                    if !resultFeeds.isEmpty {
-                        self.feedsArray.append(contentsOf: resultFeeds)
-                                
-                        // if it is Initial Load
-                        if self.isInitialLoad {
-                            self.homeTableView.reloadData()
-                        } else {
-                            // if using page nation
-                            let indexArr = NSMutableArray()
-                            let indexSet = NSMutableIndexSet()
+                if currentLocation != nil{
+                    let lat: Double = currentLocation.coordinate.latitude
+                    let latstr: String = String(format:"%f", lat)
+                    
+                    let long: Double = currentLocation.coordinate.longitude
+                    let longstr: String = String(format:"%f", long)
+                    let neardbystr: String = latstr + "|" + longstr + "|" + "200"
+                    LFFireBaseDataService.sharedInstance.firebaseDataDelegate = self
+                    LFFireBaseDataService.sharedInstance.addPostObserver()
+                    CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
+                    //LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
+                    // sample test lat and long "36.976042| -121.582814|5"
+                    LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
+                        self.isPageRefreshing = false
+                        CXDataService.sharedInstance.hideLoader()
+                        let lastIndexOfArr = self.feedsArray.count - 1
+                        if !resultFeeds.isEmpty {
+                            self.feedsArray.append(contentsOf: resultFeeds)
                             
-                            for i in 1...resultFeeds.count {
-                                let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
-                                indexSet.add(lastIndexOfArr + i)
-                                indexArr.add(index)
+                            // if it is Initial Load
+                            if self.isInitialLoad {
+                                self.homeTableView.reloadData()
+                            } else {
+                                // if using page nation
+                                let indexArr = NSMutableArray()
+                                let indexSet = NSMutableIndexSet()
+                                
+                                for i in 1...resultFeeds.count {
+                                    let index = IndexPath.init(row: 1, section: lastIndexOfArr + i)
+                                    indexSet.add(lastIndexOfArr + i)
+                                    indexArr.add(index)
+                                }
+                                self.homeTableView.beginUpdates()
+                                self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
+                                self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
+                                self.homeTableView.endUpdates()
                             }
-                            self.homeTableView.beginUpdates()
-                            self.homeTableView.insertSections(indexSet as IndexSet, with: .none)
-                            self.homeTableView.insertRows(at: (indexArr as NSArray) as! [IndexPath], with: .none)
-                            self.homeTableView.endUpdates()
+                            
                         }
-                        
+                        self.refreshControl.endRefreshing()
+                        self.homeTableView.reloadData()
                     }
-                    self.refreshControl.endRefreshing()
-                    self.homeTableView.reloadData()
-                }
-
                 }
             }else{
                 self.showAlertView(status: 1)

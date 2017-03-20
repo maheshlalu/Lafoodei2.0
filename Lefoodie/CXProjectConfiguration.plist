@@ -13,9 +13,9 @@
 	<key>testMallID</key>
 	<string>2</string>
 	<key>BaseUrl</key>
-	<string>http://35.160.251.153:8081/</string>
+	<string>http://35.163.183.25:8081/</string>
 	<key>testBaseUrl</key>
-	<string>http://35.160.251.153:8081/</string>
+	<string>http://35.163.183.25:8081/</string>
 	<key>getMaster</key>
 	<string>Services/getMasters?</string>
 	<key>SidePanelList</key>
@@ -101,8 +101,8 @@
 	<string>MobileAPIs/getHashTags?</string>
 	<key>getUserNamesUsingKeyword</key>
 	<string>MobileAPIs/getUserNames?</string>
-    <key>getAtUser</key>
-    <string>MobileAPIs/getUserByUserName?</string>
+	<key>getAtUser</key>
+	<string>MobileAPIs/getUserByUserName?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

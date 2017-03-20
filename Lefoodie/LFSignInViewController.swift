@@ -87,7 +87,7 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading..")
         let signInUrl = CXAppConfig.sharedInstance.getBaseUrl() + "MobileAPIs/loginConsumerForOrg?orgId="+CXAppConfig.sharedInstance.getAppMallID()+"&email="+self.tfEmailtextfield.text!+"&dt=DEVICES&password="+self.tfPasswordtextfield.text!
         let urlStr = NSString.init(string: signInUrl)
-       // print(urlStr)
+        // print(urlStr)
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(urlStr as String, parameters: ["":"" as AnyObject]) { (responceDic
             ) in
             let Status = responceDic.value(forKey: "status") as! String
@@ -96,11 +96,11 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
                 CXDataService.sharedInstance.hideLoader()
                 
             }else {
-                CXAppConfig.sharedInstance.saveUserMailId(emailID: (responceDic.value(forKey:"emailId") as? String)!)
-                CXAppConfig.sharedInstance.saveUserMacID(macID: (responceDic.value(forKey:"macId") as? String)!)
-                CXAppConfig.sharedInstance.saveUserID(userID:  CXAppConfig.resultString(input: responceDic.value(forKey:"UserId")! as AnyObject))
-                CXAppConfig.sharedInstance.saveMacJobID(macJobId: CXAppConfig.resultString(input: responceDic.value(forKey:"macIdJobId")! as AnyObject))
-   
+                //                CXAppConfig.sharedInstance.saveUserMailId(emailID: (responceDic.value(forKey:"emailId") as? String)!)
+                //                CXAppConfig.sharedInstance.saveUserMacID(macID: (responceDic.value(forKey:"macId") as? String)!)
+                //                CXAppConfig.sharedInstance.saveUserID(userID:  CXAppConfig.resultString(input: responceDic.value(forKey:"UserId")! as AnyObject))
+                //                CXAppConfig.sharedInstance.saveMacJobID(macJobId: CXAppConfig.resultString(input: responceDic.value(forKey:"macIdJobId")! as AnyObject))
+                
                 let uniqueUserName =  responceDic.value(forKey: "UpdatedUniqueUserName") as? String
                 if let uniqeName = uniqueUserName{
                     if uniqeName == "0" {
@@ -113,17 +113,20 @@ class LFSignInViewController: UIViewController,UITextFieldDelegate {
                         CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject)
                         print("result \(CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject))")
                         if (CXAppConfig.sharedInstance.resultString(input: statusSucce as AnyObject) == "1"){
-                            LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!, completion: { (isGenaratedKey) in
+                            
+                            CX_SocialIntegration.sharedInstance.saveUserDeatils(userData: responceDic, completion: { (isGenaratedKey, email) in
                                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                 appDelegate.navigateToTabBar()
                             })
+                            
+                            //                            LFDataManager.sharedInstance.getTheUserDetails(userEmail: (responceDic.value(forKey:"emailId") as? String)!, completion: { (isGenaratedKey) in
+                            //
+                            //                            })
                         }
                     }
- 
+                    
                 }
-            
                 
-              
             }
         }
     }

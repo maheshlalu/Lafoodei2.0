@@ -116,7 +116,7 @@ extension LFDataManager{
             
             let mallIIDJson  = resultDic["myHashMap"].dictionary! as [String:JSON]
             print(mallIIDJson)
-            LFFireBaseDataService.sharedInstance.addThePostToFirebase(postID:  (mallIIDJson["jobId"]?.stringValue)!)
+            //LFFireBaseDataService.sharedInstance.addThePostToFirebase(postID:  (mallIIDJson["jobId"]?.stringValue)!)
             let status: Int = Int(responseDict.value(forKeyPath: "myHashMap.status") as! String)!
             if status == 1{
                 CXDataService.sharedInstance.hideLoader()
