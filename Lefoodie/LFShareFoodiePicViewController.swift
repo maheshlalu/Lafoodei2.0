@@ -14,8 +14,7 @@ import FBSDKShareKit
 import TwitterKit
 import OAuthSwift
 class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
-    
-    static let TXV_Height = 80
+
  
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var sharePhotoTableView: UITableView!
@@ -42,12 +41,13 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
     var isFlickr:Bool = false
     
     var isHash = Bool()
+    var storedText = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
      
         isHashGenerated = false
-        
+        storedText = ""
         postBtn.setTitleColor(UIColor.appTheamColor(), for: .normal)
         let nibSharePost = UINib(nibName: "LFSharePostTableViewCell", bundle: nil)
         self.sharePhotoTableView.register(nibSharePost, forCellReuseIdentifier: "LFSharePostTableViewCell")
@@ -83,7 +83,6 @@ class LFShareFoodiePicViewController: UIViewController,UIScrollViewDelegate{
 
     @IBAction func backBtnAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        //self.navController?.popToRootViewController(animated: true)
     }
     
     
@@ -186,7 +185,6 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
             }
             else {
                 let user = userNamesList[indexPath.row]
-                
                 let imgUrl = URL(string: user.userImagePath) as URL!
                 let userImageView = UIImageView.init(frame: CGRect(x: 10, y: 7, width: 30, height: 30))
                 if imgUrl != nil{
@@ -195,8 +193,7 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
                 }else{
                     userImageView.image = UIImage(named: "placeHolder")
                 }
-                
-//                userImageView.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
+
                 userImageView.layer.cornerRadius = 15
                 userImageView.clipsToBounds = true
                 cell.contentView.addSubview(userImageView)
@@ -205,10 +202,6 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
                 userNameLabel.font = UIFont.systemFont(ofSize: 14)
                 userNameLabel.text = "@\(user.uniqueUsername)"
                 cell.contentView.addSubview(userNameLabel)
-//                cell.imageView?.sd_setImage(with: NSURL.init(string: user.userImagePath) as URL!, placeholderImage: nil)
-//                cell.imageView?.layer.cornerRadius = 20
-//                cell.imageView?.clipsToBounds = true
-//                cell.textLabel?.text = "@\(user.uniqueUsername)"
             }
             return cell
         }
@@ -245,21 +238,13 @@ extension LFShareFoodiePicViewController: UITableViewDataSource,UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if  tableView != sharePhotoTableView {
-            let str = descTextView.text as NSString
-            var arr  = str.components(separatedBy: " ")
-            let last = arr.last
-            let char = last?[(last?.startIndex)!]
-            arr.removeLast()
-            let arr2 = arr as NSArray
-            let obj = arr2.componentsJoined(by: " ")
-            
             if isHash {
                 let hashTag = hashTagsList[indexPath.row]
-                descTextView.text = "\(obj) \(char!)\(hashTag.name)"
+                descTextView.text = storedText.appending("#").appending(hashTag.name)
             }
             else {
                 let userName = userNamesList[indexPath.row]
-                descTextView.text = "\(obj) \(char!)\(userName.uniqueUsername)"
+                descTextView.text = storedText.appending("@").appending(userName.uniqueUsername)
             }
         }
     }
@@ -319,31 +304,33 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         
-        //while entering text
+        //while user entering text
         if text != ""
         {
             // if Hash Key is aleady created
             if isHashGenerated {
                 
-                if text == "@" || text == "#" || text == " "
+                if text == "@" || text == "#" || text == " " || text == "\n"
                 {
                     isHashGenerated = false
                     if text == "#" {
                         isHash = true
-                        self.hashTagsList = nil
                     }
                     else
                     {
                         isHash = false
-                        self.userNamesList = nil
                     }
+                    self.storedText = textView.text.appending(text) //new line
+                    self.userNamesList = nil
+                    self.hashTagsList = nil
                     popUpTableView.reloadData()
                     popUpTableView.backgroundColor = UIColor.black
                     popUpTableView.alpha = 0.5
                 }
                 else
                 {
-                    var str = textView.text.components(separatedBy: " ").last?.appending(text)
+                    let str1 = textView.text.components(separatedBy: " ").last?.appending(text)
+                    var str = str1?.components(separatedBy: "\n").last
                     // # search
                     if str?[(str?.startIndex)!] == "#" {
                         isHash = true
@@ -411,10 +398,12 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
                         isHash = true
                     }
                     isHashGenerated = true
+                    storedText = textView.text
                 }
-                else if (text == "@" || text == "#") && textView.text.characters.last == " "
+                else if (text == "@" || text == "#") && (textView.text.characters.last == " " || textView.text.characters.last == "\n")
                 {
                     isHashGenerated = true
+                    storedText = textView.text
                     
                 }
                 tempArray = NSArray()
@@ -424,21 +413,32 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
             }
             
         }
-        //while removing text
+        //while user removing text
         else {
+            storedText = textView.text
             if textView.text.characters.count == 1
             {
                 isHashGenerated = false
             }
-            let str = textView.text as String
-            let str1 = str.components(separatedBy: " ").last
+            var str = textView.text as String
+            var spaceSeperatedArr = str.components(separatedBy: " ")
+            spaceSeperatedArr.removeLast()
+            storedText = spaceSeperatedArr.joined(separator: " ")
+            let str2 = str.components(separatedBy: " ").last
+            var newLineSeperatedArr = str2?.components(separatedBy: "\n")
+            newLineSeperatedArr?.removeLast()
+            storedText = storedText.appending(" ")
+            storedText = storedText.appending((newLineSeperatedArr?.joined(separator: "\n"))!)
+            let str1 = str2?.components(separatedBy: "\n").last
 //            let str1 = arr.last! as String
             let arr1 = str1?.components(separatedBy: "@")
             let arr2 = str1?.components(separatedBy: "#")
             if arr1?[0] == "" && arr1?.count == 2 && !(arr1?[1].contains("#"))! {
                 isHash = false
                 isHashGenerated = true
-                var str = textView.text.components(separatedBy: " ").last
+                //storedText =
+                var str1 = textView.text.components(separatedBy: " ").last
+                var str = str1?.components(separatedBy: "\n").last
                 if (str?.characters.count)! > 2 {
                     if str?[(str?.startIndex)!] == "@" {
                         str = str?.replace(target: "@", withString: "")
@@ -466,7 +466,9 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
             else if arr2?[0] == "" && arr2?.count == 2 && !(arr2?[1].contains("@"))!{
                isHash = true
                 isHashGenerated = true
-                var str = textView.text.components(separatedBy: " ").last
+                let str2 = textView.text.components(separatedBy: " ").last
+                var str
+                    = str2?.components(separatedBy: "\n").last
                 if (str?.characters.count)! > 2 {
                     if str?[(str?.startIndex)!] == "#" {
                         str = str?.replace(target: "#", withString: "")
@@ -542,13 +544,16 @@ extension LFShareFoodiePicViewController : UITextViewDelegate {
         let str = descTextView.text
         let arr = str?.components(separatedBy: " ")
         for obj in arr! {
-            let arr1 = obj.components(separatedBy: "@")
-            let arr2 = obj.components(separatedBy: "#")
-            if arr1[0] == "" && arr1.count == 2 && arr1[1] != "" && !arr1[1].contains("#") {
-                atTheRateArray.add(obj)
-            }
-            else if arr2[0] == "" && arr2.count == 2 && arr2[1] != "" && !arr2[1].contains("@"){
-                hashArray.add(obj)
+            let arr3 = obj.components(separatedBy: "\n")
+            for obj in arr3 {
+                let arr1 = obj.components(separatedBy: "@")
+                let arr2 = obj.components(separatedBy: "#")
+                if arr1[0] == "" && arr1.count == 2 && arr1[1] != "" && !arr1[1].contains("#") {
+                    atTheRateArray.add(obj)
+                }
+                else if arr2[0] == "" && arr2.count == 2 && arr2[1] != "" && !arr2[1].contains("@"){
+                    hashArray.add(obj)
+                }
             }
         }
         print("@ Array is: \(atTheRateArray)")
