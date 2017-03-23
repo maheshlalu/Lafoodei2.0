@@ -222,6 +222,9 @@ class CXAppConfig {
         return config!.value(forKey: "getUserNamesUsingKeyword") as! String
     }
     
+    func getSearchResultsApi() -> String{
+        return config!.value(forKey: "getSearchResults") as! String
+    }
     
     //pushNotificationSendApi
     //postComments

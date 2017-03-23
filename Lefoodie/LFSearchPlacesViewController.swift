@@ -17,6 +17,7 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
     var latAndLongData = NSMutableArray()
+    var currentLocationName = String()
     
     @IBOutlet weak var placesCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -40,7 +41,6 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
             
             CXDataService.sharedInstance.hideLoader()
             self.getPlaceDetailsFromDB()
-            
         }
         
     }
@@ -89,11 +89,8 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
             }else{
                 print("no location here")
             }
-            
         }
-        
     }
-    
     
     //MARK: MKMapViewDelegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -128,7 +125,6 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
         calloutView.starbucksName.text = starbucksAnnotation.name
         calloutView.starbucksAddress.text = starbucksAnnotation.address
         calloutView.starbucksPhone.text = starbucksAnnotation.idstr
-        
         
         let button = UIButton(frame: calloutView.starbucksPhone.frame)
         button.addTarget(self, action: #selector(LFSearchPlacesViewController.callRestrarent(sender:)), for: .touchUpInside)
@@ -185,8 +181,6 @@ class LFSearchPlacesViewController: UIViewController,CLLocationManagerDelegate,M
             }
             
         }
-        
-        
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

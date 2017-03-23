@@ -47,16 +47,12 @@ class LFSearchViewController: UIViewController {
             count += 1
         }
         
-
         var destVC = UIViewController()
-        
         
         if count == 1 {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFSearchPlacesViewController") as! LFSearchPlacesViewController
             searchTypeLabel.text = "Places"
-           
-    
         }
         else if count == 2 {
             
@@ -69,8 +65,6 @@ class LFSearchViewController: UIViewController {
          
             destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFHashTagsViewController") as! LFHashTagsViewController
             searchTypeLabel.text = "Hashtags"
-           
-
         }
         
         navController = UINavigationController(rootViewController: destVC)
@@ -154,7 +148,7 @@ extension LFSearchViewController : UISearchBarDelegate {
         let searchText = ""
         if count == 1 {
             
-//            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlacesSearchNotification"), object: searchText)
+
         }
         else if count == 2{
             NotificationCenter.default.post(name: Notification.Name(rawValue: "FoodieSearchNotification"), object: searchText)
@@ -181,10 +175,10 @@ extension LFSearchViewController : UISearchBarDelegate {
     {
         
         if count == 1 {
-//            
-//            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
-//            self.navigationController?.pushViewController(destVC, animated: true)
-//            
+            
+            let destVC = self.storyboard!.instantiateViewController(withIdentifier: "LFPlacesSearchViewController") as! LFPlacesSearchViewController
+            self.navigationController?.pushViewController(destVC, animated: true)
+            
             searchBar.resignFirstResponder()
             return false
         }

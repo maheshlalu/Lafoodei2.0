@@ -103,6 +103,8 @@
 	<string>MobileAPIs/getUserNames?</string>
 	<key>getAtUser</key>
 	<string>MobileAPIs/getUserByUserName?</string>
+	<key>getSearchResults</key>
+	<string>MobileAPIs/searchResults?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>
