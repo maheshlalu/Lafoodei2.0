@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         Flurry.setDebugLogEnabled(true)
         Flurry.startSession("55C7JS47JTNC2M4NBR2H")
 
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         //42D06EEF-D597-4786-93E9-51182C8930C1
         return true
     }
@@ -53,8 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         MagicalRecord.setupCoreDataStack(withStoreNamed: "LeFoodie.sqlite")
     }
     
- 
-
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool
+    {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
     func checkUserId(){
         
         var userID_SignUP = NSString()

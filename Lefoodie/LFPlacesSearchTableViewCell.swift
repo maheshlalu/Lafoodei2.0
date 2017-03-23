@@ -1,21 +1,21 @@
 //
-//  LFSocialShareTableViewCell.swift
+//  LFPlacesSearchTableViewCell.swift
 //  Lefoodie
 //
-//  Created by Manishi on 1/3/17.
+//  Created by Rambabu Mannam on 21/03/17.
 //  Copyright © 2017 ongo. All rights reserved.
 //
 
 import UIKit
+import Cosmos
 
-class LFSocialShareTableViewCell: UITableViewCell {
+class LFPlacesSearchTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var fbBtn: UIButton!
+    @IBOutlet weak var placeImageView: UIImageView!
+    @IBOutlet weak var placeName: UILabel!
+@IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var ratingView: CosmosView!
     
-    @IBOutlet weak var TwittrBtn: UIButton!
-    @IBOutlet weak var tumblrBtn: UIButton!
-    @IBOutlet weak var flickrBtn: UIButton!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +26,5 @@ class LFSocialShareTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

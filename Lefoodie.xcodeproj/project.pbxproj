@@ -141,6 +141,8 @@
 		2B02053E1E5F189200312AC9 /* LFLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02053D1E5F189200312AC9 /* LFLikes.swift */; };
 		2B0668951E77CCFA009F0E44 /* LFHashTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0668941E77CCFA009F0E44 /* LFHashTags.swift */; };
 		2B0AAF791E7953C000B2A61D /* LFUserNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0AAF781E7953C000B2A61D /* LFUserNames.swift */; };
+		2B4D198D1E81565F0024EDF9 /* LFPlacesSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D198C1E81565F0024EDF9 /* LFPlacesSearchTableViewCell.swift */; };
+		2B4D19901E8282870024EDF9 /* LFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D198F1E8282870024EDF9 /* LFWebViewController.swift */; };
 		2B8AEAEE1E5BF62900487223 /* LFFoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */; };
 		2B8AEAF01E5BF64F00487223 /* LFHashTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */; };
 		2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */; };
@@ -330,6 +332,8 @@
 		2B02053D1E5F189200312AC9 /* LFLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFLikes.swift; sourceTree = "<group>"; };
 		2B0668941E77CCFA009F0E44 /* LFHashTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTags.swift; sourceTree = "<group>"; };
 		2B0AAF781E7953C000B2A61D /* LFUserNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFUserNames.swift; sourceTree = "<group>"; };
+		2B4D198C1E81565F0024EDF9 /* LFPlacesSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFPlacesSearchTableViewCell.swift; sourceTree = "<group>"; };
+		2B4D198F1E8282870024EDF9 /* LFWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFWebViewController.swift; sourceTree = "<group>"; };
 		2B8AEAED1E5BF62900487223 /* LFFoodieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFFoodieViewController.swift; sourceTree = "<group>"; };
 		2B8AEAEF1E5BF64F00487223 /* LFHashTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFHashTagsViewController.swift; sourceTree = "<group>"; };
 		2B8AEAF11E5BF67900487223 /* LFSearchPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFSearchPlacesViewController.swift; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 				1225DA261E5D6968007951B8 /* LFFlagReportTableViewCell.xib */,
 				1225DA2B1E5D9A11007951B8 /* LFThanksViewController.swift */,
 				2B0205371E5E9BAC00312AC9 /* LFPlacesSearchViewController.swift */,
+				2B4D198C1E81565F0024EDF9 /* LFPlacesSearchTableViewCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -670,6 +675,7 @@
 		1896A5C61E153F32008530A4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B4D198E1E82826A0024EDF9 /* WebView */,
 				112FDA281E65B502008FB5AF /* Followers and Following  */,
 				121E108E1E5F2214001546D0 /* Comments */,
 				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
@@ -792,6 +798,14 @@
 				1FD9364D23EA69D99DA4EA8B /* Pods_LefoodieUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B4D198E1E82826A0024EDF9 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				2B4D198F1E8282870024EDF9 /* LFWebViewController.swift */,
+			);
+			name = WebView;
 			sourceTree = "<group>";
 		};
 		896073521E36013800551545 /* Data service Classes */ = {
@@ -1223,6 +1237,7 @@
 				125BD6971E3B1CD1000FA4C7 /* CX_SocialIntegration.swift in Sources */,
 				11E270061E681FF400A1739E /* RestaurantsLocations.swift in Sources */,
 				120514E81E40BE5700D2345E /* LFEditTableViewCell.swift in Sources */,
+				2B4D19901E8282870024EDF9 /* LFWebViewController.swift in Sources */,
 				187039B51E1D399900D6668B /* LFNearByCollectionViewCell.swift in Sources */,
 				121E10971E5F2271001546D0 /* RSKGrowingTextView.swift in Sources */,
 				18F179491E1CC305001EDF45 /* LFSharePostTableViewCell.swift in Sources */,
@@ -1247,6 +1262,7 @@
 				2BF4B5CC1E5AFFF00067AAA5 /* LFFollowers.swift in Sources */,
 				2B8AEAF21E5BF67900487223 /* LFSearchPlacesViewController.swift in Sources */,
 				183A8CAD1E48777C0068DC34 /* LFDataManager.swift in Sources */,
+				2B4D198D1E81565F0024EDF9 /* LFPlacesSearchTableViewCell.swift in Sources */,
 				127861DF1E1A2A0200D64F16 /* CXView.swift in Sources */,
 				11FF068C1E703E0D00BED142 /* KILabel.m in Sources */,
 				2B02053C1E5EDFC900312AC9 /* LFHomeFeeds.swift in Sources */,
