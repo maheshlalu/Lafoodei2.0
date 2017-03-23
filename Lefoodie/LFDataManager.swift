@@ -111,7 +111,7 @@ extension LFDataManager{
     }
     
     func sharePost(jsonDic:NSDictionary,imageData:Data,hastTagString:String,completion:@escaping (_ responseDict:Bool) -> Void){
-        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"6" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject,"hashTags":hastTagString as AnyObject]) { (responseDict) in
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getPlaceOrderUrl(), parameters: ["type":"User Posts" as AnyObject,"json":String.genarateJsonString(dataDic: jsonDic) as AnyObject,"dt":"CAMPAIGNS" as AnyObject,"category":"Products" as AnyObject,"userId":"3" as AnyObject,"consumerEmail": CXAppConfig.sharedInstance.getEmailID() as AnyObject,"hashTags":hastTagString as AnyObject]) { (responseDict) in
             let resultDic = JSON(responseDict)
             
             let mallIIDJson  = resultDic["myHashMap"].dictionary! as [String:JSON]
@@ -127,7 +127,6 @@ extension LFDataManager{
         }
         //  }
     }
-    
     
     //http://35.160.251.153:8081/Services/getMasters?mallId=4&type=Stores
     func getTheRestaurantLocationsFromServer(restaurantId:String,completion:@escaping (_ responseDict:[RestaurantsLocation]) -> Void){
@@ -150,7 +149,6 @@ extension LFDataManager{
     func getTheHomeFeed(pageNumber:String,pageSize:String,userEmail:String,isNearByFeed:Bool,nearByMallsLatLong:String, completion:@escaping ([LFFeedsData])->Void){
         
         if isNearByFeed{
-            
             CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getNearByFeed(),parameters:["type":"User Posts" as AnyObject,"NearByMalls":nearByMallsLatLong as AnyObject,"pageNumber":pageNumber as AnyObject,"pageSize":pageSize as AnyObject]) { (responceDic
                 ) in
                 let orgs : NSArray = (responceDic.value(forKey: "jobs") as?NSArray)!
@@ -161,7 +159,7 @@ extension LFDataManager{
                 }
                 
                 LFDataSaveManager.sharedInstance.saveNearFeedsInDB(list: feedsList)
-                self.getAllFoodies()
+                //self.getAllFoodies()
                 completion(feedsList)
                 
                 CXDataService.sharedInstance.hideLoader()
@@ -177,13 +175,15 @@ extension LFDataManager{
                     feedsList.append(restaurants)
                 }
                 LFDataSaveManager.sharedInstance.saveHomeFeedsInDB(list: feedsList)
-                self.getAllFoodies()
+                //self.getAllFoodies()
                 completion(feedsList)
                 CXDataService.sharedInstance.hideLoader()
             }
         }
     }
  
+    //myPosts=true
+    
     //MARK: Get all Restaurant Foodie Photos feeds from server
     func getTheRFoodiePhotoFeed(id:String, pageNumber:String,pageSize:String,completion:@escaping ([LFFeedsData])->Void){
         print(id,pageNumber,pageSize)
@@ -207,7 +207,6 @@ extension LFDataManager{
     
     
     //MARK: Get Like Update for Posts
-    
     func getPostLike(orgID:String,jobID:String,isLike:Bool,completion:@escaping (Bool,NSDictionary)->Void){
         
         var noOfLikes = String()
@@ -234,8 +233,21 @@ extension LFDataManager{
         }
     
     
-
-    
+    //MARK: Get Like Update for Posts
+    func deleteComment(commentId:String,completion:@escaping (Bool)->Void){
+        //// http://localhost:8081/ Jobs/removeJobComment? commentId= 23223
+        
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getDeleteComment(), parameters: ["commentId":commentId as AnyObject]) { (responceDic) in
+            print(responceDic)
+            
+            if responceDic.value(forKey: "status") as! String == "1" {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
 
     //MARK: Get All Foodies from Server
 
@@ -302,24 +314,15 @@ extension LFDataManager{
                 else {
                     
                 }
-                
                 // print(response)
             }
         }else{
             let userFollowDic = ["email":CXAppConfig.sharedInstance.getEmailID(),"orgId":CXAppConfig.sharedInstance.getAppMallID(),"activityName":"User_Follow","loyalty":"true","ItemCodes":(foodieDetails as! SearchFoodies).foodieItemCode,"trackOnlyOnce":"true"];
             CXDataService.sharedInstance.followOrUnFollowServiceCall(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getUserFollowApi(), parameters: userFollowDic as [String : AnyObject]?) { (response) in
-                
-                // print(response)
                 if response {
                     LFDataSaveManager.sharedInstance.saveFollowerInfoInDB(userData: foodieDetails,isFollower:false,isFromHome:false, completion: { (dic) in
-                        // completion(responseDict)
-                        
                     })
                 }
-                else {
-                    
-                }
-                // print(response)
             }
         }
     }
@@ -497,17 +500,13 @@ extension LFDataManager{
     }
     
     //MARK: Get User Posts
-    func getUserPosts(userEmail:String,myPosts:Bool,pageNumber:String,pageSize:String,completion:@escaping (_ responce:Bool,_ results:[LFFeedsData]) -> Void){
+    func getUserPosts(userEmail:String,myPosts:Bool,otherPosts:Bool,pageNumber:String,pageSize:String,completion:@escaping (_ responce:Bool,_ results:[LFFeedsData]) -> Void){
   
         var parameterDic = [String:String]()
         if myPosts == true {
-            //if myPosts is "true" get the login user Photos
-            //myPosts=true&pageNumber=1&pageSize=2
-            parameterDic = ["email":userEmail,"myPosts":"false"]
+            parameterDic = ["email":userEmail,"myPosts":"true"]
         }else{
-            //Get The Other User Posts
             parameterDic = ["email":userEmail]
-
         }
         
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getHomeFeed(), parameters: parameterDic as [String : AnyObject]?) { (responceDic
@@ -521,7 +520,7 @@ extension LFDataManager{
                 feedsList.append(restaurants)
             }
             
-            if myPosts == true {
+            if myPosts && !otherPosts {
                LFDataSaveManager.sharedInstance.saveTheUserPhotos(list: feedsList)
             }
             
@@ -530,7 +529,6 @@ extension LFDataManager{
             // self.jobsArray = responceDic.value(forKey: "jobs") as! NSArray
            // completion(feedsList)
             CXDataService.sharedInstance.hideLoader()
-            
             completion(true, feedsList)
         }
     }
@@ -563,6 +561,27 @@ extension LFDataManager{
         }
     }
     
+    func getTheParticularUserData(userEmail:String,completion:@escaping(_ isSuccess:Bool) -> Void){
+        CXDataService.sharedInstance.getTheAppDataFromServer(["type":"macidinfo" as AnyObject,"keyWord":userEmail as AnyObject]) { (responceData) in
+            let resultArray : NSArray = NSArray(array: (responceData.value(forKey: "jobs") as? NSArray)!)
+            
+            for mackIDInfoDic in resultArray {
+                let dic : NSDictionary = mackIDInfoDic as! NSDictionary
+                let email: String = (dic.object(forKey: "Email") as? String)!
+                if  email == userEmail {
+                    //Save The User Data in LFFoodie Details
+                    print(dic)
+                    var feedsList = [SearchFoodies]()
+                    let restaurants = SearchFoodies(json: JSON(dic))
+                    feedsList.append(restaurants)
+                    LFDataSaveManager.sharedInstance.saveFoodieDetailsInDB(foodiesData: feedsList)
+                    completion(true)
+                    return
+                }
+            }
+        }
+    }
+
     func getFollowersDetails()
     {
         self.getFollowings { (response) in
@@ -714,5 +733,50 @@ extension LFDataManager{
     }
 }
 
+extension LFDataManager {
+    
+    // http://localhost:8081/MobileAPIs/postAQuestionAndAnswer?ownerId=530&toEmail=cxsample@gmail.com&fromEmail=satyasasi.b@gmail.com&question=what%20is%20java
+    
+    //MARK: PostQuestion OR Answer
+    func postQuestionsAndAnswers(ownerId:String,toEmail:String ,fromEmail:String ,questionOrAnswer:String ,questionID:String ,isQuestion:Bool,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        // This method for post a Question or Answer
+        //ownerId
+        //toEmail
+        //fromEmail
+        //question
+        //qaaId
+        
+        var postedQuestionOrAnswerDic = [String:String]()
+        if isQuestion {
+            //Is Question
+            postedQuestionOrAnswerDic = ["ownerId":ownerId,"toEmail":toEmail,"fromEmail":fromEmail,"question":questionOrAnswer]
+        }else{
+            //Is Answer
+            postedQuestionOrAnswerDic = ["ownerId":ownerId,"toEmail":toEmail,"fromEmail":fromEmail,"answer":questionOrAnswer,"qaaId":questionID]
+        }
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getpostAQuestionAndAnswer(), parameters: postedQuestionOrAnswerDic as [String : AnyObject]?) { (dic) in
+            completion(dic)
+        }
+    }
+    
+    //MARK: GetQuestion And Answers
+    //http://localhost:8081/MobileAPIs/getPostedQuestions?ownerId=530&email=satyasasi.b@gmail.com
+    
+    func getPosterQuestions(ownerId:String,email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        let postedQuestionOrAnswerDic = ["ownerId":ownerId,"email":email]
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getPostedQuestions(), parameters: postedQuestionOrAnswerDic as [String : AnyObject]?) { (dic) in
+            completion(dic)
+        }
+    }
+    
+    
+    func getPostedAnswers(ownerId:String,email:String,completion:@escaping (_ responseDict:NSDictionary) -> Void){
+        let postedQuestionOrAnswerDic = ["ownerId":ownerId,"email":email]
+        CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl() + CXAppConfig.sharedInstance.getgetPostedAnswers(), parameters: postedQuestionOrAnswerDic as [String : AnyObject]?) { (dic) in
+            completion(dic)
+        }
+    }
+
+}
 
 

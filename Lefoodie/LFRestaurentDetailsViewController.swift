@@ -67,7 +67,6 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     
     func registerNotificaton(){
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollDown), name:NSNotification.Name(rawValue: "ScrollDown"), object: nil)
     }
     
@@ -83,8 +82,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
     }
     
     
-    func backBtnClicked()
-    {
+    func backBtnClicked(){
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -231,6 +229,7 @@ class LFRestaurentDetailsViewController: UIViewController,UIGestureRecognizerDel
         if isFromHome{
             photosCntl.userEmail = foodiesArr[0].foodieEmail
         }else{
+            photosCntl.isOtherUserPosts = true
             photosCntl.userEmail = self.selectedFoodie.foodieEmail
         }
 

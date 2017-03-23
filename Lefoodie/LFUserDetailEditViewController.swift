@@ -165,10 +165,7 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
             }
         }
     }
-    
-    
-    
-    
+
     // Pls edit the stuff
     func sumbitDetails(imageStr: String){
         
@@ -190,7 +187,6 @@ class LFUserDetailEditViewController: UIViewController,UITextFieldDelegate,UITab
         //jsonDic.setObject("", forKey: "userBannerPath" as NSCopying)
         
         self.activeTheUser(parameterDic: jsonDic, jobId: jobId)
-        
     }
     
     

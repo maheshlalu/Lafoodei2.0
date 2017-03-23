@@ -30,6 +30,7 @@ class LFUserProfileViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var userBannerImbView: UIImageView!
     
+    @IBOutlet weak var followBtn: CXButton!
     var profileDetails :ProfileDetailsType!
     var pageMenu : CAPSPageMenu?
     var myProfile : LFMyProfile!
@@ -42,11 +43,13 @@ class LFUserProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         if isFromHome{
+            self.followBtn.isHidden = false
             getRestaurantDetails(email: rEmail, id: subAminId)
         }
         self.tabViews()
         self.notificationRegistration()
         self.setNavigationProperty()
+        setRightBarButtonItem()
         screenVal = "screenVal"
     }
     
@@ -63,12 +66,27 @@ class LFUserProfileViewController: UIViewController {
     func setNavigationProperty(){
         self.navigationController?.navigationBar.setColors(background: UIColor.appTheamColor(), text: UIColor.white)
         self.navigationController?.navigationBar.setNavBarImage(setNavigationItem: self.navigationItem)
-
     }
     
     func notificationRegistration(){
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollUp), name:NSNotification.Name(rawValue: "scrollUp"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LFUserProfileViewController.scrollDown), name:NSNotification.Name(rawValue: "ScrollDown"), object: nil)
+    }
+    
+    func setRightBarButtonItem(){
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "Chat"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn1.addTarget(self, action: #selector(chatBtnAction(sender:)), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        self.navigationItem.setRightBarButton(item1, animated: true)
+    }
+    
+    func chatBtnAction(sender:UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RequestedQuestionsViewController")as? RequestedQuestionsViewController
+        storyboard?.navigationController?.isNavigationBarHidden = false
+        storyboard?.isRequestedQuestions = true
+        UIApplication.shared.keyWindow?.rootViewController?.present(storyboard!, animated: true, completion: nil)
     }
     
     func populatedData(){
@@ -198,7 +216,6 @@ extension LFUserProfileViewController:UIScrollViewDelegate{
     
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //print(">>>>scrollViewWillBeginDragging")
     }
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -226,7 +243,7 @@ extension LFUserProfileViewController:UIScrollViewDelegate{
         
     }
     func scrollUp(){
-        print(self.Scroller_ScrollerView.contentOffset)
+        //print(self.Scroller_ScrollerView.contentOffset)
         let offset : CGFloat = Scroller_ScrollerView.contentOffset.y
         //print(offset)
         if offset >= 0 {
@@ -235,8 +252,7 @@ extension LFUserProfileViewController:UIScrollViewDelegate{
             }, completion: { finished in
             })
         }
-        
-        
+
     }
     
     func scrollDown(){
@@ -263,10 +279,10 @@ extension LFUserProfileViewController {
 //            print(responce)
 //        }
         // LFDataManager.sharedInstance.getUserPosts(userEmail: "", myPosts: true, pageNumber: "0", pageS
-        
-        LFDataManager.sharedInstance.getUserPosts(userEmail: "", myPosts: isMyposts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
-            
-        }
+//        
+//        LFDataManager.sharedInstance.getUserPosts(userEmail: "", myPosts: isMyposts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
+//            
+//        }
         
     }
     
@@ -278,7 +294,7 @@ extension LFUserProfileViewController {
     func getRestaurantDetails(email:String,id:String){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
         CXDataService.sharedInstance.synchDataToServerAndServerToMoblile(CXAppConfig.sharedInstance.getBaseUrl()+CXAppConfig.sharedInstance.getMasterUrl(), parameters: ["type":"singleMall" as AnyObject,"mallId":id as AnyObject]) { (responseDict) in
-            print(responseDict)
+            //print(responseDict)
             //responseDict.value(forKeyPath: "orgs.logo")
             CXDataService.sharedInstance.hideLoader()
             let imgArr = responseDict.value(forKey:"orgs") as! NSArray
@@ -286,6 +302,9 @@ extension LFUserProfileViewController {
             
             self.userPic.setImageWith(NSURL(string:dict.value(forKey: "logo") as! String) as URL!, usingActivityIndicatorStyle: .white)
             self.userFirstNameLbl.text = dict.value(forKey: "name") as? String
+            self.followingCountLbl.text = "Following \(dict.value(forKey: "followers") as? String)"
+            self.followingCountLbl.textAlignment = .center
+            self.followersCountLbl.isHidden = true
         }
     }
 }

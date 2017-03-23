@@ -16,6 +16,7 @@ class LFFoodieViewController: UIViewController {
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
     var refreshControl : UIRefreshControl!
+    var myProfile : LFMyProfile!
     
     @IBOutlet weak var foodieViewTableView: UITableView!
     override func viewDidLoad() {
@@ -31,6 +32,10 @@ class LFFoodieViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.foodieViewTableView.reloadData()
+    }
     
     func deleteTheFeedsInDatabase(){
         
@@ -155,14 +160,22 @@ extension LFFoodieViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //LFRestaurentDetailsViewController
         let dict = self.foodiesArr[indexPath.row]
-        let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
-        restaurentView.selectedFoodie = dict
-        let navController = UINavigationController(rootViewController: restaurentView)
-        navController.navigationItem.hidesBackButton = false
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
         
-       // LFDataManager.sharedInstance.sendTheFollwAndUnFollowPushNotification(isFollow: true, foodieDetails:dict)
-
-        self.present(navController, animated:true, completion: nil)
+        if dict.foodieEmail == myProfile.userEmail{
+            let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
+            profileContoller.profileDetails = ProfileDetailsType.userType
+            LFDataManager.sharedInstance.dataManager().selectedIndex = 4
+            
+        }else{
+            let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
+            restaurentView.selectedFoodie = dict
+            let navController = UINavigationController(rootViewController: restaurentView)
+            navController.navigationItem.hidesBackButton = false
+            self.present(navController, animated:true, completion: nil)
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

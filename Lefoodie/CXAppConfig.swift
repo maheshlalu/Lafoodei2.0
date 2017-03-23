@@ -166,23 +166,28 @@ class CXAppConfig {
         return config!.value(forKey: "getNearByFeeds") as! String
     }
     
-    
     //userFollow
-    
     func getUserFollowApi()-> String{
         return config!.value(forKey: "userFollow") as! String
-
     }
+    
     //deleteFeed
     func deletePostOfUser()-> String{
         return config!.value(forKey: "deleteFeed") as! String
-        
     }
-    //userUnFollow
     
+    //deleteComment
+    func getDeleteComment()-> String{
+        return config!.value(forKey: "deleteComment") as! String
+    }
+    
+    func getSearchResultsApi() -> String{
+        return config!.value(forKey: "getSearchResults") as! String
+    }
+    
+    //userUnFollow
     func getUserUnFollowApi()-> String{
         return config!.value(forKey: "userUnFollow") as! String
-        
     }
     
     func getUserFollowers() -> String{

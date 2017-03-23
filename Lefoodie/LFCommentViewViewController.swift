@@ -16,11 +16,12 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     @IBOutlet weak var growingTextView: RSKGrowingTextView!
     private var isVisibleKeyboard = true
     @IBOutlet weak var commentsTblView: UITableView!
-
+    
     var feedData:LFFeedsData!
     var userDetails:LFMyProfile!
+    var myProfile : LFMyProfile!
     var commentsDict:NSDictionary!
-    var commentsArr:NSArray = NSArray()
+    var commentsArr: NSMutableArray = NSMutableArray()
     
     var reloadSection : (_ isReload:Bool) -> Void = {responce in print()}
     
@@ -47,11 +48,13 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     func getComments(){
+        
         LFDataManager.sharedInstance.getComments(feedId: feedData.feedID) { (responseDict) in
             let response:NSArray = responseDict.value(forKey: "jobs") as! NSArray
             self.commentsDict = response[0] as! NSDictionary
+            self.commentsArr.removeAllObjects()
             let commentsArr = self.commentsDict.value(forKey: "jobComments") as! NSArray
-            self.commentsArr = commentsArr.reverseObjectEnumerator().allObjects as NSArray
+            self.commentsArr.addObjects(from:commentsArr.reverseObjectEnumerator().allObjects)
             self.commentsTblView.reloadData()
             self.updateTheCommentCountInFeed(count: self.commentsArr.count)
             if self.commentsArr.count == 0{
@@ -66,11 +69,11 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
         self.growingTextView.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
     }
- 
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.registerForKeyboardNotifications()
-
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -154,6 +157,32 @@ class LFCommentViewViewController: UIViewController,UITableViewDataSource,UITabl
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool{
+        let realm = try! Realm()
+        self.myProfile = realm.objects(LFMyProfile.self).first
+        
+        let arr = commentsArr[indexPath.row] as! NSDictionary
+        
+        if (arr.value(forKey: "postedBy_Id") as! String) == (myProfile.Mac_userId){
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == .delete{
+            self.commentsTblView.beginUpdates()
+            let arr = commentsArr[indexPath.row] as! NSDictionary
+            let commentId = arr.value(forKey: "commentId")
+            LFDataManager.sharedInstance.deleteComment(commentId: commentId as! String, completion: { (isSuccess) in
+                self.commentsArr.removeObject(at: indexPath.row)
+                self.commentsTblView.deleteRows(at: [indexPath], with: .fade)
+            })
+            self.commentsTblView.endUpdates()
+        }
     }
     
     

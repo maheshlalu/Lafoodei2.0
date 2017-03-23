@@ -10,9 +10,9 @@ import UIKit
 
 class LFHeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var locationBtn: UIButton!
     @IBOutlet weak var lbl_Title: UILabel!
     @IBOutlet weak var userPicImg: CXImageView!
-    @IBOutlet weak var postedTime: UILabel!
     @IBOutlet weak var cafeNameLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +28,12 @@ class LFHeaderTableViewCell: UITableViewCell {
     func papulateUserinformation(feedData:LFFeedsData){
         self.lbl_Title.text = feedData.feedUserName
         self.cafeNameLbl.text = feedData.feedIDMallName
-        //self.postedTime.text = feedData.feedCreatedDate.timeAgoSinceDate(numericDates: true)
+        
+        if !feedData.feedUserImage.isEmpty{
         self.userPicImg.setImageWith(NSURL(string: feedData.feedUserImage) as URL!, usingActivityIndicatorStyle: .white)
+        }else{
+        self.userPicImg.image = UIImage(named: "placeHolder")
+        }
         self.selectionStyle = .none
     }
     

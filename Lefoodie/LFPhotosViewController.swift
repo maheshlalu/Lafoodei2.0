@@ -17,7 +17,8 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     var canScrollToTop:Bool = true
     var lastContentOffse:CGPoint = CGPoint()
     var parantNavigationController = UINavigationController()
-    var isMyPosts : Bool = true
+    var isMyPosts : Bool = Bool()
+    var isOtherUserPosts : Bool = false
     var userEmail :String!
     var subAdminId: String!
     var photosList = [LFFeedsData]()
@@ -28,7 +29,6 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
     var lastIndexPath = IndexPath()
     var isInitialLoad = Bool()
 
-    
     var intrinsicContentSize: CGSize {
         return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
     }
@@ -46,7 +46,11 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
         self.view.backgroundColor = UIColor.white
         
         if self.title == "PHOTOS" {
-            self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts)
+            if isOtherUserPosts{
+                self.getTheUserPostedPhots(email: userEmail, isMyposts: true, isUserPosts: true)
+            }else{
+                self.getTheUserPostedPhots(email: userEmail, isMyposts: isMyPosts, isUserPosts: false)
+            }
         }else {
             addThePullTorefresh()
             isMyPosts = false
@@ -153,12 +157,12 @@ class LFPhotosViewController: UIViewController,UICollectionViewDataSource,UIColl
 
 
 extension LFPhotosViewController{
-    
-    func getTheUserPostedPhots(email:String,isMyposts:Bool){
+    //http://35.163.183.25:8081/MobileAPIs/getUserPosts?email=yasaswy.gunturi@gmail.com&myPosts=true
+    func getTheUserPostedPhots(email:String,isMyposts:Bool,isUserPosts:Bool){
         CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
-        LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: isMyposts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
+        LFDataManager.sharedInstance.getUserPosts(userEmail: email, myPosts: isMyposts, otherPosts:isUserPosts, pageNumber: "", pageSize: "") { (isSaved, feedsResults) in
             CXDataService.sharedInstance.hideLoader()
-            if isMyposts {
+            if isMyposts && !isUserPosts {
                 let realm = try! Realm()
                 self.userPhotosList = realm.objects(LFUserPhotos.self)
             }else{

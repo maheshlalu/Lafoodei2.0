@@ -101,7 +101,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.homeTableView.reloadData()
     }
     
     func selectedTabBar(){
@@ -168,6 +168,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     //LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:true) { (resultFeeds) in
                     // sample test lat and long "36.976042| -121.582814|5"
                     LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: true, nearByMallsLatLong: neardbystr){ (resultFeeds) in
+                        print(resultFeeds)
                         self.isPageRefreshing = false
                         CXDataService.sharedInstance.hideLoader()
                         let lastIndexOfArr = self.feedsArray.count - 1
@@ -197,6 +198,8 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.refreshControl.endRefreshing()
                         self.homeTableView.reloadData()
                     }
+                }else{
+                
                 }
             }else{
                 self.showAlertView(status: 1)
@@ -210,8 +213,9 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             CXDataService.sharedInstance.showLoader(view: self.view, message: "Loading")
            // LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(),isNearByFeed:false) { (resultFeeds) in
             LFDataManager.sharedInstance.getTheHomeFeed(pageNumber: PageNumber, pageSize: PageSize, userEmail: CXAppConfig.sharedInstance.getEmailID(), isNearByFeed: false, nearByMallsLatLong: ""){ (resultFeeds) in
-                self.isPageRefreshing = false
+                print(resultFeeds)
                 
+                self.isPageRefreshing = false
                 let lastIndexOfArr = self.feedsArray.count - 1
                 if !resultFeeds.isEmpty {
                     self.feedsArray.append(contentsOf: resultFeeds)
@@ -235,7 +239,7 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         self.homeTableView.endUpdates()
                     }
                     
-                }else{
+                }else if self.page == "0"{
                     CXDataService.sharedInstance.hideLoader()
                     self.segmentController.selectedSegmentIndex = 1
                     self.isNearByFeed = true
@@ -313,6 +317,10 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             cell.lbl_Title.tag = indexPath.section
             lastIndexPath = indexPath
             cell.lbl_Title.addGestureRecognizer(userNameGestureRecognizer)
+            
+            cell.locationBtn.addTarget(self, action: #selector(userRestaurantLocatorAction(sender:)), for: .touchUpInside)
+            cell.locationBtn.tag = indexPath.section
+            lastIndexPath = indexPath
             
             let userRestaurantGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userRestaurantAction))
             cell.cafeNameLbl.tag = indexPath.section
@@ -397,9 +405,6 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let realm = try! Realm()
         self.myProfile = realm.objects(LFMyProfile.self).first
         let feeds = self.feedsArray[(sender.view?.tag)!]
-
-        let predicate = NSPredicate.init(format:"foodieEmail==%@", feeds.feedUserEmail)
-        self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
         
         if myProfile.userEmail == feeds.feedUserEmail{
             let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -408,21 +413,44 @@ class LFHomeViewController: UIViewController,UITableViewDataSource,UITableViewDe
             LFDataManager.sharedInstance.dataManager().selectedIndex = 4
             
         }else{
+            let predicate = NSPredicate.init(format:"foodieEmail==%@", feeds.feedUserEmail)
+            self.foodiesArr = realm.objects(LFFoodies.self).filter(predicate)
             
-            let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
-            restaurentView.foodiesArr = self.foodiesArr
-            restaurentView.isFromHome = true
-            
-            let navController = UINavigationController(rootViewController: restaurentView)
-            navController.navigationItem.hidesBackButton = false
-
-            self.present(navController, animated:true, completion: nil)
+            if foodiesArr.count == 0{
+                LFDataManager.sharedInstance.getTheParticularUserData(userEmail: feeds.feedUserEmail, completion: { (response) in
+                    if response{
+                        print(self.foodiesArr.description)
+                        self.navigateToProfile()
+                    }
+                })
+            }else{
+                navigateToProfile()
+            }
         }
     }
     
+    func navigateToProfile(){
+        let restaurentView = self.storyboard!.instantiateViewController(withIdentifier: "LFRestaurentDetailsViewController") as! LFRestaurentDetailsViewController
+        restaurentView.foodiesArr = self.foodiesArr
+        restaurentView.isFromHome = true
+        let navController = UINavigationController(rootViewController: restaurentView)
+        navController.navigationItem.hidesBackButton = false
+        
+        self.present(navController, animated:true, completion: nil)
+    }
+    
+    
     func userRestaurantAction(sender: UITapGestureRecognizer){
         let feeds = self.feedsArray[(sender.view?.tag)!]
-        
+        userRestaurantCode(feeds: feeds)
+    }
+    
+    func userRestaurantLocatorAction(sender: UIButton){
+        let feeds = self.feedsArray[(sender.tag)]
+        userRestaurantCode(feeds: feeds)
+    }
+    
+    func userRestaurantCode(feeds:LFFeedsData){
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let profileContoller : LFUserProfileViewController = (storyBoard.instantiateViewController(withIdentifier: "LFUserProfileViewController") as? LFUserProfileViewController)!
         profileContoller.profileDetails = ProfileDetailsType.restaurantsType
@@ -633,7 +661,7 @@ extension LFHomeViewController{
                     self.homeTableView.beginUpdates()
                     self.feedsArray.remove(at: sender.tag)
                     let indexsset:IndexSet = [sender.tag]
-                    self.homeTableView.deleteSections(indexsset, with: .automatic)
+                    self.homeTableView.deleteSections(indexsset, with: .fade)
                     self.homeTableView.endUpdates()
 
                     self.showAlert("", status: status)

@@ -101,8 +101,12 @@
 	<string>MobileAPIs/getHashTags?</string>
 	<key>getUserNamesUsingKeyword</key>
 	<string>MobileAPIs/getUserNames?</string>
-	<key>getAtUser</key>
+    <key>getSearchResults</key>
+    <string>MobileAPIs/searchResults?</string>
+    <key>getAtUser</key>
 	<string>MobileAPIs/getUserByUserName?</string>
+	<key>deleteComment</key>
+	<string>Jobs/removeJobComment?</string>
 	<key>AppBgColr</key>
 	<array>
 		<string></string>

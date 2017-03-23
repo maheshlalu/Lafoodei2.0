@@ -15,6 +15,9 @@
 		115257931E7817E0002EEF47 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257921E7817E0002EEF47 /* OAuthSwift.framework */; };
 		115257951E7819DE002EEF47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257941E7819DE002EEF47 /* SystemConfiguration.framework */; };
 		115257971E7819E4002EEF47 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115257961E7819E4002EEF47 /* Security.framework */; };
+		115ABC181E824B2B0025953C /* QuestionChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115ABC151E824B2B0025953C /* QuestionChatCollectionViewCell.swift */; };
+		115ABC191E824B2B0025953C /* QuestionChatCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115ABC161E824B2B0025953C /* QuestionChatCollectionViewCell.xib */; };
+		115ABC1A1E824B2B0025953C /* RequestedQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115ABC171E824B2B0025953C /* RequestedQuestionsViewController.swift */; };
 		119329AF1E519AC600FEC328 /* SearchFoodies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119329AE1E519AC600FEC328 /* SearchFoodies.swift */; };
 		11AA4E4C1E7D5AD7006C4E37 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA4E491E7D5AD7006C4E37 /* CustomCalloutView.swift */; };
 		11AA4E4D1E7D5AD7006C4E37 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11AA4E4A1E7D5AD7006C4E37 /* CustomCalloutView.xib */; };
@@ -185,6 +188,9 @@
 		115257921E7817E0002EEF47 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Lefoodie-gkxrhlxhetpbfnayggpftxnkxvsm/Build/Products/Debug-iphonesimulator/OAuthSwift/OAuthSwift.framework"; sourceTree = "<group>"; };
 		115257941E7819DE002EEF47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		115257961E7819E4002EEF47 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		115ABC151E824B2B0025953C /* QuestionChatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionChatCollectionViewCell.swift; sourceTree = "<group>"; };
+		115ABC161E824B2B0025953C /* QuestionChatCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionChatCollectionViewCell.xib; sourceTree = "<group>"; };
+		115ABC171E824B2B0025953C /* RequestedQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedQuestionsViewController.swift; sourceTree = "<group>"; };
 		119329AE1E519AC600FEC328 /* SearchFoodies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFoodies.swift; sourceTree = "<group>"; };
 		11AA4E491E7D5AD7006C4E37 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		11AA4E4A1E7D5AD7006C4E37 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
@@ -391,6 +397,16 @@
 				112FDA2B1E65B597008FB5AF /* LFUserFollowerAndFollowingViewController.swift */,
 			);
 			name = "Followers and Following ";
+			sourceTree = "<group>";
+		};
+		115ABC141E824AF90025953C /* Restaurant Chat */ = {
+			isa = PBXGroup;
+			children = (
+				115ABC171E824B2B0025953C /* RequestedQuestionsViewController.swift */,
+				115ABC151E824B2B0025953C /* QuestionChatCollectionViewCell.swift */,
+				115ABC161E824B2B0025953C /* QuestionChatCollectionViewCell.xib */,
+			);
+			name = "Restaurant Chat";
 			sourceTree = "<group>";
 		};
 		121E108E1E5F2214001546D0 /* Comments */ = {
@@ -656,10 +672,15 @@
 			children = (
 				112FDA281E65B502008FB5AF /* Followers and Following  */,
 				121E108E1E5F2214001546D0 /* Comments */,
+				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
+				183FBCC21E1A378D00A0A8CC /* TabBar */,
+				127861D71E1A29D600D64F16 /* Login */,
+				127861CF1E1A299400D64F16 /* Search */,
+				115ABC141E824AF90025953C /* Restaurant Chat */,
+				127861BF1E1A295700D64F16 /* Home */,
 				8976AF571E49C86200527555 /* LFSignInViewController.swift */,
 				114E3C431E1FB96400142130 /* LFNotificationTableViewCell.swift */,
 				114E3C441E1FB96400142130 /* LFNotificationTableViewCell.xib */,
-				18F1793E1E1CC2DB001EDF45 /* PostShareView */,
 				1825CCD51E1BE94D00CD3C3B /* LFUserProfileViewController.swift */,
 				120514E41E40BD6400D2345E /* LFUserDetailEditViewController.swift */,
 				12E21C621E434070007E7450 /* LFFoodietoBusinessViewController.swift */,
@@ -693,10 +714,6 @@
 				1225DA2D1E5DB29A007951B8 /* LFHotItemViewController.swift */,
 				1225DA2F1E5DB2D1007951B8 /* LFHotItemTableViewCell.swift */,
 				1225DA301E5DB2D1007951B8 /* LFHotItemTableViewCell.xib */,
-				183FBCC21E1A378D00A0A8CC /* TabBar */,
-				127861D71E1A29D600D64F16 /* Login */,
-				127861CF1E1A299400D64F16 /* Search */,
-				127861BF1E1A295700D64F16 /* Home */,
 				89D620BE1E7911B8001F3EDC /* LFUniqueUserCreation.swift */,
 			);
 			name = Controllers;
@@ -936,6 +953,7 @@
 				8994FB8D1E44BD42004BD2FD /* urls in Resources */,
 				1842A7731E1F7FC7004C85C0 /* Pacifico.ttf in Resources */,
 				120514DD1E40927700D2345E /* LFItemCenterTableViewCell.xib in Resources */,
+				115ABC191E824B2B0025953C /* QuestionChatCollectionViewCell.xib in Resources */,
 				1825CCB31E1B769D00CD3C3B /* CXCameraSourceViewController.xib in Resources */,
 				121E10931E5F2229001546D0 /* LFCommentTableViewCell.xib in Resources */,
 				1225DA321E5DB2D1007951B8 /* LFHotItemTableViewCell.xib in Resources */,
@@ -1177,6 +1195,7 @@
 				1825CCE01E1BE97300CD3C3B /* LFPhotoCollectionViewCell.swift in Sources */,
 				18259FB91E6986A900DEE18D /* UIImage+ResizeMagick.m in Sources */,
 				127861E01E1A2A0200D64F16 /* CXTextField.swift in Sources */,
+				115ABC1A1E824B2B0025953C /* RequestedQuestionsViewController.swift in Sources */,
 				1896A5CB1E154A1C008530A4 /* String+StringOperation.swift in Sources */,
 				8976AF581E49C86200527555 /* LFSignInViewController.swift in Sources */,
 				1825CCD61E1BE94D00CD3C3B /* LFUserProfileViewController.swift in Sources */,
@@ -1196,6 +1215,7 @@
 				1225DA2A1E5D8DF1007951B8 /* LFPostViewController.swift in Sources */,
 				120514DC1E40927700D2345E /* LFItemCenterTableViewCell.swift in Sources */,
 				183FBCC61E1A597E00A0A8CC /* LFNotificationController.swift in Sources */,
+				115ABC181E824B2B0025953C /* QuestionChatCollectionViewCell.swift in Sources */,
 				1835655F1E166D1500E7A531 /* NSDate+date.swift in Sources */,
 				18AFA6521E543E1D00D4D653 /* LFDataSaveManager.swift in Sources */,
 				896073541E36015800551545 /* CXDataService.swift in Sources */,

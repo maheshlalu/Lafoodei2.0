@@ -285,7 +285,7 @@ class LFDataSaveManager: NSObject {
             }
         }else{
             let foodieData = relamInstance.objects(LFFollowers.self).filter("followerId=='\(CXAppConfig.resultString(input: (userData as! SearchFoodies).foodieId as AnyObject))'")
-            
+            print(foodieData.count)
             if foodieData.count == 0 {
                 //Insert The Data
                 try! relamInstance.write({
@@ -310,6 +310,8 @@ class LFDataSaveManager: NSObject {
                     
                     relamInstance.add(enFollower)
                 })
+            }else{
+            print("data is there u fucking bitch")
             }
         }
     }
